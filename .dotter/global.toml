@@ -1,0 +1,10 @@
+# On Windows, '~' is expanded to 'C:\Users\<USERNAME>\'
+[code.files]
+nvim = { target = "~/.config/nvim", type = "symbolic" }
+bin = { target = "~/bin", type = "template" }
+".vimrc" = "~/.vimrc"
+tmux = "~/.config/tmux"
+
+[code.variables]
+workspaces = "~/workspace"
+

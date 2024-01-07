@@ -1,0 +1,6 @@
+[code.files]
+nvim = "~/AppData/Local/nvim"
+
+[code.variables]
+workspaces = "D:/workspace"
+
