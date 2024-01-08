@@ -4,7 +4,12 @@ nvim = { target = "~/.config/nvim", type = "symbolic" }
 bin = { target = "~/bin", type = "template" }
 ".vimrc" = "~/.vimrc"
 tmux = "~/.config/tmux"
+lazygit = "~/.config/lazygit"
 
 [code.variables]
 workspaces = "~/workspace"
+
+[shell.files]
+".zshenv" = { target = "~/.zshenv", type = "symbolic" }
+zsh = { target = "~/.config/zsh", type = "symbolic" }
 
