@@ -34,6 +34,8 @@ return {
                 enable = true,
             },
         },
+            -- ENABLES THIS IF USING WINDOWS:
+            -- require('nvim-treesitter.install').compilers = { 'zig' }
     },
 
     -- Show context of the current function
