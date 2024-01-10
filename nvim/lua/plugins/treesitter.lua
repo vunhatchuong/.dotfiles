@@ -14,8 +14,12 @@ return {
             -- Automatically install missing parsers when entering buffer
             -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
             auto_install = true,
-            highlight = { enable = true },
+            highlight = {
+                enable = true,
+                additional_vim_regex_highlighting = false,
+            },
             indent = { enable = true },
+            autopairs = { enable = true },
             ensure_installed = {
                 "bash",
                 "vim",
@@ -33,11 +37,21 @@ return {
             matchup = {
                 enable = true,
             },
-        },
+            textobjects = {
+                select = {
+                    enable = true,
+                    -- Automatically jump forward to textobj, similar to targets.vim
+                    lookahead = true,
+                },
+            },
             -- ENABLES THIS IF USING WINDOWS:
             -- require('nvim-treesitter.install').compilers = { 'zig' }
-    },
+        },
 
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end,
+    },
     -- Show context of the current function
     {
         "nvim-treesitter/nvim-treesitter-context",
@@ -53,4 +67,3 @@ return {
         opts = {},
     },
 }
-
