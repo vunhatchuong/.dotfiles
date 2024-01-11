@@ -9,7 +9,7 @@ return {
             -- ['*'] = { 'global linter' },
             -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
             -- ['_'] = { 'fallback linter' },
-            go = { "gospel", "golangci-lint" },
+            go = { "golangcilint" },
             lua = { "selene" },
         },
         -- LazyVim extension to easily override linter options

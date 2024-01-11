@@ -19,11 +19,11 @@ return {
             -- Conform will run multiple formatters sequentially
             lua = { "stylua" },
             go = {
+                "goimports_reviser",
                 "goimports",
-                "gofmt",
+                "gofumpt",
                 "golines",
                 "gomodifytags",
-                "goimports_reviser",
             },
             python = { "isort", "black" },
             javascript = { { "prettierd", "prettier" } },
