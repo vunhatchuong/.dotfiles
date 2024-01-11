@@ -18,7 +18,13 @@ return {
         formatters_by_ft = {
             -- Conform will run multiple formatters sequentially
             lua = { "stylua" },
-            go = { "goimports", "gofmt" },
+            go = {
+                "goimports",
+                "gofmt",
+                "golines",
+                "gomodifytags",
+                "goimports_reviser",
+            },
             python = { "isort", "black" },
             javascript = { { "prettierd", "prettier" } },
             ["_"] = { "trim_whitespace" },

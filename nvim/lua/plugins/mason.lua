@@ -24,7 +24,8 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
-            { "williamboman/mason-lspconfig.nvim" },
+            { "williamboman/mason-lspconfig.nvim", opts = {} },
+            { "folke/neodev.nvim" },
         },
         config = function()
             local lsp_zero = require("lsp-zero")
@@ -96,6 +97,7 @@ return {
                 --[[ keymap(bufnr, "n", "<leader>ff", "<cmd>lua vim.lsp.buf.format()<CR>", opts) ]]
             end)
 
+            require("neodev").setup({})
             require("mason-lspconfig").setup({
                 ensure_installed = {},
                 handlers = {
