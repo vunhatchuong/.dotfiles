@@ -6,6 +6,8 @@ return {
         priority = 1000,
         config = function()
             require("catppuccin").setup({
+                flavor = "mocha",
+                -- transparent_background = true, -- disables setting the background color.
                 integrations = {
                     treesitter = true,
                     treesitter_context = true,
@@ -27,17 +29,23 @@ return {
                         indentscope_color = "",
                     },
                     native_lsp = {
-                        enabled = true
+                        enabled = true,
                     },
                     navic = {
                         enabled = true,
-                        custom_bg = "NONE",
+                        custom_bg = "lualine",
                     },
                     rainbow_delimiters = true,
                     telescope = {
                         enabled = true,
                     },
                 },
+                -- Use command :hi to check out highlight groups
+                custom_highlights = function(colors)
+                    return {
+                        IncSearch = { bg = colors.flamingo },
+                    }
+                end,
             })
             vim.cmd("colorscheme catppuccin")
         end,
@@ -46,6 +54,5 @@ return {
         "rose-pine/neovim",
         name = "rose-pine",
         lazy = true,
-    }
+    },
 }
-
