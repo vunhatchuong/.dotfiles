@@ -8,13 +8,17 @@ return {
         local keymap = vim.keymap.set
         local function mark_file()
             harpoon:list():append()
-            vim.notify "󱡅  Marked file"
+            vim.notify("󱡅  Marked file")
         end
 
         harpoon:setup()
 
-        keymap("n", "<leader>a", function() mark_file() end)
-        keymap("n", "<TAB>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+        keymap("n", "<leader>a", function()
+            mark_file()
+        end)
+        keymap("n", "<TAB>", function()
+            harpoon.ui:toggle_quick_menu(harpoon:list())
+        end)
 
         keymap("n", "<S-h>", function()
             harpoon:list():select(1)
@@ -30,4 +34,3 @@ return {
         end)
     end,
 }
-

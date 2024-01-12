@@ -1,6 +1,6 @@
 return {
     "RRethy/vim-illuminate",
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
         delay = 200,
         large_file_cutoff = 2000,
@@ -13,13 +13,10 @@ return {
             "lazy",
             "Trouble",
             "TelescopePrompt",
-            "oil"
+            "oil",
         },
-
     },
     config = function(_, opts)
         require("illuminate").configure(opts)
     end,
-
 }
-

@@ -34,6 +34,7 @@ autocmd({ "BufWinEnter" }, {
     end,
 })
 
+-- Highlight yank
 autocmd("TextYankPost", {
     pattern = "*",
     callback = function()
@@ -80,17 +81,9 @@ autocmd("BufReadPost", {
     end,
 })
 
-autocmd("FileType", {
-    pattern = { "gitcommit", "markdown", "NeogitCommitMessage" },
-    callback = function()
-        vim.opt_local.wrap = true
-        vim.opt_local.spell = true
-    end,
-})
-
 -- wrap and check for spell in text filetypes
 autocmd("FileType", {
-    pattern = { "gitcommit", "markdown" },
+    pattern = { "gitcommit", "markdown", "*.json" },
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
@@ -99,7 +92,6 @@ autocmd("FileType", {
 
 -- Remove trailing whitespaces
 autocmd({ "BufWritePre" }, {
-    group = general,
     pattern = "*",
     callback = function()
         -- Replace Ctrl+M (^M)

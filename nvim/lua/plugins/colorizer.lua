@@ -5,4 +5,3 @@ return {
         require("colorizer").setup()
     end,
 }
-

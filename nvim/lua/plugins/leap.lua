@@ -23,4 +23,3 @@ return {
         vim.api.nvim_set_hl(0, "LeapBackdrop", { fg = "#777777" })
     end,
 }
-

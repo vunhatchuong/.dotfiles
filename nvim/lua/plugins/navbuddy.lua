@@ -3,10 +3,16 @@ return {
     "SmiteshP/nvim-navbuddy",
     dependencies = {
         "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim"
+        "MunifTanjim/nui.nvim",
     },
     keys = {
-        { "<leader>o", ":Navbuddy<cr>", silent = true, desc = "Navbuddy", mode = "n" },
+        {
+            "<leader>o",
+            ":Navbuddy<cr>",
+            silent = true,
+            desc = "Navbuddy",
+            mode = "n",
+        },
     },
     opts = {
         window = {
@@ -14,6 +20,5 @@ return {
         },
         icons = require("core.icons").kind,
         lsp = { auto_attach = true },
-    }
+    },
 }
-

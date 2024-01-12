@@ -16,18 +16,18 @@ vim.g.maplocalleader = " "
 
 -- Netrw
 keymap("n", "<leader>e", vim.cmd.Ex)
-
+keymap("n", "Q", "<nop>")
 
 -- Normal --
 keymap("n", "<leader>w", ":w<cr>", opts)
 keymap("n", "<leader>q", ":q<cr>", opts)
 keymap("n", "<leader>h", ":nohl<cr>", opts)
-keymap("n", "c", "\"_c", opts)
-keymap("n", "x", "\"_x", opts)
+keymap("n", "c", '"_c', opts)
+keymap("n", "x", '"_x', opts)
 
 -- Remap for dealing with word wrap
-keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+keymap("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Move to first, last line
 keymap({ "n", "o", "x" }, "$", "^", opts)
@@ -46,7 +46,6 @@ keymap("n", "<A-j>", ":m .+1<CR>==", opts)
 -- Append line below to current line and keep cursor position
 keymap("n", "J", "mzJ`z", opts)
 
-
 -- Visual --
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
@@ -57,13 +56,11 @@ keymap("v", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 keymap("v", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 keymap("v", "p", '"_dP', opts)
 
-
 -- Visual Block --
 -- Move text up and down
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<leader>p", [["_dP]], opts)
-
 
 -- Others --
 -- Replace the word that cursor is on
@@ -80,9 +77,23 @@ keymap("n", "Q", "<nop>")
 --keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
 --keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
 
+-- Navigate buffers
+--keymap("n", "<S-l>", ":bnext<CR>", opts)
+--keymap("n", "<S-h>", ":bprevious<CR>", opts)
+--keymap("n", "<S-x>", ":BufferKill<CR>", opts)
+
 -- Diagnostic keymaps
 --keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 ---keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-keymap('n', '<leader>dm', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-keymap('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
-
+keymap(
+    "n",
+    "<leader>dm",
+    vim.diagnostic.open_float,
+    { desc = "Open floating diagnostic message" }
+)
+keymap(
+    "n",
+    "<leader>dl",
+    vim.diagnostic.setloclist,
+    { desc = "Open diagnostics list" }
+)

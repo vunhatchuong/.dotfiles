@@ -5,7 +5,12 @@ return {
         "nvim-lua/plenary.nvim",
     },
     keys = {
-        { "<leader>lg", ":LazyGitCurrentFile<cr>", silent = true, desc = "LazyGitCurrentFile", mode = "n" },
+        {
+            "<leader>lg",
+            ":LazyGitCurrentFile<cr>",
+            silent = true,
+            desc = "LazyGitCurrentFile",
+            mode = "n",
+        },
     },
 }
-

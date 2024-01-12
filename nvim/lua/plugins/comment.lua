@@ -1,26 +1,25 @@
 return {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     event = "BufReadPre",
     config = function()
         require("Comment").setup({
             toggler = {
                 ---Line-comment toggle keymap
-                line = '<C-_>',
+                line = "<C-_>",
 
-                block = 'false',
+                block = "false",
             },
             ---LHS of operator-pending mappings in NORMAL and VISUAL mode
             opleader = {
                 ---Line-comment keymap
-                line = 'false',
+                line = "false",
 
-                block = '<C-_>',
+                block = "<C-_>",
             },
             mappings = {
-                basic = 'true',
-                extra = 'false',
+                basic = "true",
+                extra = "false",
             },
         })
     end,
 }
-
