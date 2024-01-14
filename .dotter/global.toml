@@ -17,3 +17,6 @@ zsh = { target = "~/.config/zsh", type = "symbolic" }
 "./windows/repeat-rates.reg" = { target = "~/.config/repeat-rate.reg", type = "symbolic" }
 "./windows/Microsoft.PowerShell_profile.ps1" = { target = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1", type = "symbolic" }
 "./windows/powershell/config.ps1" = { target = "~/.config/powershell/config.ps1", type = "symbolic" }
+
+[i3.files]
+i3 = { target = "~/.config/i3", type = "symbolic" } 
