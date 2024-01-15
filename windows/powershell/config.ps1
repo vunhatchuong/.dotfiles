@@ -93,3 +93,7 @@ function gd {
 function gco {
 	git checkout $args
 }
+
+function gm {
+    git merge $args
+}
