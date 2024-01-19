@@ -65,8 +65,8 @@ function InstallWithScoop()
     {
         Write-Output "Scoop exists, updating Scoop."
         Start-Sleep -Seconds 1
-        & scoop install git
         & scoop update *
+        & scoop install git
     }
 
     Start-Sleep -Seconds 1
