@@ -16,6 +16,8 @@ Remove-Alias gpv -Force -ErrorAction SilentlyContinue
 #Set environment variables
 $ENV:EDITOR = "nvim"
 $ENV:SHELL = "pwsh -NoLogo"
+$Env:CONFIG_DIR = "$env:USERPROFILE\.config\lazygit"
+
 
 #----------------------------------
 
