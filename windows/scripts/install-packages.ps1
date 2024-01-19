@@ -162,6 +162,3 @@ function InstallPackages($installerType, $packages)
 # Start the main function
 main
 
-
-
-

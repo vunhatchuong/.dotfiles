@@ -77,5 +77,3 @@ InstallDotfilesManager
 InstallDotfiles
 InstallPackages
 
-
-
