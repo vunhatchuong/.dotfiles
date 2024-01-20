@@ -13,6 +13,7 @@ workspaces = "~/workspace"
 ".zshenv" = { target = "~/.zshenv", type = "symbolic" }
 zsh = { target = "~/.config/zsh", type = "symbolic" }
 bat = { target = "~/.config/bat", type = "symbolic" }
+"starship.toml" = { target = "~/.config/starship.toml", type = "symbolic" }
 
 [windows.files]
 "./windows/repeat-rates.reg" = { target = "~/.config/repeat-rate.reg", type = "symbolic" }
