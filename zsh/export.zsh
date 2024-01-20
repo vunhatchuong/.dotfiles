@@ -23,7 +23,6 @@ setopt HIST_REDUCE_BLANKS    # Remove unnecessary blank lines.
 export PATH="$HOME/.cargo/bin:$PATH"
 #export PATH=$PATH:$(go env GOPATH)/bin
 
-export BAT_THEME="Catppuccin-mocha"
 VIM="nvim"
 
 # FZF Catppuccin theme
