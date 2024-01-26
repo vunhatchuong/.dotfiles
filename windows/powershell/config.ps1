@@ -45,57 +45,75 @@ Remove-Alias ls
 
 # Utilities
 ## which command
-function which ($command) {
-	Get-Command -Name $command -ErrorAction SilentlyContinue |
-	Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
+function which ($command)
+{
+    Get-Command -Name $command -ErrorAction SilentlyContinue |
+        Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
 ## View hidden files
-function lsa(){
-	Get-ChildItem -Hidden
+function lsa()
+{
+    Get-ChildItem -Hidden
 }
 
 function ls
 {
-	Get-ChildItem | format-wide -autosize
+    Get-ChildItem | format-wide -autosize
 }
 
-function gst {
-	git status $args
+function gst
+{
+    git status $args
 }
 
-function ga {
-	git add $args
+function ga
+{
+    git add $args
 }
 
-function gb {
-	git branch $args
+function gb
+{
+    git branch $args
 }
 
-function gl {
-	git pull $args
+function gl
+{
+    git pull $args
 }
 
-function gp {
-	git push $args
+function gp
+{
+    git push $args
 }
 
-function gcmsg {
-	git commit -m $args
+function gcmsg
+{
+    git commit -m $args
 }
 
-function grv {
-	git remote -v $args
+function grv
+{
+    git remote -v $args
 }
 
-function gd {
-	git diff $args
+function gd
+{
+    git diff $args
 }
 
-function gco {
-	git checkout $args
+function gco
+{
+    git checkout $args
 }
 
-function gm {
+function gm
+{
     git merge $args
 }
+
+function ala
+{
+    alacritty --config-file "$env:USERPROFILE/.config/alacritty/alacritty.toml"
+}
+

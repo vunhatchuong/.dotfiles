@@ -5,6 +5,7 @@ bin = { target = "~/bin", type = "template" }
 ".vimrc" = "~/.vimrc"
 tmux = "~/.config/tmux"
 lazygit = "~/.config/lazygit"
+alacritty = "~/.config/alacritty"
 
 [code.variables]
 workspaces = "~/workspace"
