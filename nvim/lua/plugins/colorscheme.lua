@@ -7,7 +7,7 @@ return {
         config = function()
             require("catppuccin").setup({
                 flavor = "mocha",
-                -- transparent_background = true, -- disables setting the background color.
+                transparent_background = true, -- disables setting the background color.
                 integrations = {
                     treesitter = true,
                     treesitter_context = true,
