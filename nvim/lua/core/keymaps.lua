@@ -68,7 +68,7 @@ keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Tmux sessionizer
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- Make file executable
-keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 keymap("n", "<leader>gr", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>", { silent = true })
 keymap("n", "Q", "<nop>")
 
