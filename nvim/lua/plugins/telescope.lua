@@ -36,7 +36,7 @@ return {
                     require("telescope.builtin").find_files({
                         cwd = path,
                         prompt_title = matchingFolder
-                                and "Files in matching workspace folder"
+                            and "Files in matching workspace folder"
                             or "Files with prefix removed",
                     })
                 end,

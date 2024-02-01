@@ -28,8 +28,8 @@ return {
                 formatting = {
                     fields = { "kind", "abbr", "menu" },
                     format = require("lspkind").cmp_format({
-                        mode = "symbol", -- show only symbol annotations
-                        maxwidth = 50, -- prevent the popup from showing more than provided characters
+                        mode = "symbol",       -- show only symbol annotations
+                        maxwidth = 50,         -- prevent the popup from showing more than provided characters
                         ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
                     }),
                 },
@@ -74,11 +74,11 @@ return {
             })
 
             -- If you want insert `(` after select function or method item
-            --[[ local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+            local cmp_autopairs = require('nvim-autopairs.completion.cmp')
             cmp.event:on(
                 'confirm_done',
                 cmp_autopairs.on_confirm_done()
-            ) ]]
+            )
         end,
     },
 }
