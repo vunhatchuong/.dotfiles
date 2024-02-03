@@ -67,34 +67,10 @@ keymap("x", "<leader>p", [["_dP]], opts)
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Tmux sessionizer
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
--- Make file executable
--- keymap("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-keymap("n", "<leader>gr", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>", { silent = true })
-keymap("n", "Q", "<nop>")
+keymap("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>", { silent = true })
 
--- Quickfix nav
---keymap("n", "<C-k>", "<cmd>cnext<CR>zz")
---keymap("n", "<C-j>", "<cmd>cprev<CR>zz")
---keymap("n", "<leader>k", "<cmd>lnext<CR>zz")
---keymap("n", "<leader>j", "<cmd>lprev<CR>zz")
-
--- Navigate buffers
---keymap("n", "<S-l>", ":bnext<CR>", opts)
---keymap("n", "<S-h>", ":bprevious<CR>", opts)
---keymap("n", "<S-x>", ":BufferKill<CR>", opts)
-
--- Diagnostic keymaps
---keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
----keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
-keymap(
-    "n",
-    "<leader>dm",
-    vim.diagnostic.open_float,
-    { desc = "Open floating diagnostic message" }
-)
-keymap(
-    "n",
-    "<leader>dl",
-    vim.diagnostic.setloclist,
-    { desc = "Open diagnostics list" }
-)
+-- windows
+keymap("n", "<leader>ww", "<C-W>w", opts)
+keymap("n", "<leader>wq", "<C-W>c", opts)
+keymap("n", "<leader>-", "<C-W>s", opts)
+keymap("n", "<leader>|", "<C-W>v", opts)

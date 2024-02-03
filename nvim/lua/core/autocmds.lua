@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
+-- Close with q
 autocmd({ "FileType" }, {
-
     pattern = {
         "netrw",
         "help",
@@ -14,7 +14,6 @@ autocmd({ "FileType" }, {
         "Trouble",
         "oil",
         "TelescopePrompt",
-        "",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
@@ -90,11 +89,10 @@ autocmd("FileType", {
     end,
 })
 
--- Remove trailing whitespaces
 autocmd({ "BufWritePre" }, {
     pattern = "*",
     callback = function()
-        -- Replace Ctrl+M (^M)
+        -- Remove Ctrl+M (^M)
         vim.cmd([[ %s/]] .. string.char(13) .. [[//ge ]])
         -- Remove trailing whitespaces
         vim.cmd([[ %s/\s\+$//e ]])

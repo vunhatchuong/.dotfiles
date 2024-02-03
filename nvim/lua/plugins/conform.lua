@@ -20,17 +20,29 @@ return {
             lua = { "stylua" },
             go = {
                 "goimports_reviser",
-                "goimports",
                 "gofumpt",
                 "golines",
                 "gomodifytags",
+                "gotests",
             },
             python = { "isort", "black" },
             javascript = { { "prettierd", "prettier" } },
+            html = { "prettier" },
+            css = { "prettier" },
+            json = { "prettier" },
+            yaml = { "prettier" },
+            toml = { "taplo" },
+            markdown = { "markdownlint-cli2" },
             ["_"] = { "trim_whitespace" },
         },
     },
     init = function()
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
+    config = function()
+        -- Override prettier's default indent type
+        require("conform").formatters.prettier = {
+            prepend_args = { "--tab-width", "4" },
+        }
+    end
 }

@@ -7,7 +7,6 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
     "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
     opt.shellredir = "-RedirectStandardOutput %s -NoNewWindow -Wait"
     opt.shellpipe = "2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode"
-
     opt.shellquote = ""
     opt.shellxquote = ""
 end
@@ -23,9 +22,9 @@ opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 opt.hidden = true                           -- required to keep multiple buffers and open multiple buffers
 opt.guifont = "JetBrainsMono Nerd Font:h17" -- the font used in graphical neovim applications
 opt.autowrite = true                        -- save when kinda change buffer?
-opt.fileformat = "unix"                     -- save when kinda change buffer?
+opt.fileformat = "unix"
 
-opt.mouse = "a"                             -- allow the mouse to be used in neovim
+opt.mouse = "a" -- allow the mouse to be used in neovim
 opt.clipboard = "unnamedplus"
 
 opt.guicursor = ""
@@ -76,7 +75,6 @@ opt.foldlevelstart = 99
 ---  NETRW  ---
 ---vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
-
 vim.g.netrw_preview = 1
 vim.g.netrw_alto = 0
 

@@ -53,57 +53,87 @@ return {
                 nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
                 nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-                nmap(
-                    "gd",
-                    require("telescope.builtin").lsp_definitions,
-                    "[G]oto [D]efinition"
-                )
-                nmap(
-                    "gr",
-                    require("telescope.builtin").lsp_references,
-                    "[G]oto [R]eferences"
-                )
-                nmap(
-                    "gI",
-                    require("telescope.builtin").lsp_implementations,
-                    "[G]oto [I]mplementation"
-                )
-                nmap(
-                    "<leader>D",
-                    require("telescope.builtin").lsp_type_definitions,
-                    "Type [D]efinition"
-                )
-                nmap(
-                    "<leader>ds",
-                    require("telescope.builtin").lsp_document_symbols,
-                    "[D]ocument [S]ymbols"
-                )
-                nmap(
-                    "<leader>ws",
-                    require("telescope.builtin").lsp_dynamic_workspace_symbols,
-                    "[W]orkspace [S]ymbols"
-                )
-                --nmap('<leader>sd', require('telescope.builtin').diagnostics, '[S]earch [D]iagnostics')
-
-                -- See `:help K` for why this keymap
                 nmap("K", vim.lsp.buf.hover, "Hover Documentation")
                 nmap(
                     "<C-k>",
-                    vim.lsp.buf.signature_help,
-                    "Signature Documentation"
-                )
-                nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-                --[[ keymap(bufnr, "n", "<leader>ff", "<cmd>lua vim.lsp.buf.format()<CR>", opts) ]]
+                    vim.diagnostic.open_float,
+                    "Open floating diagnostic message")
+                nmap(
+                    "gd",
+                    require("telescope.builtin").lsp_definitions,
+                    "[G]oto [D]efinition")
+                nmap(
+                    "gr",
+                    require("telescope.builtin").lsp_references,
+                    "[G]oto [R]eferences")
+                nmap(
+                    "gi",
+                    require("telescope.builtin").lsp_implementations,
+                    "[G]oto [I]mplementation")
+                nmap(
+                    "<leader>D",
+                    require("telescope.builtin").lsp_type_definitions,
+                    "Type [D]efinition")
+                nmap("gD",
+                    vim.lsp.buf.declaration,
+                    "[G]oto [D]eclaration")
+                nmap(
+                    "<leader>ds",
+                    require("telescope.builtin").lsp_document_symbols,
+                    "[D]ocument [S]ymbols")
+                nmap(
+                    "<leader>ws",
+                    require("telescope.builtin").lsp_dynamic_workspace_symbols,
+                    "[W]orkspace [S]ymbols")
+                -- nmap(
+                --     "<leader>sd",
+                --     require("telescope.builtin").diagnostics,
+                --     "[S]earch [D]iagnostics")
             end)
 
+            local opts = {
+                ensure_installed = {
+                    "gopls",
+                    "gofumpt",
+                    "goimports-reviser",
+                    "golines",
+                    "gomodifytags",
+                    "gotests",
+                    "impl",
+                    "templ",
+                    "golangci-lint",
+                    "prettierd",
+                    "html-lsp",
+                    "json-lsp",
+                    "lua-language-server",
+                    "powershell-editor-services",
+                },
+                registries = {
+                    "github:mason-org/mason-registry",
+                },
+            }
             require("neodev").setup({})
             require("mason-lspconfig").setup({
-                ensure_installed = {},
+                opts,
                 handlers = {
                     lsp_zero.default_setup,
                 },
+
             })
+            local mr = require("mason-registry")
+            local function ensure_installed()
+                for _, tool in ipairs(opts.ensure_installed) do
+                    local p = mr.get_package(tool)
+                    if not p:is_installed() then
+                        p:install()
+                    end
+                end
+            end
+            if mr.refresh then
+                mr.refresh(ensure_installed)
+            else
+                ensure_installed()
+            end
         end,
     },
 }

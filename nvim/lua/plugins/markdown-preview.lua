@@ -13,7 +13,7 @@ return {
         local install_path = vim.fn.stdpath("data")
             .. "/lazy/markdown-preview.nvim/app"
 
-        -- This won't work on supported shell?? Currently not working on Windows
+        -- This won't work on some shell?? Currently not working on Windows
         if vim.fn.system('node --version > /dev/null 2>&1') == 0 then
             print("Node.js is not installed. Please install Node.js to continue.")
             vim.cmd("silent !cd " .. install_path .. " && npm install && git restore .")

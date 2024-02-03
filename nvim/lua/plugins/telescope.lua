@@ -55,14 +55,14 @@ return {
                 function()
                     require("telescope.builtin").live_grep()
                 end,
-                desc = "Find text",
+                desc = "[F]ind [T]ext",
             },
             {
                 "<leader>fs",
                 function()
                     require("telescope.builtin").grep_string()
                 end,
-                desc = "Find string",
+                desc = "[F]ind [S]tring",
             },
             {
                 "<leader>fk",

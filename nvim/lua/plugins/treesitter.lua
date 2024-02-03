@@ -22,10 +22,11 @@ return {
             autopairs = { enable = true },
             ensure_installed = {
                 "bash",
-                "vim",
                 "vimdoc",
                 "lua",
                 "html",
+                "http",
+                "gitignore",
                 "go",
                 "python",
                 "markdown",
@@ -33,6 +34,7 @@ return {
                 "json",
                 "yaml",
                 "toml",
+                "regex"
             },
             matchup = {
                 enable = true,
@@ -45,7 +47,7 @@ return {
                 },
             },
             -- ENABLES THIS IF USING WINDOWS:
-            -- require('nvim-treesitter.install').compilers = { 'zig' }
+            -- require('nvim-treesitter.install').compilers == { 'zig' }
         },
 
         config = function(_, opts)
