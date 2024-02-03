@@ -8,3 +8,4 @@ If (Test-Path "C:\Users\ronny\miniconda3\Scripts\conda.exe") {
 #endregion
 
 Invoke-Expression (& { $hook = if ($PSVersionTable.PSVersion.Major -ge 6) { 'pwd' } else { 'prompt' } (zoxide init powershell --hook $hook | Out-String) })
+fnm env | Out-String | Invoke-Expression
