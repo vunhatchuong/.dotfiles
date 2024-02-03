@@ -1,7 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        version = false, -- last release is way too old and doesn't work on Windows
+        -- version = false, -- last release is way too old and doesn't work on Windows
         build = ":TSUpdate",
         event = { "BufReadPost", "BufNewFile", "VeryLazy" },
         dependencies = {
@@ -11,8 +11,7 @@ return {
         },
         cmd = { "TSUpdateSync" },
         opts = {
-            -- Automatically install missing parsers when entering buffer
-            -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+            -- Set to false if you don't have `tree-sitter` CLI installed locally
             auto_install = true,
             highlight = {
                 enable = true,
@@ -21,20 +20,18 @@ return {
             indent = { enable = true },
             autopairs = { enable = true },
             ensure_installed = {
+                "lua",
                 "bash",
                 "vimdoc",
-                "lua",
                 "html",
                 "http",
                 "gitignore",
-                "go",
-                "python",
                 "markdown",
                 "markdown_inline",
                 "json",
                 "yaml",
                 "toml",
-                "regex"
+                "regex",
             },
             matchup = {
                 enable = true,
@@ -46,12 +43,12 @@ return {
                     lookahead = true,
                 },
             },
-            -- ENABLES THIS IF USING WINDOWS:
-            -- require('nvim-treesitter.install').compilers == { 'zig' }
         },
 
         config = function(_, opts)
             require("nvim-treesitter.configs").setup(opts)
+            -- ENABLES THIS IF USING WINDOWS:
+            require("nvim-treesitter.install").compilers = { "zig" }
         end,
     },
     -- Show context of the current function

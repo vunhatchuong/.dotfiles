@@ -1,0 +1,132 @@
+local Plugin = { "neovim/nvim-lspconfig" }
+local user = {}
+
+Plugin.dependencies = {
+    "folke/neodev.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "hrsh7th/cmp-nvim-lsp",
+}
+Plugin.cmd = { "LspInfo", "LspInstall", "LspStart" }
+Plugin.event = { "BufReadPre", "BufNewFile" }
+
+function Plugin.init()
+    local icons = require("core.icons")
+    local sign = function(opts)
+        -- See :help sign_define()
+        vim.fn.sign_define(opts.name, {
+            texthl = opts.name,
+            text = opts.text,
+            numhl = "",
+        })
+        -- See :help vim.diagnostic.config()
+        vim.diagnostic.config({
+            -- virtual_text = false,
+            -- underline = false,
+            severity_sort = true,
+            float = {
+                border = "rounded",
+                source = "always",
+            },
+        })
+
+        vim.lsp.handlers["textDocument/hover"] =
+            vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+            vim.lsp.handlers.signature_help,
+            { border = "rounded" }
+        )
+    end
+
+    sign({ name = "DiagnosticSignError", text = icons.diagnostics.BoldError })
+    sign({ name = "DiagnosticSignWarn", text = icons.diagnostics.BoldWarning })
+    sign({ name = "DiagnosticSignHint", text = icons.diagnostics.BoldHint })
+    sign({
+        name = "DiagnosticSignInfo",
+        text = icons.diagnostics.BoldInformation,
+    })
+end
+
+function Plugin.config()
+    local lspconfig = require("lspconfig")
+    local mason_lspconfig = require("mason-lspconfig")
+
+    local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+        group = group,
+        desc = "LSP actions",
+        callback = user.on_attach,
+    })
+
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+
+    mason_lspconfig.setup_handlers({
+        function(server_name)
+            lspconfig[server_name].setup({
+                capabilities = capabilities,
+            })
+        end,
+    })
+end
+
+function user.on_attach()
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = "LSP: " .. desc
+        end
+        vim.keymap.set("n", keys, func, { buffer = true, desc = desc })
+    end
+
+    nmap(
+        "<leader>ff",
+        "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+        "[F]ormat [F]ile"
+    )
+    nmap("<leader>i", "<cmd>LspInfo<cr>", "Lsp Info")
+    nmap("<leader>I", "<cmd>LspInstall<cr>", "Lsp Install")
+    nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+    nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+
+    nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+    nmap("<C-k>", vim.diagnostic.open_float, "Open floating diagnostic message")
+    nmap(
+        "gd",
+        require("telescope.builtin").lsp_definitions,
+        "[G]oto [D]efinition"
+    )
+    nmap(
+        "gr",
+        require("telescope.builtin").lsp_references,
+        "[G]oto [R]eferences"
+    )
+    nmap(
+        "gi",
+        require("telescope.builtin").lsp_implementations,
+        "[G]oto [I]mplementation"
+    )
+    nmap(
+        "<leader>D",
+        require("telescope.builtin").lsp_type_definitions,
+        "Type [D]efinition"
+    )
+    nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+    nmap(
+        "<leader>ds",
+        require("telescope.builtin").lsp_document_symbols,
+        "[D]ocument [S]ymbols"
+    )
+    nmap(
+        "<leader>ws",
+        require("telescope.builtin").lsp_dynamic_workspace_symbols,
+        "[W]orkspace [S]ymbols"
+    )
+    -- nmap(
+    --     "<leader>sd",
+    --     require("telescope.builtin").diagnostics,
+    --     "[S]earch [D]iagnostics")
+end
+
+return Plugin

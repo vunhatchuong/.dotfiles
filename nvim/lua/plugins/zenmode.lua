@@ -2,7 +2,7 @@ return {
     "folke/zen-mode.nvim",
     opts = {
         window = {
-            width = .80
+            width = 0.80,
         },
         plugin = {
             gitsigns = { enabled = true },

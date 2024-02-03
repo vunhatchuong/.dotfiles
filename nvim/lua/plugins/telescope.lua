@@ -11,6 +11,21 @@ return {
                     require("telescope").load_extension("fzf")
                 end,
             },
+            {
+                "nvim-telescope/telescope-ui-select.nvim",
+                opts = {},
+                config = function()
+                    require("telescope").setup({
+                        extensions = {
+                            ["ui-select"] = {
+                                require("telescope.themes").get_dropdown({}),
+                            },
+                        },
+                    })
+
+                    require("telescope").load_extension("ui-select")
+                end,
+            },
         },
         keys = {
             {
@@ -36,7 +51,7 @@ return {
                     require("telescope.builtin").find_files({
                         cwd = path,
                         prompt_title = matchingFolder
-                            and "Files in matching workspace folder"
+                                and "Files in matching workspace folder"
                             or "Files with prefix removed",
                     })
                 end,
