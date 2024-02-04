@@ -12,7 +12,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 end
 
 ---  SYSTEM   ---
-opt.updatetime = 200                        -- faster completion
+opt.updatetime = 100                        -- faster completion
 opt.timeoutlen = 250                        -- time to wait for a mapped sequence to complete (in milliseconds)
 opt.swapfile = false                        -- creates a swapfile
 opt.backup = false                          -- creates a backup file
@@ -23,24 +23,26 @@ opt.hidden = true                           -- required to keep multiple buffers
 opt.guifont = "JetBrainsMono Nerd Font:h17" -- the font used in graphical neovim applications
 opt.autowrite = true                        -- save when kinda change buffer?
 opt.fileformat = "unix"
+opt.confirm = true                          -- Confirm to save changes before exiting modified buffer
 
-opt.mouse = "a" -- allow the mouse to be used in neovim
+opt.mouse = "a"                             -- allow the mouse to be used in neovim
 opt.clipboard = "unnamedplus"
 
 opt.guicursor = ""
 opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
 
-opt.splitright = true                       -- force all vertical splits to go to the right of current window
+opt.splitbelow = false
+opt.splitright = true
 
-opt.ignorecase = true                       -- ignore case in search patterns
-opt.smartcase = true                        -- smart case
+opt.ignorecase = true -- ignore case in search patterns
+opt.smartcase = true  -- smart case
 
 ---  APPEARANCE  ---
-opt.termguicolors = true  -- set term gui colors (most terminals support this)
-opt.cursorline = true     -- highlight the current line
-opt.signcolumn = "yes"    -- always show the sign column otherwise it would shift the text each time
+opt.termguicolors = true -- set term gui colors (most terminals support this)
+opt.cursorline = true    -- highlight the current line
+opt.signcolumn = "yes"   -- always show the sign column otherwise it would shift the text each time
 opt.colorcolumn = "80"
-opt.scrolloff = 8         -- is one of my fav
+opt.scrolloff = 8
 opt.sidescrolloff = 8
 opt.number = true         -- set numbered lines
 opt.relativenumber = true -- set relative numbered lines
@@ -51,11 +53,7 @@ opt.pumblend = 10         -- Popup blend
 opt.pumheight = 10        -- Maximum number of entries in a popup
 
 ---  INDENT  ---
-opt.breakindent = true
-opt.linebreak = true
-opt.breakindentopt = "sbr"
-opt.showbreak = "↪>\\"
-opt.formatoptions = "lnj"
+opt.formatoptions = "tcnlj"
 opt.list = true           -- Show some invisible characters (tabs...
 opt.shiftround = true     -- Round indent
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode

@@ -19,8 +19,8 @@ return {
         else
             vim.cmd(
                 "silent !cd "
-                .. install_path
-                .. " && npm install && git restore ."
+                    .. install_path
+                    .. " && npm install && git restore ."
             )
         end
     end,
