@@ -1,5 +1,6 @@
 return {
     {
+        -- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
         "nvimtools/none-ls.nvim",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = { "mason.nvim", "nvim-lua/plenary.nvim" },
