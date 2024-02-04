@@ -27,79 +27,33 @@ return {
                 end,
             },
         },
+        -- stylua: ignore
         keys = {
             {
                 "<leader><space>",
                 function()
-                    local prefixes = { "oil://", "other://", "netrw://" }
-                    local currentPath = vim.fn.expand("%:p:h")
-                    local workspaceFolders = vim.lsp.buf.list_workspace_folders()
-                        or {}
+                    local activeClients = vim.lsp.get_active_clients()
 
-                    local matchingFolder
-                    for _, folder in ipairs(workspaceFolders) do
-                        if currentPath:find(folder, 1, true) then
-                            matchingFolder = folder
-                            break
-                        end
+                    local workspaceFolder
+                    if activeClients[2] then
+                        workspaceFolder = activeClients[2].config.root_dir
+                        require("telescope.builtin").find_files({
+                            cwd = workspaceFolder,
+                        })
+                        return
+                    else
+                        require("telescope.builtin").find_files()
                     end
-
-                    local path = matchingFolder and matchingFolder
-                        or currentPath
-                    path = path:gsub("^" .. prefixes[1], "")
-
-                    require("telescope.builtin").find_files({
-                        cwd = path,
-                        prompt_title = matchingFolder
-                                and "Files in matching workspace folder"
-                            or "Files with prefix removed",
-                    })
                 end,
-
                 desc = "Find Files",
             },
-            {
-                "<leader>f?",
-                function()
-                    require("telescope.builtin").oldfiles()
-                end,
-                desc = "Find recently opened Files",
-            },
-            {
-                "<leader>ft",
-                function()
-                    require("telescope.builtin").live_grep()
-                end,
-                desc = "[F]ind [T]ext",
-            },
-            {
-                "<leader>fs",
-                function()
-                    require("telescope.builtin").grep_string()
-                end,
-                desc = "[F]ind [S]tring",
-            },
-            {
-                "<leader>fk",
-                function()
-                    require("telescope.builtin").keymaps()
-                end,
-                desc = "Keymaps",
-            },
-            {
-                "<leader>fg",
-                function()
-                    require("telescope.builtin").git_files()
-                end,
-                desc = "Find Git Files",
-            },
-            {
-                "<leader>gc",
-                function()
-                    require("telescope.builtin").git_branches()
-                end,
-                desc = "Checkout branches",
-            },
+
+            { "<leader>f?", function() require("telescope.builtin").oldfiles() end,     desc = "Find recently opened Files" },
+            { "<leader>ft", function() require("telescope.builtin").live_grep() end,    desc = "[F]ind [T]ext" },
+            { "<leader>fs", function() require("telescope.builtin").grep_string() end,  desc = "[F]ind [S]tring" },
+            { "<leader>fk", function() require("telescope.builtin").keymaps() end,      desc = "Keymaps" },
+            { "<leader>fg", function() require("telescope.builtin").git_files() end,    desc = "Find Git Files" },
+            { "<leader>gc", function() require("telescope.builtin").git_branches() end, desc = "Checkout branches" },
         },
     },
 }
