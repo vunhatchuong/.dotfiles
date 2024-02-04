@@ -1,8 +1,14 @@
+-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 local Plugin = { "neovim/nvim-lspconfig" }
 local user = {}
 
 Plugin.dependencies = {
-    "folke/neodev.nvim",
+    {
+        "folke/neodev.nvim",
+        opts = {
+            library = { plugins = { "nvim-dap-ui" }, types = true },
+        },
+    },
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
@@ -37,6 +43,7 @@ function Plugin.init()
             vim.lsp.handlers.signature_help,
             { border = "rounded" }
         )
+        require("lspconfig.ui.windows").default_options.border = "rounded"
     end
 
     sign({ name = "DiagnosticSignError", text = icons.diagnostics.BoldError })
@@ -60,6 +67,7 @@ function Plugin.config()
         callback = user.on_attach,
     })
 
+    -- Auto complete
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -68,6 +76,15 @@ function Plugin.config()
             lspconfig[server_name].setup({
                 capabilities = capabilities,
             })
+        end,
+        ["lua_ls"] = function()
+            require("plugins.lang.lua")
+        end,
+        ["yamlls"] = function()
+            require("plugins.lang.yaml")
+        end,
+        ["jsonls"] = function()
+            require("plugins.lang.json")
         end,
     })
 end
@@ -80,53 +97,25 @@ function user.on_attach()
         vim.keymap.set("n", keys, func, { buffer = true, desc = desc })
     end
 
-    nmap(
-        "<leader>ff",
-        "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
-        "[F]ormat [F]ile"
-    )
-    nmap("<leader>i", "<cmd>LspInfo<cr>", "Lsp Info")
-    nmap("<leader>I", "<cmd>LspInstall<cr>", "Lsp Install")
+    -- stylua: ignore start
+    nmap("<leader>ff", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "[F]ormat [F]ile")
+    nmap("<leader>i", "<cmd>LspInfo<cr>", "Info")
+    nmap("<leader>I", "<cmd>LspInstall<cr>", "Install")
     nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
     nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
     nmap("K", vim.lsp.buf.hover, "Hover Documentation")
     nmap("<C-k>", vim.diagnostic.open_float, "Open floating diagnostic message")
-    nmap(
-        "gd",
-        require("telescope.builtin").lsp_definitions,
-        "[G]oto [D]efinition"
-    )
-    nmap(
-        "gr",
-        require("telescope.builtin").lsp_references,
-        "[G]oto [R]eferences"
-    )
-    nmap(
-        "gi",
-        require("telescope.builtin").lsp_implementations,
-        "[G]oto [I]mplementation"
-    )
-    nmap(
-        "<leader>D",
-        require("telescope.builtin").lsp_type_definitions,
-        "Type [D]efinition"
-    )
+    nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+    nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+    nmap("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+    nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-    nmap(
-        "<leader>ds",
-        require("telescope.builtin").lsp_document_symbols,
-        "[D]ocument [S]ymbols"
-    )
-    nmap(
-        "<leader>ws",
-        require("telescope.builtin").lsp_dynamic_workspace_symbols,
-        "[W]orkspace [S]ymbols"
-    )
-    -- nmap(
-    --     "<leader>sd",
-    --     require("telescope.builtin").diagnostics,
-    --     "[S]earch [D]iagnostics")
+    nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+    nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+    -- nmap("<leader>sd", require("telescope.builtin").diagnostics, "[S]earch [D]iagnostics")
 end
+
+-- stylua: ignore end
 
 return Plugin

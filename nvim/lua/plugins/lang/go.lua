@@ -39,7 +39,6 @@ return {
             vim.list_extend(opts.ensure_installed, {
                 "gopls",
                 "gofumpt",
-                "golangci-lint",
                 "goimports-reviser",
                 "golines",
                 "gotests",
@@ -60,7 +59,6 @@ return {
             local nls = require("null-ls")
             opts.sources = vim.list_extend(opts.sources or {}, {
                 nls.builtins.formatting.gofumpt,
-                nls.builtins.diagnostics.golangci_lint,
                 nls.builtins.formatting.goimports_reviser,
                 nls.builtins.formatting.golines,
                 nls.builtins.code_actions.gomodifytags,
