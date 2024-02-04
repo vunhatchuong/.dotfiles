@@ -1,25 +1,18 @@
 return {
-    "numToStr/Comment.nvim",
-    event = "BufReadPre",
-    config = function()
-        require("Comment").setup({
-            toggler = {
-                ---Line-comment toggle keymap
-                line = "<C-_>",
-
-                block = "false",
-            },
-            ---LHS of operator-pending mappings in NORMAL and VISUAL mode
-            opleader = {
-                ---Line-comment keymap
-                line = "<C-_>",
-
-                block = "false",
-            },
+    {
+        "echasnovski/mini.comment",
+        event = "VeryLazy",
+        opts = {
             mappings = {
-                basic = "true",
-                extra = "false",
+                -- Toggle comment (like `gcip` - comment inner paragraph) for both
+                -- Normal and Visual modes
+                comment = "",
+                -- Toggle comment on current line
+                comment_line = "<C-_>",
+                -- Toggle comment on visual selection
+                comment_visual = "<C-_>",
+                textobject = "",
             },
-        })
-    end,
+        },
+    },
 }

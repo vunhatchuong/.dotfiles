@@ -14,7 +14,6 @@ return {
                 "trouble",
                 "lazy",
                 "mason",
-                "lazyterm",
             },
         },
     },

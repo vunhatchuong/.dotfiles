@@ -3,7 +3,6 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         symbol = "│",
-        options = { try_as_border = true, indent_at_cursor = false },
         draw = {
             animation = function()
                 return 0

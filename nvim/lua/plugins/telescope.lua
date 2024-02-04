@@ -2,6 +2,7 @@ local icons = require("core.icons")
 return {
     {
         "nvim-telescope/telescope.nvim",
+        cmd = "Telescope",
         dependencies = {
             "nvim-lua/plenary.nvim",
             {

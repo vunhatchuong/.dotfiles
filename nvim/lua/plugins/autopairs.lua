@@ -1,23 +1,24 @@
+local openNRegx = ".[^%a\\]"
+local closeNRegx = "[^%a\\]."
+
 return {
-    "windwp/nvim-autopairs",
-    -- Won't apply ignore_next_char if enabled
-    -- event = "InsertEnter",
-    event = "VeryLazy",
-    opts = {},
-    config = function()
-        require("nvim-autopairs").setup({
-            map_char = {
-                all = "(",
-                tex = "{",
+    {
+        "echasnovski/mini.pairs",
+        event = "VeryLazy",
+        opts = {
+            -- stylua: ignore
+            mappings = {
+                ['('] = { action = 'open', pair = '()', neigh_pattern = openNRegx },
+                ['['] = { action = 'open', pair = '[]', neigh_pattern = openNRegx },
+                ['{'] = { action = 'open', pair = '{}', neigh_pattern = openNRegx },
+
+                [')'] = { action = 'close', pair = '()', neigh_pattern = closeNRegx },
+                [']'] = { action = 'close', pair = '[]', neigh_pattern = closeNRegx },
+                ['}'] = { action = 'close', pair = '{}', neigh_pattern = closeNRegx },
+                ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = closeNRegx, register = { cr = false } },
+                ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = closeNRegx, register = { cr = false } },
+                ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = closeNRegx, register = { cr = false } },
             },
-            check_ts = true,
-            ts_config = {
-                lua = { "string", "source" },
-                javascript = { "string", "template_string" },
-                java = false,
-            },
-            disable_filetype = { "TelescopePrompt" },
-            ignored_next_char = string.gsub([[ [%w%%%'%[%"%.] ]], "%s+", ""),
-        })
-    end,
+        },
+    },
 }
