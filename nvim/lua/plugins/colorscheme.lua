@@ -30,15 +30,30 @@ return {
                     },
                     native_lsp = {
                         enabled = true,
-                    },
-                    navic = {
-                        enabled = true,
-                        custom_bg = "lualine",
+                        virtual_text = {
+                            errors = { "italic" },
+                            hints = { "italic" },
+                            warnings = { "italic" },
+                            information = { "italic" },
+                        },
+                        underlines = {
+                            errors = { "underline" },
+                            hints = { "underline" },
+                            warnings = { "underline" },
+                            information = { "underline" },
+                        },
+                        inlay_hints = {
+                            background = true,
+                        },
                     },
                     rainbow_delimiters = true,
                     telescope = {
                         enabled = true,
                     },
+                    fidget = true,
+                    dap = true,
+                    dap_ui = true,
+                    neotest = true,
                 },
                 -- Use command :hi to check out highlight groups
                 custom_highlights = function(colors)

@@ -6,22 +6,26 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         -- Adds LSP completion capabilities
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
-        "SergioRibera/cmp-dotenv",
+        -- "SergioRibera/cmp-dotenv",
         -- Additional snippets
         "rafamadriz/friendly-snippets",
-        -- Icons
-        "onsails/lspkind.nvim",
     },
     config = function()
         vim.opt.completeopt = { "menu", "menuone", "noselect" }
-        local cmp = require("cmp")
-        local luasnip = require("luasnip")
-
+        vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
+        vim.api.nvim_set_hl(
+            0,
+            "CmpGhostText",
+            { link = "Comment", default = true }
+        )
         -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
         require("luasnip.loaders.from_vscode").lazy_load()
-        vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#CA42F0" })
+        local cmp = require("cmp")
+        local luasnip = require("luasnip")
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -30,21 +34,29 @@ return {
             },
             formatting = {
                 fields = { "kind", "abbr", "menu" },
-                format = require("lspkind").cmp_format({
-                    -- mode = "symbol",
-                    maxwidth = 50,
-                    ellipsis_char = "...",
-                    mode = "symbol_text",
-                    menu = {
+                format = function(entry, item)
+                    local icons = require("core.icons")
+                    if icons.kind[item.kind] then
+                        item.kind = icons.kind[item.kind] .. item.kind
+                    end
+                    item.maxwidth = 50
+                    item.ellipsis_char = "..."
+                    item.menu = ({
                         nvim_lsp = "[LSP]",
                         luasnip = "[LuaSnip]",
                         nvim_lua = "[Lua]",
-                    },
-                }),
+                    })[entry.source.name]
+                    return item
+                end,
             },
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
+            },
+            experimental = {
+                ghost_text = {
+                    hl_group = "CmpGhostText",
+                },
             },
             sources = {
                 {
@@ -61,17 +73,19 @@ return {
                     end,
                 },
                 { name = "luasnip" },
+                { name = "buffer" },
                 { name = "path" },
                 { name = "cmp_tabnine" },
                 { name = "treesitter" },
-                {
-                    name = "dotenv",
-                    option = {
-                        load_shell = false,
-                    },
-                },
+                -- {
+                --     name = "dotenv",
+                --     option = {
+                --         load_shell = false,
+                --     },
+                -- },
             },
             mapping = cmp.mapping.preset.insert({
+                -- Currently not working on windows
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<CR>"] = cmp.mapping.confirm({
                     behavior = cmp.ConfirmBehavior.Insert,
@@ -97,7 +111,21 @@ return {
                 end, { "i", "s" }),
             }),
         })
+        cmp.setup.cmdline({ "/", "?" }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = "buffer" },
+            },
+        })
 
+        cmp.setup.cmdline(":", {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = "path" },
+            }, {
+                { name = "cmdline" },
+            }),
+        })
         -- If you want insert `(` after select function or method item
         local cmp_autopairs = require("nvim-autopairs.completion.cmp")
         cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
