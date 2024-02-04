@@ -1,3 +1,4 @@
+local icons = require("core.icons")
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -54,6 +55,14 @@ return {
             { "<leader>fk", function() require("telescope.builtin").keymaps() end,      desc = "Keymaps" },
             { "<leader>fg", function() require("telescope.builtin").git_files() end,    desc = "Find Git Files" },
             { "<leader>gc", function() require("telescope.builtin").git_branches() end, desc = "Checkout branches" },
+        },
+        opts = {
+            defaults = {
+                prompt_prefix = icons.ui.Telescope .. " ",
+                selection_caret = icons.ui.Forward .. "  ",
+                entry_prefix = "   ",
+                path_display = { "smart" },
+            },
         },
     },
 }
