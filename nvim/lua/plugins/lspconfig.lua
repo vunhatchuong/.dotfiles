@@ -2,6 +2,8 @@
 local Plugin = { "neovim/nvim-lspconfig" }
 local user = {}
 
+Plugin.event = { "BufReadPre", "BufNewFile" }
+Plugin.cmd = { "LspInfo", "LspInstall", "LspStart" }
 Plugin.dependencies = {
     {
         "folke/neodev.nvim",
@@ -13,8 +15,6 @@ Plugin.dependencies = {
     "williamboman/mason-lspconfig.nvim",
     "hrsh7th/cmp-nvim-lsp",
 }
-Plugin.cmd = { "LspInfo", "LspInstall", "LspStart" }
-Plugin.event = { "BufReadPre", "BufNewFile" }
 
 function Plugin.init()
     local icons = require("core.icons")
@@ -27,8 +27,15 @@ function Plugin.init()
         })
         -- See :help vim.diagnostic.config()
         vim.diagnostic.config({
-            -- virtual_text = false,
-            -- underline = false,
+            underline = true,
+            virtual_text = {
+                spacing = 4,
+                source = "if_many",
+                prefix = "●",
+                -- Set to a function that returns the diagnostics icon based on the severity
+                -- Only works on a recent 0.10.0 build.
+                -- prefix = "icons",
+            },
             severity_sort = true,
             float = {
                 border = "rounded",
