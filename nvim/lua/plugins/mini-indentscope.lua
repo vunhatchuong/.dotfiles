@@ -1,6 +1,6 @@
 return {
     "echasnovski/mini.indentscope",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     opts = {
         symbol = "│",
         draw = {

@@ -2,7 +2,7 @@ return {
     {
         -- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
         "nvimtools/none-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         dependencies = { "mason.nvim", "nvim-lua/plenary.nvim" },
         opts = function(_, opts)
             local nls = require("null-ls")

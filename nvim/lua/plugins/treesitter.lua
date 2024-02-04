@@ -3,7 +3,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        event = { "BufReadPost", "BufNewFile", "VeryLazy" },
+        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
         dependencies = {
             {
                 "nvim-treesitter/nvim-treesitter-textobjects",
@@ -64,12 +64,12 @@ return {
     -- Show context of the current function
     {
         "nvim-treesitter/nvim-treesitter-context",
-        event = { "BufReadPost", "BufNewFile" },
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {},
     },
     {
         "windwp/nvim-ts-autotag",
-        event = { "BufReadPost", "BufNewFile" },
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {},
     },
 }

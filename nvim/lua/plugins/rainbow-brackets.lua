@@ -1,6 +1,6 @@
 return {
     "HiPhish/rainbow-delimiters.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
     config = function()
         -- This module contains a number of default definitions
         local rainbow_delimiters = require("rainbow-delimiters")

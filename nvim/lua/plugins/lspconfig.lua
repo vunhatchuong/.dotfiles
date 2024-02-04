@@ -2,7 +2,7 @@
 local Plugin = { "neovim/nvim-lspconfig" }
 local user = {}
 
-Plugin.event = { "BufReadPre", "BufNewFile" }
+Plugin.event = { "BufReadPost", "BufNewFile", "BufWritePre" }
 Plugin.cmd = { "LspInfo", "LspInstall", "LspStart" }
 Plugin.dependencies = {
     {
