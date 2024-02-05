@@ -87,11 +87,11 @@ function Plugin.config()
         ["lua_ls"] = function()
             require("plugins.lang.lua")
         end,
-        ["yamlls"] = function()
-            require("plugins.lang.yaml")
-        end,
         ["jsonls"] = function()
             require("plugins.lang.json")
+        end,
+        ["yamlls"] = function()
+            require("plugins.lang.yaml")
         end,
     })
 end
@@ -105,11 +105,9 @@ function user.on_attach()
     end
 
     -- stylua: ignore start
-    nmap("<leader>ff", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", "[F]ormat [F]ile")
     nmap("<leader>i", "<cmd>LspInfo<cr>", "Info")
     nmap("<leader>I", "<cmd>LspInstall<cr>", "Install")
     nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-    nmap("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
     nmap("K", vim.lsp.buf.hover, "Hover Documentation")
     nmap("<C-k>", vim.diagnostic.open_float, "Open floating diagnostic message")

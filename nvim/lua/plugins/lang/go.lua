@@ -50,6 +50,7 @@ return {
     },
     {
         "nvimtools/none-ls.nvim",
+        optional = true,
         dependencies = {
             {
                 "williamboman/mason.nvim",
@@ -58,12 +59,31 @@ return {
         opts = function(_, opts)
             local nls = require("null-ls")
             opts.sources = vim.list_extend(opts.sources or {}, {
-                nls.builtins.formatting.gofumpt,
-                nls.builtins.formatting.goimports_reviser,
-                nls.builtins.formatting.golines,
                 nls.builtins.code_actions.gomodifytags,
                 nls.builtins.code_actions.impl,
             })
         end,
+    },
+    -- {
+    --     "mfussenegger/nvim-lint",
+    --     optional = true,
+    --     opts = {
+    --         linters_by_ft = {
+    --             go = { "golangcilint" },
+    --         },
+    --     },
+    -- },
+    {
+        "stevearc/conform.nvim",
+        optional = true,
+        opts = {
+            formatters_by_ft = {
+                go = {
+                    "gofumpt",
+                    "goimports_reviser",
+                    "golines",
+                },
+            },
+        },
     },
 }

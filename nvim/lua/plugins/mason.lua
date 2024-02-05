@@ -12,10 +12,10 @@ return {
                 "html-lsp",
                 "prettier",
 
+                "marksman",
                 "json-lsp",
                 "yaml-language-server",
                 "taplo",
-                "marksman",
             },
             registries = {
                 "github:mason-org/mason-registry",

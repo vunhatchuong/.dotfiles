@@ -1,8 +1,16 @@
+-- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
 return {
     {
-        -- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
         "nvimtools/none-ls.nvim",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        lazy = true,
+        keys = {
+            {
+                "<leader>ca",
+                vim.lsp.buf.code_action,
+                mode = { "n", "v" },
+                desc = "[C]ode [A]ction",
+            },
+        },
         dependencies = { "mason.nvim", "nvim-lua/plenary.nvim" },
         opts = function(_, opts)
             local nls = require("null-ls")
@@ -14,8 +22,6 @@ return {
                     ".git"
                 )
             opts.sources = vim.list_extend(opts.sources or {}, {
-                nls.builtins.formatting.stylua,
-                nls.builtins.formatting.shfmt,
                 nls.builtins.completion.spell,
             })
             opts.notify_format = ""
