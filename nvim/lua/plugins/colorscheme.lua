@@ -11,6 +11,7 @@ return {
                 integrations = {
                     treesitter = true,
                     treesitter_context = true,
+                    semantic_tokens = true,
                     cmp = true,
                     gitsigns = true,
                     harpoon = true,
@@ -21,12 +22,12 @@ return {
                     markdown = true,
                     indent_blankline = {
                         enabled = true,
-                        scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
+                        scope_color = "",
                         colored_indent_levels = true,
                     },
                     mini = {
                         enabled = true,
-                        indentscope_color = "",
+                        indentscope_color = "pink",
                     },
                     native_lsp = {
                         enabled = true,

@@ -7,5 +7,11 @@ return {
                 enable = true,
             },
         },
+        -- Catppuccin
+        notification = {
+            window = {
+                winblend = 0,
+            },
+        },
     },
 }

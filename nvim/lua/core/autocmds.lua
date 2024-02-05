@@ -14,6 +14,7 @@ autocmd({ "FileType" }, {
         "Trouble",
         "oil",
         "TelescopePrompt",
+        "spectre_panel",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

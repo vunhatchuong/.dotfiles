@@ -14,6 +14,7 @@ return {
             "Trouble",
             "TelescopePrompt",
             "oil",
+            "spectre_panel",
         },
     },
     config = function(_, opts)

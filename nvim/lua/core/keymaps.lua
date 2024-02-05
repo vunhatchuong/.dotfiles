@@ -23,7 +23,9 @@ keymap("n", "<leader>w", ":w<cr>", opts)
 keymap("n", "<leader>q", ":q<cr>", opts)
 keymap("n", "<leader>h", ":nohl<cr>", opts)
 keymap("n", "c", '"_c', opts)
+keymap("n", "C", '"_C', opts)
 keymap("n", "x", '"_x', opts)
+keymap("n", "zo", "za", opts)
 
 -- Remap for dealing with word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })

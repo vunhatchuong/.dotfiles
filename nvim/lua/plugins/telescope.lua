@@ -43,8 +43,12 @@ return {
                             return
                         end
                     end
+                    local prefixes = { "oil:///", "other:///", "netrw:///" }
+                    local currentPath = vim.fn.expand("%:p:h")
+                    -- Not working on Windows because oil path missing `:`
+                    local path = currentPath:gsub("^" .. prefixes[1], "")
                     require("telescope.builtin").find_files({
-                        cwd = vim.fn.expand("%:p:h"),
+                        cwd = path,
                         prompt_title = "Default Find Files",
                     })
                 end,
