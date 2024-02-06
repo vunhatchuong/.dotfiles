@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     spec = {
         { import = "plugins" },
-        { import = "plugins.lang.go" },
+        { import = "core.lang" },
     },
     defaults = {
         lazy = true,
@@ -29,7 +29,7 @@ require("lazy").setup({
     },
     change_detection = {
         enabled = true,
-        notify = false,
+        notify = true,
     },
     performance = {
         rtp = {
