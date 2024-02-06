@@ -15,13 +15,11 @@ setopt HIST_REDUCE_BLANKS    # Remove unnecessary blank lines.
 #export JAVA_HOME='/usr/lib/jvm/java-17-openjdk'
 #export PATH=$JAVA_HOME/bin:$PATH
 
-#export PATH="$HOME/.cargo/bin:$PATH"
-
 #export M2_HOME=/usr/local/apache-maven/apache-maven-3.9.1
 #export PATH="$M2_HOME/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
-#export PATH=$PATH:$(go env GOPATH)/bin
+export PATH=$PATH:/usr/local/go/bin
 
 VIM="nvim"
 
@@ -38,3 +36,7 @@ export FZF_DEFAULT_OPTS=" \
 # Start starship prompt and zoxide
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
+
+# fnm
+export PATH="/home/ronny/.local/share/fnm:$PATH"
+eval "`fnm env`"
