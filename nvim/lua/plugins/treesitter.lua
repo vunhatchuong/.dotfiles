@@ -45,6 +45,11 @@ return {
         },
 
         config = function(_, opts)
+            -- WINDOWS USES Zig:
+            if vim.fn.executable("zig") == 1 then
+                require("nvim-treesitter.install").compilers = { "zig" }
+            end
+
             if type(opts.ensure_installed) == "table" then
                 ---@type table<string, boolean>
                 local added = {}
@@ -57,8 +62,6 @@ return {
                 end, opts.ensure_installed)
             end
             require("nvim-treesitter.configs").setup(opts)
-            -- ENABLES THIS IF USING WINDOWS:
-            require("nvim-treesitter.install").compilers = { "zig" }
         end,
     },
     -- Show context of the current function
