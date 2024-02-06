@@ -85,13 +85,13 @@ function Plugin.config()
             })
         end,
         ["lua_ls"] = function()
-            require("plugins.lang.lua")
+            require("plugins.lang.general.lua")
         end,
         ["jsonls"] = function()
-            require("plugins.lang.json")
+            require("plugins.lang.general.json")
         end,
         ["yamlls"] = function()
-            require("plugins.lang.yaml")
+            require("plugins.lang.general.yaml")
         end,
     })
 end
