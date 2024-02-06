@@ -58,9 +58,11 @@ return {
         },
         opts = function(_, opts)
             local nls = require("null-ls")
+            local gotests = require("plugins.lang.gotests")
             opts.sources = vim.list_extend(opts.sources or {}, {
                 nls.builtins.code_actions.gomodifytags,
                 nls.builtins.code_actions.impl,
+                gotests,
             })
         end,
     },

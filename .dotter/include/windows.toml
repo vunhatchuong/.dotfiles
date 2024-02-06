@@ -1,5 +1,6 @@
 [code.files]
 nvim = "~/AppData/Local/nvim"
+alacritty = "~/AppData/Roaming/alacritty"
 
 [code.variables]
 workspaces = "D:/workspace"

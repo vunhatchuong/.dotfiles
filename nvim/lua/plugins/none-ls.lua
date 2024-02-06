@@ -11,6 +11,7 @@ return {
                 desc = "[C]ode [A]ction",
             },
         },
+        cmd = {"NullLsInfo"},
         dependencies = { "mason.nvim", "nvim-lua/plenary.nvim" },
         opts = function(_, opts)
             local nls = require("null-ls")

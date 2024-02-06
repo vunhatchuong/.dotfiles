@@ -1,4 +1,5 @@
 return {
+    -- Doesn't work on Windows because no replace engine oxi or sed
     "nvim-pack/nvim-spectre",
     build = false,
     cmd = "Spectre",
