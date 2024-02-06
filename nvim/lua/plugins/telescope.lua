@@ -1,4 +1,21 @@
 local icons = require("core.icons")
+
+local function FolderLocation()
+    local activeClients = vim.lsp.get_active_clients()
+    local path = vim.fn.expand("%:p:h")
+    local prompt_title = "Default"
+    for i, client in ipairs(activeClients) do
+        if activeClients[i].name ~= "null-ls" then
+            path = client.config.root_dir
+            prompt_title = client.name
+            return path, prompt_title
+        end
+    end
+    local prefixes = { "oil:///", "other:///", "netrw:///" }
+    -- Not working on Windows because oil path missing `:`
+    path = path:gsub("^" .. prefixes[1], "")
+    return path, prompt_title
+end
 return {
     {
         "nvim-telescope/telescope.nvim",
@@ -29,40 +46,52 @@ return {
                 end,
             },
         },
+        -- stylua: ignore
         keys = {
             {
                 "<leader><space>",
                 function()
-                    local activeClients = vim.lsp.get_active_clients()
-                    for i, client in ipairs(activeClients) do
-                        if activeClients[i].name ~= "null-ls" then
-                            require("telescope.builtin").find_files({
-                                cwd = client.config.root_dir,
-                                prompt_title = client.name .. " Find Files",
-                            })
-                            return
-                        end
-                    end
-                    local prefixes = { "oil:///", "other:///", "netrw:///" }
-                    local currentPath = vim.fn.expand("%:p:h")
-                    -- Not working on Windows because oil path missing `:`
-                    local path = currentPath:gsub("^" .. prefixes[1], "")
+                    local path, prompt_title = FolderLocation()
                     require("telescope.builtin").find_files({
-                        cwd = path,
-                        prompt_title = "Default Find Files",
+                        cwd = path, prompt_title = prompt_title,
                     })
-                end,
-                desc = "Find Files",
+                end, desc = "Find Files", },
+            { "<leader>f?",
+                function() require("telescope.builtin").oldfiles() end, desc = "Find recently opened Files",
             },
-
-            -- stylua: ignore start
-            { "<leader>f?", function() require("telescope.builtin").oldfiles() end,     desc = "Find recently opened Files" },
-            { "<leader>ft", function() require("telescope.builtin").live_grep() end,    desc = "[F]ind [T]ext" },
-            { "<leader>fs", function() require("telescope.builtin").grep_string() end,  desc = "[F]ind [S]tring" },
-            { "<leader>fk", function() require("telescope.builtin").keymaps() end,      desc = "Keymaps" },
-            { "<leader>fg", function() require("telescope.builtin").git_files() end,    desc = "Find Git Files" },
-            { "<leader>gc", function() require("telescope.builtin").git_branches() end, desc = "Checkout branches" },
-            -- stylua: ignore end
+            {
+                "<leader>ft",
+                function()
+                    local path, prompt_title = FolderLocation()
+                    require("telescope.builtin").live_grep({
+                        cwd = path,
+                        prompt_title = prompt_title,
+                    })
+                end, desc = "[F]ind [T]ext", },
+            {
+                "<leader>fs",
+                function()
+                    local path, prompt_title = FolderLocation()
+                    require("telescope.builtin").grep_string({
+                        cwd = path,
+                        prompt_title = prompt_title,
+                    })
+                end, desc = "[F]ind [S]tring", },
+            { "<leader>fk",
+                function() require("telescope.builtin").keymaps() end, desc = "Keymaps",
+            },
+            {
+                "<leader>fg",
+                function()
+                    local path, prompt_title = FolderLocation()
+                    require("telescope.builtin").git_files({
+                        cwd = path,
+                        prompt_title = prompt_title,
+                    })
+                end, desc = "Find Git Files", },
+            { "<leader>gc",
+                function() require("telescope.builtin").git_branches() end, desc = "Checkout branches",
+            },
         },
         opts = {
             defaults = {
