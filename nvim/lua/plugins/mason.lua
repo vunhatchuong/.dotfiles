@@ -1,3 +1,4 @@
+-- https://mason-registry.dev/registry/list
 return {
     {
         "williamboman/mason.nvim",

@@ -87,6 +87,7 @@ return {
                     "gofumpt",
                     "goimports_reviser",
                     "golines",
+                    "templ",
                 },
             },
         },

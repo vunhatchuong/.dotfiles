@@ -22,12 +22,11 @@ return {
             opts.ensure_installed = opts.ensure_installed or {}
             vim.list_extend(opts.ensure_installed, {
                 "pyright",
+                "ruff-lsp", -- Mainly for code actions
                 -- Linter
-                "flake8",
                 "mypy",
+                "ruff", -- Also Formatter
                 -- Formatter
-                "autopep8",
-                "isort",
                 -- Code actions
             })
         end,
@@ -37,7 +36,10 @@ return {
         optional = true,
         opts = {
             linters_by_ft = {
-                python = { "flake8", "mypy" },
+                python = {
+                    "mypy",
+                    "ruff",
+                },
             },
         },
     },
@@ -47,8 +49,8 @@ return {
         opts = {
             formatters_by_ft = {
                 python = {
-                    "autopep8",
-                    "isort",
+                    "ruff_fix", -- Fix lint errors
+                    "ruff_format", -- Formatter
                 },
             },
         },
