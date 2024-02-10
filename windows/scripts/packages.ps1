@@ -24,6 +24,7 @@ $scoopLang = @(
     "extras/vscode"
     "extras/lazygit"
     "main/lazydocker"
+    "main/just"
 )
 
 $scoopUtils = @(
