@@ -2,7 +2,8 @@
 return {
     {
         "nvimtools/none-ls.nvim",
-        lazy = true,
+        -- Needs none-ls for spell checking lint/format
+        lazy = false,
         keys = {
             {
                 "<leader>ca",
@@ -24,6 +25,10 @@ return {
                 )
             opts.sources = vim.list_extend(opts.sources or {}, {
                 nls.builtins.completion.spell,
+                -- Markdown
+                nls.builtins.diagnostics.proselint,
+                nls.builtins.diagnostics.markdownlint_cli2,
+                nls.builtins.code_actions.proselint,
             })
             opts.notify_format = ""
         end,

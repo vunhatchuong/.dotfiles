@@ -14,6 +14,8 @@ return {
                 "prettier",
 
                 "marksman",
+                "markdownlint-cli2",
+                "proselint",
                 "json-lsp",
                 "yaml-language-server",
                 "taplo",
