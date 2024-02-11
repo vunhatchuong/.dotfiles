@@ -20,6 +20,7 @@ setopt HIST_REDUCE_BLANKS    # Remove unnecessary blank lines.
 
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$PATH:/usr/local/go/bin
+export PATH="$HOME/go/bin:$PATH"
 
 VIM="nvim"
 
@@ -38,5 +39,5 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # fnm
-export PATH="/home/ronny/.local/share/fnm:$PATH"
+export PATH="$HOME/.local/share/fnm:$PATH"
 eval "`fnm env`"
