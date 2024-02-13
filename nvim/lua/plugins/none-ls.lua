@@ -12,7 +12,7 @@ return {
                 desc = "[C]ode [A]ction",
             },
         },
-        cmd = {"NullLsInfo"},
+        cmd = { "NullLsInfo" },
         dependencies = { "mason.nvim", "nvim-lua/plenary.nvim" },
         opts = function(_, opts)
             local nls = require("null-ls")
@@ -30,7 +30,7 @@ return {
                 nls.builtins.diagnostics.markdownlint_cli2,
                 nls.builtins.code_actions.proselint,
             })
-            opts.notify_format = ""
+            -- opts.notify_format = ""
         end,
     },
 }

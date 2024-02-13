@@ -40,15 +40,18 @@ return {
                 "gopls",
                 "golangci-lint-langserver",
                 -- Linter
+                "golangci-lint",
                 -- Formatter
                 "gofumpt",
                 "goimports",
                 "goimports-reviser",
                 "golines",
-                "gotests",
-                "gomodifytags",
                 -- Code actions
                 "impl",
+                "gotests",
+                "gomodifytags",
+                "iferr",
+                -- Extras
                 "templ",
             })
         end,
@@ -65,18 +68,44 @@ return {
             local nls = require("null-ls")
             local gotests = require("plugins.lang.gotests")
             local iferr = require("plugins.lang.iferr")
+            -- https://golangci-lint.run/usage/linters/
+            local linters = {
+                "gofumpt",
+                "goimports",
+                "goprintffuncname",
+                "gosec",
+                "misspell",
+                "nakedret",
+                "exhaustive",
+                "exhaustruct",
+                "prealloc",
+                "gocritic",
+                "bodyclose",
+                "testifylint",
+                "unconvert",
+                "wsl",
+                "gocheckcompilerdirectives",
+            }
+            local function addEFlag()
+                local args = {}
+                for _, linter in ipairs(linters) do
+                    table.insert(args, "-E")
+                    table.insert(args, linter)
+                end
+                -- Because unpack only unpack 1st arg if not last arg
+                table.insert(args, "--out-format=json")
+                table.insert(args, "$FILENAME")
+                return args
+            end
             opts.sources = vim.list_extend(opts.sources or {}, {
-                nls.builtins.code_actions.gomodifytags,
-                nls.builtins.code_actions.impl,
                 nls.builtins.diagnostics.golangci_lint.with({
                     args = {
                         "run",
-                        "-E",
-                        "gofumpt",
-                        "--out-format=json",
-                        "$FILENAME",
+                        unpack(addEFlag()),
                     },
                 }),
+                nls.builtins.code_actions.gomodifytags,
+                nls.builtins.code_actions.impl,
                 gotests,
                 iferr,
             })
