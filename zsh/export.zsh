@@ -12,15 +12,18 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share command history data
 setopt HIST_REDUCE_BLANKS    # Remove unnecessary blank lines.
 
-#export JAVA_HOME='/usr/lib/jvm/java-17-openjdk'
-#export PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME='/usr/lib/jvm/java-17-openjdk'
+export PATH=$JAVA_HOME/bin:$PATH
 
-#export M2_HOME=/usr/local/apache-maven/apache-maven-3.9.1
-#export PATH="$M2_HOME/bin:$PATH"
+export M2_HOME=/usr/local/apache-maven/apache-maven-3.9.1
+export PATH="$M2_HOME/bin:$PATH"
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
 export PATH=$PATH:/usr/local/go/bin
-export PATH="$HOME/go/bin:$PATH"
+#export PATH="$HOME/go/bin:$PATH"
+export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
+export GOROOT="$HOME/.gobrew/current/go"
 
 VIM="nvim"
 
@@ -40,4 +43,4 @@ eval "$(zoxide init zsh)"
 
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
-eval "`fnm env`"
+eval "$(fnm env --use-on-cd)"

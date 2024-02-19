@@ -14,9 +14,9 @@ plug "zsh-users/zsh-autosuggestions"
 plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
-#plug "esc/conda-zsh-completion"
+plug "esc/conda-zsh-completion"
 # Put it before the plugin
-plug "catppuccin_mocha-zsh-syntax-highlighting"
+plug "catppuccin_mocha-zsh-syntax-highlighting.zsh"
 plug "MichaelAquilina/zsh-you-should-use"
 
 plug "$ZDOTDIR/alias.zsh"
