@@ -1,6 +1,7 @@
 [code.files]
 nvim = "~/AppData/Local/nvim"
 alacritty = "~/AppData/Roaming/alacritty"
+".wezterm.lua" = "~/.wezterm.lua"
 
 [code.variables]
 workspaces = "D:/workspace"
