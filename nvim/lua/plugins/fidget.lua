@@ -1,12 +1,7 @@
 return {
     "j-hui/fidget.nvim",
-    cmd = "Fidget",
+    event = { "VeryLazy" },
     opts = {
-        integration = {
-            ["nvim-tree"] = {
-                enable = true,
-            },
-        },
         -- Catppuccin
         notification = {
             window = {
