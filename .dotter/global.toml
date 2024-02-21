@@ -10,6 +10,7 @@ alacritty = "~/.config/alacritty"
 
 [code.variables]
 workspaces = "~/workspace"
+alacritty-theme_path = "~/.config/alacritty/themes/rose-pine-moon.toml"
 
 [shell.files]
 ".zshenv" = { target = "~/.zshenv", type = "symbolic" }
