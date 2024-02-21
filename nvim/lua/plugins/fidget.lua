@@ -1,6 +1,6 @@
 return {
     "j-hui/fidget.nvim",
-    lazy = false,
+    event = { "VeryLazy" },
     opts = {
         -- Catppuccin
         notification = {
