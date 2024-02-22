@@ -21,7 +21,7 @@ plug "MichaelAquilina/zsh-you-should-use"
 
 plug "$ZDOTDIR/alias.zsh"
 plug "$ZDOTDIR/git.plugin.zsh"
-#plug "$ZDOTDIR/conda.zsh"
+plug "$ZDOTDIR/conda.zsh"
 plug "$ZDOTDIR/keymap.zsh"
 
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
