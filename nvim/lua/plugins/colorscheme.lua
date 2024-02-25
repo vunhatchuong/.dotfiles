@@ -68,7 +68,10 @@ return {
     },
     {
         "rose-pine/neovim",
-        name = "rose-pine",
-        lazy = true,
+        lazy = false,
+    },
+    {
+        "nyoom-engineering/oxocarbon.nvim",
+        lazy = false,
     },
 }
