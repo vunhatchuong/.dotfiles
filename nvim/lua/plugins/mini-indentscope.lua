@@ -16,14 +16,17 @@ return {
     init = function()
         vim.api.nvim_create_autocmd("FileType", {
             pattern = {
+                "netrw",
                 "help",
-                "Trouble",
+                "lspinfo",
                 "lazy",
                 "mason",
-                "notify",
+                "oil",
+                "Trouble",
                 "harpoon",
                 "TelescopePrompt",
-                "oil",
+                "notify",
+                "undotree",
             },
             callback = function()
                 vim.b.miniindentscope_disable = true

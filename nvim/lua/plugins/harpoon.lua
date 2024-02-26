@@ -8,7 +8,7 @@ return {
         local keymap = vim.keymap.set
         local function mark_file()
             harpoon:list():append()
-            vim.notify("󱡅  Marked file")
+            vim.notify("󱡁 (Un)Mark file")
         end
 
         harpoon:setup()
