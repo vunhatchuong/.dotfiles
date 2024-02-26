@@ -1,11 +1,23 @@
 return {
-    -- ys Add desired surround around text defined by <motion>
-    -- ds <existing> Delete existing surround
-    -- cs <existing> <desired> Change existing surround to desired
     "kylechui/nvim-surround",
-    --[[ version = "*", -- Use for stability; omit to use `main` branch for the latest features ]]
-    event = "VeryLazy",
-    config = function()
-        require("nvim-surround").setup({})
+    keys = {
+        { "ys", desc = "󰅪 Add Surround Operator" },
+        { "S", mode = "x", desc = "󰅪 Add Surround Operator" },
+        { "ds", desc = "󰅪 Delete Surround Operator" },
+        { "cs", desc = "󰅪 Change Surround Operator" },
+    },
+    opts = {
+        move_cursor = false,
+        keymaps = {
+            visual = "S",
+            normal_line = false,
+            normal_cur_line = false,
+            visual_line = false,
+            insert_line = false,
+            insert = false,
+        },
+    },
+    config = function(_, opts)
+        require("nvim-surround").setup(opts)
     end,
 }
