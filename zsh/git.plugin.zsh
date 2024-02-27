@@ -85,6 +85,8 @@ alias gd='git diff'
 alias gp='git push'
 alias gpd='git push --dry-run'
 
+alias glo='git log --oneline --decorate'
+alias glog='git log --oneline --decorate --graph'
 
 function grename() {
   if [[ -z "$1" || -z "$2" ]]; then
