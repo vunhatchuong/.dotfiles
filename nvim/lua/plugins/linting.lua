@@ -11,6 +11,7 @@ return {
                 ["*"] = { "codespell" },
                 -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
                 -- ['_'] = { 'fallback linter' },
+                sql = { "sqlfluff" },
                 -- lua = { "selene" },
             },
             -- LazyVim extension to easily override linter options

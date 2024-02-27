@@ -39,6 +39,7 @@ return {
                 markdown = { "markdownlint-cli2" },
                 yaml = { "prettier" },
                 toml = { "taplo" },
+                sql = { "sqlfluff" },
             },
             formatters = {
                 stylua = {

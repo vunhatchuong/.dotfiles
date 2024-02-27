@@ -7,6 +7,7 @@ return {
                 "gomod",
                 "gowork",
                 "gosum",
+                "templ",
             })
         end,
     },
@@ -54,6 +55,7 @@ return {
                 -- Extras
                 "templ",
             })
+            vim.filetype.add({ extension = { templ = "templ" } })
         end,
     },
     {
