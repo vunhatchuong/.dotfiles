@@ -7,6 +7,7 @@ tmux = "~/.config/tmux"
 lazygit = "~/.config/lazygit"
 alacritty = "~/.config/alacritty"
 ".wezterm.lua" = "~/.config/wezterm/wezterm.lua"
+".gitconfig" = "~/.gitconfig"
 
 [code.variables]
 workspaces = "~/workspace"
