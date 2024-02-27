@@ -32,7 +32,3 @@ hide_when_typing = true
 [keyboard]
 bindings = [{ key = "w", mods = "Control", action = "Quit" }]
 
-[[hints.enabled]]
-regex = "[^ ]+\\.rs:\\d+:\\d+"
-command = { program = "code", args = ["--goto"] }
-mouse = { enabled = true }
