@@ -24,7 +24,6 @@ export PATH=$PATH:/usr/local/go/bin
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 export GOROOT="$HOME/.gobrew/current/go"
-export GOPATH="$HOME/.gobrew/current/go"
 
 VIM="nvim"
 
