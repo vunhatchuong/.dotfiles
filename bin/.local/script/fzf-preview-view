@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+# Check if the argument is a directory
+if [ -d "$1" ]; then
+    eza -1 --color=always "$1"
+else
+    bat --plain --color=always "$1"
+fi

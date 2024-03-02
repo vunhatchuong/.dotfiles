@@ -3,10 +3,10 @@
 # For a full list of active aliases, run `alias`.
 #
 # Color ls, required exa plugin
-alias eza="eza --color=auto --icons --time-style=long-iso"
+alias eza="eza --color=always --icons --time-style=long-iso"
 alias ls="eza"
-alias ll="eza -la"
-alias la="ls --long --all --header --icons"
+alias ll="ls -la --header"
+alias la="ls -a"
 alias tree="eza --tree --level=2 --group-directories-first"
 
 alias fd="fdfind"
