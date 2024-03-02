@@ -1,5 +1,6 @@
 ---  CORE   ---
 local wezterm = require("wezterm")
+local is_windows = wezterm.target_triple == "x86_64-pc-windows-msvc"
 local mux = wezterm.mux
 local act = wezterm.action
 
@@ -17,6 +18,7 @@ local config = wezterm.config_builder()
 
 ---  SYSTEM   ---
 config.max_fps = 144
+config.animation_fps = 60
 config.color_scheme = "Catppuccin Mocha"
 config.font = wezterm.font_with_fallback({
     {
@@ -34,11 +36,24 @@ config.scrollback_lines = 5000
 config.adjust_window_size_when_changing_font_size = false
 
 ---  OS SPECIFIC   ---
-if wezterm.target_triple == "x86_64-pc-windows-msvc" then
-    -- config.default_domain = "WSL:Ubuntu"
+if is_windows then
     config.default_prog = { "pwsh.exe", "-NoLogo" }
     config.default_cwd = "D:/"
+    config.win32_system_backdrop = "Acrylic"
 end
+
+config.launch_menu = {
+    {
+        label = "pwsh",
+        args = { "pwsh.exe", "-NoLogo" },
+        cwd = "~",
+    },
+    {
+        label = "wsl",
+        args = { "wsl.exe", "--cd", "~" },
+        cwd = "~",
+    },
+}
 
 ---  TAB   ---
 -- config.enable_tab_bar = false
@@ -81,6 +96,11 @@ config.keys = {
                 end
             end),
         }),
+    },
+    {
+        key = "p",
+        mods = "CTRL",
+        action = act.ShowLauncherArgs({ flags = "FUZZY|LAUNCH_MENU_ITEMS" }),
     },
 }
 
