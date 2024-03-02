@@ -39,4 +39,4 @@ eval "$(zoxide init zsh)"
 
 # fnm
 export PATH="$HOME/.local/share/fnm:$PATH"
-eval "$(fnm env --use-on-cd)"
+# eval "$(fnm env --use-on-cd)"
