@@ -17,6 +17,7 @@ return {
             "TelescopePrompt",
             "spectre_panel",
             "undotree",
+            "grapple",
         },
     },
     config = function(_, opts)

@@ -16,6 +16,7 @@ autocmd({ "FileType" }, {
         "TelescopePrompt",
         "spectre_panel",
         "undotree",
+        "grapple",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

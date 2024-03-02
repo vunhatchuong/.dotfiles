@@ -20,6 +20,7 @@ return {
                 "TelescopePrompt",
                 "notify",
                 "undotree",
+                "grapple",
             },
         },
     },

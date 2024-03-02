@@ -27,6 +27,7 @@ return {
                 "TelescopePrompt",
                 "notify",
                 "undotree",
+                "grapple",
             },
             callback = function()
                 vim.b.miniindentscope_disable = true
