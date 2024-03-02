@@ -112,6 +112,16 @@ function gm
     git merge $args
 }
 
+function glo
+{
+    git log --oneline --decorate
+}
+
+function glog
+{
+    git log --oneline --decorate --graph
+}
+
 function ala
 {
     alacritty --config-file "$env:USERPROFILE/.config/alacritty/alacritty.toml"
