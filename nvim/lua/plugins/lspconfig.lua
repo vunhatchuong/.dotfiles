@@ -64,6 +64,7 @@ end
 function Plugin.config()
     local lspconfig = require("lspconfig")
     local mason_lspconfig = require("mason-lspconfig")
+    local mason_registry = require("mason-registry")
 
     local group = vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
 
@@ -92,6 +93,14 @@ function Plugin.config()
         ["yamlls"] = function()
             require("plugins.lang.general.yaml")
         end,
+        ["powershell_es"] = function()
+            local bundle_path = mason_registry
+                .get_package("powershell-editor-services")
+                :get_install_path()
+            require("lspconfig").powershell_es.setup({
+                bundle_path = bundle_path,
+            })
+        end,
     })
 end
 
@@ -115,8 +124,8 @@ function user.on_attach()
     nmap("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
     nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-    nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-    nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+    nmap("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]symbols")
+    nmap("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]symbols")
     -- nmap("<leader>sd", require("telescope.builtin").diagnostics, "[S]earch [D]iagnostics")
 end
 
