@@ -17,6 +17,7 @@ function ShowMainMenu()
 |                                               |
 |    1) Winget Package Installer                |
 |    2) Scoop Package Installer                 |
+|    3) Custom Package Installer                |
 |    0) EXIT                                    |
 +===============================================+
 
@@ -31,6 +32,9 @@ function ShowMainMenu()
         }
         2
         { InstallWithScoop
+        }
+        3
+        { InstallWithCustom
         }
         0
         { Write-Host "Exiting"; exit 0
@@ -77,6 +81,16 @@ function InstallWithScoop()
     DisplayScoopInstallerMenu
 }
 
+function InstallWithCustom()
+{
+    Clear-Host
+    if (-not (CheckInstalled "micromamba"))
+    {
+        Write-Host "Installing micromamba..."
+        Invoke-Expression ((Invoke-WebRequest -Uri https://micro.mamba.pm/install.ps1).Content)
+    }
+}
+
 function DisplayScoopInstallerMenu
 {
     Clear-Host
@@ -88,7 +102,7 @@ function DisplayScoopInstallerMenu
 |    1) General                                 |
 |    2) Programming                             |
 |    3) Utilities                               |
-|    4) Neovim                                   |
+|    4) Neovim                                  |
 |    0) EXIT                                    |
 +===============================================+
 
@@ -157,6 +171,24 @@ function InstallPackages($installerType, $packages)
     Write-Host "Finishes, returning to menu..."
     Start-Sleep -Seconds 2
     ShowMainMenu
+}
+
+function CheckInstalled
+{
+    param (
+        [string]$CommandName
+    )
+
+    $command = Get-Command $CommandName -ErrorAction SilentlyContinue
+    if ($command)
+    {
+        Write-Host "$CommandName is installed."
+        return $true
+    } else
+    {
+        Write-Host "$CommandName is not installed."
+        return $false
+    }
 }
 
 # Start the main function
