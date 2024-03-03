@@ -16,8 +16,8 @@ showMainMenu() {
 |                                               |
 |    1) Apt Package Installer                   |
 |    2) Pacstall Package Installer              |
-|    2) Curl Package Installer                  |
-|    3) Setup                                   |
+|    3) Curl Package Installer                  |
+|    4) Setup                                   |
 |    0) EXIT                                    |
 +===============================================+
 
@@ -116,16 +116,30 @@ installPackages() {
 
 installWithCurl() {
     clear
-    echo "Installing zsh..."
-    zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
-    echo "Installing micromamba..."
-    "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+    if ! checkInstalled "zap"; then
+        echo "Installing zap..."
+        zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+    fi
+    if ! checkInstalled "micromamba"; then
+        echo "Installing micromamba..."
+        "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
+    fi
 }
 
 setup() {
     echo "Change shell..."
     chsh -s $(which zsh)
     . "${HOME}/.config/zsh/.zprofile"
+}
+
+checkInstalled() {
+    if command -v "$1" &>/dev/null || type "$1" &>/dev/null; then
+        echo "Existed, skipping installation"
+        true
+    else
+        echo "Doesn't exist"
+        false
+    fi
 }
 
 # Start the main function
