@@ -116,8 +116,10 @@ installPackages() {
 
 installWithCurl() {
     clear
-    echo "Dowload zsh..."
+    echo "Installing zsh..."
     zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+    echo "Installing micromamba..."
+    "${SHELL}" <(curl -L micro.mamba.pm/install.sh)
 }
 
 setup() {
