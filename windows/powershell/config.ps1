@@ -18,7 +18,6 @@ $ENV:EDITOR = "nvim"
 $ENV:SHELL = "pwsh -NoLogo"
 $Env:CONFIG_DIR = "$env:USERPROFILE\.config\lazygit"
 
-
 #----------------------------------
 
 Set-PSReadLineOption -EditMode Windows
@@ -45,85 +44,65 @@ Remove-Alias ls
 
 # Utilities
 ## which command
-function which ($command)
-{
+function which ($command) {
     Get-Command -Name $command -ErrorAction SilentlyContinue |
         Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
 ## View hidden files
-function lsa()
-{
+function lsa() {
     Get-ChildItem -Hidden
 }
 
-function ls
-{
+function ls {
     Get-ChildItem | format-wide -autosize
 }
 
-function gst
-{
+function gst {
     git status $args
 }
 
-function ga
-{
+function ga {
     git add $args
 }
 
-function gb
-{
+function gb {
     git branch $args
 }
 
-function gl
-{
+function gl {
     git pull $args
 }
 
-function gp
-{
+function gp {
     git push $args
 }
 
-function gcmsg
-{
+function gcmsg {
     git commit -m $args
 }
 
-function grv
-{
+function grv {
     git remote -v $args
 }
 
-function gd
-{
+function gd {
     git diff $args
 }
 
-function gco
-{
+function gco {
     git checkout $args
 }
 
-function gm
-{
+function gm {
     git merge $args
 }
 
-function glo
-{
+function glo {
     git log --oneline --decorate
 }
 
-function glog
-{
+function glog {
     git log --oneline --decorate --graph
-}
-
-function ala
-{
-    alacritty --config-file "$env:USERPROFILE/.config/alacritty/alacritty.toml"
 }
 
