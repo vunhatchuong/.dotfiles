@@ -46,12 +46,10 @@ config.launch_menu = {
     {
         label = "Powershell",
         args = { "pwsh.exe", "-NoLogo" },
-        cwd = "~",
     },
     {
         label = "Powershell(Admin)",
         args = { "sudo", "pwsh.exe", "-NoLogo" },
-        cwd = "~",
     },
     {
         label = "wsl",
