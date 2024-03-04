@@ -6,6 +6,7 @@ return {
     },
     cmd = "Huez",
     opts = {
+        fallback = "catppuccin",
         picker = "telescope",
     },
     config = function(_, opts)
