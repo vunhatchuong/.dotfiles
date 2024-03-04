@@ -28,6 +28,7 @@ return {
                 "notify",
                 "undotree",
                 "grapple",
+                "FTerm",
             },
             callback = function()
                 vim.b.miniindentscope_disable = true

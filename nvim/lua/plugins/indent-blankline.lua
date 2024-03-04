@@ -21,7 +21,9 @@ return {
                 "notify",
                 "undotree",
                 "grapple",
+                "FTerm"
             },
+            buftypes = { "terminal", "nofile" },
         },
     },
     main = "ibl",

@@ -18,6 +18,7 @@ return {
             "spectre_panel",
             "undotree",
             "grapple",
+            "FTerm",
         },
     },
     config = function(_, opts)
