@@ -28,6 +28,7 @@ $Env:CONFIG_DIR = "$env:USERPROFILE\.config\lazygit"
 
 Set-PSReadLineOption -EditMode Windows
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
+Set-PSReadLineKeyHandler -Key 'Ctrl+d' -Function DeleteCharOrExit
 # Set-PSReadLineKeyHandler -Key Tab -Function Complete #<Tab><Tab> to show possible matches
 Set-PSReadLineOption -MaximumHistoryCount 1000
 Set-PSReadLineOption -BellStyle None
