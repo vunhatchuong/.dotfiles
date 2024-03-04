@@ -32,6 +32,20 @@ return {
                 desc = "Lazygit",
                 mode = "n",
             },
+            {
+                "<leader>yz",
+                function()
+                    require("FTerm")
+                        :new({
+                            ft = "fterm_yazi",
+                            cmd = { "yazi" },
+                            dimensions = { height = 0.9, width = 0.9 },
+                        })
+                        :open()
+                end,
+                desc = "Yazi",
+                mode = "n",
+            },
         },
         opts = {
             border = "rounded",
