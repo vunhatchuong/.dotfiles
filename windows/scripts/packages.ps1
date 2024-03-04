@@ -14,6 +14,8 @@ $scoopGeneral = @(
     "extras/winrar"
     "extras/flameshot"
     "games/steam"
+    "main/starship"
+    "main/eza"
 )
 
 $scoopLang = @(
@@ -31,6 +33,7 @@ $scoopUtils = @(
     "main/gsudo"
     "extras/powertoys"
     "extras/vlc"
+    "extras/psfzf"
 )
 
 $scoopNvim = @(
@@ -42,3 +45,6 @@ $scoopNvim = @(
     "main/neovim"
 )
 
+$psModules = @(
+    "PSFzf"
+)

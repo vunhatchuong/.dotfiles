@@ -18,6 +18,7 @@ function ShowMainMenu()
 |    1) Winget Package Installer                |
 |    2) Scoop Package Installer                 |
 |    3) Custom Package Installer                |
+|    4) Powershell Module Installer             |
 |    0) EXIT                                    |
 +===============================================+
 
@@ -35,6 +36,9 @@ function ShowMainMenu()
         }
         3
         { InstallWithCustom
+        }
+        4
+        { InstallWithPwshModules
         }
         0
         { Write-Host "Exiting"; exit 0
@@ -89,6 +93,18 @@ function InstallWithCustom()
         Write-Host "Installing micromamba..."
         Invoke-Expression ((Invoke-WebRequest -Uri https://micro.mamba.pm/install.ps1).Content)
     }
+    Write-Host "Finishes, returning to menu..."
+    Start-Sleep -Seconds 2
+    ShowMainMenu
+}
+
+function InstallWithPwshModules()
+{
+    Clear-Host
+    InstallPackages "pwsh" $psModules
+    Write-Host "Finishes, returning to menu..."
+    Start-Sleep -Seconds 2
+    ShowMainMenu
 }
 
 function DisplayScoopInstallerMenu
@@ -148,6 +164,11 @@ function InstallPackages($installerType, $packages)
     {
         $installCMD = "scoop install"
         $installedPackages = scoop list | Out-String
+        Write-Host $installedPackages
+    } elseif ($installerType -eq "pwsh")
+    {
+        $installCMD = "Install-Module -Name"
+        $installedPackages = Get-Module | Out-String
         Write-Host $installedPackages
     } else
     {

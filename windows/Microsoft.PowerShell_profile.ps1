@@ -7,10 +7,7 @@ if (Test-Path "C:\Users\ronny\AppData\Local\micromamba\micromamba.exe")
     $Env:MAMBA_ROOT_PREFIX = "C:\Users\ronny\micromamba"
     $Env:MAMBA_EXE = "C:\Users\ronny\AppData\Local\micromamba\micromamba.exe"
     (& $Env:MAMBA_EXE 'shell' 'hook' -s 'powershell' -p $Env:MAMBA_ROOT_PREFIX) | Out-String | Invoke-Expression
-    function mamba
-    {
-        micromamba
-    }
+    bashAlias mamba "micromamba @args"
     #endregion
 } elseif (Test-Path "C:\Users\ronny\miniconda3\Scripts\conda.exe")
 {
@@ -20,6 +17,7 @@ if (Test-Path "C:\Users\ronny\AppData\Local\micromamba\micromamba.exe")
     #endregion
 }
 
+Invoke-Expression (&starship init powershell)
 Invoke-Expression (& { $hook = if ($PSVersionTable.PSVersion.Major -ge 6)
         { 'pwd'
         } else
