@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd
 
--- Close with q
 autocmd({ "FileType" }, {
+    desc = "Close with q",
     pattern = {
         "netrw",
         "help",
@@ -29,15 +29,15 @@ autocmd({ "FileType" }, {
     end,
 })
 
--- Don't auto add comments
 autocmd({ "BufWinEnter" }, {
+    desc = "Don't auto add comments",
     callback = function()
         vim.cmd("set formatoptions-=cro")
     end,
 })
 
--- Highlight yank
 autocmd("TextYankPost", {
+    desc = "Highlight when yank text",
     pattern = "*",
     callback = function()
         vim.highlight.on_yank({
@@ -46,16 +46,16 @@ autocmd("TextYankPost", {
     end,
 })
 
--- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave", "BufWinEnter" }, {
+    desc = "Check if we need to reload the file when it changed",
     pattern = { "*" },
     callback = function()
         vim.cmd("checktime")
     end,
 })
 
--- resize splits if window got resized
 autocmd({ "VimResized" }, {
+    desc = "Resize splits if window got resized",
     callback = function()
         local current_tab = vim.fn.tabpagenr()
         vim.cmd("tabdo wincmd =")
@@ -63,8 +63,8 @@ autocmd({ "VimResized" }, {
     end,
 })
 
--- go to last loc when opening a buffer
 autocmd("BufReadPost", {
+    desc = "Go to last loc when opening a buffer",
     callback = function(event)
         local exclude = { "gitcommit" }
         local buf = event.buf
@@ -83,8 +83,8 @@ autocmd("BufReadPost", {
     end,
 })
 
--- wrap and check for spell in text filetypes
 autocmd("FileType", {
+    desc = "Wrap and check for spell in text filetypes",
     pattern = { "gitcommit", "markdown", "*.json" },
     callback = function()
         vim.opt_local.wrap = true
@@ -93,6 +93,7 @@ autocmd("FileType", {
 })
 
 autocmd({ "BufWritePre" }, {
+    desc = "Remove things when save",
     pattern = "*",
     callback = function()
         -- Remove Ctrl+M (^M)
@@ -102,8 +103,8 @@ autocmd({ "BufWritePre" }, {
     end,
 })
 
--- Auto create dir when saving a file, in case some intermediate directory does not exist
 autocmd({ "BufWritePre" }, {
+    desc = "Auto create dir when save a file",
     callback = function(event)
         if event.match:match("^%w%w+://") then
             return
