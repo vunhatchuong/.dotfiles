@@ -11,7 +11,6 @@ alias tree="eza --tree --level=2 --group-directories-first"
 
 alias fd="fdfind"
 alias less="less -R"
-#alias anaconda="source $HOME/.config/zsh/conda.zsh"
 alias lg="lazygit"
 alias lzd="lazydocker"
 

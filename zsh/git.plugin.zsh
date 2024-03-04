@@ -67,18 +67,17 @@ alias ga='git add'
 alias gaa='git add --all'
 
 alias gcam='git commit -a -m'
-alias gcmsg='git commit --message'
+alias gcmsg='git commit -m'
 
 alias gl='git pull'
 alias gm='git merge'
 
-alias gba='git branch -a'
 alias gb='git branch'
+alias gba='git branch -a'
 
 alias gc='git clone'
-alias gcb='git checkout -b'
-
 alias gco='git checkout'
+alias gcb='git checkout -b'
 
 alias gd='git diff'
 
