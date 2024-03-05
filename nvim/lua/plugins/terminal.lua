@@ -3,7 +3,7 @@ return {
         "numToStr/FTerm.nvim",
         keys = {
             {
-                "<leader><CR>",
+                "<C-\\>",
                 function()
                     require("FTerm").toggle()
                 end,
@@ -11,7 +11,7 @@ return {
                 mode = "n",
             },
             {
-                "<C-_>",
+                "<C-\\>",
                 function()
                     require("FTerm").toggle()
                 end,
