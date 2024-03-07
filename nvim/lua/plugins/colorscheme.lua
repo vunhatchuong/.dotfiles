@@ -73,4 +73,15 @@ return {
         "nyoom-engineering/oxocarbon.nvim",
         lazy = false,
     },
+    {
+        "aktersnurra/no-clown-fiesta.nvim",
+        lazy = false,
+    },
+    {
+        "mcchrish/zenbones.nvim",
+        dependencies = {
+            "rktjmp/lush.nvim",
+        },
+        lazy = false,
+    },
 }
