@@ -5,7 +5,6 @@ autocmd({ "FileType" }, {
     pattern = {
         "netrw",
         "help",
-        "man",
         "checkhealth",
         "lspinfo",
         "lazy",
