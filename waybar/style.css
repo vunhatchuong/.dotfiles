@@ -47,7 +47,6 @@ button:hover {
     padding-right: 2px;
     margin-right: 0px;
     color: @main-fg;
-    animation: ws_normal 20s ease-in-out 1;
 }
 
 #workspaces button.active {
@@ -57,8 +56,6 @@ button:hover {
     padding-left: 11px;
     padding-right: 11px;
     margin-right: 2px;
-    animation: ws_active 20s ease-in-out 1;
-    transition: all 0.4s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #workspaces button:hover {
