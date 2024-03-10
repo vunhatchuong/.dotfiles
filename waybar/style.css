@@ -18,7 +18,7 @@ window#waybar {
 }
 
 tooltip {
-    background: @main-bg;
+    background-color: @main-bg;
     color: @main-fg;
     border-radius: 7px;
     border-width: 0px;
@@ -36,17 +36,15 @@ button:hover {
 }
 
 #workspaces button {
+    color: @main-fg;
     box-shadow: none;
     text-shadow: none;
     padding: 0px;
     border-radius: 8px;
     margin-top: 2px;
     margin-bottom: 2px;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 2px;
-    padding-right: 2px;
-    color: @main-fg;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #workspaces button.active {
@@ -83,8 +81,8 @@ button:hover {
 #custom-wbar,
 #custom-power,
 #custom-spacing {
+    background-color: @main-bg;
     color: @main-fg;
-    background: @main-bg;
     opacity: 1;
     margin: 4px 0px 4px 0px;
     padding-left: 4px;
