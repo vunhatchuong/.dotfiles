@@ -10,7 +10,6 @@
     ],
     "modules-center": [
         "custom/spacing",
-        "idle_inhibitor",
         "clock",
         "custom/spacing"
     ],
@@ -62,13 +61,6 @@
             "urgent": "",
             "focused": "",
             "default": ""
-        }
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
         }
     },
     "clock": {
