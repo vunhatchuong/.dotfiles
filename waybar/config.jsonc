@@ -16,29 +16,24 @@
     ],
     "modules-right": [
         // Left
-        "custom/spacing",
-        "custom/divider",
         "backlight",
         "network",
         "bluetooth",
         "pulseaudio",
         "pulseaudio#microphone",
-        "custom/spacing",
         // Middle
-        "custom/spacing",
+        "custom/divider",
         "mpris",
         "hyprland/language",
         "tray",
         "battery",
-        "custom/spacing",
-        // Right
-        "custom/spacing",
         "custom/divider",
+        // Right
         "custom/wallchange",
         "custom/theme",
         "custom/wbar",
         "custom/power",
-        "custom/spacing"
+        "custom/divider"
     ],
     // Modules configuration
     "hyprland/workspaces": {
@@ -289,7 +284,7 @@
         "tooltip": false
     },
     "custom/divider": {
-        "format": "|",
+        "format": " ",
         "interval": "once",
         "tooltip": false
     }
