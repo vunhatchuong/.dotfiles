@@ -56,11 +56,6 @@ button:hover {
     padding-right: 12px;
 }
 
-#workspaces button:hover {
-    background-color: @wb-hvr-bg;
-    color: @wb-hvr-fg;
-}
-
 #window,
 /* Modules right */
 /* Left  */
