@@ -17,6 +17,7 @@
     "modules-right": [
         // Left
         "custom/spacing",
+        "custom/divider",
         "backlight",
         "network",
         "bluetooth",
@@ -32,6 +33,7 @@
         "custom/spacing",
         // Right
         "custom/spacing",
+        "custom/divider",
         "custom/wallchange",
         "custom/theme",
         "custom/wbar",
@@ -283,6 +285,11 @@
     },
     "custom/spacing": {
         "format": " ",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/divider": {
+        "format": "|",
         "interval": "once",
         "tooltip": false
     }
