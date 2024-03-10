@@ -43,9 +43,9 @@ button:hover {
     margin-top: 2px;
     margin-bottom: 2px;
     margin-left: 0px;
+    margin-right: 0px;
     padding-left: 2px;
     padding-right: 2px;
-    margin-right: 0px;
     color: @main-fg;
 }
 
@@ -53,9 +53,9 @@ button:hover {
     background-color: @wb-act-bg;
     color: @wb-act-fg;
     margin-left: 2px;
-    padding-left: 11px;
-    padding-right: 11px;
     margin-right: 2px;
+    padding-left: 11px;
+    padding-right: 12px;
 }
 
 #workspaces button:hover {
@@ -95,6 +95,9 @@ button:hover {
     padding: 0px;
 }
 
-#custom-divider {
+#custom-divider_L {
     border-left: 2px solid @border-bg;
+}
+#custom-divider_R {
+    border-right: 2px solid @border-bg;
 }
