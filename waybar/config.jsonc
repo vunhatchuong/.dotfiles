@@ -58,9 +58,10 @@
             "8": "VIII",
             "9": "IX",
             "10": "X",
-            "urgent": "",
-            "focused": "",
-            "default": ""
+            "empty": "",
+            "default": "", // When there's item inside workspace
+            "active": "",
+            "urgent": ""
         }
     },
     "clock": {
