@@ -12,7 +12,7 @@ window#waybar {
     /* border: 2px solid @border-bg; */
     /* border-radius: 6px; */
 
-    background-color: @bar-bg;
+    background-color: transparent;
 }
 
 tooltip {
@@ -73,8 +73,16 @@ button:hover {
 #custom-theme,
 #custom-wbar,
 #custom-power,
+/* Padding */
 #custom-l_end,
-#custom-r_end {
+#custom-r_end,
+/* Separators */
+#custom-separator_dot,
+#custom-separator_dot_line,
+#custom-separator_line,
+#custom-separator_blank,
+#custom-separator_blank_2,
+#custom-separator_blank_3 {
     background-color: @main-bg;
     color: @main-fg;
     opacity: 1;

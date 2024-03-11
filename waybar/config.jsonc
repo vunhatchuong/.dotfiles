@@ -27,19 +27,18 @@
         "bluetooth",
         "pulseaudio",
         "pulseaudio#microphone",
-        "custom/r_end",
         // Middle
-        "custom/l_end",
+        "custom/separator_line",
         "mpris",
         "hyprland/language",
         "tray",
         "battery",
-        "custom/r_end",
+        "custom/separator_line",
         // Right
-        "custom/l_end",
         "custom/wallchange",
         "custom/theme",
         "custom/wbar",
+        "custom/separator_line",
         "custom/power",
         "custom/r_end"
     ],
@@ -278,7 +277,7 @@
         "interval": 86400, // once every day
         "tooltip": true
     },
-    // modules for padding //
+    // Padding
     "custom/divider_L": {
         "format": " ",
         "interval": "once",
@@ -301,6 +300,37 @@
     },
     "custom/pad": {
         "format": "  ",
+        "interval": "once",
+        "tooltip": false
+    },
+    // Separators
+    "custom/separator_dot": {
+        "format": "",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/separator_dot_line": {
+        "format": "",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/separator_line": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/separator_blank": {
+        "format": "",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/separator_blank_2": {
+        "format": "  ",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/separator_blank_3": {
+        "format": "   ",
         "interval": "once",
         "tooltip": false
     }
