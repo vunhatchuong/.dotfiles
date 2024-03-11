@@ -29,7 +29,6 @@
         "pulseaudio#microphone",
         // Middle
         "custom/separator_line",
-        "mpris",
         "hyprland/language",
         "tray",
         "battery",
@@ -93,8 +92,9 @@
         }
     },
     "backlight": {
-        // "device": "acpi_video1",
-        "format": "{percent}% {icon}",
+        "device": "intel_backlight",
+        "rotate": 0,
+        "format": "{icon} {percent}%",
         "format-icons": [
             "",
             "",
@@ -114,10 +114,10 @@
         "tooltip": true,
         "format-wifi": " ({signalStrength}%)",
         "rotate": 0,
-        "format-ethernet": "? ",
-        "tooltip-format": "Network: <big><b>{essid}</b></big>nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>nFrequency: <b>{frequency}MHz</b>nInterface: <b>{ifname}</b>nIP: <b>{ipaddr}/{cidr}</b>nGateway: <b>{gwaddr}</b>nNetmask: <b>{netmask}</b>",
-        "format-linked": "? {ifname} (No IP)",
-        "format-disconnected": "? ",
+        "format-ethernet": "󰈀 ",
+        "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
+        "format-linked": "󰈀 {ifname} (No IP)",
+        "format-disconnected": "󰖪 ",
         "tooltip-format-disconnected": "Disconnected",
         "format-alt": "<span foreground='#99ffdd'> {bandwidthDownBytes}</span> <span foreground='#ffcc66'> {bandwidthUpBytes}</span>",
         "interval": 2
@@ -130,23 +130,23 @@
         // "format-connected-battery": "{icon} {num_connections}",
         "format-connected-battery": "{icon} {device_alias}-{device_battery_percentage}%",
         "format-icons": [
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?"
+            "󰥇",
+            "󰤾",
+            "󰤿",
+            "󰥀",
+            "󰥁",
+            "󰥂",
+            "󰥃",
+            "󰥄",
+            "󰥅",
+            "󰥆",
+            "󰥈"
         ],
         // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device If this config option is not defined or none of the devices in the list are connected, it will fall back to showing the last connected device.
-        "tooltip-format": "{controller_alias}n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}n{num_connections} connectednn{device_enumerate}",
+        "tooltip-format": "{controller_alias}\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}t{icon} {device_battery_percentage}%"
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{icon} {device_battery_percentage}%"
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -164,8 +164,8 @@
         "scroll-step": 5,
         "format-icons": {
             "headphone": "",
-            "hands-free": "",
-            "headset": "",
+            "hands-free": "",
+            "headset": "",
             "phone": "",
             "portable": "",
             "car": "",
@@ -187,21 +187,6 @@
         "on-scroll-down": "~/.config/hypr/scripts/volumecontrol.sh -i d",
         "tooltip-format": "{format_source} {source_desc} // {source_volume}%",
         "scroll-step": 5
-    },
-    "mpris": {
-        "format": "{player_icon} {dynamic}",
-        "rotate": 0,
-        "format-paused": "{status_icon} <i>{dynamic}</i>",
-        "player-icons": {
-            "default": "▶",
-            "mpv": "?"
-        },
-        "status-icons": {
-            "paused": "⏸"
-        },
-        // "ignored-players": ["firefox"]
-        "max-length": 1000,
-        "interval": 1
     },
     "hyprland/language": {
         "format": "{}",
@@ -226,23 +211,23 @@
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
         "format-icons": [
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?",
-            "?"
+            "󰂎",
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
         ]
     },
     "custom/wallchange": {
         "format": "{}",
         "rotate": 0,
-        "exec": "echo ; echo ? switch wallpaper",
+        "exec": "echo ; echo 󰆊 switch wallpaper",
         "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
         "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
         "on-click-middle": "sleep 0.1 & ~/.config/hypr/scripts/swwwallselect.sh",
@@ -252,7 +237,7 @@
     "custom/theme": {
         "format": "{}",
         "rotate": 0,
-        "exec": "echo ; echo ? switch theme",
+        "exec": "echo ; echo 󰟡 switch theme",
         "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
         "on-click-middle": "sleep 0.1 & ~/.config/hypr/scripts/themeselect.sh",
