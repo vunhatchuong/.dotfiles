@@ -2,11 +2,9 @@
     "layer": "top",
     "position": "top",
     "height": 30, // Waybar height (to be removed for auto height)
-    "spacing": 4,
     "margin": 6,
     // Choose the order of the modules
     "modules-left": [
-        "custom/pad",
         "custom/l_end",
         "hyprland/workspaces",
         "custom/r_end",
@@ -43,8 +41,7 @@
         "custom/theme",
         "custom/wbar",
         "custom/power",
-        "custom/r_end",
-        "custom/pad"
+        "custom/r_end"
     ],
     // Modules configuration
     "hyprland/workspaces": {
@@ -70,8 +67,8 @@
         "format": "{icon}",
         "rotate": 0,
         "format-icons": {
-            "activated": "󰥔",
-            "deactivated": ""
+            "activated": "󰥔 ",
+            "deactivated": " "
         }
     },
     "clock": {

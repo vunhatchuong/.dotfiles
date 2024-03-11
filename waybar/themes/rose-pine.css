@@ -1,7 +1,6 @@
-@define-color bar-bg #191724;
-@define-color border-bg #26233a;
+@define-color bar-bg rgba(25, 25, 36, 0.5);
 
-@define-color main-bg #191724;
+@define-color main-bg #26233a;
 @define-color main-fg #ebbcba;
 
 @define-color wb-act-bg #31748f;
