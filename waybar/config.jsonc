@@ -6,33 +6,45 @@
     "margin": 6,
     // Choose the order of the modules
     "modules-left": [
-        "custom/divider_R",
-        "hyprland/workspaces"
+        "custom/pad",
+        "custom/l_end",
+        "hyprland/workspaces",
+        "custom/r_end",
+        "custom/pad"
     ],
     "modules-center": [
-        "clock"
+        "custom/pad",
+        "custom/l_end",
+        "idle_inhibitor",
+        "clock",
+        "custom/r_end",
+        "custom/pad"
     ],
     "modules-right": [
         // Left
-        "custom/divider_R",
+        "custom/pad",
+        "custom/l_end",
         "backlight",
         "network",
         "bluetooth",
         "pulseaudio",
         "pulseaudio#microphone",
+        "custom/r_end",
         // Middle
-        "custom/divider_L",
+        "custom/l_end",
         "mpris",
         "hyprland/language",
         "tray",
         "battery",
-        "custom/divider_R",
+        "custom/r_end",
         // Right
+        "custom/l_end",
         "custom/wallchange",
         "custom/theme",
         "custom/wbar",
         "custom/power",
-        "custom/divider_L"
+        "custom/r_end",
+        "custom/pad"
     ],
     // Modules configuration
     "hyprland/workspaces": {
@@ -54,10 +66,18 @@
             "urgent": ""
         }
     },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "rotate": 0,
+        "format-icons": {
+            "activated": "󰥔",
+            "deactivated": ""
+        }
+    },
     "clock": {
         "timezone": "Asia/Bangkok",
         "rotate": 0,
-        "format": " {:%A, %d-%m-%Y %R}",
+        "format": "{:%A, %d-%m-%Y %R}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "month",
@@ -261,11 +281,7 @@
         "interval": 86400, // once every day
         "tooltip": true
     },
-    "custom/spacing": {
-        "format": " ",
-        "interval": "once",
-        "tooltip": false
-    },
+    // modules for padding //
     "custom/divider_L": {
         "format": " ",
         "interval": "once",
@@ -273,6 +289,21 @@
     },
     "custom/divider_R": {
         "format": " ",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/l_end": {
+        "format": " ",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/r_end": {
+        "format": " ",
+        "interval": "once",
+        "tooltip": false
+    },
+    "custom/pad": {
+        "format": "  ",
         "interval": "once",
         "tooltip": false
     }

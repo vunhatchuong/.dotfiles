@@ -1,8 +1,8 @@
 * {
     background-color: transparent;
-    font-family: JetbrainsMono Nerd Font;
-    font-size: 15px;
+    font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
+    font-size: 15px;
 }
 
 @import "themes/theme.css";
@@ -12,9 +12,6 @@ window#waybar {
     border-radius: 6px;
 
     background-color: @bar-bg;
-
-    transition-property: background-color;
-    transition-duration: 0.5s;
 }
 
 tooltip {
@@ -39,8 +36,8 @@ button:hover {
     color: @main-fg;
     box-shadow: none;
     text-shadow: none;
-    padding: 0px;
     border-radius: 8px;
+    padding: 0px;
     margin-top: 2px;
     margin-bottom: 2px;
     margin-left: 5px;
@@ -48,18 +45,18 @@ button:hover {
 }
 
 #workspaces button.active {
-    background-color: @wb-act-bg;
-    color: @wb-act-fg;
-    margin-left: 2px;
-    margin-right: 2px;
-    padding-left: 11px;
-    padding-right: 12px;
+    color: @wb-act-bg;
+}
+
+#workspaces button:hover {
+    color: @wb-act-bg;
 }
 
 #window,
 /* Modules right */
 /* Left  */
 #workspaces,
+#idle_inhibitor,
 #clock,
 #backlight,
 #network,
@@ -75,7 +72,8 @@ button:hover {
 #custom-theme,
 #custom-wbar,
 #custom-power,
-#custom-spacing {
+#custom-l_end,
+#custom-r_end {
     background-color: @main-bg;
     color: @main-fg;
     opacity: 1;
@@ -88,9 +86,23 @@ button:hover {
     padding: 0px;
 }
 
+/* modules for padding */
 #custom-divider_L {
     border-left: 2px solid @border-bg;
 }
+
 #custom-divider_R {
     border-right: 2px solid @border-bg;
+}
+
+#custom-r_end {
+    border-radius: 0px 20px 20px 0px;
+    margin-right: 8px;
+    padding-right: 0px;
+}
+
+#custom-l_end {
+    border-radius: 20px 0px 0px 20px;
+    margin-left: 8px;
+    padding-left: 0px;
 }
