@@ -95,14 +95,6 @@ button:hover {
 }
 
 /* modules for padding */
-#custom-divider_L {
-    border-left: 2px solid @border-bg;
-}
-
-#custom-divider_R {
-    border-right: 2px solid @border-bg;
-}
-
 #custom-r_end {
     border-radius: 0px 20px 20px 0px;
     margin-right: 8px;

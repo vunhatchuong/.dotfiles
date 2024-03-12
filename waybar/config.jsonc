@@ -7,36 +7,34 @@
     "modules-left": [
         "custom/l_end",
         "hyprland/workspaces",
-        "custom/r_end",
-        "custom/pad"
+        "custom/r_end"
     ],
     "modules-center": [
-        "custom/pad",
         "custom/l_end",
         "idle_inhibitor",
         "clock",
-        "custom/r_end",
-        "custom/pad"
+        "custom/r_end"
     ],
     "modules-right": [
         // Left
-        "custom/pad",
         "custom/l_end",
         "backlight",
         "network",
         "bluetooth",
         "pulseaudio",
         "pulseaudio#microphone",
+        "custom/r_end",
         // Middle
-        "custom/separator_line",
-        "hyprland/language",
+        "custom/l_end",
         "tray",
         "battery",
-        "custom/separator_line",
+        "custom/r_end",
         // Right
+        "custom/l_end",
         "custom/wallchange",
         "custom/theme",
         "custom/separator_line",
+        "hyprland/language",
         "custom/power",
         "custom/r_end"
     ],
@@ -45,6 +43,7 @@
         "disable-scroll": true,
         "all-outputs": true,
         "warp-on-scroll": false,
+        "on-click": "activate",
         "format": "{icon}",
         "persistent-workspaces": {
             "1": [],
@@ -62,7 +61,6 @@
     },
     "idle_inhibitor": {
         "format": "{icon}",
-        "rotate": 0,
         "format-icons": {
             "activated": "󰥔 ",
             "deactivated": " "
@@ -70,8 +68,7 @@
     },
     "clock": {
         "timezone": "Asia/Bangkok",
-        "rotate": 0,
-        "format": "{:%A, %d-%m-%Y %R}",
+        "format": "{:%A, %d/%m %R}",
         "tooltip-format": "<tt>{calendar}</tt>",
         "calendar": {
             "mode": "month",
@@ -92,7 +89,6 @@
     },
     "backlight": {
         "device": "intel_backlight",
-        "rotate": 0,
         "format": "{icon} {percent}%",
         "format-icons": [
             "",
@@ -112,7 +108,6 @@
     "network": {
         "tooltip": true,
         "format-wifi": " ({signalStrength}%)",
-        "rotate": 0,
         "format-ethernet": "󰈀 ",
         "tooltip-format": "Network: <big><b>{essid}</b></big>\nSignal strength: <b>{signaldBm}dBm ({signalStrength}%)</b>\nFrequency: <b>{frequency}MHz</b>\nInterface: <b>{ifname}</b>\nIP: <b>{ipaddr}/{cidr}</b>\nGateway: <b>{gwaddr}</b>\nNetmask: <b>{netmask}</b>",
         "format-linked": "󰈀 {ifname} (No IP)",
@@ -123,7 +118,6 @@
     },
     "bluetooth": {
         "format": "",
-        "rotate": 0,
         "format-disabled": "",
         "format-connected": " {num_connections}",
         // "format-connected-battery": "{icon} {num_connections}",
@@ -151,7 +145,6 @@
         "format": "{icon} {volume}%",
         "format-bluetooth": "{icon} {volume}%",
         "format-bluetooth-muted": "{icon} ",
-        "rotate": 0,
         "format-muted": "婢",
         "format-source": "{volume}% ",
         "format-source-muted": "",
@@ -177,7 +170,6 @@
     },
     "pulseaudio#microphone": {
         "format": "{format_source}",
-        "rotate": 0,
         "format-source": "",
         "format-source-muted": "",
         "on-click": "pavucontrol -t 4",
@@ -188,14 +180,11 @@
         "scroll-step": 5
     },
     "hyprland/language": {
-        "format": "{}",
-        "format-en": "en",
-        "format-vn": "vn",
+        "format": "{short} {variant}",
         "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
     },
     "tray": {
-        "icon-size": 17,
-        "rotate": 0,
+        "icon-size": 16,
         "spacing": 5
     },
     "battery": {
@@ -205,7 +194,6 @@
             "critical": 20
         },
         "format": "{icon} {capacity}%",
-        "rotate": 0,
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
@@ -225,7 +213,6 @@
     },
     "custom/wallchange": {
         "format": "󰆊{}",
-        "rotate": 0,
         "exec": "echo ; echo  switch wallpaper",
         "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
         "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
@@ -235,7 +222,6 @@
     },
     "custom/theme": {
         "format": "{}",
-        "rotate": 0,
         "exec": "echo ; echo 󰟡 switch theme",
         "on-click": "~/.config/hypr/scripts/themeswitch.sh -n",
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
@@ -245,23 +231,12 @@
     },
     "custom/power": {
         "format": "{}",
-        "rotate": 0,
         "exec": "echo ; echo  logout",
         "on-click": "wlogout",
         "interval": 86400, // once every day
         "tooltip": true
     },
     // Padding
-    "custom/divider_L": {
-        "format": " ",
-        "interval": "once",
-        "tooltip": false
-    },
-    "custom/divider_R": {
-        "format": " ",
-        "interval": "once",
-        "tooltip": false
-    },
     "custom/l_end": {
         "format": " ",
         "interval": "once",
