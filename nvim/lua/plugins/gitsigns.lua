@@ -62,6 +62,7 @@ return {
                 map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
                 map("n", "<leader>hb", gs.toggle_current_line_blame, "Line blame")
                 map("n", "<leader>hd", gs.diffthis, "Diff")
+                map("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
                 -- stylua: ignore end
             end,
         })
