@@ -36,7 +36,6 @@
         // Right
         "custom/wallchange",
         "custom/theme",
-        "custom/wbar",
         "custom/separator_line",
         "custom/power",
         "custom/r_end"
@@ -225,9 +224,9 @@
         ]
     },
     "custom/wallchange": {
-        "format": "{}",
+        "format": "󰆊{}",
         "rotate": 0,
-        "exec": "echo ; echo 󰆊 switch wallpaper",
+        "exec": "echo ; echo  switch wallpaper",
         "on-click": "~/.config/hypr/scripts/swwwallpaper.sh -n",
         "on-click-right": "~/.config/hypr/scripts/swwwallpaper.sh -p",
         "on-click-middle": "sleep 0.1 & ~/.config/hypr/scripts/swwwallselect.sh",
@@ -242,16 +241,6 @@
         "on-click-right": "~/.config/hypr/scripts/themeswitch.sh -p",
         "on-click-middle": "sleep 0.1 & ~/.config/hypr/scripts/themeselect.sh",
         "interval": 86400, // once every day
-        "tooltip": true
-    },
-    "custom/wbar": {
-        "format": "{}", //    //
-        "rotate": 0,
-        "exec": "echo ; echo  switch bar //  dock",
-        "on-click": "~/.config/hypr/scripts/wbarconfgen.sh n",
-        "on-click-right": "~/.config/hypr/scripts/wbarconfgen.sh p",
-        "on-click-middle": "sleep 0.1 & ~/.config/hypr/scripts/quickapps.sh kitty firefox spotify code dolphin",
-        "interval": 86400,
         "tooltip": true
     },
     "custom/power": {
