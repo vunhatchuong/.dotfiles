@@ -84,4 +84,8 @@ return {
         },
         lazy = false,
     },
+    {
+        "kdheepak/monochrome.nvim",
+        lazy = false,
+    },
 }
