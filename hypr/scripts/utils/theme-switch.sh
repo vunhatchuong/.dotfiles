@@ -75,9 +75,7 @@ getWall=`grep '^1|' "$ThemeCtl" | awk -F '|' '{print $NF}'`
 getWall=`eval echo "$getWall"`
 getName=`basename "$getWall"`
 ln -fs "$getWall" "$ConfDir/swww/wall.set"
-ln -fs "$cacheDir/${ThemeSet}/${getName}.rofi" "$ConfDir/swww/wall.rofi"
-ln -fs "$cacheDir/${ThemeSet}/${getName}.blur" "$ConfDir/swww/wall.blur"
-"${ScrDir}/swwwallpaper.sh"
+"${ScrDir}/wallpaper-switch.sh"
 
 if [ $? -ne 0 ] ; then
     echo "ERROR: Unable to set wallpaper"
@@ -138,8 +136,4 @@ flatpak --user override --env=ICON_THEME="${IconSet}"
 # hyprland
 ln -fs $ConfDir/hypr/themes/${ThemeSet}.conf $ConfDir/hypr/themes/theme.conf
 hyprctl reload
-
-
-# wallbash
-"${ScrDir}/swwwallbash.sh" "$getWall"
 
