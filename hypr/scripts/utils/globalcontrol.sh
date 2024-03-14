@@ -5,8 +5,7 @@ EnableWallDcol=0
 ConfDir="${XDG_CONFIG_HOME:-$HOME/.config}"
 CloneDir="$HOME/Hyprdots"
 cacheDir="$HOME/.cache/hyprdots"
-ThemeCtl="${ConfDir}/hyprdots/theme.ctl"
-WallbashDir="${ConfDir}/hyprdots/wallbash"
+ThemeCtl="${ConfDir}/hypr/utils/theme.ctl"
 
 # theme var
 gtkTheme=`gsettings get org.gnome.desktop.interface gtk-theme | sed "s/'//g"`
