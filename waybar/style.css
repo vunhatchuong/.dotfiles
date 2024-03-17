@@ -72,6 +72,11 @@ button:hover {
 #custom-wallchange,
 #custom-theme,
 #custom-power,
+/* Extras */
+#cpu,
+#custom-cpuinfo,
+#memory,
+#custom-gpuinfo,
 /* Padding */
 #custom-l_end,
 #custom-r_end,
