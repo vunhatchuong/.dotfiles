@@ -105,7 +105,7 @@ autocmd({ "BufWritePre" }, {
 autocmd({ "BufWritePre" }, {
     desc = "Auto create dir when save a file",
     callback = function(event)
-        if event.match:match("^%w%w+://") then
+        if event.match:match("^%w%w+:[\\/][\\/]") then
             return
         end
         local file = vim.loop.fs_realpath(event.match) or event.match
