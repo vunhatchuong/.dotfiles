@@ -1,70 +1,69 @@
 return {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    "echasnovski/mini.diff",
+    event = "VeryLazy",
     config = function()
         local icons = require("core.icons")
-        local gs = require("gitsigns")
-        gs.setup({
-            signs = {
-                add = { text = icons.ui.BoldLineMiddle },
-                change = { text = icons.ui.BoldLineMiddle },
-                delete = { text = icons.ui.TriangleShortArrowRight },
-                topdelete = { text = icons.ui.TriangleShortArrowRight },
-                changedelete = { text = icons.ui.BoldLineMiddle },
+        local mini_diff = require("mini.diff")
+        local function is_open()
+            local summary = mini_diff.get_buf_data(0)
+            vim.notify("hunk range" .. summary.summary.n_ranges)
+            if mini_diff.get_buf_data(0).hunks == 0 then
+                print("There are no hunks in this buffer.")
+                return false
+            end
+            return true
+        end
+        local nmap = function(keys, func, desc)
+            if desc then
+                desc = "MiniDiff: " .. desc
+            end
+            vim.keymap.set("n", keys, func, { buffer = true, desc = desc })
+        end
+        local function hunk_navigation(direction)
+            if direction == "next" then
+                mini_diff.goto_hunk("next")
+            elseif direction == "prev" then
+                mini_diff.goto_hunk("prev")
+            end
+        end
+        mini_diff.setup({
+            view = {
+                style = "sign",
+                signs = {
+                    add = icons.ui.BoldLineMiddle,
+                    change = icons.ui.BoldLineMiddle,
+                    delete = icons.ui.TriangleShortArrowRight,
+                },
             },
-            preview_config = {
-                border = "rounded",
+            mappings = {
+                apply = "<leader>ha",
+                reset = "<leader>hr",
+                textobject = "<leader>ha",
+
+                goto_first = "",
+                goto_prev = "",
+                goto_next = "",
+                goto_last = "",
             },
-
-            on_attach = function(buffer)
-                local function is_open(id)
-                    for _, winid in ipairs(vim.api.nvim_list_wins()) do
-                        if vim.w[winid].gitsigns_preview == id then
-                            return winid
-                        end
-                    end
-                    return nil
-                end
-
-                local function map(modes, keys, func, desc)
-                    if type(keys) == "string" then
-                        keys = { keys }
-                    end
-                    if desc then
-                        desc = "Gitsigns: " .. desc
-                    end
-                    for _, value in ipairs(keys) do
-                        vim.keymap.set(modes, value, func, {
-                            buffer = buffer,
-                            desc = desc,
-                        })
-                    end
-                end
-                -- stylua: ignore start
-                map("n",
-                    "<leader>hn",
-                    function()
-                        if is_open("hunk") then
-                            vim.schedule(function() gs.next_hunk() end)
-                        end
-                    end,
-                    "Next hunk"
-                )
-                map("n",
-                    "<leader>hh",
-                    function()
-                        if is_open("hunk") then
-                            vim.schedule(function() gs.prev_hunk() end)
-                        end
-                    end,
-                    "Prev hunk"
-                )
-                map("n", "<leader>hp", gs.preview_hunk, "Preview hunk")
-                map("n", "<leader>hb", gs.toggle_current_line_blame, "Line blame")
-                map("n", "<leader>hd", gs.diffthis, "Diff")
-                map("n", "<leader>hr", gs.reset_hunk, "Reset hunk")
-                -- stylua: ignore end
-            end,
         })
+            -- stylua: ignore start
+            nmap("<leader>hh", function() mini_diff.toggle_overlay(0) end, "Toggle mini.diff overlay")
+            nmap("<leader>hn",
+                function()
+                    if is_open() then
+                        hunk_navigation("next")
+                    end
+                end,
+                "Next hunk"
+            )
+            nmap("<leader>hp",
+                function()
+                    if is_open() then
+                        hunk_navigation("prev")
+                    end
+                end,
+                "Prev hunk"
+            )
+        -- stylua: ignore end
     end,
 }
