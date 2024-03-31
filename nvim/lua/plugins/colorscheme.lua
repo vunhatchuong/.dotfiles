@@ -2,8 +2,6 @@ return {
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        lazy = false,
-        priority = 1000,
         config = function()
             require("catppuccin").setup({
                 flavor = "mocha",
@@ -67,25 +65,24 @@ return {
     },
     {
         "rose-pine/neovim",
-        lazy = false,
+        name = "rose-pine",
     },
     {
         "nyoom-engineering/oxocarbon.nvim",
-        lazy = false,
     },
     {
         "aktersnurra/no-clown-fiesta.nvim",
-        lazy = false,
     },
     {
         "mcchrish/zenbones.nvim",
         dependencies = {
             "rktjmp/lush.nvim",
         },
-        lazy = false,
     },
     {
         "kdheepak/monochrome.nvim",
-        lazy = false,
+    },
+    {
+        "Hiroya-W/sequoia-moonlight.nvim",
     },
 }
