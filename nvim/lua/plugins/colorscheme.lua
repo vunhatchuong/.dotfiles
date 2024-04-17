@@ -85,4 +85,7 @@ return {
     {
         "Hiroya-W/sequoia-moonlight.nvim",
     },
+    {
+        "eldritch-theme/eldritch.nvim",
+    },
 }

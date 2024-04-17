@@ -12,6 +12,7 @@ return {
                 "rosebones",
                 "monochrome",
                 "sequoia",
+                "eldritch"
             },
             window = {
                 border = "rounded",
