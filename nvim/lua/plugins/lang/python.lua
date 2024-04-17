@@ -15,6 +15,17 @@ return {
                 },
             },
         },
+        setup = {
+            ruff_lsp = function()
+                local lsp = require("lspconfig")
+                lsp.on_attach(function(client, _)
+                    if client.name == "ruff_lsp" then
+                        -- Disable hover in favor of Pyright
+                        client.server_capabilities.hoverProvider = false
+                    end
+                end)
+            end,
+        },
     },
     {
         "williamboman/mason.nvim",
