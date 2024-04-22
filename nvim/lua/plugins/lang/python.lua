@@ -10,7 +10,7 @@ return {
         opts = {
             servers = {
                 pyright = {},
-                ruff_lsp = {
+                ruff = {
                     keys = {},
                 },
             },
@@ -19,7 +19,7 @@ return {
             ruff_lsp = function()
                 local lsp = require("lspconfig")
                 lsp.on_attach(function(client, _)
-                    if client.name == "ruff_lsp" then
+                    if client.name == "ruff" then
                         -- Disable hover in favor of Pyright
                         client.server_capabilities.hoverProvider = false
                     end
@@ -33,7 +33,6 @@ return {
             opts.ensure_installed = opts.ensure_installed or {}
             vim.list_extend(opts.ensure_installed, {
                 "pyright",
-                "ruff-lsp", -- Mainly for code actions
                 -- Linter
                 "mypy",
                 "ruff", -- Also Formatter
