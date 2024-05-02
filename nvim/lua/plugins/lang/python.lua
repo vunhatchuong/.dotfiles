@@ -16,7 +16,7 @@ return {
             },
         },
         setup = {
-            ruff_lsp = function()
+            ruff = function()
                 local lsp = require("lspconfig")
                 lsp.on_attach(function(client, _)
                     if client.name == "ruff" then
