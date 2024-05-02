@@ -64,12 +64,6 @@ return {
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
-    -- Show context of the current function
-    {
-        "nvim-treesitter/nvim-treesitter-context",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        opts = {},
-    },
     {
         "windwp/nvim-ts-autotag",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
