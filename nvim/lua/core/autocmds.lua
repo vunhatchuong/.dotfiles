@@ -112,3 +112,11 @@ autocmd({ "BufWritePre" }, {
         vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
     end,
 })
+
+autocmd({ "BufWinEnter" }, {
+    desc = "Clear the last used search pattern",
+    pattern = "*",
+    callback = function()
+        vim.cmd([[let @/ = '']])
+    end,
+})

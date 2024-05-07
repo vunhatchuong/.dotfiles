@@ -69,10 +69,24 @@ keymap("x", "<leader>p", [["_dP]], opts)
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Tmux sessionizer
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-keymap("n", "<leader>ge", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>", { silent = true })
+keymap(
+    "n",
+    "<leader>ge",
+    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
+    { silent = true }
+)
 
 -- windows
 keymap("n", "<leader>ww", "<C-W>w", opts)
 keymap("n", "<leader>wq", "<C-W>c", opts)
 keymap("n", "<leader>-", "<C-W>s", opts)
 keymap("n", "<leader>|", "<C-W>v", opts)
+
+-- Smart dd: https://www.reddit.com/r/neovim/comments/w0jzzv/comment/igfjx5y/
+keymap("n", "dd", function()
+    if vim.api.nvim_get_current_line():match("^%s*$") then
+        return '"_dd'
+    else
+        return "dd"
+    end
+end, { noremap = true, expr = true })
