@@ -1,35 +1,36 @@
 return {
     "hrsh7th/nvim-cmp",
+    version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
-        -- Required
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
+        {
+            "garymjr/nvim-snippets",
+            opts = {
+                friendly_snippets = true,
+                global_snippets = { "all", "global" },
+            },
+            dependencies = { "rafamadriz/friendly-snippets" },
+        },
         -- Adds LSP completion capabilities
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         -- "SergioRibera/cmp-dotenv",
-        -- Additional snippets
-        "rafamadriz/friendly-snippets",
     },
     config = function()
-        vim.opt.completeopt = { "menu", "menuone", "noselect" }
+        vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
         vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
         vim.api.nvim_set_hl(
             0,
             "CmpGhostText",
             { link = "Comment", default = true }
         )
-        -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-        require("luasnip.loaders.from_vscode").lazy_load()
         local cmp = require("cmp")
-        local luasnip = require("luasnip")
         cmp.setup({
             snippet = {
                 expand = function(args)
-                    luasnip.lsp_expand(args.body) -- For `luasnip` users.
+                    vim.snippet.expand(args.body)
                 end,
             },
             formatting = {
@@ -43,7 +44,6 @@ return {
                     item.ellipsis_char = "..."
                     item.menu = ({
                         nvim_lsp = "[LSP]",
-                        luasnip = "[LuaSnip]",
                         nvim_lua = "[Lua]",
                     })[entry.source.name]
                     return item
@@ -72,11 +72,11 @@ return {
                         return true
                     end,
                 },
-                { name = "luasnip" },
                 { name = "buffer" },
                 { name = "path" },
                 { name = "cmp_tabnine" },
                 { name = "treesitter" },
+                { name = "snippets" },
                 -- {
                 --     name = "dotenv",
                 --     option = {
@@ -94,8 +94,10 @@ return {
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
-                    elseif luasnip.expand_or_locally_jumpable() then
-                        luasnip.expand_or_jump()
+                    elseif vim.snippet.active({ direction = 1 }) then
+                        vim.schedule(function()
+                            vim.snippet.jump(1)
+                        end)
                     else
                         fallback()
                     end
@@ -103,8 +105,10 @@ return {
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
-                    elseif luasnip.locally_jumpable(-1) then
-                        luasnip.jump(-1)
+                    elseif vim.snippet.active({ direction = -1 }) then
+                        vim.schedule(function()
+                            vim.snippet.jump(-1)
+                        end)
                     else
                         fallback()
                     end
