@@ -78,7 +78,7 @@ vim.g.netrw_alto = 0
 
 ---  OTHERS  ---
 opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.shortmess:append("Wci")        -- don't show redundant messages from ins-completion-menu
+opt.shortmess:append("Wc")        -- don't show redundant messages from ins-completion-menu
 opt.fillchars = vim.opt.fillchars + "eob: "
 opt.fillchars:append({
     foldopen = "",
