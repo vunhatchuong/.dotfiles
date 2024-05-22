@@ -26,6 +26,7 @@ keymap("n", "c", '"_c', opts)
 keymap("n", "C", '"_C', opts)
 keymap("n", "x", '"_x', opts)
 keymap("n", "zo", "za", opts)
+keymap({ "n", "x", "o" }, "<C-/>", "gcc", { remap = true })
 
 -- Remap for dealing with word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
