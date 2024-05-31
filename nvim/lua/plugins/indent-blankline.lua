@@ -15,7 +15,7 @@ return {
                 "lazy",
                 "mason",
                 "oil",
-                "Trouble",
+                "trouble",
                 "harpoon",
                 "TelescopePrompt",
                 "notify",

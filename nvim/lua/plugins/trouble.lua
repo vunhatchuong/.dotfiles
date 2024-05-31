@@ -1,17 +1,23 @@
 return {
     "folke/trouble.nvim",
-    cmd = { "TroubleToggle", "Trouble" },
-    opts = { use_diagnostic_signs = true },
+    cmd = { "Trouble" },
+    opts = {
+        focus = true,
+        keys = {
+            ["<cr>"] = "jump_close",
+            ["<space>"] = "jump",
+        },
+    },
     keys = {
         {
             "<leader>dd",
-            "<cmd>TroubleToggle document_diagnostics<cr>",
-            desc = "Document Diagnostics (Trouble)",
+            "<cmd>Trouble diagnostics toggle<cr>",
+            desc = "Diagnostics (Trouble)",
         },
         {
             "<leader>wd",
-            "<cmd>TroubleToggle workspace_diagnostics<cr>",
-            desc = "Workspace Diagnostics (Trouble)",
+            "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+            desc = "Buffer Diagnostics (Trouble)",
         },
     },
 }

@@ -10,7 +10,7 @@ autocmd({ "FileType" }, {
         "lazy",
         "mason",
         "oil",
-        "Trouble",
+        "trouble",
         "harpoon",
         "TelescopePrompt",
         "spectre_panel",
