@@ -44,16 +44,17 @@ return {
         end,
     },
     {
-        "jellydn/my-note.nvim",
-        dependencies = { "MunifTanjim/nui.nvim" },
+        "JellyApple102/flote.nvim",
+        cmd = { "Flote" },
         keys = {
             {
                 "<leader>n",
-                "<cmd>MyNote<cr>",
+                "<cmd>Flote<cr>",
                 desc = "Open note",
             },
         },
         opts = {
+            window_border = "rounded",
             files = {
                 -- Using the parent .git folder as the current working directory
                 cwd = function()
