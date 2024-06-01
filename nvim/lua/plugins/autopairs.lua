@@ -1,5 +1,6 @@
-local openNRegx = ".[^%a\\]"
-local closeNRegx = "[^%a\\]."
+local openNRegx = ".[^%w%p]"
+local closeNRegx = "[^%w%p]."
+local opencloseNRegx = "[^%w%p][^%w%p]"
 
 return {
     {
@@ -15,9 +16,9 @@ return {
                 [')'] = { action = 'close', pair = '()', neigh_pattern = closeNRegx },
                 [']'] = { action = 'close', pair = '[]', neigh_pattern = closeNRegx },
                 ['}'] = { action = 'close', pair = '{}', neigh_pattern = closeNRegx },
-                ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = closeNRegx, register = { cr = false } },
-                ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = closeNRegx, register = { cr = false } },
-                ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = closeNRegx, register = { cr = false } },
+                ['"'] = { action = 'closeopen', pair = '""', neigh_pattern = opencloseNRegx, register = { cr = false } },
+                ["'"] = { action = 'closeopen', pair = "''", neigh_pattern = opencloseNRegx, register = { cr = false } },
+                ['`'] = { action = 'closeopen', pair = '``', neigh_pattern = opencloseNRegx, register = { cr = false } },
             },
         },
     },
