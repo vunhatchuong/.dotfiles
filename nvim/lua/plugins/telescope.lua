@@ -1,7 +1,7 @@
 local icons = require("core.icons")
 
 local function FolderLocation()
-    local activeClients = vim.lsp.get_active_clients()
+    local activeClients = vim.lsp.get_clients()
     local path = vim.fn.expand("%:p:h")
     local prompt_title = "Default"
     for i, client in ipairs(activeClients) do
