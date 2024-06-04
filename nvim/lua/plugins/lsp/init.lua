@@ -110,29 +110,6 @@ return {
                     --   require("typescript").setup({ server = opts })
                     --   return true
                     -- end,
-                    -- lua_ls = function(_, opts)
-                    --     require("plugins.lang.general.lua").setup({ server = opts })
-                    --     return false
-                    -- end,
-                    -- jsonls = function(_, opts)
-                    --     require("plugins.lang.general.json").setup({ server = opts })
-                    --     return false
-                    -- end,
-                    -- yamlls = function(_, opts)
-                    --     require("plugins.lang.general.yaml").setup({ server = opts })
-                    --     return false
-                    -- end,
-                    -- powershell_es = function(_, opts)
-                    --     local mason_registry = require("mason-registry")
-                    --     local bundle_path = mason_registry
-                    --         .get_package("powershell-editor-services")
-                    --         :get_install_path()
-                    --     require("lspconfig").powershell_es.setup({
-                    --         server = opts,
-                    --         bundle_path = bundle_path,
-                    --     })
-                    --     return false
-                    -- end,
                     -- Specify * to use this function as a fallback for any server
                     -- ["*"] = function(server, opts) end,
                 },
@@ -152,12 +129,8 @@ return {
                     end,
                 })
             end
-            local group =
-                vim.api.nvim_create_augroup("lsp_cmds", { clear = true })
 
             vim.api.nvim_create_autocmd("LspAttach", {
-                group = group,
-                desc = "LSP actions",
                 callback = require("plugins.lsp.keymaps").on_attach,
             })
 

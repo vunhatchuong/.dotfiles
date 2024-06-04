@@ -2,29 +2,30 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "python" })
+            vim.list_extend(opts.ensure_installed, { "python", "toml" })
         end,
     },
     {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
-                pyright = {},
-                ruff = {
-                    keys = {},
-                },
+                pyright = { enabled = true },
+                ruff = { enabled = true },
             },
-        },
-        setup = {
-            ruff = function()
-                local lsp = require("lspconfig")
-                lsp.on_attach(function(client, _)
-                    if client.name == "ruff" then
-                        -- Disable hover in favor of Pyright
-                        client.server_capabilities.hoverProvider = false
-                    end
-                end)
-            end,
+            setup = {
+                ruff = function()
+                    vim.api.nvim_create_autocmd("LspAttach", {
+                        callback = function(args)
+                            local client =
+                                vim.lsp.get_client_by_id(args.data.client_id)
+                            if client and client.name == "ruff" then
+                                -- Disable hover in favor of Pyright
+                                client.server_capabilities.hoverProvider = false
+                            end
+                        end,
+                    })
+                end,
+            },
         },
     },
     {
@@ -64,5 +65,12 @@ return {
                 },
             },
         },
+    },
+    {
+        "hrsh7th/nvim-cmp",
+        opts = function(_, opts)
+            opts.auto_brackets = opts.auto_brackets or {}
+            table.insert(opts.auto_brackets, "python")
+        end,
     },
 }
