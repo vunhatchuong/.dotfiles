@@ -288,18 +288,15 @@ return {
         build = ":MasonUpdate",
         opts = {
             ensure_installed = {
-                "lua-language-server",
                 "stylua",
+                "shfmt",
+
                 "codespell",
 
                 "html-lsp",
                 "prettier",
 
-                "marksman",
-                "markdownlint-cli2",
                 "proselint",
-                "json-lsp",
-                "yaml-language-server",
                 "taplo",
             },
         },
