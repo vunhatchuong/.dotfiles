@@ -19,8 +19,7 @@ return {
             "hrsh7th/cmp-path",
             -- "SergioRibera/cmp-dotenv",
         },
-        config = function()
-            vim.opt.completeopt = { "menu", "menuone", "noselect", "noinsert" }
+        opts = function()
             vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
             vim.api.nvim_set_hl(
                 0,
@@ -29,6 +28,10 @@ return {
             )
             local cmp = require("cmp")
             cmp.setup({
+                auto_brackets = {}, -- configure any filetype to auto add brackets
+                completion = {
+                    completeopt = "menu,menuone,noselect,noinsert",
+                },
                 snippet = {
                     expand = function(args)
                         vim.snippet.expand(args.body)
@@ -131,6 +134,11 @@ return {
                     { name = "cmdline" },
                 }),
             })
+        end,
+        config = function(_, opts)
+            for _, source in ipairs(opts.sources) do
+                source.group_index = source.group_index or 1
+            end
         end,
     },
     {
