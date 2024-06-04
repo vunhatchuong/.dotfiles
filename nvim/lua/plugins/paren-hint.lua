@@ -4,7 +4,5 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-        require("paren-hint")
-    end,
+    opts = {},
 }
