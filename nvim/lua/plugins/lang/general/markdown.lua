@@ -3,14 +3,22 @@ return {
         "nvim-treesitter/nvim-treesitter",
         opts = function(_, opts)
             if type(opts.ensure_installed) == "table" then
-                vim.list_extend(opts.ensure_installed, { "yaml" })
+                vim.list_extend(
+                    opts.ensure_installed,
+                    { "markdown", "markdown_inline" }
+                )
             end
         end,
     },
     {
-        "b0o/SchemaStore.nvim",
-        lazy = true,
-        version = false, -- last release is way too old
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+            opts.ensure_installed = opts.ensure_installed or {}
+            vim.list_extend(
+                opts.ensure_installed,
+                { "markdownlint-cli2", "marksman" }
+            )
+        end,
     },
     {
         "neovim/nvim-lspconfig",
@@ -55,5 +63,47 @@ return {
             },
             setup = {},
         },
+    },
+    {
+        "iamcco/markdown-preview.nvim",
+        ft = { "markdown" },
+        cmd = {
+            "MarkdownPreview",
+            "MarkdownPreviewStop",
+            "MarkdownPreviewToggle",
+        },
+        keys = {
+            {
+                "<leader>md",
+                "<cmd>MarkdownPreviewToggle<cr>",
+                desc = "Find recently opened Files",
+            },
+        },
+        build = function()
+            local install_path = vim.fn.stdpath("data")
+                .. "/lazy/markdown-preview.nvim/app"
+
+            if vim.fn.executable("node") == 0 then
+                print("Node not found")
+                vim.fn["mkdp#util#install"]()
+            else
+                vim.cmd(
+                    "silent !cd "
+                        .. install_path
+                        .. " && npm install && git restore ."
+                )
+            end
+        end,
+        init = function()
+            vim.g.mkdp_filetypes = { "markdown" }
+            vim.g.mkdp_auto_close = 0
+        end,
+    },
+    {
+        "MeanderingProgrammer/markdown.nvim",
+        name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        ft = { "markdown" },
+        opts = {},
     },
 }
