@@ -50,6 +50,7 @@ return {
                     enabled = true,
                     exclude = {}, -- filetypes for which you don't want to enable inlay hints
                 },
+                -- https://github.com/neovim/neovim/issues/29156
                 codelens = {
                     enabled = false,
                 },
@@ -117,14 +118,12 @@ return {
         end,
         config = function(_, opts)
             local on_supports_method = function(method, fn)
-                return vim.api.nvim_create_autocmd("User", {
-                    pattern = "LspSupportsMethod",
+                return vim.api.nvim_create_autocmd("LspAttach", {
                     callback = function(args)
                         local client =
                             vim.lsp.get_client_by_id(args.data.client_id)
-                        local buffer = args.data.buffer ---@type number
-                        if client and method == args.data.method then
-                            return fn(client, buffer)
+                        if client and client.supports_method(method) then
+                            return fn(client, args.buf)
                         end
                     end,
                 })
@@ -147,11 +146,8 @@ return {
                                 vim.bo[buffer].filetype
                             )
                         then
-                            local ih = vim.lsp.buf.inlay_hint
-                                or vim.lsp.inlay_hint
-                            if type(ih) == "function" then
-                                ih(buffer, true)
-                            elseif type(ih) == "table" and ih.enable then
+                            local ih = vim.lsp.inlay_hint
+                            if ih.enable then
                                 ih.enable(true, { bufnr = buffer })
                             end
                         end
