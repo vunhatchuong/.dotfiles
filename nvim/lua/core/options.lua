@@ -29,7 +29,7 @@ opt.mouse = "a"                             -- allow the mouse to be used in neo
 opt.clipboard = "unnamedplus"
 
 opt.guicursor = ""
-opt.completeopt = { "menuone", "noselect" } -- mostly just for cmp
+opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- mostly just for cmp
 
 opt.splitbelow = false
 opt.splitright = true
