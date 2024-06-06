@@ -27,6 +27,21 @@ return {
                 { link = "Comment", default = true }
             )
             local cmp = require("cmp")
+            local cmp_confirm = cmp.mapping.confirm({
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = false,
+            })
+
+            -- don't confirm for signature help to allow new line without selecting argument name
+            local confirm = cmp.sync(function(fallback)
+                local e = cmp.core.view:get_selected_entry()
+                if e and e.source.name == "nvim_lsp_signature_help" then
+                    fallback()
+                else
+                    cmp_confirm(fallback)
+                end
+            end)
+
             cmp.setup({
                 auto_brackets = {}, -- configure any filetype to auto add brackets
                 completion = {
@@ -84,10 +99,7 @@ return {
                 mapping = cmp.mapping.preset.insert({
                     -- Currently not working on windows
                     ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<CR>"] = cmp.mapping.confirm({
-                        behavior = cmp.ConfirmBehavior.Insert,
-                        select = false,
-                    }),
+                    ["<CR>"] = confirm,
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item({
@@ -150,7 +162,7 @@ return {
                     table.insert(env_vars, {
                         label = key,
                         insertText = key,
-                        detail = "From " .. file,
+                        detail = "From " .. vim.fn.fnamemodify(file, ":t"),
                         cmp = {
                             kind_text = "Env",
                             kind_hl_group = "CmpItemKindTabNine",
