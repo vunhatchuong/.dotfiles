@@ -9,8 +9,6 @@ function M.on_attach()
     end
 
     -- stylua: ignore start
-    nmap("<leader>i", "<cmd>LspInfo<cr>", "Info")
-    nmap("<leader>I", "<cmd>LspInstall<cr>", "Install")
     nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
     nmap("K", vim.lsp.buf.hover, "Hover Documentation")
