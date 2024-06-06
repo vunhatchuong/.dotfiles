@@ -39,6 +39,7 @@ return {
         Unit = " ",
         Value = " ",
         Variable = "󰀫 ",
+        Env = " "
     },
     git = {
         LineAdded = " ",

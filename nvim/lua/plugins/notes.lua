@@ -14,9 +14,9 @@ return {
             files = {
                 -- Using the parent .git folder as the current working directory
                 cwd = function()
-                    local bufPath = vim.api.nvim_buf_get_name(0)
-                    local cwd =
-                        require("lspconfig").util.root_pattern(".git")(bufPath)
+                    local cwd = require("lspconfig").util.find_git_ancestor(
+                        vim.fs.normalize(vim.api.nvim_buf_get_name(0))
+                    )
 
                     return cwd
                 end,
