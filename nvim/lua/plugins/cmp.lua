@@ -152,6 +152,10 @@ return {
             local env_vars = {}
             for i = 1, #raw_files do
                 local file = raw_files[i]
+                if string.match(vim.fn.fnamemodify(file, ":t"), "template") then
+                    goto continue
+                end
+
                 local data = {}
                 for line in io.lines(file) do
                     for key, value in string.gmatch(line, "([^=]+)=([^=]+)") do
@@ -169,6 +173,7 @@ return {
                         },
                     })
                 end
+                ::continue::
             end
             require("cmp_dynamic").register(env_vars)
         end,
