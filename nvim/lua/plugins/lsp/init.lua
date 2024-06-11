@@ -29,10 +29,8 @@ return {
                         spacing = 4,
                         source = "if_many",
                         prefix = "icons",
-                        float = {
-                            border = "rounded",
-                        },
                     },
+                    float = { border = "rounded" },
                     severity_sort = true,
                     signs = {
                         text = {

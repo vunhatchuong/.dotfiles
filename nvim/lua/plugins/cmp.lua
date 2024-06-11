@@ -28,7 +28,7 @@ return {
             )
             local cmp = require("cmp")
             local cmp_confirm = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Replace,
+                behavior = cmp.ConfirmBehavior.Insert,
                 select = false,
             })
 
