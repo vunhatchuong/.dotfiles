@@ -128,6 +128,11 @@ return {
                 callback = require("plugins.lsp.keymaps").on_attach,
             })
 
+            local function cmp_visible()
+                local cmp = package.loaded["cmp"]
+                return cmp and cmp.core.view:visible()
+            end
+
             -- document highlight
             if opts.document_highlight.enabled then
                 on_supports_method(
@@ -147,7 +152,7 @@ return {
                             callback = function(ev)
                                 if ev.event:find("CursorMoved") then
                                     vim.lsp.buf.clear_references()
-                                else
+                                elseif not cmp_visible() then
                                     vim.lsp.buf.document_highlight()
                                 end
                             end,
