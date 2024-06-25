@@ -2,7 +2,7 @@ return {
     "ggandor/leap.nvim",
     dependencies = {
         {
-            "/ggandor/flit.nvim",
+            "ggandor/flit.nvim",
             config = function()
                 require("flit").setup({
                     -- A string like "nv", "nvo", "o", etc.
