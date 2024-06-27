@@ -13,7 +13,7 @@ autocmd({ "FileType" }, {
         "trouble",
         "harpoon",
         "TelescopePrompt",
-        "spectre_panel",
+        "grug-far",
         "undotree",
         "grapple",
     },
