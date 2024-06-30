@@ -1,15 +1,13 @@
 local icons = require("core.icons")
 
 local function FolderLocation()
-    local activeClients = vim.lsp.get_clients()
+    local activeClients = require("lspconfig").util.get_managed_clients()
     local path = vim.fn.expand("%:p:h")
     local prompt_title = "Default"
-    for i, client in ipairs(activeClients) do
-        if activeClients[i].name ~= "null-ls" then
-            path = client.config.root_dir
-            prompt_title = client.name
-            return path, prompt_title
-        end
+    for _, client in ipairs(activeClients) do
+        path = client.config.root_dir
+        prompt_title = client.name
+        return path, prompt_title
     end
     local prefixes = { "oil:///", "other:///", "netrw:///" }
     -- Not working on Windows because oil path missing `:`
@@ -41,7 +39,6 @@ return {
                             },
                         },
                     })
-
                     require("telescope").load_extension("ui-select")
                 end,
             },
@@ -80,15 +77,6 @@ return {
             { "<leader>fk",
                 function() require("telescope.builtin").keymaps() end, desc = "Keymaps",
             },
-            {
-                "<leader>fg",
-                function()
-                    local path, prompt_title = FolderLocation()
-                    require("telescope.builtin").git_files({
-                        cwd = path,
-                        prompt_title = prompt_title,
-                    })
-                end, desc = "Find Git Files", },
             { "<leader>gc",
                 function() require("telescope.builtin").git_branches() end, desc = "Checkout branches",
             },
