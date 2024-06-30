@@ -19,9 +19,9 @@ keymap("n", "<leader>e", vim.cmd.Ex)
 keymap("n", "Q", "<nop>")
 
 -- Normal --
+keymap("n", "<Esc>", ":nohl<cr>", opts)
 keymap("n", "<leader>w", ":w<cr>", opts)
 keymap("n", "<leader>q", ":q<cr>", opts)
-keymap("n", "<leader>h", ":nohl<cr>", opts)
 keymap("n", "c", '"_c', opts)
 keymap("n", "C", '"_C', opts)
 keymap("n", "x", '"_x', opts)

@@ -13,7 +13,6 @@ return { -- when searching, search count is shown next to the cursor
         },
     },
     opts = {
-        calm_down = true,
         nearest_only = true,
     },
 }

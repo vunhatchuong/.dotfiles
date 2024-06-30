@@ -25,6 +25,10 @@ return {
         view_options = {
             show_hidden = true,
         },
+        win_options = {
+            number = false,
+            relativenumber = false,
+        },
     },
     config = function(_, opts)
         vim.keymap.set(

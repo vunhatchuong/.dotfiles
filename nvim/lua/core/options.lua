@@ -24,6 +24,8 @@ opt.guifont = "JetBrainsMono Nerd Font:h17" -- the font used in graphical neovim
 opt.autowrite = true                        -- save when kinda change buffer?
 opt.fileformat = "unix"
 opt.confirm = true                          -- Confirm to save changes before exiting modified buffer
+opt.spelllang = { "en" }
+opt.smoothscroll = true
 
 opt.mouse = "a"                             -- allow the mouse to be used in neovim
 opt.clipboard = "unnamedplus"
