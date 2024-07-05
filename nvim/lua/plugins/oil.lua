@@ -6,6 +6,7 @@ return {
         skip_confirm_for_simple_edits = true,
         -- Set to `false` to remove a keymap
         -- See :help oil-actions for a list of all available actions
+        watch_for_changes = true,
         keymaps = {
             ["l"] = "actions.select",
             ["h"] = "actions.parent",
