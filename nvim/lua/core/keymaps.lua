@@ -27,11 +27,7 @@ keymap("n", "C", '"_C', opts)
 keymap("n", "x", '"_x', opts)
 keymap("n", "zo", "za", opts)
 
-if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
-    keymap({ "n", "x", "o" }, "<C-_>", "gcc", { remap = true })
-else
-    keymap({ "n", "x", "o" }, "<C-/>", "gcc", { remap = true })
-end
+keymap({ "n", "x", "o" }, "<C-_>", "gcc", { remap = true })
 
 -- Remap for dealing with word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
