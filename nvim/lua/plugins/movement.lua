@@ -72,33 +72,81 @@ return {
         },
     },
     {
-        "ggandor/leap.nvim",
-        dependencies = {
-            {
-                "ggandor/flit.nvim",
-                config = function()
-                    require("flit").setup({
-                        -- A string like "nv", "nvo", "o", etc.
-                        labeled_modes = "nv",
-                    })
+        "folke/flash.nvim",
+        opts = {
+            multi_window = false,
+            exclude = {
+                "notify",
+                "cmp_menu",
+                "flash_prompt",
+                function(win)
+                    -- exclude non-focusable windows
+                    return not vim.api.nvim_win_get_config(win).focusable
                 end,
             },
+            jump = {
+                autojump = true,
+            },
+            modes = {
+                char = {
+                    jump_labels = true,
+                },
+                treesitter = {
+                    highlight = {
+                        backdrop = true,
+                    },
+                },
+            },
         },
-        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+        -- stylua: ignore
         keys = {
-            { "s", mode = { "n", "x", "o" }, desc = "Leap forward to" },
-            { "S", mode = { "n", "x", "o" }, desc = "Leap backward to" },
+            "f", "F", "t", "T",
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
         },
-        config = function()
-            local leap = require("leap")
-            leap.add_default_mappings(true)
-            -- Greying out the search area
-            vim.api.nvim_set_hl(0, "LeapBackdrop", { fg = "#777777" })
-        end,
     },
     {
         "echasnovski/mini.move",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "chrisgrieser/nvim-origami",
+        event = "BufReadPost",
+        opts = {},
+        config = function(_, opts)
+            vim.keymap.set("n", "<Left>", function()
+                require("origami").h()
+            end)
+            vim.keymap.set("n", "<Right>", function()
+                require("origami").l()
+            end)
+            require("origami").setup(opts)
+        end,
+    },
+    {
+        "chrisgrieser/nvim-spider",
+        -- stylua: ignore start
+        keys = {
+            {
+                "w",
+                function() require("spider").motion("w") end,
+                mode = { "n", "o", "x" },
+                desc = "󱇫 Spider w",
+            },
+            {
+                "e",
+                function() require("spider").motion("e") end,
+                mode = { "n", "o", "x" },
+                desc = "󱇫 Spider e",
+            },
+            {
+                "b",
+                function() require("spider").motion("b") end,
+                mode = { "n", "x" }, -- not `o`, since mapped to inner bracket
+                desc = "󱇫 Spider b",
+            },
+        },
+        -- stylua: ignore end
     },
 }
