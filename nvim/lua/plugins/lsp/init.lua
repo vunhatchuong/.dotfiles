@@ -327,4 +327,5 @@ return {
             end)
         end,
     },
+    { import = "plugins.lsp.addons" },
 }
