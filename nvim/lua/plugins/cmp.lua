@@ -16,7 +16,6 @@ return {
             "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-nvim-lsp",
             "https://codeberg.org/FelipeLema/cmp-async-path.git",
-            "hrsh7th/cmp-nvim-lsp-signature-help",
             "uga-rosa/cmp-dynamic",
         },
         opts = function()
@@ -27,20 +26,6 @@ return {
                 { link = "Comment", default = true }
             )
             local cmp = require("cmp")
-            local cmp_confirm = cmp.mapping.confirm({
-                behavior = cmp.ConfirmBehavior.Insert,
-                select = false,
-            })
-
-            -- don't confirm for signature help to allow new line without selecting argument name
-            local confirm = cmp.sync(function(fallback)
-                local e = cmp.core.view:get_selected_entry()
-                if e and e.source.name == "nvim_lsp_signature_help" then
-                    fallback()
-                else
-                    cmp_confirm(fallback)
-                end
-            end)
 
             cmp.setup({
                 auto_brackets = {}, -- configure any filetype to auto add brackets
@@ -93,13 +78,15 @@ return {
                     { name = "cmp_tabnine" },
                     { name = "treesitter" },
                     { name = "snippets" },
-                    { name = "nvim_lsp_signature_help" },
                     { name = "dynamic" },
                 },
                 mapping = cmp.mapping.preset.insert({
                     -- Currently not working on windows
                     ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<CR>"] = confirm,
+                    ["<CR>"] = cmp.mapping.confirm({
+                        behavior = cmp.ConfirmBehavior.Insert,
+                        select = false,
+                    }),
                     ["<Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_next_item({

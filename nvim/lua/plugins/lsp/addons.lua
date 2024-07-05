@@ -22,6 +22,31 @@ return {
             },
         },
     },
+    -- Currently doesn't support only display current line. https://github.com/chrisgrieser/nvim-lsp-endhints/issues/3
+    -- {
+    --     "chrisgrieser/nvim-lsp-endhints",
+    --     event = "LspAttach",
+    --     opts = {},
+    -- },
+    {
+        "Wansmer/symbol-usage.nvim",
+        event = "LspAttach",
+        opts = {
+            request_pending_text = false,
+            -- vt_position = "end_of_line",
+        },
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "LspAttach",
+        opts = {
+            hint_enable = false,
+            hint_prefix = "󰏪 ",
+            hint_scheme = "@variable.parameter",
+            -- floating_window = false,
+            always_trigger = true,
+        },
+    },
     {
         "andymass/vim-matchup",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
