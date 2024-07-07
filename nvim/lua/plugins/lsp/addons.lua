@@ -56,10 +56,10 @@ return {
     },
     {
         "briangwaltney/paren-hint.nvim",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {},
     },
     -- {
@@ -76,6 +76,9 @@ return {
     {
         "RaafatTurki/corn.nvim",
         event = "LspAttach",
+        init = function()
+            vim.diagnostic.config({ virtual_text = false })
+        end,
         opts = {
             border_style = "rounded",
             on_toggle = function(is_hidden)
@@ -87,11 +90,5 @@ return {
                 return item
             end,
         },
-        config = function(_, opts)
-            local corn = require("corn")
-            -- ensure virtual_text diags are disabled
-            vim.diagnostic.config({ virtual_text = false })
-            corn.setup(opts)
-        end,
     },
 }

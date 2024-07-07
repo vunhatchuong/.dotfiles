@@ -86,29 +86,16 @@ return {
             })
         end,
     },
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-    },
-    {
-        "nyoom-engineering/oxocarbon.nvim",
-    },
-    {
-        "aktersnurra/no-clown-fiesta.nvim",
-    },
+    { "rose-pine/neovim", name = "rose-pine" },
+    { "nyoom-engineering/oxocarbon.nvim" },
+    { "aktersnurra/no-clown-fiesta.nvim" },
     {
         "mcchrish/zenbones.nvim",
         dependencies = {
             "rktjmp/lush.nvim",
         },
     },
-    {
-        "kdheepak/monochrome.nvim",
-    },
-    {
-        "Hiroya-W/sequoia-moonlight.nvim",
-    },
-    {
-        "eldritch-theme/eldritch.nvim",
-    },
+    { "kdheepak/monochrome.nvim" },
+    { "Hiroya-W/sequoia-moonlight.nvim" },
+    { "eldritch-theme/eldritch.nvim" },
 }

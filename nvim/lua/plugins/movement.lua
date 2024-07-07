@@ -2,25 +2,23 @@ return {
     {
         "cbochs/grapple.nvim",
         event = "VeryLazy",
-        config = function()
+        keys = function()
             local grapple = require("grapple")
-            local keymap = vim.keymap.set
             local function mark_file()
                 grapple.toggle()
                 vim.notify("󱡁 Toggle mark")
             end
-
-            grapple.setup()
-
-            -- stylua: ignore start
-            keymap("n", "<leader>a", function() mark_file() end)
-            keymap("n", "<TAB>", function() grapple.toggle_tags() end)
-            keymap("n", "<leader>1", function() grapple.select({ index = 1 }) end)
-            keymap("n", "<leader>2", function() grapple.select({ index = 2 }) end)
-            keymap("n", "<leader>3", function() grapple.select({ index = 3 }) end)
-            keymap("n", "<leader>4", function() grapple.select({ index = 4 }) end)
-            keymap("n", "<leader>5", function() grapple.select({ index = 5 }) end)
-            -- stylua: ignore end
+            return {
+                -- stylua: ignore start
+                { "<leader>a", function() mark_file() end },
+                { "<TAB>", function() grapple.toggle_tags() end },
+                { "<leader>1", function() grapple.select({ index = 1 }) end },
+                { "<leader>2", function() grapple.select({ index = 2 }) end },
+                { "<leader>3", function() grapple.select({ index = 3 }) end },
+                { "<leader>4", function() grapple.select({ index = 4 }) end },
+                { "<leader>5", function() grapple.select({ index = 5 }) end },
+                -- stylua: ignore end
+            }
         end,
     },
     {
@@ -113,16 +111,12 @@ return {
     {
         "chrisgrieser/nvim-origami",
         event = "BufReadPost",
+        -- stylua: ignore
+        keys = {
+            { "<Left>", function() require("origami").h() end },
+            { "<Right>", function() require("origami").l() end },
+        },
         opts = {},
-        config = function(_, opts)
-            vim.keymap.set("n", "<Left>", function()
-                require("origami").h()
-            end)
-            vim.keymap.set("n", "<Right>", function()
-                require("origami").l()
-            end)
-            require("origami").setup(opts)
-        end,
     },
     {
         "chrisgrieser/nvim-spider",
@@ -148,5 +142,6 @@ return {
             },
         },
         -- stylua: ignore end
+        opts = { consistentOperatorPending = true },
     },
 }

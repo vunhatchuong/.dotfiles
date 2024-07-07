@@ -50,8 +50,5 @@ return {
         opts = {
             border = "rounded",
         },
-        config = function(_, opts)
-            require("FTerm").setup(opts)
-        end,
     },
 }

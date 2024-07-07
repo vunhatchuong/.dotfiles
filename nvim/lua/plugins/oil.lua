@@ -2,6 +2,15 @@ return {
     "stevearc/oil.nvim",
     lazy = false,
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    keys = {
+        {
+            "<leader>e",
+            function()
+                require("oil").open()
+            end,
+            desc = "Open file explorer",
+        },
+    },
     opts = {
         skip_confirm_for_simple_edits = true,
         -- Set to `false` to remove a keymap
@@ -31,13 +40,4 @@ return {
             relativenumber = false,
         },
     },
-    config = function(_, opts)
-        vim.keymap.set(
-            "n",
-            "<leader>e",
-            "<CMD>Oil<CR>",
-            { desc = "Open parent directory" }
-        )
-        require("oil").setup(opts)
-    end,
 }
