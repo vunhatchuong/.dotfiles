@@ -91,4 +91,48 @@ return {
             end,
         },
     },
+    {
+        "lewis6991/satellite.nvim",
+        dependencies = {
+            {
+                "echasnovski/mini.diff",
+            },
+        },
+        event = "VeryLazy",
+        opts = {
+            current_only = true,
+            zindex = 1, -- below most stuff
+            handlers = {
+                cursor = { enable = false },
+                -- gitsigns = { enable = false },
+                -- require diff.lua
+                minidiff = { enable = true },
+                marks = { enable = false },
+                quickfix = { enable = false },
+            },
+        },
+        config = function(_, opts)
+            require("plugins.lsp.mini-diff-satellite")
+            require("satellite").setup(opts)
+        end,
+    },
+    { -- split-join lines
+        "Wansmer/treesj",
+        keys = { { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" } },
+        opts = { use_default_keymaps = false, max_join_length = 150 },
+    },
+    {
+        "Wansmer/sibling-swap.nvim",
+        keys = {
+			-- stylua: ignore start
+			{ "<C-.>", function() require("sibling-swap").swap_with_right() end, desc = "󰔰 Move Node Right" },
+			{ "<C-,>", function() require("sibling-swap").swap_with_left() end, desc = "󰶢 Move Node Left" },
+            -- stylua: ignore end
+        },
+        opts = {
+            use_default_keymaps = true,
+            allowed_separators = { "..", "*" }, -- add multiplication & lua string concatenation
+            highlight_node_at_cursor = true,
+        },
+    },
 }
