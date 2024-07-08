@@ -87,6 +87,7 @@ return {
             },
             modes = {
                 char = {
+                    enabled = false,
                     jump_labels = true,
                 },
                 treesitter = {
@@ -98,8 +99,9 @@ return {
         },
         -- stylua: ignore
         keys = {
-            "f", "F", "t", "T",
-            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
+            -- "f", "F", "t", "T",
+            -- Replace default 'f' bind (Default 's')
+            { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
             { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
         },
     },
@@ -117,31 +119,5 @@ return {
             { "<Right>", function() require("origami").l() end },
         },
         opts = {},
-    },
-    {
-        "chrisgrieser/nvim-spider",
-        -- stylua: ignore start
-        keys = {
-            {
-                "w",
-                function() require("spider").motion("w") end,
-                mode = { "n", "o", "x" },
-                desc = "󱇫 Spider w",
-            },
-            {
-                "e",
-                function() require("spider").motion("e") end,
-                mode = { "n", "o", "x" },
-                desc = "󱇫 Spider e",
-            },
-            {
-                "b",
-                function() require("spider").motion("b") end,
-                mode = { "n", "x" }, -- not `o`, since mapped to inner bracket
-                desc = "󱇫 Spider b",
-            },
-        },
-        -- stylua: ignore end
-        opts = { consistentOperatorPending = true },
     },
 }
