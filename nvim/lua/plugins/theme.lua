@@ -7,12 +7,12 @@ return {
             schemes = {
                 "catppuccin-mocha",
                 "rose-pine",
-                "oxocarbon",
                 "no-clown-fiesta",
                 "rosebones",
                 "monochrome",
                 "sequoia",
                 "eldritch",
+                "lackluster-hack",
             },
             window = {
                 border = "rounded",
@@ -87,7 +87,6 @@ return {
         end,
     },
     { "rose-pine/neovim", name = "rose-pine" },
-    { "nyoom-engineering/oxocarbon.nvim" },
     { "aktersnurra/no-clown-fiesta.nvim" },
     {
         "mcchrish/zenbones.nvim",
@@ -98,4 +97,5 @@ return {
     { "kdheepak/monochrome.nvim" },
     { "Hiroya-W/sequoia-moonlight.nvim" },
     { "eldritch-theme/eldritch.nvim" },
+    { "slugbyte/lackluster.nvim" },
 }
