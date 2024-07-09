@@ -33,6 +33,11 @@ return {
         event = "LspAttach",
         opts = {
             request_pending_text = false,
+            text_format = function(symbol)
+                if not symbol.references or symbol.references == 0 then
+                    return
+                end
+            end,
             -- vt_position = "end_of_line",
         },
     },
