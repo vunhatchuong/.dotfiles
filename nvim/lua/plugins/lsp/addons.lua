@@ -38,7 +38,7 @@ return {
     },
     {
         "ray-x/lsp_signature.nvim",
-        event = "LspAttach",
+        event = "BufReadPre",
         opts = {
             hint_enable = false,
             hint_prefix = "󰏪 ",
