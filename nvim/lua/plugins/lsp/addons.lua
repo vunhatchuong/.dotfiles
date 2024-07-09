@@ -34,9 +34,16 @@ return {
         opts = {
             request_pending_text = false,
             text_format = function(symbol)
+                local fragments = {}
                 if not symbol.references or symbol.references == 0 then
                     return
                 end
+                if symbol.references then
+                    local usage = symbol.references <= 1 and "usage" or "usages"
+                    local num = symbol.references
+                    table.insert(fragments, ("%s %s"):format(num, usage))
+                end
+                return table.concat(fragments, ", ")
             end,
             -- vt_position = "end_of_line",
         },
