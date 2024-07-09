@@ -30,6 +30,10 @@ return {
                         source = "if_many",
                         prefix = "icons",
                     },
+                    virtual_lines = {
+                        only_current_line = true,
+                        -- highlight_whole_line = false,
+                    },
                     float = { border = "rounded" },
                     severity_sort = true,
                     signs = {
