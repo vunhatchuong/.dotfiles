@@ -62,35 +62,43 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {},
     },
-    -- {
-    --     "dgagn/diagflow.nvim",
-    --     event = "LspAttach",
-    --     opts = {
-    --         scope = "line",
-    --         show_borders = true,
-    --         format = function(diagnostic)
-    --             return diagnostic.message
-    --         end,
-    --     },
-    -- }
     {
-        "RaafatTurki/corn.nvim",
+        "dgagn/diagflow.nvim",
         event = "LspAttach",
-        init = function()
-            vim.diagnostic.config({ virtual_text = false })
-        end,
         opts = {
-            border_style = "rounded",
-            on_toggle = function(is_hidden)
-                vim.diagnostic.config({
-                    virtual_text = not vim.diagnostic.config().virtual_text,
-                })
-            end,
-            item_preprocess_func = function(item)
-                return item
-            end,
+            scope = "line",
+            -- show_borders = true,
         },
     },
+    -- Better looking but currently suffer performance issues.
+    -- {
+    --     "RaafatTurki/corn.nvim",
+    --     event = "LspAttach",
+    --     init = function()
+    --         vim.diagnostic.config({ virtual_text = false })
+    --     end,
+    --     opts = {
+    --         border_style = "rounded",
+    --         on_toggle = function(is_hidden)
+    --             vim.diagnostic.config({
+    --                 virtual_text = not vim.diagnostic.config().virtual_text,
+    --             })
+    --         end,
+    --         item_preprocess_func = function(item)
+    --             return item
+    --         end,
+    --     },
+    -- },
+    -- {
+    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    --     event = "LspAttach",
+    --     init = function()
+    --         vim.diagnostic.config({
+    --             virtual_text = false,
+    --         })
+    --     end,
+    --     opts = {},
+    -- },
     {
         "lewis6991/satellite.nvim",
         dependencies = {
