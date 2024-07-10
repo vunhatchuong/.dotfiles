@@ -155,4 +155,37 @@ return {
             highlight_node_at_cursor = true,
         },
     },
+    {
+        -- Origin repo is unmaintained: anuvyklack/fold-preview.nvim
+        "cosmicbuffalo/fold-preview.nvim",
+        branch = "fix-eventignore",
+        dependencies = {
+            "anuvyklack/keymap-amend.nvim",
+        },
+        event = "VeryLazy",
+        opts = {
+            auto = 400,
+            default_keybindings = false,
+        },
+        keys = {
+            -- Doesn't work
+            {
+                "K",
+                function()
+                    require("fold-preview").show_preview()
+                end,
+                desc = "Show fold preview",
+            },
+        },
+        config = function(_, opts)
+            local keymap = vim.keymap
+            local map = require("fold-preview").mapping
+            keymap.amend = require("keymap-amend")
+
+            require("fold-preview").setup(opts)
+
+            keymap.amend("n", "l", map.close_preview_without_defer)
+            keymap.amend("n", "<Right>", map.close_preview_without_defer)
+        end,
+    },
 }
