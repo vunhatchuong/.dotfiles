@@ -13,6 +13,10 @@ return {
                 "sequoia",
                 "eldritch",
                 "lackluster-hack",
+                "Duskfox",
+                "Carbonfox",
+                "moonfly",
+                "oxocarbon",
             },
             window = {
                 border = "rounded",
@@ -98,4 +102,7 @@ return {
     { "Hiroya-W/sequoia-moonlight.nvim" },
     { "eldritch-theme/eldritch.nvim" },
     { "slugbyte/lackluster.nvim" },
+    { "EdenEast/nightfox.nvim" },
+    { "bluz71/vim-moonfly-colors", name = "moonfly" },
+    { "nyoom-engineering/oxocarbon.nvim" },
 }
