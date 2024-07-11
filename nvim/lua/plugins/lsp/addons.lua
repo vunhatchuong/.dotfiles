@@ -111,31 +111,6 @@ return {
     --     end,
     --     opts = {},
     -- },
-    {
-        "lewis6991/satellite.nvim",
-        dependencies = {
-            {
-                "echasnovski/mini.diff",
-            },
-        },
-        event = "VeryLazy",
-        opts = {
-            current_only = true,
-            zindex = 1, -- below most stuff
-            handlers = {
-                cursor = { enable = false },
-                -- gitsigns = { enable = false },
-                -- require diff.lua
-                minidiff = { enable = true },
-                marks = { enable = false },
-                quickfix = { enable = false },
-            },
-        },
-        config = function(_, opts)
-            require("plugins.lsp.mini-diff-satellite")
-            require("satellite").setup(opts)
-        end,
-    },
     { -- split-join lines
         "Wansmer/treesj",
         keys = { { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" } },
@@ -154,38 +129,5 @@ return {
             allowed_separators = { "..", "*" }, -- add multiplication & lua string concatenation
             highlight_node_at_cursor = true,
         },
-    },
-    {
-        -- Origin repo is unmaintained: anuvyklack/fold-preview.nvim
-        "cosmicbuffalo/fold-preview.nvim",
-        branch = "fix-eventignore",
-        dependencies = {
-            "anuvyklack/keymap-amend.nvim",
-        },
-        event = "VeryLazy",
-        opts = {
-            auto = 400,
-            default_keybindings = false,
-        },
-        keys = {
-            -- Doesn't work
-            {
-                "K",
-                function()
-                    require("fold-preview").show_preview()
-                end,
-                desc = "Show fold preview",
-            },
-        },
-        config = function(_, opts)
-            local keymap = vim.keymap
-            local map = require("fold-preview").mapping
-            keymap.amend = require("keymap-amend")
-
-            require("fold-preview").setup(opts)
-
-            keymap.amend("n", "l", map.close_preview_without_defer)
-            keymap.amend("n", "<Right>", map.close_preview_without_defer)
-        end,
     },
 }

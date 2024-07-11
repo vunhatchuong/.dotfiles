@@ -110,14 +110,4 @@ return {
         event = "VeryLazy",
         opts = {},
     },
-    {
-        "chrisgrieser/nvim-origami",
-        event = "BufReadPost",
-        -- stylua: ignore
-        keys = {
-            { "<Left>", function() require("origami").h() end },
-            { "<Right>", function() require("origami").l() end },
-        },
-        opts = {},
-    },
 }
