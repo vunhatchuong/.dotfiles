@@ -17,14 +17,15 @@ return {
                 "Carbonfox",
                 "moonfly",
                 "oxocarbon",
+                "blue-moon",
+                "crimson_moonlight",
+                "nordic",
+                "oh-lucy",
             },
             window = {
                 border = "rounded",
             },
         },
-        config = function(_, opts)
-            require("scheming").setup(opts)
-        end,
     },
     {
         "catppuccin/nvim",
@@ -105,4 +106,8 @@ return {
     { "EdenEast/nightfox.nvim" },
     { "bluz71/vim-moonfly-colors", name = "moonfly" },
     { "nyoom-engineering/oxocarbon.nvim" },
+    { "kyazdani42/blue-moon" },
+    { "rockerBOO/boo-colorscheme-nvim" },
+    { "AlexvZyl/nordic.nvim" },
+    { "Yazeed1s/oh-lucy.nvim" },
 }
