@@ -62,8 +62,8 @@ return {
 
             require("fold-preview").setup(opts)
 
-            keymap.amend("n", "l", map.close_preview_without_defer)
-            keymap.amend("n", "<Right>", map.close_preview_without_defer)
+            keymap.amend("n", "l", map.close_preview)
+            keymap.amend("n", "<Right>", map.close_preview)
         end,
     },
     {
