@@ -2,16 +2,24 @@ local icons = require("core.icons")
 
 local function FolderLocation()
     local activeClients = require("lspconfig").util.get_managed_clients()
-    local path = vim.fn.expand("%:p:h")
+
+    local path = vim.fn.getcwd()
     local prompt_title = "Default"
-    for _, client in ipairs(activeClients) do
-        path = client.config.root_dir
-        prompt_title = client.name
-        return path, prompt_title
+
+    if #activeClients > 0 then
+        path = activeClients[1].config.root_dir
+        prompt_title = activeClients[1].name
+    elseif vim.fs.root(0, ".git") then
+        path = vim.fs.root(0, ".git")
+        prompt_title = "Git root"
     end
+
     local prefixes = { "oil:///", "other:///", "netrw:///" }
-    -- Not working on Windows because oil path missing `:`
-    path = path:gsub("^" .. prefixes[1], "")
+    -- Remove prefixes, ensuring compatibility with Windows
+    for _, prefix in ipairs(prefixes) do
+        path = path:gsub("^" .. prefix, "")
+    end
+
     return path, prompt_title
 end
 return {
