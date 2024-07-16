@@ -70,44 +70,50 @@ return {
         },
     },
     {
-        "folke/flash.nvim",
-        opts = {
-            multi_window = false,
-            exclude = {
-                "notify",
-                "cmp_menu",
-                "flash_prompt",
-                function(win)
-                    -- exclude non-focusable windows
-                    return not vim.api.nvim_win_get_config(win).focusable
+        "echasnovski/mini.jump2d",
+        event = "VeryLazy",
+        keys = {
+            {
+                "<CR>",
+                function()
+                    require("mini.jump2d").start(
+                        require("mini.jump2d").builtin_opts.word_start
+                    )
                 end,
             },
-            jump = {
-                autojump = true,
+        },
+        opts = {
+            -- Characters used for labels of jump spots (in supplied order)
+            labels = "arstneioqwfpgh",
+            view = {
+                dim = true,
+                n_steps_ahead = 10,
             },
-            modes = {
-                char = {
-                    enabled = false,
-                    jump_labels = true,
-                },
-                treesitter = {
-                    highlight = {
-                        backdrop = true,
-                    },
-                },
+            allowed_windows = {
+                not_current = false,
+            },
+            mappings = {
+                start_jumping = "",
             },
         },
-        -- stylua: ignore
-        keys = {
-            -- "f", "F", "t", "T",
-            -- Replace default 'f' bind (Default 's')
-            { "f", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
-        },
+        config = function(_, opts)
+            require("mini.jump2d").setup(opts)
+        end,
     },
     {
         "echasnovski/mini.move",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "echasnovski/mini.operators",
+        event = "VeryLazy",
+        opts = {
+            evaluate = { prefix = "" },
+            exchange = { prefix = "" },
+            multiply = { prefix = "" },
+            replace = { prefix = "gs" }, -- go substitute
+            sort = { prefix = "" },
+        },
     },
 }
