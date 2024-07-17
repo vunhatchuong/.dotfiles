@@ -157,4 +157,26 @@ return {
             },
         },
     },
+    {
+        "danymat/neogen",
+        cmd = { "Neogen" },
+        opts = {
+            languages = {
+                python = {
+                    template = {
+                        annotation_convention = "google_docstrings",
+                    },
+                },
+            },
+        },
+        keys = {
+            {
+                "<leader>cn",
+                function()
+                    require("neogen").generate()
+                end,
+                desc = "Generate Annotations (Neogen)",
+            },
+        },
+    },
 }
