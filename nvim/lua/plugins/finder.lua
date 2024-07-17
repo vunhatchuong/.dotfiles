@@ -55,38 +55,58 @@ return {
         keys = {
             {
                 "<leader><space>",
+                desc = "Find Files",
                 function()
                     local path, prompt_title = FolderLocation()
                     require("telescope.builtin").find_files({
-                        cwd = path, prompt_title = prompt_title,
-                    })
-                end, desc = "Find Files", },
-            { "<leader>f?",
-                function() require("telescope.builtin").oldfiles() end, desc = "Find recently opened Files",
+                        cwd = path,
+                        prompt_title = prompt_title,
+                        previewer = false,
+                        layout_config = {
+                            width = 0.6,
+                            height = 0.8,
+                        }})
+                end
+            },
+            {   "<leader>f?",
+                desc = "Find recently opened Files",
+                function() require("telescope.builtin").oldfiles({
+                    previewer = false,
+                    layout_config = {
+                        width = 0.6,
+                        height = 0.8,
+                    }})
+                end
             },
             {
                 "<leader>ft",
+                desc = "[F]ind [T]ext",
                 function()
                     local path, prompt_title = FolderLocation()
                     require("telescope.builtin").live_grep({
                         cwd = path,
                         prompt_title = prompt_title,
                     })
-                end, desc = "[F]ind [T]ext", },
+                end
+            },
             {
                 "<leader>fs",
+                desc = "[F]ind [S]tring",
                 function()
                     local path, prompt_title = FolderLocation()
                     require("telescope.builtin").grep_string({
                         cwd = path,
                         prompt_title = prompt_title,
                     })
-                end, desc = "[F]ind [S]tring", },
+                end
+            },
             { "<leader>fk",
-                function() require("telescope.builtin").keymaps() end, desc = "Keymaps",
+                desc = "View Keymaps",
+                function() require("telescope.builtin").keymaps() end
             },
             { "<leader>gc",
-                function() require("telescope.builtin").git_branches() end, desc = "Checkout branches",
+                desc = "Checkout branches",
+                function() require("telescope.builtin").git_branches() end
             },
         },
         opts = {
