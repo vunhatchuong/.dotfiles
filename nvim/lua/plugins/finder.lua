@@ -14,12 +14,6 @@ local function FolderLocation()
         prompt_title = "Git root"
     end
 
-    local prefixes = { "oil:///", "other:///", "netrw:///" }
-    -- Remove prefixes, ensuring compatibility with Windows
-    for _, prefix in ipairs(prefixes) do
-        path = path:gsub("^" .. prefix, "")
-    end
-
     return path, prompt_title
 end
 return {
