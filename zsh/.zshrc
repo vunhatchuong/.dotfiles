@@ -16,6 +16,7 @@ plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
 plug "esc/conda-zsh-completion"
+plug "Bhupesh-V/ugit"
 
 # fzf-tab
 plug "Aloxaf/fzf-tab"
@@ -24,9 +25,7 @@ plug "$ZDOTDIR/fzf-tab.zsh"
 
 # Language Specific
 plug "wintermi/zsh-fnm"
-# plug "marlonrichert/zsh-autocomplete"
-# zstyle ':autocomplete:*' default-context history-incremental-search-backward
-# zstyle ':autocomplete:*' ignored-input ''
+
 # Put it before the plugin
 plug "catppuccin_mocha-zsh-syntax-highlighting.zsh"
 plug "MichaelAquilina/zsh-you-should-use"
