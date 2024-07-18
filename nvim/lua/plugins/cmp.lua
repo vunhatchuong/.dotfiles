@@ -2,7 +2,7 @@ return {
     {
         "hrsh7th/nvim-cmp",
         version = false, -- last release is way too old
-        event = "InsertEnter",
+        event = { 'InsertEnter', 'CmdlineEnter' },
         dependencies = {
             {
                 "garymjr/nvim-snippets",
@@ -17,6 +17,7 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "https://codeberg.org/FelipeLema/cmp-async-path.git",
             "uga-rosa/cmp-dynamic",
+            "tzachar/cmp-tabnine",
         },
         opts = function()
             vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
@@ -172,7 +173,6 @@ return {
     },
     {
         "tzachar/cmp-tabnine",
-        event = "InsertEnter",
         build = function()
             if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
                 os.execute("pwsh -noni .\\install.ps1")

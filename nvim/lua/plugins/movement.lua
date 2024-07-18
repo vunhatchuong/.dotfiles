@@ -1,7 +1,6 @@
 return {
     {
         "cbochs/grapple.nvim",
-        event = "VeryLazy",
         keys = function()
             local grapple = require("grapple")
             local function mark_file()
@@ -20,6 +19,7 @@ return {
                 -- stylua: ignore end
             }
         end,
+        opts = {},
     },
     {
         "cbochs/portal.nvim",
@@ -96,9 +96,6 @@ return {
                 start_jumping = "",
             },
         },
-        config = function(_, opts)
-            require("mini.jump2d").setup(opts)
-        end,
     },
     {
         "echasnovski/mini.move",
