@@ -101,4 +101,18 @@ return {
             require("satellite").setup(opts)
         end,
     },
+    { -- paste with proper indentation
+        "sickill/vim-pasta",
+        config = function()
+            vim.g.pasta_disabled_filetypes = {
+                "gitcommit",
+                "gitrebase",
+                "svn",
+                "fugitive",
+                "fugitiveblame",
+                "qf",
+                "help",
+            }
+        end,
+    },
 }
