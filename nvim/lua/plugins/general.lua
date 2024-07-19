@@ -115,4 +115,54 @@ return {
             }
         end,
     },
+    {
+        "shortcuts/no-neck-pain.nvim",
+        cmd = { "NoNeckPain" },
+        opts = {
+            buffers = {
+                scratchPad = {
+                    -- set to `false` to
+                    -- disable auto-saving
+                    enabled = true,
+                    -- set to `nil` to default
+                    -- to current working directory
+                    pathToFile = "",
+                },
+                bo = {
+                    filetype = "md",
+                },
+            },
+        },
+        config = function(_, opts)
+            -- Same location as flote config in ./notes.lua
+            -- Needs better way to sync between them
+            -- Doesn't work well if you open Flote after open NoNeckPain
+            local dir = vim.fn.stdpath("cache") .. "/flote"
+            local cwd = require("lspconfig").util.find_git_ancestor(
+                vim.fs.normalize(vim.api.nvim_buf_get_name(0))
+            )
+            local base_name = vim.fs.basename(cwd)
+            local parent_base_name = vim.fs.basename(vim.fs.dirname(cwd))
+            local file_name = parent_base_name .. "_" .. base_name .. ".md"
+
+            opts.buffers.scratchPad.pathToFile =
+                vim.fs.normalize(dir .. "/" .. file_name)
+
+            require("no-neck-pain").setup(opts)
+        end,
+    },
+    { -- Turn off features when file > ? MB
+        "pteroctopus/faster.nvim",
+        lazy = false,
+        opts = {
+            behaviours = {
+                bigfile = {
+                    on = true,
+                    filesize = 2,
+                },
+            },
+        },
+    },
+    -- open file given a line, Ex in terminal: nvim general.lua:20
+    { "bogado/file-line", event = "BufNewFile" },
 }
