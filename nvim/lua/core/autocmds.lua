@@ -12,7 +12,6 @@ autocmd({ "FileType" }, {
         "oil",
         "trouble",
         "harpoon",
-        "TelescopePrompt",
         "grug-far",
         "undotree",
         "grapple",

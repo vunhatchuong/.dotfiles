@@ -109,6 +109,14 @@ return {
                 selection_caret = icons.ui.Forward .. "  ",
                 entry_prefix = "   ",
                 path_display = { "smart" },
+                mappings = {
+                    n = {
+                        ["q"] = "close",
+                    },
+                    i = {
+                        ["<ESC>"] = "close",
+                    },
+                },
             },
         },
     },
