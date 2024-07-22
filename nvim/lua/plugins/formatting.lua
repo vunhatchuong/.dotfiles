@@ -2,25 +2,28 @@
 return {
     {
         "stevearc/conform.nvim",
+        dependencies = { "mason.nvim" },
         lazy = true,
         cmd = "ConformInfo",
         keys = {
             {
                 "<leader>ff",
                 function()
-                    require("conform").format({
-                        lsp_format = "fallback",
-                    })
+                    require("conform").format({})
                 end,
                 mode = { "n", "v" },
                 desc = "Format buffer",
             },
         },
+        init = function()
+            vim.opt.formatexpr = "v:lua.require'conform'.formatexpr()"
+        end,
         opts = {
             -- log_level = vim.log.levels.DEBUG,
-            format = {
+            default_format_opts = {
                 async = false, -- not recommended to change
                 quiet = false, -- not recommended to change
+                lsp_format = "fallback", -- not recommended to change
             },
             formatters_by_ft = {
                 -- Conform will run multiple formatters sequentially.
@@ -42,6 +45,8 @@ return {
                 sql = { "sqlfluff" },
             },
             formatters = {
+                -- Doesn't work
+                -- injected = { options = { ignore_errors = true } },
                 stylua = {
                     prepend_args = { "--indent-type", "Spaces" },
                 },
