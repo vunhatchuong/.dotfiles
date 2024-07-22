@@ -2,22 +2,20 @@ return {
     {
         "hrsh7th/nvim-cmp",
         version = false, -- last release is way too old
-        event = { 'InsertEnter', 'CmdlineEnter' },
+        event = { "InsertEnter" },
         dependencies = {
             {
                 "garymjr/nvim-snippets",
                 opts = {
                     friendly_snippets = true,
-                    global_snippets = { "all", "global" },
                 },
                 dependencies = { "rafamadriz/friendly-snippets" },
             },
             -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
-            "hrsh7th/cmp-cmdline",
             "hrsh7th/cmp-nvim-lsp",
             "https://codeberg.org/FelipeLema/cmp-async-path.git",
-            "uga-rosa/cmp-dynamic",
             "tzachar/cmp-tabnine",
+            "uga-rosa/cmp-dynamic",
         },
         opts = function()
             vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
@@ -77,7 +75,6 @@ return {
                     },
                     { name = "async_path" },
                     { name = "cmp_tabnine" },
-                    { name = "treesitter" },
                     { name = "snippets" },
                     { name = "dynamic" },
                 },
@@ -116,21 +113,6 @@ return {
                     end, { "i", "s" }),
                 }),
             })
-            cmp.setup.cmdline({ "/", "?" }, {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = {
-                    { name = "buffer" },
-                },
-            })
-
-            cmp.setup.cmdline(":", {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = "async_path" },
-                }, {
-                    { name = "cmdline" },
-                }),
-            })
 
             local cwd = require("lspconfig").util.find_git_ancestor(
                 vim.fs.normalize(vim.api.nvim_buf_get_name(0))
@@ -166,6 +148,7 @@ return {
             require("cmp_dynamic").register(env_vars)
         end,
         config = function(_, opts)
+            -- Auto popup
             for _, source in ipairs(opts.sources) do
                 source.group_index = source.group_index or 1
             end
