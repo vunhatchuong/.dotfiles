@@ -4,6 +4,7 @@ return {
         cmd = "GrugFar",
         opts = {
             startInInsertMode = false,
+            transient = true,
             keymaps = {
                 qflist = false,
                 close = { n = "<localleader>q" },
