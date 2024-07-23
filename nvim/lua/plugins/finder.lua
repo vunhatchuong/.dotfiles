@@ -103,21 +103,45 @@ return {
                 function() require("telescope.builtin").git_branches() end
             },
         },
-        opts = {
-            defaults = {
-                prompt_prefix = icons.ui.Telescope .. " ",
-                selection_caret = icons.ui.Forward .. "  ",
-                entry_prefix = "   ",
-                path_display = { "smart" },
-                mappings = {
-                    n = {
-                        ["q"] = "close",
-                    },
-                    i = {
-                        ["<ESC>"] = "close",
+        opts = function()
+            local actions = require("telescope.actions")
+            -- stylua: ignore start
+            local function find_command()
+                if 1 == vim.fn.executable("rg") then
+                return { "rg", "--files", "--color", "never", "-g", "!.git" }
+                elseif 1 == vim.fn.executable("rg") then
+                return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
+                elseif 1 == vim.fn.executable("fdfind") then
+                return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
+                elseif 1 == vim.fn.executable("find") and vim.fn.has("win32") == 0 then
+                return { "find", ".", "-type", "f" }
+                elseif 1 == vim.fn.executable("where") then
+                return { "where", "/r", ".", "*" }
+                end
+            end
+            -- stylua: ignore end
+            return {
+                defaults = {
+                    prompt_prefix = icons.ui.Telescope .. " ",
+                    selection_caret = icons.ui.Forward .. "  ",
+                    entry_prefix = "   ",
+                    path_display = { "smart" },
+                    mappings = {
+                        n = {
+                            ["q"] = "close",
+                        },
+                        i = {
+                            ["<ESC>"] = "close",
+                        },
                     },
                 },
-            },
-        },
+                pickers = {
+                    find_files = {
+                        find_command = find_command,
+                        hidden = true,
+                    },
+                },
+            }
+        end,
     },
 }
