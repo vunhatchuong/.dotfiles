@@ -103,7 +103,16 @@ return {
         "MeanderingProgrammer/markdown.nvim",
         name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
         dependencies = { "nvim-treesitter/nvim-treesitter" },
-        ft = { "markdown" },
-        opts = {},
+        ft = { "markdown", "norg", "rmd", "org" },
+        opts = {
+            file_types = { "markdown", "norg", "rmd", "org" },
+            heading = {
+                sign = false,
+                icons = {},
+            },
+            code = {
+                sign = false,
+            },
+        },
     },
 }
