@@ -24,11 +24,28 @@ return {
             "nvim-lua/plenary.nvim",
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
-                build = "make",
-                enabled = vim.fn.executable("make") == 1,
-                config = function()
-                    require("telescope").load_extension("fzf")
+                build = vim.fn.executable("make") == 1 and "make",
+                enabled = vim.fn.executable("make") == 1
+                    or vim.fn.executable("zig") == 1,
+                -- stylua: ignore start
+                config = function(plugin)
+                    local ok, err =
+                        pcall(require("telescope").load_extension, "fzf")
+                    if not ok then
+                        if not vim.uv.fs_stat(plugin.dir .. "/build/libfzf.dll")
+                        then
+                            local lib = plugin.dir
+                            vim.notify("Rebuilding `telescope-fzf-native.nvim`")
+                            vim.fn.mkdir(lib .. "/build", "p")
+                            vim.fn.system("zig cc -O3 -Wall -Werror -fpic -std=gnu99 -shared "
+                                .. lib .. "/src/fzf.c -o " .. lib .. "/build/libfzf.dll")
+                        else
+                            vim.notify("Failed to load `telescope-fzf-native.nvim`:\n"
+                                .. err)
+                        end
+                    end
                 end,
+                -- stylua: ignore end
             },
             {
                 "nvim-telescope/telescope-ui-select.nvim",
