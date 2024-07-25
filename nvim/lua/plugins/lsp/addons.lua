@@ -131,31 +131,23 @@ return {
         },
     },
     {
-        "aznhe21/actions-preview.nvim",
+        "rachartier/tiny-code-action.nvim",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope.nvim" },
+        },
+        event = "LspAttach",
         keys = {
             {
-                "<leader>cA",
+                "<leader>ca",
                 mode = { "n", "v" },
                 function()
-                    require("actions-preview").code_actions()
+                    require("tiny-code-action").code_action()
                 end,
+                desc = "[C]ode [A]ction",
             },
         },
-        opts = {
-            telescope = {
-                sorting_strategy = "ascending",
-                layout_strategy = "vertical",
-                layout_config = {
-                    width = 0.8,
-                    height = 0.9,
-                    prompt_position = "top",
-                    preview_cutoff = 20,
-                    preview_height = function(_, _, max_lines)
-                        return max_lines - 15
-                    end,
-                },
-            },
-        },
+        opts = {},
     },
     {
         "danymat/neogen",
