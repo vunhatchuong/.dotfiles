@@ -22,7 +22,7 @@ return {
                     "notify",
                     "undotree",
                     "grapple",
-                    "FTerm",
+                    "toggleterm",
                 },
                 buftypes = { "terminal", "nofile" },
             },
@@ -59,7 +59,7 @@ return {
                     "notify",
                     "undotree",
                     "grapple",
-                    "FTerm",
+                    "toggleterm",
                 },
                 callback = function()
                     vim.b.miniindentscope_disable = true

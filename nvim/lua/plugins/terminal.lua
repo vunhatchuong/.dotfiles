@@ -1,11 +1,11 @@
 return {
     {
-        "numToStr/FTerm.nvim",
+        "akinsho/toggleterm.nvim",
         keys = {
             {
                 "<C-\\>",
                 function()
-                    require("FTerm").toggle()
+                    require("toggleterm").toggle()
                 end,
                 desc = "Toggle Terminal",
                 mode = "n",
@@ -13,7 +13,7 @@ return {
             {
                 "<C-\\>",
                 function()
-                    require("FTerm").toggle()
+                    require("toggleterm").toggle()
                 end,
                 desc = "Toggle Terminal",
                 mode = "t",
@@ -21,13 +21,9 @@ return {
             {
                 "<leader>lg",
                 function()
-                    require("FTerm")
-                        :new({
-                            ft = "fterm_lazygit",
-                            cmd = { "lazygit" },
-                            dimensions = { height = 0.9, width = 0.9 },
-                        })
-                        :open()
+                    require("toggleterm.terminal").Terminal
+                        :new({ cmd = "lazygit", hidden = true })
+                        :toggle()
                 end,
                 desc = "Lazygit",
                 mode = "n",
@@ -35,20 +31,19 @@ return {
             {
                 "<leader>yz",
                 function()
-                    require("FTerm")
-                        :new({
-                            ft = "fterm_yazi",
-                            cmd = { "yazi" },
-                            dimensions = { height = 0.9, width = 0.9 },
-                        })
-                        :open()
+                    require("toggleterm.terminal").Terminal
+                        :new({ cmd = "yazi", hidden = true })
+                        :toggle()
                 end,
                 desc = "Yazi",
                 mode = "n",
             },
         },
         opts = {
-            border = "rounded",
+            direction = "float",
+            float_opts = {
+                border = "rounded",
+            },
         },
     },
 }
