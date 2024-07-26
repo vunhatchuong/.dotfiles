@@ -30,7 +30,9 @@ opt.jumpoptions = "view"
 opt.startofline = true
 
 opt.mouse = "a"                             -- allow the mouse to be used in neovim
-opt.clipboard = "unnamedplus"
+vim.schedule(function()                     -- includes system call responsible for 40% startuptime!
+    opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+end)
 
 opt.guicursor = ""
 opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- mostly just for cmp
