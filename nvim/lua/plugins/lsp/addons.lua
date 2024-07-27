@@ -84,6 +84,7 @@ return {
         event = "LspAttach",
         opts = {
             scope = "line",
+            toggle_event = { "InsertEnter" },
             -- show_borders = true,
         },
     },
