@@ -1,20 +1,17 @@
 return {
     {
         "akinsho/toggleterm.nvim",
+        -- stylua: ignore
         keys = {
             {
                 "<C-\\>",
-                function()
-                    require("toggleterm").toggle()
-                end,
+                function() require("toggleterm").toggle() end,
                 desc = "Toggle Terminal",
                 mode = "n",
             },
             {
                 "<C-\\>",
-                function()
-                    require("toggleterm").toggle()
-                end,
+                function() require("toggleterm").toggle() end,
                 desc = "Toggle Terminal",
                 mode = "t",
             },
@@ -22,8 +19,7 @@ return {
                 "<leader>lg",
                 function()
                     require("toggleterm.terminal").Terminal
-                        :new({ cmd = "lazygit", hidden = true })
-                        :toggle()
+                        :new({ cmd = "lazygit", hidden = true }):toggle()
                 end,
                 desc = "Lazygit",
                 mode = "n",
@@ -32,8 +28,7 @@ return {
                 "<leader>yz",
                 function()
                     require("toggleterm.terminal").Terminal
-                        :new({ cmd = "yazi", hidden = true })
-                        :toggle()
+                        :new({ cmd = "yazi", hidden = true }):toggle()
                 end,
                 desc = "Yazi",
                 mode = "n",
@@ -41,9 +36,7 @@ return {
         },
         opts = {
             direction = "float",
-            float_opts = {
-                border = "rounded",
-            },
+            float_opts = { border = "rounded" },
         },
     },
 }

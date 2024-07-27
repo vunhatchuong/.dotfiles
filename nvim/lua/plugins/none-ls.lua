@@ -3,7 +3,7 @@ return {
     {
         "nvimtools/none-ls.nvim",
         -- Needs none-ls for spell checking lint/format
-        lazy = false,
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         keys = {
             {
                 "<leader>ca",
@@ -30,7 +30,7 @@ return {
                 nls.builtins.diagnostics.markdownlint_cli2,
                 nls.builtins.code_actions.proselint,
             })
-            -- opts.notify_format = ""
+            opts.notify_format = ""
         end,
     },
 }

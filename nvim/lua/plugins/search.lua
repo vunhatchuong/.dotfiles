@@ -14,9 +14,7 @@ return {
         keys = {
             {
                 "<leader>st",
-                function()
-                    require("grug-far").grug_far()
-                end,
+                function() require("grug-far").grug_far() end,
                 desc = "Search and Replace",
             },
             {

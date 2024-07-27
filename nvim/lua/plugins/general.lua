@@ -97,11 +97,7 @@ return {
     },
     {
         "lewis6991/satellite.nvim",
-        dependencies = {
-            {
-                "echasnovski/mini.diff",
-            },
-        },
+        dependencies = { { "echasnovski/mini.diff" } },
         event = "VeryLazy",
         opts = {
             current_only = true,
@@ -186,15 +182,6 @@ return {
     { "bogado/file-line", event = "BufNewFile" },
     {
         "stevearc/overseer.nvim",
-        cmd = {
-            "OverseerToggle",
-            "OverseerRun",
-            "OverseerRunCmd",
-            "OverseerInfo",
-            "OverseerBuild",
-            "OverseerQuickAction",
-            "OverseerClearCache",
-        },
         -- stylua: ignore
         keys = {
             { "<leader>oo", "<cmd>OverseerToggle<cr>",      desc = "Task list" },

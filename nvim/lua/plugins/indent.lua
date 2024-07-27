@@ -1,7 +1,6 @@
 return {
     {
         "echasnovski/mini.indentscope",
-        cmd = "AerialToggle",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {
             symbol = "│",
