@@ -61,14 +61,13 @@ opt.pumheight = 10        -- Maximum number of entries in a popup
 ---  INDENT  ---
 opt.formatoptions = "tcnlj"
 opt.list = true           -- Show some invisible characters (tabs...
-opt.shiftround = true     -- Round indent
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
 
 ---  TABS  ---
 opt.wrap = false                            -- display lines as one long line
 opt.smartindent = true                      -- make indenting smarter again
 opt.expandtab = true                        -- convert tabs to spaces
-opt.softtabstop = 4
+opt.shiftround = true                       -- Round indent
 opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation
 opt.tabstop = 4                             -- insert 2 spaces for a tab
 opt.foldmethod = "expr"                     -- folding set to "manual" for if no treesitter
