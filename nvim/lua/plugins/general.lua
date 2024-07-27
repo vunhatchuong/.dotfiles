@@ -118,6 +118,7 @@ return {
     },
     { -- paste with proper indentation
         "sickill/vim-pasta",
+        event = "VeryLazy",
         config = function()
             vim.g.pasta_disabled_filetypes = {
                 "gitcommit",
@@ -217,5 +218,10 @@ return {
                 ["open output in quickfix"] = false,
             },
         },
+    },
+    {
+        "jinh0/eyeliner.nvim",
+        keys = { "f", "F", "t", "T" },
+        opts = { highlight_on_key = true, dim = true },
     },
 }
