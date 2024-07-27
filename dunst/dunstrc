@@ -1,0 +1,107 @@
+# See dunst(5) for all configuration options
+
+[global]
+    ### General ###
+    monitor = 0
+
+    follow = none
+    sort = yes
+    indicate_hidden = yes
+    notification_limit = 20
+
+    ### Geometry ###
+    width = 300
+    height = (0, 300)
+    origin = top-right
+    offset = (10, 50)
+
+    ### Progress bar ###
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+
+    separator_height = 2
+    padding = 8
+    horizontal_padding = 8
+
+    frame_width = 3
+    frame_color = "#aaaaaa"
+
+    gap_size = 0
+    corner_radius = 20
+
+    ### Text ###
+    font = JetBrains Mono Nerd Font 8
+    vertical_alignment = center
+
+    ### Icons ###
+    icon_position = off
+
+    ### Misc/Advanced ###
+
+    browser = /usr/bin/firefox --new-tab
+
+    ### Wayland ###
+    layer = top
+    # Set this to true to use X11 output on Wayland.
+    force_xwayland = false
+
+    ### mouse
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+[experimental]
+    per_monitor_dpi = false
+
+[urgency_low]
+    background = "#222222"
+    foreground = "#888888"
+    timeout = 5
+
+[urgency_normal]
+    background = "#285577"
+    foreground = "#ffffff"
+    timeout = 10
+    override_pause_level = 30
+
+[urgency_critical]
+    background = "#900000"
+    foreground = "#ffffff"
+    frame_color = "#ff0000"
+    timeout = 0
+    override_pause_level = 60
+
+[history-ignore]
+    # This notification will not be saved in history
+    appname = "media-notify"
+    history_ignore = yes
+
+[signed_on]
+    appname = Pidgin
+    summary = "*signed on*"
+    urgency = low
+
+[signed_off]
+    appname = Pidgin
+    summary = *signed off*
+    urgency = low
+
+[Spotify]
+    appname = Spotify
+    format = "<b>%s</b>\n%b"
+    background = "#191414"
+    foreground = "#1DB954"
+    timeout = 5
+
+[twitter]
+    appname = Pidgin
+    summary = *twitter.com*
+    urgency = normal
+
+[facebook]
+    appname = Pidgin
+    summary = *facebook.com*
+    urgency = normal
