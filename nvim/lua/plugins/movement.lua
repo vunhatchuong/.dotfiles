@@ -71,7 +71,6 @@ return {
     },
     {
         "echasnovski/mini.jump2d",
-        event = "VeryLazy",
         keys = {
             {
                 "<CR>",
