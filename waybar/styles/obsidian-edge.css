@@ -19,24 +19,29 @@ window#waybar {
 
 tooltip {
     /* background: rgba(0, 0, 0, 0.8); */
-    background-color: @main-bg;
+    background: @main-bg;
     color: @main-fg;
     border-radius: 7px;
     border-width: 0px;
 }
 
-window#waybar.hidden {
-    opacity: 0.5;
-}
-
-window#waybar.empty,
-window#waybar.empty #window {
-    padding: 0px;
-    border: 0px;
-    background-color: transparent;
-}
-
 /*-----module groups----*/
+.modules-left {
+    border: 0px solid #b4befe;
+    border-radius: 15px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+.modules-center {
+    border: 0px solid #b4befe;
+    border-radius: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 4px;
+    padding-left: 4px;
+}
 .modules-right {
     border: 0px solid #b4befe;
     border-radius: 10px;
@@ -46,81 +51,66 @@ window#waybar.empty #window {
     padding-left: 4px;
 }
 
-.modules-center {
-    border: 0px solid #b4befe;
-    border-radius: 10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-right: 4px;
-    padding-left: 4px;
+#tray menu * {
+    min-height: 16px;
 }
 
-.modules-left {
-    border: 0px solid #b4befe;
-    border-radius: 10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    padding-right: 4px;
-    padding-left: 4px;
+#tray menu separator {
+    min-height: 10px;
 }
 
-#workspaces button {
-    color: @color12;
-    box-shadow: none;
-    text-shadow: none;
-    padding: 0px;
-    border-radius: 9px;
-    padding-left: 4px;
-    padding-right: 4px;
-}
-
-#workspaces button.active {
-    color: @foreground;
-    border-radius: 15px 15px 15px 15px;
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-#workspaces button.focused {
-    color: #d8dee9;
-}
-
-#workspaces button.urgent {
-    color: #11111b;
-    border-radius: 10px;
-}
-
-#workspaces button:hover {
-    color: @color9;
-    border-radius: 15px;
-    padding-left: 2px;
-    padding-right: 2px;
-}
-
+#workspaces,
+#idle_inhibitor,
+#clock,
 #backlight,
 #backlight-slider,
-#battery,
-#bluetooth,
-#clock,
-#cpu,
-#disk,
-#idle_inhibitor,
-#keyboard-state,
-#memory,
-#mode,
 #network,
+#bluetooth,
 #pulseaudio,
 #pulseaudio-slider,
-#tray,
-#workspaces,
-#custom-backlight,
-#custom-power {
+#battery,
+#cpu,
+#disk,
+#keyboard-state,
+#mode,
+#custom-cpuinfo,
+#language,
+#custom-wallchange,
+#custom-theme,
+#custom-power,
+#memory,
+#custom-gpuinfo,
+#tray {
     color: @foreground;
     border-radius: 8px;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 6px;
     padding-left: 6px;
+}
+
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+    color: @color12;
+    border-radius: 8px;
+    padding: 0px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#workspaces button.active {
+    color: @foreground;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+}
+
+#workspaces button:hover {
+    color: @color9;
 }
 
 @keyframes blink {

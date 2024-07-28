@@ -24,18 +24,15 @@ tooltip {
 .modules-left {
     background: @main-bg;
     color: @main-fg;
-    border-bottom: 1px;
     border-radius: 15px;
     padding-top: 2px;
     padding-bottom: 2px;
-    /*-----Mainly for workspace cuz for some reason it's uneven*/
     padding-right: 4px;
     padding-left: 4px;
 }
 .modules-center {
     background: @main-bg;
     color: @main-fg;
-    border-bottom: 1px;
     border-radius: 15px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -45,7 +42,6 @@ tooltip {
 .modules-right {
     background: @main-bg;
     color: @main-fg;
-    border-bottom: 1px;
     border-radius: 15px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -61,27 +57,25 @@ tooltip {
     min-height: 10px;
 }
 
-#window,
-/* Modules right */
-/* Left  */
 #workspaces,
 #idle_inhibitor,
 #clock,
 #backlight,
+#backlight-slider,
 #network,
 #bluetooth,
 #pulseaudio,
-/* Middle  */
-#mpris,
-#language,
+#pulseaudio-slider,
 #battery,
-/* Right  */
+#cpu,
+#disk,
+#keyboard-state,
+#mode,
+#custom-cpuinfo,
+#language,
 #custom-wallchange,
 #custom-theme,
 #custom-power,
-/* Extras */
-#cpu,
-#custom-cpuinfo,
 #memory,
 #custom-gpuinfo,
 /* Separators */
@@ -108,9 +102,19 @@ tooltip {
     color: @wb-act-bg;
 }
 
+#workspaces button.urgent {
+    color: #11111b;
+}
+
 #workspaces button:hover {
     color: @wb-act-bg;
     background: inherit;
+}
+
+@keyframes blink {
+    to {
+        color: #000000;
+    }
 }
 
 #battery.critical:not(.charging) {
