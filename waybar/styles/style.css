@@ -7,10 +7,11 @@
     min-height: 10px;
 }
 
-@import "../themes/personnel.css";
+@import "../themes/sequoia-monochrome.css";
 
 window#waybar {
     background: transparent;
+    border-radius: 12px;
 }
 
 tooltip {
@@ -78,12 +79,12 @@ tooltip {
 #custom-power,
 #memory,
 #custom-gpuinfo,
-/* Separators */
-#custom-separator {
-    opacity: 1;
-    margin: 4px 0px 4px 0px;
-    padding-left: 4px;
-    padding-right: 4px;
+#custom-separator,
+#tray {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 6px;
+    padding-left: 6px;
 }
 
 #workspaces button {
@@ -99,7 +100,7 @@ tooltip {
 }
 
 #workspaces button.active {
-    color: @wb-act-bg;
+    color: @wb-act-fg;
 }
 
 #workspaces button.urgent {
@@ -107,7 +108,7 @@ tooltip {
 }
 
 #workspaces button:hover {
-    color: @wb-act-bg;
+    color: @wb-hvr-fg;
     background: inherit;
 }
 
@@ -118,7 +119,7 @@ tooltip {
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: @critical;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;

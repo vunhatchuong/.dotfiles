@@ -10,7 +10,7 @@
     min-height: 10px;
 }
 
-@import "../themes/personnel.css";
+@import "../themes/sequoia-monochrome.css";
 
 window#waybar {
     background: @bar-bg;
@@ -18,7 +18,6 @@ window#waybar {
 }
 
 tooltip {
-    /* background: rgba(0, 0, 0, 0.8); */
     background: @main-bg;
     color: @main-fg;
     border-radius: 7px;
@@ -27,7 +26,6 @@ tooltip {
 
 /*-----module groups----*/
 .modules-left {
-    border: 0px solid #b4befe;
     border-radius: 15px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -35,16 +33,14 @@ tooltip {
     padding-left: 4px;
 }
 .modules-center {
-    border: 0px solid #b4befe;
-    border-radius: 10px;
+    border-radius: 15px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
     padding-left: 4px;
 }
 .modules-right {
-    border: 0px solid #b4befe;
-    border-radius: 10px;
+    border-radius: 15px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
@@ -80,9 +76,9 @@ tooltip {
 #custom-power,
 #memory,
 #custom-gpuinfo,
+#custom-separator,
 #tray {
-    color: @foreground;
-    border-radius: 8px;
+    color: @main-fg;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 6px;
@@ -92,7 +88,7 @@ tooltip {
 #workspaces button {
     box-shadow: none;
     text-shadow: none;
-    color: @color12;
+    color: @main-fg;
     border-radius: 8px;
     padding: 0px;
     margin-top: 2px;
@@ -102,7 +98,7 @@ tooltip {
 }
 
 #workspaces button.active {
-    color: @foreground;
+    color: @wb-act-fg;
 }
 
 #workspaces button.urgent {
@@ -110,7 +106,7 @@ tooltip {
 }
 
 #workspaces button:hover {
-    color: @color9;
+    color: @wb-hvr-fg;
 }
 
 @keyframes blink {
@@ -120,7 +116,7 @@ tooltip {
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: @critical;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;

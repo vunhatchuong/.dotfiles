@@ -1,0 +1,12 @@
+@define-color bar-bg black;
+
+@define-color main-bg black;
+@define-color main-fg white;
+
+@define-color wb-act-bg black;
+@define-color wb-act-fg white;
+
+@define-color wb-hvr-bg grey;
+@define-color wb-hvr-fg white;
+
+@define-color critical #eb6f92;
