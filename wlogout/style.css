@@ -1,0 +1,45 @@
+/* ----------- 💫 https://github.com/JaKooLit 💫 -------- */
+/* And Stephan Raabe (2024) */
+
+* {
+    font-family: "JetBrainsMono Nerd Font Medium";
+    font-size: 16pt;
+    box-shadow: none;
+}
+
+window {
+    color: #cdd6f4; /* text */
+    background-color: rgba(30, 30, 46, 0.6);
+}
+
+button {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20%;
+    background-color: rgba(200, 220, 255, 0);
+    animation: gradient_f 20s ease-in infinite;
+    border-radius: 80px; /* Increased border radius for a more rounded look */
+}
+
+button:focus {
+    background-size: 25%;
+    border: 0px;
+}
+
+button:hover {
+    background-color: #7C8BA1;
+    color: #1e1e2e;
+    background-size: 50%;
+    margin: 30px;
+    border-radius: 80px;
+    transition:
+        all 0.3s cubic-bezier(0.55, 0, 0.28, 1.682),
+        box-shadow 0.2s ease-in-out,
+        background-color 0.2s ease-in-out;
+    box-shadow: 0 0 50px #D8E4EF;
+}
+
+/* Adjust the size of the icon or content inside the button */
+button span {
+    font-size: 1.2em; /* Increase the font size */
+}
