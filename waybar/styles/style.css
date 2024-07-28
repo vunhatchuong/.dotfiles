@@ -29,7 +29,7 @@ tooltip {
     padding-top: 2px;
     padding-bottom: 2px;
     /*-----Mainly for workspace cuz for some reason it's uneven*/
-    padding-right: 10px;
+    padding-right: 4px;
     padding-left: 4px;
 }
 .modules-center {

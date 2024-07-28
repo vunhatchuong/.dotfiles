@@ -10,7 +10,6 @@
     ],
     "modules-left": [
         "hyprland/workspaces",
-        "custom/r_end"
     ],
     "modules-center": [
         "idle_inhibitor",

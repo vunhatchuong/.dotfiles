@@ -231,12 +231,6 @@
         "tooltip": true,
         "max-length": 100
     },
-    // Paddings
-    "custom/r_end": {
-        "format": " ",
-        "interval": "once",
-        "tooltip": false
-    },
     // Separators
     "custom/separator#dot": {
         "format": "",
