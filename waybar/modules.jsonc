@@ -1,5 +1,4 @@
 {
-    // Modules configuration
     "hyprland/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
@@ -49,7 +48,6 @@
         }
     },
     "backlight": {
-        "align": 0.35,
         "rotate": 1,
         "device": "intel_backlight",
         "format": "{icon}",
@@ -125,7 +123,7 @@
     },
     "tray": {
         "icon-size": 18,
-        "spacing": 4
+        "spacing": 5
     },
     "battery": {
         "full-at": 100,
@@ -232,6 +230,12 @@
         "interval": 5, // once every 5 seconds
         "tooltip": true,
         "max-length": 100
+    },
+    // Paddings
+    "custom/r_end": {
+        "format": " ",
+        "interval": "once",
+        "tooltip": false
     },
     // Separators
     "custom/separator#dot": {

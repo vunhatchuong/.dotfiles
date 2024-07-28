@@ -1,95 +1,75 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Dark - Obsidian Edge */
-
-@define-color foreground #EAF2FA;
-@define-color background rgba(5,5,7,0.25);
-@define-color cursor #EAF2FA;
-
-@define-color color0 #050507;
-@define-color color1 #824616;
-@define-color color2 #7F481E;
-@define-color color3 #6A5C56;
-@define-color color4 #5D6879;
-@define-color color5 #586D87;
-@define-color color6 #92A4B4;
-@define-color color7 #D8E4EF;
-@define-color color8 #97A0A7;
-@define-color color9 #AD5D1E;
-@define-color color10 #A96027;
-@define-color color11 #8D7A72;
-@define-color color12 #7C8BA1;
-@define-color color13 #7591B4;
-@define-color color14 #C2DAF0;
-@define-color color15 #D8E4EF;
+/*  Black & White MonoChrome */
 
 * {
+    border: none;
+    border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    min-height: 0;
-    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-    font-size: 97%;
-    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    font-size: 15px;
 }
 
-window#waybar {
-    background: black;
-    border-radius: 12px;
-}
-
-window#waybar.hidden {
-    opacity: 0.5;
-}
-
+window#waybar,
 window#waybar.empty,
 window#waybar.empty #window {
+    background-color: transparent;
     padding: 0px;
     border: 0px;
-    /*  background-color: rgba(66,66,66,0.5); */ /* transparent */
-    background-color: transparent;
 }
 
 tooltip {
-    color: @foreground;
-    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    background: #1e1e2e;
+    opacity: 0.8;
     border-radius: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: white;
 }
 
 tooltip label {
-    color: @foreground;
-    padding-right: 2px;
-    padding-left: 2px;
+    color: #cdd6f4;
 }
-
 /*-----module groups----*/
 .modules-right {
-    border: 0px solid #b4befe;
+    background-color: black;
+    color: white;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: white;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
     padding-left: 4px;
 }
-
 .modules-center {
-    border: 0px solid #b4befe;
+    background-color: black;
+    color: white;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: white;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
     padding-left: 4px;
 }
-
 .modules-left {
-    border: 0px solid #b4befe;
+    background-color: black;
+    color: white;
+    border-bottom: 1px;
+    border-style: solid;
+    border-color: white;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
     padding-left: 4px;
 }
-
+/*-----modules indv----*/
 #workspaces button {
-    color: @color12;
+    color: dimgrey;
     box-shadow: none;
     text-shadow: none;
     padding: 0px;
@@ -100,31 +80,25 @@ tooltip label {
     transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
+#workspaces button:hover {
+    color: white;
+    background-color: #7f849c;
+    padding-left: 2px;
+    padding-right: 2px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
+}
+
 #workspaces button.active {
-    color: @foreground;
-    border-radius: 15px 15px 15px 15px;
+    color: white;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
     transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
-#workspaces button.focused {
-    color: #d8dee9;
-}
-
-#workspaces button.urgent {
-    color: #11111b;
+#workspaces button.persistent {
     border-radius: 10px;
-}
-
-#workspaces button:hover {
-    color: @color9;
-    border-radius: 15px;
-    padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #backlight,
@@ -145,12 +119,20 @@ tooltip label {
 #workspaces,
 #custom-backlight,
 #custom-power {
-    color: @foreground;
-    border-radius: 8px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
     padding-right: 6px;
     padding-left: 6px;
+}
+/*-----Indicators----*/
+#idle_inhibitor.activated {
+    color: #2dcc36;
+}
+#pulseaudio.muted {
+    color: #cc3436;
+}
+#temperature.critical {
+    color: red;
 }
 
 @keyframes blink {
@@ -167,6 +149,7 @@ tooltip label {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
+
 #pulseaudio-slider slider {
     min-width: 0px;
     min-height: 0px;

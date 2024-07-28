@@ -3,12 +3,14 @@
     "position": "top",
     "height": 30, // Waybar height (to be removed for auto height)
     "margin": 6,
+    "reload_style_on_change": true,
 
     "include": [
-        "~/.config/waybar/modules.json"
+        "~/.config/waybar/modules.jsonc"
     ],
     "modules-left": [
-        "hyprland/workspaces"
+        "hyprland/workspaces",
+        "custom/r_end"
     ],
     "modules-center": [
         "idle_inhibitor",
@@ -16,18 +18,14 @@
     ],
     "modules-right": [
         // Left
-        "custom/separator#blank_1",
         "tray",
-        "custom/separator#blank_1",
         // Middle
-        "custom/separator#blank_1",
         "backlight",
         "network",
         "bluetooth",
         "battery",
         "pulseaudio",
         "pulseaudio#microphone",
-        "custom/separator#blank_1",
         // Right
         "custom/separator#line",
         "hyprland/language",

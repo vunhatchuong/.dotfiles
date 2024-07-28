@@ -1,105 +1,100 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/* Light - MonoChrome Contrast */
+/* Dark - Obsidian Edge */
 
 * {
+    border: none;
+    border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    min-height: 0;
-    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-    font-size: 97%;
-    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    font-size: 15px;
+    min-height: 10px;
 }
 
-window#waybar,
-window#waybar.empty,
-window#waybar.empty #window {
-    background-color: transparent;
-    padding: 0px;
-    border: 0px;
+@import "../themes/personnel.css";
+
+window#waybar {
+    background: @bar-bg;
+    border-radius: 12px;
 }
 
 tooltip {
-    color: white;
-    background: #1e1e2e;
-    opacity: 0.8;
-    border-radius: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-color: white;
+    /* background: rgba(0, 0, 0, 0.8); */
+    background-color: @main-bg;
+    color: @main-fg;
+    border-radius: 7px;
+    border-width: 0px;
 }
 
-tooltip label {
-    color: #cdd6f4;
+window#waybar.hidden {
+    opacity: 0.5;
 }
+
+window#waybar.empty,
+window#waybar.empty #window {
+    padding: 0px;
+    border: 0px;
+    background-color: transparent;
+}
+
 /*-----module groups----*/
 .modules-right {
-    background-color: white;
-    color: black;
-    border-bottom: 2px;
-    border-style: solid;
-    border-color: black;
+    border: 0px solid #b4befe;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
     padding-left: 4px;
 }
+
 .modules-center {
-    background-color: white;
-    color: black;
-    border-bottom: 2px;
-    border-style: solid;
-    border-color: black;
+    border: 0px solid #b4befe;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
     padding-left: 4px;
 }
+
 .modules-left {
-    background-color: white;
-    color: black;
-    border-bottom: 2px;
-    border-style: solid;
-    border-color: black;
+    border: 0px solid #b4befe;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 4px;
     padding-left: 4px;
 }
-/*-----modules indv----*/
+
 #workspaces button {
-    color: black;
+    color: @color12;
     box-shadow: none;
     text-shadow: none;
     padding: 0px;
     border-radius: 9px;
     padding-left: 4px;
     padding-right: 4px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
-}
-#workspaces button:hover {
-    color: grey;
-    background-color: rgba(0, 153, 153, 0.2);
-    padding-left: 2px;
-    padding-right: 2px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
 #workspaces button.active {
-    background-color: grey;
-    color: black;
+    color: @foreground;
+    border-radius: 15px 15px 15px 15px;
     padding-left: 8px;
     padding-right: 8px;
-    animation: gradient_f 20s ease-in infinite;
-    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 
-#workspaces button.persistent {
+#workspaces button.focused {
+    color: #d8dee9;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
     border-radius: 10px;
+}
+
+#workspaces button:hover {
+    color: @color9;
+    border-radius: 15px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 #backlight,
@@ -118,24 +113,14 @@ tooltip label {
 #pulseaudio-slider,
 #tray,
 #workspaces,
-#custom-backlight {
-    padding-top: 4px;
-    padding-bottom: 4px;
+#custom-backlight,
+#custom-power {
+    color: @foreground;
+    border-radius: 8px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     padding-right: 6px;
     padding-left: 6px;
-}
-#custom-power {
-    padding: 1px 3px;
-}
-/*-----Indicators----*/
-#idle_inhibitor.activated {
-    color: #2dcc36;
-}
-#pulseaudio.muted {
-    color: #cc3436;
-}
-#temperature.critical {
-    color: #cc3436;
 }
 
 @keyframes blink {
@@ -152,7 +137,6 @@ tooltip label {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
-
 #pulseaudio-slider slider {
     min-width: 0px;
     min-height: 0px;
@@ -166,7 +150,6 @@ tooltip label {
     min-width: 80px;
     min-height: 5px;
     border-radius: 5px;
-    background-color: grey;
 }
 
 #pulseaudio-slider highlight {

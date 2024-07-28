@@ -1,13 +1,12 @@
 /* ---- 💫 https://github.com/JaKooLit 💫 ---- */
-/*  Black & White MonoChrome */
+/* Light - MonoChrome Contrast */
 
 * {
+    border: none;
+    border-radius: 0px;
     font-family: "JetBrainsMono Nerd Font";
     font-weight: bold;
-    min-height: 0;
-    /* set font-size to 100% if font scaling is set to 1.00 using nwg-look */
-    font-size: 97%;
-    font-feature-settings: '"zero", "ss01", "ss02", "ss03", "ss04", "ss05", "cv31"';
+    font-size: 15px;
 }
 
 window#waybar,
@@ -33,11 +32,11 @@ tooltip label {
 }
 /*-----module groups----*/
 .modules-right {
-    background-color: black;
-    color: white;
-    border-bottom: 1px;
+    background-color: white;
+    color: black;
+    border-bottom: 2px;
     border-style: solid;
-    border-color: white;
+    border-color: black;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -45,11 +44,11 @@ tooltip label {
     padding-left: 4px;
 }
 .modules-center {
-    background-color: black;
-    color: white;
-    border-bottom: 1px;
+    background-color: white;
+    color: black;
+    border-bottom: 2px;
     border-style: solid;
-    border-color: white;
+    border-color: black;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -57,11 +56,11 @@ tooltip label {
     padding-left: 4px;
 }
 .modules-left {
-    background-color: black;
-    color: white;
-    border-bottom: 1px;
+    background-color: white;
+    color: black;
+    border-bottom: 2px;
     border-style: solid;
-    border-color: white;
+    border-color: black;
     border-radius: 10px;
     padding-top: 2px;
     padding-bottom: 2px;
@@ -70,7 +69,7 @@ tooltip label {
 }
 /*-----modules indv----*/
 #workspaces button {
-    color: dimgrey;
+    color: black;
     box-shadow: none;
     text-shadow: none;
     padding: 0px;
@@ -81,8 +80,8 @@ tooltip label {
     transition: all 0.5s cubic-bezier(0.55, -0.68, 0.48, 1.682);
 }
 #workspaces button:hover {
-    color: white;
-    background-color: #7f849c;
+    color: grey;
+    background-color: rgba(0, 153, 153, 0.2);
     padding-left: 2px;
     padding-right: 2px;
     animation: gradient_f 20s ease-in infinite;
@@ -90,7 +89,8 @@ tooltip label {
 }
 
 #workspaces button.active {
-    color: white;
+    background-color: grey;
+    color: black;
     padding-left: 8px;
     padding-right: 8px;
     animation: gradient_f 20s ease-in infinite;
@@ -117,12 +117,14 @@ tooltip label {
 #pulseaudio-slider,
 #tray,
 #workspaces,
-#custom-backlight,
-#custom-power {
+#custom-backlight {
     padding-top: 4px;
     padding-bottom: 4px;
     padding-right: 6px;
     padding-left: 6px;
+}
+#custom-power {
+    padding: 1px 3px;
 }
 /*-----Indicators----*/
 #idle_inhibitor.activated {
@@ -132,7 +134,7 @@ tooltip label {
     color: #cc3436;
 }
 #temperature.critical {
-    color: red;
+    color: #cc3436;
 }
 
 @keyframes blink {
@@ -163,6 +165,7 @@ tooltip label {
     min-width: 80px;
     min-height: 5px;
     border-radius: 5px;
+    background-color: grey;
 }
 
 #pulseaudio-slider highlight {
