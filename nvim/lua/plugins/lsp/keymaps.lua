@@ -11,7 +11,7 @@ function M.on_attach()
     -- stylua: ignore start
     nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
-    nmap("K", vim.lsp.buf.hover, "Hover Documentation")
+    -- nmap("K", vim.lsp.buf.hover, "Hover Documentation")
     nmap("<C-k>", vim.diagnostic.open_float, "Open floating diagnostic message")
 
     nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]definition")

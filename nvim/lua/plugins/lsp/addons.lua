@@ -125,9 +125,9 @@ return {
     {
         "Wansmer/sibling-swap.nvim",
         keys = {
-			-- stylua: ignore start
-			{ "<C-.>", function() require("sibling-swap").swap_with_right() end, desc = "󰔰 Move Node Right" },
-			{ "<C-,>", function() require("sibling-swap").swap_with_left() end, desc = "󰶢 Move Node Left" },
+            -- stylua: ignore start
+            { "<C-.>", function() require("sibling-swap").swap_with_right() end, desc = "󰔰 Move Node Right" },
+            { "<C-,>", function() require("sibling-swap").swap_with_left() end, desc = "󰶢 Move Node Left" },
             -- stylua: ignore end
         },
         opts = {

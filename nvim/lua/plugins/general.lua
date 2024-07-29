@@ -52,40 +52,6 @@ return {
         },
     },
     {
-        -- Origin repo is unmaintained: anuvyklack/fold-preview.nvim
-        "cosmicbuffalo/fold-preview.nvim",
-        branch = "fix-eventignore",
-        dependencies = {
-            "neovim/nvim-lspconfig",
-            "anuvyklack/keymap-amend.nvim",
-        },
-        event = "VeryLazy",
-        opts = {
-            auto = 400,
-            default_keybindings = false,
-        },
-        keys = {
-            -- Doesn't work
-            {
-                "K",
-                function()
-                    require("fold-preview").show_preview()
-                end,
-                desc = "Show fold preview",
-            },
-        },
-        config = function(_, opts)
-            local keymap = vim.keymap
-            local map = require("fold-preview").mapping
-            keymap.amend = require("keymap-amend")
-
-            require("fold-preview").setup(opts)
-
-            keymap.amend("n", "l", map.close_preview)
-            keymap.amend("n", "<Right>", map.close_preview)
-        end,
-    },
-    {
         "chrisgrieser/nvim-origami",
         event = "BufReadPost",
         -- stylua: ignore
@@ -223,5 +189,19 @@ return {
         "jinh0/eyeliner.nvim",
         keys = { "f", "F", "t", "T" },
         opts = { highlight_on_key = true, dim = true },
+    },
+    {
+        "lewis6991/hover.nvim",
+        -- stylua: ignore
+        keys = {
+            { "K", function() require("hover").hover() end },
+        },
+        opts = {
+            init = function()
+                require("hover.providers.lsp")
+                require("hover.providers.fold_preview")
+            end,
+            preview_opts = { border = "rounded" },
+        },
     },
 }
