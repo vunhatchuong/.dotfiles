@@ -14,11 +14,12 @@ return {
             -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
             "hrsh7th/cmp-nvim-lsp",
             "https://codeberg.org/FelipeLema/cmp-async-path.git",
-            "tzachar/cmp-tabnine",
             "uga-rosa/cmp-dynamic",
+            "supermaven-inc/supermaven-nvim",
         },
         opts = function()
             vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
+            vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
             vim.api.nvim_set_hl(
                 0,
                 "CmpGhostText",
@@ -74,7 +75,7 @@ return {
                         end,
                     },
                     { name = "async_path" },
-                    { name = "cmp_tabnine" },
+                    { name = "supermaven" },
                     { name = "snippets" },
                     { name = "dynamic" },
                 },
@@ -155,22 +156,11 @@ return {
         end,
     },
     {
-        "tzachar/cmp-tabnine",
-        build = function()
-            if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
-                os.execute("pwsh -noni .\\install.ps1")
-            else
-                os.execute("./install.sh")
-            end
-            vim.cmd(":CmpTabnineHub")
-        end,
-        dependencies = "hrsh7th/nvim-cmp",
+        "supermaven-inc/supermaven-nvim",
         opts = {
-            max_num_results = 3,
+            disable_keymaps = true,
+            disable_inline_completion = true,
         },
-        config = function(_, opts)
-            require("cmp_tabnine.config"):setup(opts)
-        end,
     },
     {
         "folke/lazydev.nvim",
