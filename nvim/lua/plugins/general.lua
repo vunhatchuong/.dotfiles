@@ -146,45 +146,7 @@ return {
         },
     },
     -- open file given a line, Ex in terminal: nvim general.lua:20
-    { "bogado/file-line", event = "BufNewFile" },
-    {
-        "stevearc/overseer.nvim",
-        -- stylua: ignore
-        keys = {
-            { "<leader>oo", "<cmd>OverseerToggle<cr>",      desc = "Task list" },
-            { "<leader>or", "<cmd>OverseerRun<cr>",         desc = "Run task" },
-            { "<leader>oq", "<cmd>OverseerQuickAction<cr>", desc = "Action recent task" },
-            -- { "<leader>of", "<cmd>OverseerQuickAction open float<cr>", desc = "Open in float" },
-            { "<leader>oi", "<cmd>OverseerInfo<cr>",        desc = "Overseer Info" },
-        },
-        opts = {
-            templates = { "builtin", "user" },
-            strategy = "toggleterm",
-            dap = false,
-            task_list = {
-                default_detail = 2,
-                bindings = {
-                    ["<C-h>"] = false,
-                    ["<C-j>"] = false,
-                    ["<C-k>"] = false,
-                    ["<C-l>"] = false,
-                },
-            },
-            actions = {
-                save = false,
-                dispose = false,
-                edit = false,
-                retain = false,
-                open = false,
-                ["open hsplit"] = false,
-                ["open vsplit"] = false,
-                ["open tab"] = false,
-                ["set quickfix diagnostics"] = false,
-                ["set loclist diagnostics"] = false,
-                ["open output in quickfix"] = false,
-            },
-        },
-    },
+    { "lewis6991/fileline.nvim", event = "BufNewFile" },
     {
         "jinh0/eyeliner.nvim",
         keys = { "f", "F", "t", "T" },
@@ -220,6 +182,33 @@ return {
                 "TextCaseOpenTelescope",
                 { desc = "Change word case" }
             )
+        end,
+    },
+    {
+        "google/executor.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        },
+        keys = { { "<leader>x" }, { "<leader>xp" } },
+        opts = { use_split = false },
+        config = function(_, opts)
+            local executor = require("executor")
+            executor.setup(opts)
+            local nmap = function(key, func, desc)
+                if desc then
+                    desc = "LSP: " .. desc
+                end
+                -- stylua: ignore
+                vim.keymap.set(
+                    "n", key, func,
+                    { noremap = true, silent = true, desc = desc }
+                )
+            end
+            nmap("<leader>x", function()
+                executor.commands.reset()
+                executor.commands.run()
+            end, "e[X]ecute")
+            nmap("<leader>xp", executor.commands.toggle_detail, "e[X]ecute")
         end,
     },
 }
