@@ -10,30 +10,30 @@
     notification_limit = 20
 
     ### Geometry ###
-    width = 300
-    height = (0, 300)
+    width = (0, 400)
     origin = top-right
-    offset = (10, 50)
+    offset = 8x7
 
     ### Progress bar ###
     progress_bar = true
     progress_bar_height = 10
     progress_bar_frame_width = 1
     progress_bar_min_width = 150
-    progress_bar_max_width = 300
+    progress_bar_max_width = 400
+    progress_bar_corner_radius = 4
 
     separator_height = 2
-    padding = 8
-    horizontal_padding = 8
+    padding = 15
+    horizontal_padding = 15
 
     frame_width = 3
     frame_color = "#aaaaaa"
 
-    gap_size = 0
-    corner_radius = 20
+    gap_size = 5
+    corner_radius = 15
 
     ### Text ###
-    font = JetBrains Mono Nerd Font 8
+    font = JetBrains Mono Nerd Font 10
     vertical_alignment = center
 
     ### Icons ###
@@ -57,22 +57,24 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#222222"
-    foreground = "#888888"
+    background = "#0510159f"
+    foreground = "#e2f4ff"
+    highlight = "#22bcff"
+    frame_color = "#11aaff"
     timeout = 5
 
 [urgency_normal]
-    background = "#285577"
-    foreground = "#ffffff"
+    background = "#02060f9f"
+    foreground = "#effaff"
+    highlight = "#33cdff"
+    frame_color = "#32bbff"
     timeout = 10
-    override_pause_level = 30
 
 [urgency_critical]
-    background = "#900000"
-    foreground = "#ffffff"
-    frame_color = "#ff0000"
+    background = "#9404059f"
+    foreground = "#ffd0e0"
+    frame_color = "#f38ba8"
     timeout = 0
-    override_pause_level = 60
 
 [history-ignore]
     # This notification will not be saved in history
@@ -105,3 +107,11 @@
     appname = Pidgin
     summary = *facebook.com*
     urgency = normal
+
+[volume]
+    appname = Volume
+    highlight = "#cba6f7"
+
+[backlight]
+    appname = Backlight
+    highlight = "#eba0ac"
