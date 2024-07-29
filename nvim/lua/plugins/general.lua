@@ -204,4 +204,22 @@ return {
             preview_opts = { border = "rounded" },
         },
     },
+
+    { -- Upper: u, Lower: l, Snake: s, Dash: d, Const: n, Camel: c, Pascal: p
+        -- Usage: ga{u} to change cursor word to upper
+        -- gao to turn into motion mode. Ex: gaouw means change a word to upper
+        "johmsalas/text-case.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        keys = { "ga" },
+        config = function()
+            require("textcase").setup({})
+            require("telescope").load_extension("textcase")
+            vim.keymap.set(
+                { "n", "v" },
+                "ga",
+                "TextCaseOpenTelescope",
+                { desc = "Change word case" }
+            )
+        end,
+    },
 }
