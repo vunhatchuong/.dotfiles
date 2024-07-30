@@ -6,7 +6,7 @@ bin = { target = "~/bin", type = "template" }
 tmux = "~/.config/tmux"
 lazygit = "~/.config/lazygit"
 alacritty = "~/.config/alacritty"
-".wezterm.lua" = "~/.config/wezterm/wezterm.lua"
+wezterm = "~/.config/wezterm"
 ".gitconfig" = "~/.gitconfig"
 
 [code.variables]

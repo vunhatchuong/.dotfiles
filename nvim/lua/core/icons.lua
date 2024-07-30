@@ -34,12 +34,13 @@ return {
         String = " ",
         Struct = "󰆼 ",
         TabNine = "󰚩 ",
+        Supermaven = "",
         Text = " ",
         TypeParameter = " ",
         Unit = " ",
         Value = " ",
         Variable = "󰀫 ",
-        Env = " "
+        Env = " ",
     },
     git = {
         LineAdded = " ",
