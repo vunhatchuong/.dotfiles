@@ -87,7 +87,7 @@
     "pulseaudio": {
         "format": "{icon}",
         "format-bluetooth": "{icon}",
-        "format-muted": "󰖁",
+        "format-muted": "",
         "on-click": "pavucontrol -t 3",
         "on-click-right": "pamixer -t",
         "on-scroll-up": "pamixer -i 5",
@@ -101,7 +101,7 @@
             "phone": "",
             "portable": "",
             "car": "",
-            "default": [ "", "", "󰕾", "" ]
+            "default": [ "", "", "󰕾", " " ]
         }
     },
     "pulseaudio#microphone": {
