@@ -12,7 +12,7 @@ setopt hist_verify            # show command with history expansion to user befo
 setopt share_history          # share command history data
 setopt HIST_REDUCE_BLANKS    # Remove unnecessary blank lines.
 
-export JAVA_HOME='/usr/lib/jvm/java-17-openjdk'
+export JAVA_HOME='/usr/lib/jvm/java-21-openjdk'
 export PATH=$JAVA_HOME/bin:$PATH
 
 export M2_HOME=/usr/local/apache-maven/apache-maven-3.9.1
