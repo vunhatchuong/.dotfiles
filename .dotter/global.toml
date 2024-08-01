@@ -3,7 +3,7 @@
 default_target_type = "symbolic"
 
 [general.files]
-alacritty = "~/.config/alacritty"
+alacritty = { target = "~/.config/alacritty", type = "template" }
 bat = "~/.config/bat"
 lazygit = "~/.config/lazygit"
 nvim = "~/.config/nvim"

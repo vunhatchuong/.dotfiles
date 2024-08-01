@@ -16,6 +16,5 @@ packages = ["windows"]
 Create a `local.toml` file in the `.dotter` directory with the following content:
 
 ```toml
-includes = [".dotter/include/windows.toml"]
 packages = ["linux"]
 ```
