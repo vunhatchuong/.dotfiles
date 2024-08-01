@@ -1,0 +1,59 @@
+* {
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    font-weight: bold;
+}
+
+@import '$HOME/.config/waybar/themes/sequoia-moonlight';
+
+window {
+    background-color: rgba(16, 16, 20, 0.8);
+}
+
+button {
+    font-size: 30px;
+    background-color: @main-bg;
+    color: @main-fg;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 50%;
+    border: 3px solid #FFFFFF;
+    border-radius: 20px;
+    margin: 10px;
+    animation: gradient_f 20s ease-in infinite;
+}
+
+button:hover {
+    background-color: @wb-act-bg;
+    color: #FFFFFF;
+    margin: 10px;
+    border-radius: 20px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.3s cubic-bezier(.55, 0.0, .28, 1.682);
+
+}
+
+#lock {
+    background-image: image(url("./icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("./icons/logout.png"));
+}
+
+#shutdown {
+    background-image: image(url("./icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("./icons/reboot.png"));
+}
+
+#suspend {
+    background-image: image(url("./icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("./icons/hibernate.png"));
+}

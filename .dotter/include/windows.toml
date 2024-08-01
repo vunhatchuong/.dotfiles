@@ -1,7 +1,10 @@
-[code.files]
-nvim = "~/AppData/Local/nvim"
+[general.files]
 alacritty = "~/AppData/Roaming/alacritty"
+bat = "~/AppData/Roaming/bat"
+nvim = "~/AppData/Local/nvim"
 
-[code.variables]
-workspaces = "D:/workspace"
+[general.variables]
 alacritty-theme_path = "~/AppData/Roaming/alacritty/themes/rose-pine-moon.toml"
+
+[linux.variables]
+workspaces = "D:/workspace"

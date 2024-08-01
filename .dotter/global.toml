@@ -1,30 +1,44 @@
 # On Windows, '~' is expanded to 'C:\Users\<USERNAME>\'
-[code.files]
-nvim = { target = "~/.config/nvim", type = "symbolic" }
-bin = { target = "~/bin", type = "template" }
-".vimrc" = "~/.vimrc"
-tmux = "~/.config/tmux"
-lazygit = "~/.config/lazygit"
+[settings]
+default_target_type = "symbolic"
+
+[general.files]
 alacritty = "~/.config/alacritty"
+bat = "~/.config/bat"
+lazygit = "~/.config/lazygit"
+nvim = "~/.config/nvim"
 wezterm = "~/.config/wezterm"
 ".gitconfig" = "~/.gitconfig"
+"starship.toml" = "~/.config/starship.toml"
 
-[code.variables]
-workspaces = "~/workspace"
+[general.variables]
 alacritty-theme_path = "~/.config/alacritty/themes/rose-pine-moon.toml"
 
-[shell.files]
-".zshenv" = { target = "~/.zshenv", type = "symbolic" }
-zsh = { target = "~/.config/zsh", type = "symbolic" }
-bat = { target = "~/.config/bat", type = "symbolic" }
-"starship.toml" = { target = "~/.config/starship.toml", type = "symbolic" }
+[windows]
+depends = ["general"]
 
 [windows.files]
-"./windows/repeat-rates.reg" = { target = "~/.config/repeat-rate.reg", type = "symbolic" }
-"./windows/Microsoft.PowerShell_profile.ps1" = { target = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1", type = "symbolic" }
-"./windows/powershell" = { target = "~/.config/powershell", type = "symbolic" }
-bat = { target = "~/AppData/Roaming/bat", type = "symbolic" }
-"starship.toml" = { target = "~/.config/starship.toml", type = "symbolic" }
+"./windows/powershell" = "~/.config/powershell"
+"./windows/Microsoft.PowerShell_profile.ps1" = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
 
-[i3.files]
-i3 = { target = "~/.config/i3", type = "symbolic" }
+[linux]
+depends = ["general"]
+
+[linux.files]
+"./linux/bin" = { target = "~/bin", type = "template" }
+"./linux/dunst" = "~/.config/dunst"
+"./linux/foot" = "~/.config/foot"
+"./linux/fuzzel" = "~/.config/fuzzel"
+"./linux/hypr" = "~/.config/hypr"
+"./linux/i3" = "~/.config/i3"
+"./linux/Kvantum" = "~/.config/Kvantum"
+"./linux/qt5ct" = "~/.config/qt5ct"
+"./linux/qt6ct" = "~/.config/qt6ct"
+"./linux/tmux" = "~/.config/tmux"
+"./linux/waybar" = "~/.config/waybar"
+"./linux/zsh" = "~/.config/zsh"
+"./linux/.vimrc" = "~/.vimrc"
+"./linux/.zshenv" = "~/.zshenv"
+
+[linux.variables]
+workspaces = "~/workspace"
