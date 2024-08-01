@@ -159,7 +159,7 @@
     },
     "custom/power": {
         "format": " ",
-        "on-click": "wlogout"
+        "on-click": "wlogout --buttons-per-row 4"
     },
     // Extras
     "cpu": {
