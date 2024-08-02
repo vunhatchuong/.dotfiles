@@ -185,42 +185,26 @@ return {
         end,
     },
     {
-        "google/executor.nvim",
-        dependencies = {
-            "MunifTanjim/nui.nvim",
-        },
-        keys = { { "<leader>x" }, { "<leader>xp" } },
-        opts = { use_split = false },
-        config = function(_, opts)
-            local executor = require("executor")
-            executor.setup(opts)
-            local nmap = function(key, func, desc)
-                if desc then
-                    desc = "LSP: " .. desc
-                end
-                -- stylua: ignore
-                vim.keymap.set(
-                    "n", key, func,
-                    { noremap = true, silent = true, desc = desc }
-                )
-            end
-            nmap("<leader>x", function()
-                executor.commands.reset()
-                executor.commands.run()
-            end, "e[X]ecute")
-            nmap("<leader>xp", executor.commands.toggle_detail, "e[X]ecute")
-        end,
-    },
-    {
         "ej-shafran/compile-mode.nvim",
-        cmd = { "Compile" },
+        cmd = { "Compile", "Recompile" },
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
+        keys = {
+            { "<leader>ox", "<cmd>Compile<cr>", desc = "Compile" },
+            {
+                "<leader>or",
+                function()
+                    vim.cmd("Recompile")
+                    vim.cmd("wincmd k")
+                end,
+                desc = "Compile",
+            },
+        },
         opts = {
             default_command = "",
+            time_format = "%H:%M:%S",
             recompile_no_fail = true,
-            auto_jump_to_first_error = true,
         },
     },
 }
