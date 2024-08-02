@@ -211,4 +211,16 @@ return {
             nmap("<leader>xp", executor.commands.toggle_detail, "e[X]ecute")
         end,
     },
+    {
+        "ej-shafran/compile-mode.nvim",
+        cmd = { "Compile" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        opts = {
+            default_command = "",
+            recompile_no_fail = true,
+            auto_jump_to_first_error = true,
+        },
+    },
 }
