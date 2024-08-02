@@ -2,60 +2,30 @@ return {
     {
         "mfussenegger/nvim-dap",
         dependencies = {
+            { "rcarriga/nvim-dap-ui" },
             {
-                {
-                    "rcarriga/nvim-dap-ui",
-                    -- stylua: ignore
-                    keys = {
-                        { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
-                        { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
-                    },
-                    opts = {},
-                    config = function(_, opts)
-                        local dap = require("dap")
-                        local dapui = require("dapui")
-                        dapui.setup(opts)
-                        dap.listeners.before.attach.dapui_config = function()
-                            dapui.open()
-                        end
-                        dap.listeners.before.launch.dapui_config = function()
-                            dapui.open()
-                        end
-                        dap.listeners.before.event_terminated.dapui_config = function()
-                            dapui.close()
-                        end
-                        dap.listeners.before.event_exited.dapui_config = function()
-                            dapui.close()
-                        end
-                    end,
-                },
-                {
-                    "theHamsta/nvim-dap-virtual-text",
-                    opts = {},
-                },
+                "theHamsta/nvim-dap-virtual-text",
+                opts = {},
             },
         },
         -- stylua: ignore
         keys = {
-            -- { "<leader>oq", function() require("dap").close() end,             desc = "Close" },
-            { "<leader>dq", function() require("dap").terminate() end,                                            desc = "Terminate" },
-            { "<leader>ot", function() require("dap").toggle_breakpoint() end,                                    desc = "Toggle Breakpoint" },
-            { "<leader>oc", function() require("dap").continue() end,                                             desc = "Continue" },
-            { "<leader>oB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint Condition" },
-            { "<leader>oC", function() require("dap").run_to_cursor() end,                                        desc = "Run to Cursor" },
-            { "<leader>og", function() require("dap").goto_() end,                                                desc = "Go to line (no execute)" },
-            { "<leader>oi", function() require("dap").step_into() end,                                            desc = "Step Into" },
-            -- { "<leader>dj", function() require("dap").down() end,                                                 desc = "Down" },
-            -- { "<leader>dk", function() require("dap").up() end,                                                   desc = "Up" },
-            -- { "<leader>dl", function() require("dap").run_last() end,                                             desc = "Run Last" },
-            -- { "<leader>oo", function() require("dap").step_out() end,                                             desc = "Step Out" },
-            { "<leader>oO", function() require("dap").step_over() end,                                            desc = "Step Over" },
-            { "<leader>op", function() require("dap").pause() end,                                                desc = "Pause" },
-            -- { "<leader>dr", function() require("dap").repl.toggle() end,                                          desc = "Toggle REPL" },
-            -- { "<leader>ds", function() require("dap").session() end,                                              desc = "Session" },
-            -- { "<leader>dw", function() require("dap.ui.widgets").hover() end,                                     desc = "Widgets" },
+            { "<leader>dq", function() require("dap").terminate() end,             desc = "Terminate" },
+            { "<F1>", function() require("dap").toggle_breakpoint() end,           desc = "Toggle Breakpoint" },
+            { "<F2>", function() require("dap").continue() end,                    desc = "Continue" },
+            { "<F3>", function() require("dap").step_over() end,                   desc = "Step Over" },
+            { "<F4>", function() require("dap").step_into() end,                   desc = "Step Into" },
+            { "<F5>", function() require("dap").step_out() end,                    desc = "Step Out" },
+            { "<F6>", function() require("dap").restart() end,                     desc = "Restart" },
+            { "<F9>", function() require("dap").eval(nil, { enter = true }) end,   desc = "Eval var under cursor" },
         },
         config = function()
+            local mason_nvim_conf = require("lazy.core.plugin").values(
+                require("lazy.core.config").spec.plugins["mason-nvim-dap.nvim"],
+                "opts",
+                false
+            )
+            require("mason-nvim-dap").setup(mason_nvim_conf)
             local icons = require("core.icons")
             vim.api.nvim_set_hl(
                 0,
@@ -72,5 +42,42 @@ return {
                 })
             end
         end,
+    },
+
+    {
+        "rcarriga/nvim-dap-ui",
+        dependencies = { "nvim-neotest/nvim-nio" },
+        -- stylua: ignore
+        keys = {
+            { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
+            { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
+        },
+        opts = {},
+        config = function(_, opts)
+            local dap, dapui = require("dap"), require("dapui")
+            dapui.setup(opts)
+            dap.listeners.after.event_initialized["dapui_config"] = function()
+                dapui.open({})
+            end
+            dap.listeners.before.event_terminated["dapui_config"] = function()
+                dapui.close({})
+            end
+            dap.listeners.before.event_exited["dapui_config"] = function()
+                dapui.close({})
+            end
+        end,
+    },
+    {
+        "jay-babu/mason-nvim-dap.nvim",
+        dependencies = "mason.nvim",
+        cmd = { "DapInstall", "DapUninstall" },
+        opts = {
+            -- Makes a best effort to setup the various debuggers with
+            -- reasonable debug configurations
+            automatic_installation = true,
+            ensure_installed = {},
+        },
+        -- mason-nvim-dap is loaded when nvim-dap loads
+        config = function() end,
     },
 }

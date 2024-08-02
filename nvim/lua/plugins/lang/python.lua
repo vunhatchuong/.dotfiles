@@ -73,4 +73,8 @@ return {
             table.insert(opts.auto_brackets, "python")
         end,
     },
+    {
+      "mfussenegger/nvim-dap",
+      optional = true,
+    },
 }
