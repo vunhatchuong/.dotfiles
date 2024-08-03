@@ -34,6 +34,7 @@ $scoopUtils = @(
     "extras/powertoys"
     "extras/vlc"
     "extras/psfzf"
+    "extra/wiztree"
 )
 
 $scoopNvim = @(
