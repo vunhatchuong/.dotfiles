@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+hyprctl devices -j | jq -r '.keyboards[].name' | while read keyName; do
+    hyprctl switchxkblayout "$keyName" next
+done
+
+new_layout=$(hyprctl -j devices | jq '.keyboards' | jq '.[] | select (.main == true)' | awk -F '"' '{if ($2=="active_keymap") print $4}')
+notify-send -u low -r 91190 "new KB_Layout: $new_layout"
