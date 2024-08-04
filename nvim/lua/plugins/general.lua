@@ -207,4 +207,9 @@ return {
             recompile_no_fail = true,
         },
     },
+    {
+        "psjay/buffer-closer.nvim",
+        keys = { "q" },
+        opts = {},
+    },
 }
