@@ -1,5 +1,5 @@
 [pyprland]
-plugins = ["magnify","wallpapes"]
+plugins = ["magnify","wallpapers"]
 
 [wallpapers]
 path = "~/Pictures/wallpapers/"
