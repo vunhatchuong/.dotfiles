@@ -38,5 +38,5 @@ eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
 # fnm
-export PATH="$HOME/.local/share/fnm:$PATH"
-# eval "$(fnm env --use-on-cd)"
+#export PATH="$HOME/.local/share/fnm:$PATH" # Need or not?
+eval "$(fnm env --use-on-cd)"
