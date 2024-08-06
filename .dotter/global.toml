@@ -27,6 +27,7 @@ depends = ["general"]
 [linux.files]
 "./linux/bin" = { target = "~/bin", type = "template" }
 "./linux/dunst" = "~/.config/dunst"
+"./linux/fcitx5" = "~/.config/fcitx5"
 "./linux/foot" = "~/.config/foot"
 "./linux/fuzzel" = "~/.config/fuzzel"
 "./linux/hypr" = "~/.config/hypr"

@@ -9,7 +9,7 @@
         "~/.config/waybar/modules.jsonc"
     ],
     "modules-left": [
-        "hyprland/workspaces",
+        "hyprland/workspaces"
     ],
     "modules-center": [
         "idle_inhibitor",
