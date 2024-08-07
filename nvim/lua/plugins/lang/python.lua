@@ -9,12 +9,28 @@ return {
         "neovim/nvim-lspconfig",
         opts = {
             servers = {
-                pyright = { enabled = true },
-                ruff = { enabled = true },
+                ruff = {
+                    enabled = true,
+                    cmd_env = { RUFF_TRACE = "messages" },
+                    init_options = {
+                        settings = {
+                            logLevel = "error",
+                        },
+                    },
+                },
+                pylsp = {
+                    plugins = {
+                        ruff = { enabled = true },
+                    },
+                },
             },
             setup = {
                 ruff = function()
                     vim.api.nvim_create_autocmd("LspAttach", {
+                        group = vim.api.nvim_create_augroup(
+                            "lsp_attach_disable_ruff_hover",
+                            { clear = true }
+                        ),
                         callback = function(args)
                             local client =
                                 vim.lsp.get_client_by_id(args.data.client_id)
@@ -33,7 +49,7 @@ return {
         opts = function(_, opts)
             opts.ensure_installed = opts.ensure_installed or {}
             vim.list_extend(opts.ensure_installed, {
-                "pyright",
+                "python-lsp-server",
                 -- Linter
                 "mypy",
                 "ruff", -- Also Formatter
@@ -74,7 +90,7 @@ return {
         end,
     },
     {
-      "mfussenegger/nvim-dap",
-      optional = true,
+        "mfussenegger/nvim-dap",
+        optional = true,
     },
 }
