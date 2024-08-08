@@ -2,4 +2,4 @@
 plugins = ["magnify","wallpapers"]
 
 [wallpapers]
-path = "~/Pictures/wallpapers/"
+path = "~/Pictures/wallpapers/monochrome/"
