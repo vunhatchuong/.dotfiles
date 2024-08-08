@@ -6,12 +6,10 @@ return {
             layout = "float",
             schemes = {
                 "default",
-                "rose-pine",
                 "rosebones",
                 "eldritch",
                 "lackluster-hack",
                 "Duskfox",
-                "Carbonfox",
                 "blue-moon",
                 "nordic",
                 "sequoia-moonlight",
@@ -28,7 +26,6 @@ return {
             },
         },
     },
-    { "rose-pine/neovim", name = "rose-pine" },
     {
         "mcchrish/zenbones.nvim",
         dependencies = {
@@ -39,11 +36,9 @@ return {
     { "Hiroya-W/sequoia-moonlight.nvim" },
     { "eldritch-theme/eldritch.nvim" },
     { "slugbyte/lackluster.nvim" },
-    { "EdenEast/nightfox.nvim" },
     { "kyazdani42/blue-moon" },
     { "rockerBOO/boo-colorscheme-nvim" },
     { "AlexvZyl/nordic.nvim" },
-    { dir = "D:/sequoia-monochrome", lazy = true },
     {
         "roobert/palette.nvim",
         config = function()
