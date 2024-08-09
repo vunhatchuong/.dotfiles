@@ -18,10 +18,8 @@ return {
                         },
                     },
                 },
-                pylsp = {
-                    plugins = {
-                        ruff = { enabled = true },
-                    },
+                basedpyright = {
+                    enabled = true,
                 },
             },
             setup = {
@@ -49,7 +47,7 @@ return {
         opts = function(_, opts)
             opts.ensure_installed = opts.ensure_installed or {}
             vim.list_extend(opts.ensure_installed, {
-                "python-lsp-server",
+                "basedpyright",
                 -- Linter
                 "mypy",
                 "ruff", -- Also Formatter
