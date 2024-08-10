@@ -1,5 +1,3 @@
-# See dunst(5) for all configuration options
-
 [global]
     ### General ###
     monitor = 0
@@ -40,7 +38,6 @@
     icon_position = off
 
     ### Misc/Advanced ###
-
     browser = /usr/bin/firefox --new-tab
 
     ### Wayland ###
@@ -59,21 +56,19 @@
 [urgency_low]
     background = "#0510159f"
     foreground = "#e2f4ff"
-    highlight = "#22bcff"
     frame_color = "#11aaff"
     timeout = 5
 
 [urgency_normal]
     background = "#02060f9f"
     foreground = "#effaff"
-    highlight = "#33cdff"
     frame_color = "#32bbff"
     timeout = 10
 
 [urgency_critical]
-    background = "#9404059f"
-    foreground = "#ffd0e0"
-    frame_color = "#f38ba8"
+    background = "#02060f9f"
+    foreground = "#f391aa"
+    frame_color = "#b4637a"
     timeout = 0
 
 [history-ignore]
