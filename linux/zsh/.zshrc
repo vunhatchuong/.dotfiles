@@ -6,13 +6,11 @@ autoload -U colors && colors
 # Disable CTRL-s from freezing your terminal's output.
 stty stop undef
 
-plug "zap-zsh/supercharge"
-
+plug "$ZDOTDIR/general.zsh"
 plug "$ZDOTDIR/export.zsh"
+plug "$ZDOTDIR/completion.zsh"
 
-plug "zap-zsh/completions"
 plug "zsh-users/zsh-autosuggestions"
-plug "zap-zsh/vim"
 plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
 plug "esc/conda-zsh-completion"
