@@ -5,7 +5,7 @@
     font-weight: bold;
 }
 
-@import '$HOME/.config/waybar/themes/sequoia-moonlight';
+@import "../waybar/themes/sequoia-monochrome.css";
 
 window {
     background-color: rgba(16, 16, 20, 0.8);
