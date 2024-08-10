@@ -24,7 +24,6 @@ plug "Freed-Wu/fzf-tab-source"
 plug "$ZDOTDIR/fzf-tab.zsh"
 
 # Language Specific
-plug "wintermi/zsh-fnm"
 
 # Put it before the plugin
 plug "catppuccin_mocha-zsh-syntax-highlighting.zsh"
