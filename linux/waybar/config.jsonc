@@ -19,6 +19,7 @@
         // Left
         "tray",
         // Middle
+        "custom/separator#line",
         "backlight",
         "network",
         "bluetooth",
