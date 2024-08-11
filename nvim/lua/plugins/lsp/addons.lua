@@ -55,7 +55,7 @@ return {
     },
     {
         "ray-x/lsp_signature.nvim",
-        event = "BufReadPre",
+        event = "BufReadPre", -- This event type is required
         opts = {
             hint_enable = false,
             hint_prefix = "󰏪 ",
@@ -76,7 +76,7 @@ return {
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
         },
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        event = "LspAttach",
         opts = {},
     },
     {
@@ -142,7 +142,6 @@ return {
             { "nvim-lua/plenary.nvim" },
             { "nvim-telescope/telescope.nvim" },
         },
-        event = "LspAttach",
         keys = {
             {
                 "<leader>ca",

@@ -98,12 +98,15 @@ return {
     },
     {
         "echasnovski/mini.move",
-        event = "VeryLazy",
+        keys = {
+            { "<M-j>" },
+            { "<M-h>" },
+        },
         opts = {},
     },
     {
         "echasnovski/mini.operators",
-        event = "VeryLazy",
+        keys = { { "gs" } },
         opts = {
             evaluate = { prefix = "" },
             exchange = { prefix = "" },
