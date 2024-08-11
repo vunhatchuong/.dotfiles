@@ -79,15 +79,15 @@ return {
         event = "LspAttach",
         opts = {},
     },
-    {
-        "dgagn/diagflow.nvim",
-        event = "LspAttach",
-        opts = {
-            scope = "line",
-            toggle_event = { "InsertEnter" },
-            -- show_borders = true,
-        },
-    },
+    -- {
+    --     "dgagn/diagflow.nvim",
+    --     event = "LspAttach",
+    --     opts = {
+    --         scope = "line",
+    --         toggle_event = { "InsertEnter" },
+    --         -- show_borders = true,
+    --     },
+    -- },
     -- Better looking but currently suffer performance issues.
     -- {
     --     "RaafatTurki/corn.nvim",
@@ -107,16 +107,16 @@ return {
     --         end,
     --     },
     -- },
-    -- {
-    --     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    --     event = "LspAttach",
-    --     init = function()
-    --         vim.diagnostic.config({
-    --             virtual_text = false,
-    --         })
-    --     end,
-    --     opts = {},
-    -- },
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        event = "LspAttach",
+        init = function()
+            vim.diagnostic.config({
+                virtual_text = false,
+            })
+        end,
+        opts = {},
+    },
     { -- split-join lines
         "Wansmer/treesj",
         keys = { { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" } },
