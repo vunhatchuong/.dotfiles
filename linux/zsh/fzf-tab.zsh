@@ -1,3 +1,6 @@
+# Makes it behaves like zsh's default
+zstyle ':fzf-tab:*' query-string input prefix first
+# disable sort when completing `git checkout`
 zstyle ':completion:*:git-checkout:*' sort false
 # Enable filename colorizing
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
