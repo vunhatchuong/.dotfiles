@@ -1,15 +1,18 @@
 [init]
     defaultBranch = main
 [user]
-	email = ronnyvu321@gmail.com
-	name = Vu Nhat Chuong
+    email = ronnyvu321@gmail.com
+    name = Vu Nhat Chuong
 [safe]
-  directory = *
+    directory = *
 [core]
-	editor = nvim
-	ui = true
+    editor = nvim
+    ui = true
+    ignorecase = false
+    autocrlf = input
+    eol = lf
 [credential]
-	helper = /sbin/git-credential-manager
-	credentialStore = secretservice
+    helper = /sbin/git-credential-manager
+    credentialStore = secretservice
 [credential "https://dev.azure.com"]
-	useHttpPath = true
+    useHttpPath = true
