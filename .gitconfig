@@ -8,3 +8,8 @@
 [core]
 	editor = nvim
 	ui = true
+[credential]
+	helper = /sbin/git-credential-manager
+	credentialStore = secretservice
+[credential "https://dev.azure.com"]
+	useHttpPath = true
