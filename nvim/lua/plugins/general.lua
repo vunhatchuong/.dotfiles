@@ -161,4 +161,23 @@ return {
         keys = { "q" },
         opts = {},
     },
+    {
+        "shortcuts/no-neck-pain.nvim",
+        lazy = false,
+        cmd = { "NoNeckPain" },
+        keys = {
+            { "<leader>zz", "<cmd>NoNeckPain<cr>", desc = "Toggle ZenMode" },
+        },
+        opts = {
+            width = 120,
+            disableOnLastBuffer = true,
+            killAllBuffersOnDisable = true,
+            fallbackOnBufferDelete = true,
+            autocmds = {
+                -- enableOnVimEnter = true,
+                reloadOnColorSchemeChange = true,
+                skipEnteringNoNeckPainBuffer = true,
+            },
+        },
+    },
 }
