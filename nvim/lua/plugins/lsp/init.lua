@@ -164,29 +164,7 @@ return {
                     end
                 )
             end
-
             -- inlay hints
-            local methods = vim.lsp.protocol.Methods
-            local inlay_hint_handler =
-                vim.lsp.handlers[methods["textDocument_inlayHint"]]
-            vim.lsp.handlers[methods["textDocument_inlayHint"]] = function(
-                err,
-                result,
-                ctx,
-                config
-            )
-                local client = vim.lsp.get_client_by_id(ctx.client_id)
-                if client then
-                    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-                    result = vim.iter(result)
-                        :filter(function(hint)
-                            return hint.position.line + 1 == row
-                        end)
-                        :totable()
-                end
-                inlay_hint_handler(err, result, ctx, config)
-            end
-
             if opts.inlay_hints.enabled then
                 on_supports_method("textDocument/inlayHint", function(_, buffer)
                     if
@@ -197,29 +175,26 @@ return {
                             vim.bo[buffer].filetype
                         )
                     then
-                        local ih = vim.lsp.inlay_hint
-                        if ih.enable then
-                            local inlay_hints_group =
-                                vim.api.nvim_create_augroup(
-                                    "LSP_inlayHints",
-                                    { clear = false }
-                                )
-                            vim.api.nvim_create_autocmd(
-                                { "CursorHold", "CursorHoldI" },
-                                {
-                                    group = inlay_hints_group,
-                                    desc = "Update inlay hints on line change",
-                                    buffer = buffer,
-                                    callback = function()
-                                        ih.enable(true, { bufnr = buffer })
-                                    end,
-                                }
-                            )
-                        end
+                        local lh = vim.lsp.inlay_hint
+                        vim.api.nvim_create_autocmd("InsertEnter", {
+                            callback = function()
+                                lh.enable(false, { bufnr = buffer })
+                            end,
+                        })
+                        vim.api.nvim_create_autocmd("InsertLeave", {
+                            callback = function()
+                                lh.enable(true, { bufnr = buffer })
+                            end,
+                        })
+                        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+                            desc = "Update inlay hints on line change",
+                            callback = function()
+                                lh.enable(true, { bufnr = buffer })
+                            end,
+                        })
                     end
                 end)
             end
-
             -- code lens
             if opts.codelens.enabled and vim.lsp.codelens then
                 on_supports_method("textDocument/codeLens", function(_, buffer)

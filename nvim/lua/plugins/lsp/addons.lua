@@ -28,11 +28,11 @@ return {
         },
     },
     -- Currently doesn't support only display current line. https://github.com/chrisgrieser/nvim-lsp-endhints/issues/3
-    -- {
-    --     "chrisgrieser/nvim-lsp-endhints",
-    --     event = "LspAttach",
-    --     opts = {},
-    -- },
+    {
+        "vunhatchuong/nvim-lsp-endhints",
+        event = "LspAttach",
+        opts = {},
+    },
     {
         "Wansmer/symbol-usage.nvim",
         event = "LspAttach",
@@ -111,9 +111,7 @@ return {
         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
         event = "LspAttach",
         init = function()
-            vim.diagnostic.config({
-                virtual_text = false,
-            })
+            vim.diagnostic.config({ virtual_text = false })
         end,
         opts = {},
     },
