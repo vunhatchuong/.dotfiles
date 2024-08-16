@@ -4,11 +4,6 @@ return {
         cmd = { "Trouble" },
         keys = {
             {
-                "<leader>cs",
-                "<cmd>Trouble symbols toggle<cr>",
-                desc = "Symbols (Trouble)",
-            },
-            {
                 "<leader>dd",
                 "<cmd>Trouble diagnostics toggle<cr>",
                 desc = "Diagnostics (Trouble)",
@@ -127,24 +122,6 @@ return {
         },
     },
     {
-        "rachartier/tiny-code-action.nvim",
-        dependencies = {
-            { "nvim-lua/plenary.nvim" },
-            { "nvim-telescope/telescope.nvim" },
-        },
-        keys = {
-            {
-                "<leader>ca",
-                mode = { "n", "v" },
-                function()
-                    require("tiny-code-action").code_action()
-                end,
-                desc = "[C]ode [A]ction",
-            },
-        },
-        opts = {},
-    },
-    {
         "danymat/neogen",
         cmd = { "Neogen" },
         opts = {
@@ -165,5 +142,44 @@ return {
                 desc = "Generate Annotations (Neogen)",
             },
         },
+    },
+    {
+        "nvimdev/lspsaga.nvim",
+        event = "LspAttach",
+        keys = {
+            {
+                "<leader>ca",
+                "<CMD>Lspsaga code_action<CR>",
+                desc = "[C]ode [A]ction",
+            },
+            {
+                "<leader>o",
+                "<cmd>Lspsaga outline<cr>",
+                desc = "Outline (Lspsaga)",
+            },
+        },
+        opts = function()
+            local icons = require("core.icons")
+            return {
+                ui = {
+                    expand = icons.kind.Expanded,
+                    collapse = icons.kind.Collapsed,
+                    code_action = icons.ui.Lightbulb,
+                },
+                symbol_in_winbar = { enable = false },
+                finder = {
+                    keys = {
+                        toggle_or_open = "<cr>",
+                    },
+                },
+                outline = {
+                    layout = "float",
+                    keys = {
+                        toggle_or_jump = "<cr>",
+                    },
+                },
+                lightbulb = { sign = false },
+            }
+        end,
     },
 }

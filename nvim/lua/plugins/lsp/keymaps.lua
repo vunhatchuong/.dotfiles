@@ -15,7 +15,7 @@ function M.on_attach()
     nmap("<C-k>", vim.diagnostic.open_float, "Open floating diagnostic message")
 
     nmap("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]definition")
-    nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+    nmap("gr", "<CMD>Lspsaga finder<CR>", "[G]oto [R]eferences")
     nmap("gi", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
     nmap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]definition")
     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")

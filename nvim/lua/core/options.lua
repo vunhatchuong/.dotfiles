@@ -44,6 +44,7 @@ opt.ignorecase = true -- ignore case in search patterns
 opt.smartcase = true  -- smart case
 
 ---  APPEARANCE  ---
+opt.showmode = false     -- Already has lualine
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.cursorline = true    -- highlight the current line
 opt.signcolumn = "yes"   -- always show the sign column otherwise it would shift the text each time
