@@ -7,6 +7,7 @@ return {
         Color = " ",
         Control = " ",
         Collapsed = " ",
+        Expanded = " ",
         Constant = " ",
         Constructor = " ",
         Copilot = " ",
@@ -45,8 +46,8 @@ return {
     git = {
         LineAdded = " ",
         LineModified = " ",
-        LineRemoved = " ",
-        FileDeleted = " ",
+        LineRemoved  = " ",
+        FileDeleted = " ",
         FileIgnored = "◌",
         FileRenamed = " ",
         FileStaged = "S",
