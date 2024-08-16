@@ -116,21 +116,14 @@ return {
         },
     },
     {
-        "leath-dub/snipe.nvim",
+        "glepnir/flybuf.nvim",
         keys = {
             {
                 "gb",
-                function()
-                    require("snipe").open_buffer_menu()
-                end,
-                desc = "Open Snipe buffer menu",
+                "<CMD>FlyBuf<CR>",
+                desc = "Open buffer menu",
             },
         },
-        opts = {
-            ui = {
-                max_width = -1,
-                position = "center",
-            },
-        },
+        opts = {},
     },
 }

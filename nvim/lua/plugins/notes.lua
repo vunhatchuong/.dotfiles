@@ -23,32 +23,4 @@ return {
             },
         },
     },
-    {
-        "serenevoid/kiwi.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        keys = {
-            {
-                "<leader>nw",
-                ':lua require("kiwi").open_wiki_index("wiki")<cr>',
-                desc = "Open Wiki index",
-            },
-            {
-                "<leader>nt",
-                ':lua require("kiwi").todo.toggle()<cr>',
-                desc = "Toggle Markdown Task",
-            },
-        },
-        config = function()
-            local wiki_index = vim.fn.has("win64") == 1 and "D:/wiki"
-                or "~/wiki"
-            require("kiwi").setup({
-                {
-                    name = "wiki",
-                    path = wiki_index,
-                },
-            })
-        end,
-    },
 }
