@@ -88,7 +88,6 @@ keymap("n", "<leader>wq", "<C-W>c", opts)
 keymap("n", "<leader>-", "<C-W>s", opts)
 keymap("n", "<leader>|", "<C-W>v", opts)
 
--- Smart dd: https://www.reddit.com/r/neovim/comments/w0jzzv/comment/igfjx5y/
 keymap("n", "dd", function()
     if vim.api.nvim_get_current_line():match("^%s*$") then
         return '"_dd'

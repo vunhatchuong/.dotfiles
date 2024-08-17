@@ -115,7 +115,5 @@ autocmd({ "BufWritePre" }, {
 autocmd({ "BufWinEnter" }, {
     desc = "Clear the last used search pattern",
     pattern = "*",
-    callback = function()
-        vim.cmd([[let @/ = '']])
-    end,
+    command = "let @/ = ''",
 })
