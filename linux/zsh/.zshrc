@@ -16,6 +16,9 @@ plug "zap-zsh/exa"
 plug "esc/conda-zsh-completion"
 plug "Bhupesh-V/ugit"
 
+plug "jeffreytse/zsh-vi-mode"
+ZVM_CURSOR_STYLE_ENABLED=false
+
 # fzf-tab
 plug "Aloxaf/fzf-tab"
 plug "Freed-Wu/fzf-tab-source"
