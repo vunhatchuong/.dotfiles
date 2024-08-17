@@ -150,11 +150,13 @@ return {
                 desc = "Compile",
             },
         },
-        opts = {
-            default_command = "",
-            time_format = "%H:%M:%S",
-            recompile_no_fail = true,
-        },
+        config = function()
+            vim.g.compile_mode = {
+                default_command = "",
+                time_format = "%H:%M:%S",
+                recompile_no_fail = true,
+            }
+        end,
     },
     {
         "psjay/buffer-closer.nvim",
