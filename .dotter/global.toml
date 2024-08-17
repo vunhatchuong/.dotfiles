@@ -12,7 +12,8 @@ wezterm = "~/.config/wezterm"
 "starship.toml" = "~/.config/starship.toml"
 
 [general.variables]
-alacritty-theme_path = "~/.config/alacritty/themes/rose-pine-moon.toml"
+alacritty-theme = "~/.config/alacritty/themes/sequoia-monochrome.toml"
+alacritty-shell = ""
 
 [windows]
 depends = ["general"]
