@@ -35,7 +35,7 @@ return {
         String = " ",
         Struct = "󰆼 ",
         TabNine = "󰚩 ",
-        Supermaven = "",
+        Supermaven = " ",
         Text = " ",
         TypeParameter = " ",
         Unit = " ",

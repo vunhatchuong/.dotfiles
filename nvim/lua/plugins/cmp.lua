@@ -2,29 +2,17 @@ return {
     {
         "hrsh7th/nvim-cmp",
         version = false, -- last release is way too old
-        event = { "InsertEnter" },
+        event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
-            {
-                "garymjr/nvim-snippets",
-                opts = {
-                    friendly_snippets = true,
-                },
-                dependencies = { "rafamadriz/friendly-snippets" },
-            },
             -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
             "hrsh7th/cmp-nvim-lsp",
-            "https://codeberg.org/FelipeLema/cmp-async-path.git",
+            "hrsh7th/cmp-path",
             "uga-rosa/cmp-dynamic",
             "supermaven-inc/supermaven-nvim",
         },
         opts = function()
             vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
             vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
-            vim.api.nvim_set_hl(
-                0,
-                "CmpGhostText",
-                { link = "Comment", default = true }
-            )
             local cmp = require("cmp")
 
             cmp.setup({
@@ -56,11 +44,6 @@ return {
                     completion = cmp.config.window.bordered(),
                     documentation = cmp.config.window.bordered(),
                 },
-                experimental = {
-                    ghost_text = {
-                        hl_group = "CmpGhostText",
-                    },
-                },
                 sources = {
                     {
                         name = "nvim_lsp",
@@ -74,9 +57,8 @@ return {
                             return true
                         end,
                     },
-                    { name = "async_path" },
+                    { name = "path" },
                     { name = "supermaven" },
-                    { name = "snippets" },
                     { name = "dynamic" },
                 },
                 mapping = cmp.mapping.preset.insert({
@@ -86,32 +68,12 @@ return {
                         behavior = cmp.ConfirmBehavior.Insert,
                         select = false,
                     }),
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item({
-                                behavior = cmp.SelectBehavior.Select,
-                            })
-                        elseif vim.snippet.active({ direction = 1 }) then
-                            vim.schedule(function()
-                                vim.snippet.jump(1)
-                            end)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item({
-                                behavior = cmp.SelectBehavior.Select,
-                            })
-                        elseif vim.snippet.active({ direction = -1 }) then
-                            vim.schedule(function()
-                                vim.snippet.jump(-1)
-                            end)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
+                    ["<Tab>"] = cmp.mapping.select_next_item({
+                        behavior = cmp.SelectBehavior.Select,
+                    }),
+                    ["<S-Tab>"] = cmp.mapping.select_prev_item({
+                        behavior = cmp.SelectBehavior.Select,
+                    }),
                 }),
             })
 

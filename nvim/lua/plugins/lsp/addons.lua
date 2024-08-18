@@ -76,6 +76,7 @@ return {
     },
     {
         "dgagn/diagflow.nvim",
+        enable = false,
         event = "LspAttach",
         opts = {
             scope = "line",
