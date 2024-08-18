@@ -20,11 +20,6 @@ return {
         end,
         opts = {
             -- log_level = vim.log.levels.DEBUG,
-            default_format_opts = {
-                async = false, -- not recommended to change
-                quiet = false, -- not recommended to change
-                lsp_format = "fallback", -- not recommended to change
-            },
             formatters_by_ft = {
                 -- Conform will run multiple formatters sequentially.
                 -- Use a sub-list to run only the first available formatter

@@ -4,8 +4,8 @@ return {
         "neovim/nvim-lspconfig",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            "mason.nvim",
+            { "williamboman/mason-lspconfig.nvim", config = function() end },
         },
         init = function()
             vim.lsp.handlers["textDocument/hover"] =
@@ -66,6 +66,11 @@ return {
                             willRename = true,
                         },
                     },
+                },
+                -- options for vim.lsp.buf.format
+                format = {
+                    formatting_options = nil,
+                    timeout_ms = nil,
                 },
                 -- LSP Server Settings
                 ---@type lspconfig.options
@@ -244,6 +249,10 @@ return {
                 local server_opts = vim.tbl_deep_extend("force", {
                     capabilities = vim.deepcopy(capabilities),
                 }, servers[server] or {})
+
+                if server_opts.enabled == false then
+                    return
+                end
 
                 if opts.setup[server] then
                     if opts.setup[server](server, server_opts) then

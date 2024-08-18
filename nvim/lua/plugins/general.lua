@@ -165,7 +165,6 @@ return {
     },
     {
         "shortcuts/no-neck-pain.nvim",
-        lazy = false,
         cmd = { "NoNeckPain" },
         keys = {
             { "<leader>zz", "<cmd>NoNeckPain<cr>", desc = "Toggle ZenMode" },
