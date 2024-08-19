@@ -338,4 +338,16 @@ return {
             }
         end,
     },
+    {
+        "anuvyklack/windows.nvim",
+        dependencies = { "anuvyklack/middleclass" },
+        opts = {},
+        keys = {
+            {
+                "<leader>wf",
+                "<cmd>WindowsMaximize<cr>",
+                desc = "Maximize window",
+            },
+        },
+    },
 }
