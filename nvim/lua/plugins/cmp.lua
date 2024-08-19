@@ -62,7 +62,7 @@ return {
                     { name = "dynamic" },
                 },
                 mapping = cmp.mapping.preset.insert({
-                    -- Currently not working on windows
+                    -- Currently not working in powershell
                     ["<C-Space>"] = cmp.mapping.complete(),
                     ["<CR>"] = cmp.mapping.confirm({
                         behavior = cmp.ConfirmBehavior.Insert,

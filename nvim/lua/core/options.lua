@@ -25,6 +25,7 @@ opt.autowrite = true                        -- save when kinda change buffer?
 opt.fileformat = "unix"
 opt.confirm = true                          -- Confirm to save changes before exiting modified buffer
 opt.spelllang = { "en" }
+opt.spelloptions:append("noplainbuffer")
 opt.smoothscroll = true
 opt.jumpoptions = "view"
 opt.startofline = true
@@ -42,6 +43,9 @@ opt.splitright = true
 
 opt.ignorecase = true -- ignore case in search patterns
 opt.smartcase = true  -- smart case
+
+opt.grepformat = "%f:%l:%c:%m"
+opt.grepprg = "rg --vimgrep"
 
 ---  APPEARANCE  ---
 opt.showmode = false     -- Already has lualine
@@ -84,7 +88,7 @@ vim.g.netrw_alto = 0
 
 ---  OTHERS  ---
 opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.shortmess:append("Wc")        -- don't show redundant messages from ins-completion-menu
+opt.shortmess:append("WIcsS")        -- don't show redundant messages from ins-completion-menu
 opt.fillchars = vim.opt.fillchars + "eob: "
 opt.fillchars:append({
     foldopen = "",
