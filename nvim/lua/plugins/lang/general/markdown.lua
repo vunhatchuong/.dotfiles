@@ -111,6 +111,7 @@ return {
             },
             code = {
                 sign = false,
+                width = "block",
             },
         },
     },
