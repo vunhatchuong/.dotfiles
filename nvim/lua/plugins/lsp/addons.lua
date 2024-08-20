@@ -25,6 +25,7 @@ return {
     -- Currently doesn't support only display current line. https://github.com/chrisgrieser/nvim-lsp-endhints/issues/3
     {
         "vunhatchuong/nvim-lsp-endhints",
+        enabled = false,
         event = "LspAttach",
         opts = {},
     },
@@ -76,6 +77,7 @@ return {
     },
     {
         "dgagn/diagflow.nvim",
+        enabled = false,
         event = "LspAttach",
         opts = {
             scope = "line",

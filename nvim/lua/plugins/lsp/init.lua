@@ -25,11 +25,12 @@ return {
                 diagnostics = {
                     underline = true,
                     update_in_insert = false,
-                    virtual_text = {
-                        spacing = 4,
-                        source = "if_many",
-                        prefix = "icons",
-                    },
+                    virtual_text = false,
+                    -- virtual_text = {
+                    --     spacing = 4,
+                    --     source = "if_many",
+                    --     prefix = "icons",
+                    -- },
                     float = { border = "rounded" },
                     severity_sort = true,
                     signs = {
@@ -42,7 +43,7 @@ return {
                     },
                 },
                 inlay_hints = {
-                    enabled = true,
+                    enabled = false,
                     exclude = {}, -- filetypes for which you don't want to enable inlay hints
                 },
                 -- https://github.com/neovim/neovim/issues/29156
