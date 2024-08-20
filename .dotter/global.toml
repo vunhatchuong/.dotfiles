@@ -8,7 +8,7 @@ bat = "~/.config/bat"
 lazygit = "~/.config/lazygit"
 nvim = "~/.config/nvim"
 wezterm = "~/.config/wezterm"
-".gitconfig" = "~/.gitconfig"
+".gitconfig" = { target = "~/.gitconfig", type = "template" }
 "starship.toml" = "~/.config/starship.toml"
 
 [general.variables]
