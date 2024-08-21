@@ -53,6 +53,15 @@ return {
     {
         "ray-x/lsp_signature.nvim",
         event = "BufReadPre", -- This event type is required
+        keys = {
+            {
+                "<leader>k",
+                function()
+                    vim.lsp.buf.signature_help()
+                end,
+                "Toggle signature help",
+            },
+        },
         opts = {
             hint_enable = false,
             hint_prefix = "󰏪 ",
@@ -149,17 +158,15 @@ return {
     {
         "nvimdev/lspsaga.nvim",
         event = "LspAttach",
+        -- stylua: ignore
         keys = {
-            {
-                "<leader>ca",
-                "<CMD>Lspsaga code_action<CR>",
-                desc = "[C]ode [A]ction",
-            },
-            {
-                "<leader>o",
-                "<cmd>Lspsaga outline<cr>",
-                desc = "Outline (Lspsaga)",
-            },
+            { "<leader>gd", "<CMD>Lspsaga goto_definition<CR>", desc = "[G]oto [D]definition" },
+            { "<leader>gr", "<CMD>Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
+            { "<leader>ca", "<CMD>Lspsaga code_action<CR>", desc = "[C]ode [A]ction" },
+            { "<leader>o", "<cmd>Lspsaga outline<cr>", desc = "Outline (Lspsaga)" },
+            { "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Diagnostic jump next" },
+            { "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Diagnostic jump prev" },
+            -- { "K", "<cmd>Lspsaga hover_doc<cr>", desc = "Hover" },
         },
         opts = function()
             local icons = require("core.icons")
@@ -170,6 +177,9 @@ return {
                     code_action = icons.ui.Lightbulb,
                 },
                 symbol_in_winbar = { enable = false },
+                diagnostic = {
+                    show_code_action = false,
+                },
                 finder = {
                     keys = {
                         toggle_or_open = "<cr>",

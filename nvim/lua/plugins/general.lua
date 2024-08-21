@@ -110,7 +110,8 @@ return {
         },
         opts = {
             init = function()
-                require("hover.providers.lsp")
+                -- require("hover.providers.lsp")
+                require("plugins.lsp.lspsaga-hover")
                 require("hover.providers.fold_preview")
             end,
             preview_opts = { border = "rounded" },
