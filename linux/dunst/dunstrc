@@ -38,7 +38,7 @@
     icon_position = off
 
     ### Misc/Advanced ###
-    browser = /usr/bin/firefox --new-tab
+    browser = /usr/bin/zen-browser --new-tab
 
     ### Wayland ###
     layer = top
