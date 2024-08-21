@@ -27,7 +27,11 @@ keymap("n", "C", '"_C', opts)
 keymap("n", "x", '"_x', opts)
 keymap("n", "zo", "za", opts)
 
-if vim.fn.has("windows") == 1 or vim.fn.has("wsl") == 1 then
+if
+    vim.fn.has("win32") == 1
+    or vim.fn.has("win64") == 1
+    or vim.fn.has("wsl") == 1
+then
     keymap({ "n", "x", "o" }, "<C-_>", "gcc", { remap = true })
 else
     keymap({ "n", "x", "o" }, "<C-/>", "gcc", { remap = true })
