@@ -34,6 +34,7 @@ require("lazy").setup({
     },
     performance = {
         rtp = {
+            -- https://github.com/vim/vim/blob/master/runtime
             disabled_plugins = {
                 "gzip",
                 "tar",
@@ -51,7 +52,15 @@ require("lazy").setup({
                 "2html_plugin",
                 "tohtml",
                 "tutor",
+                "netrw",
                 "netrwPlugin",
+                "netrwSettings",
+                "netrwFileHandlers",
+                "rrhelper",
+                "synmenu",
+                "optwin",
+                "compiler",
+                "bugreport",
             },
         },
     },
