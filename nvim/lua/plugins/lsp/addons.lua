@@ -31,6 +31,7 @@ return {
     },
     {
         "Wansmer/symbol-usage.nvim",
+        enabled = false,
         event = "LspAttach",
         opts = {
             request_pending_text = false,

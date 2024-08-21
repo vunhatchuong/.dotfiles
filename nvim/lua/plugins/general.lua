@@ -63,6 +63,7 @@ return {
     },
     {
         "lewis6991/satellite.nvim",
+        enabled = false,
         dependencies = { { "echasnovski/mini.diff" } },
         event = "VeryLazy",
         opts = {
@@ -134,6 +135,31 @@ return {
         end,
     },
     {
+        "ej-shafran/compile-mode.nvim",
+        cmd = { "Compile", "Recompile" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        keys = {
+            { "<leader>ox", "<cmd>Compile<cr>", desc = "Compile" },
+            {
+                "<leader>or",
+                function()
+                    vim.cmd("Recompile")
+                    vim.cmd("wincmd k")
+                end,
+                desc = "Recompile",
+            },
+        },
+        config = function()
+            vim.g.compile_mode = {
+                default_command = "",
+                time_format = "%H:%M:%S",
+                recompile_no_fail = true,
+            }
+        end,
+    },
+    {
         "vunhatchuong/compile-mode-test.nvim",
         dependencies = "ej-shafran/compile-mode.nvim",
         keys = {
@@ -164,31 +190,6 @@ return {
                     require("compile-mode-test.adapters.zig"),
                 },
             })
-        end,
-    },
-    {
-        "ej-shafran/compile-mode.nvim",
-        cmd = { "Compile", "Recompile" },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
-        keys = {
-            { "<leader>ox", "<cmd>Compile<cr>", desc = "Compile" },
-            {
-                "<leader>or",
-                function()
-                    vim.cmd("Recompile")
-                    vim.cmd("wincmd k")
-                end,
-                desc = "Recompile",
-            },
-        },
-        config = function()
-            vim.g.compile_mode = {
-                default_command = "",
-                time_format = "%H:%M:%S",
-                recompile_no_fail = true,
-            }
         end,
     },
     {

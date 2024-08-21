@@ -62,6 +62,8 @@ opt.laststatus = 3        -- always show the last status {default 2}
 -- opt.conceallevel = 2      -- Hide * markup for bold and italic
 opt.pumblend = 10         -- Popup blend
 opt.pumheight = 10        -- Maximum number of entries in a popup
+opt.cmdheight = 0
+opt.showcmd = false
 
 ---  INDENT  ---
 opt.formatoptions = "tcnlj"
