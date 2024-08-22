@@ -4,10 +4,7 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {
             symbol = "│",
-            options = {
-                indent_at_cursor = true,
-                try_as_border = true,
-            },
+            options = { indent_at_cursor = true, try_as_border = true },
             draw = {
                 animation = function()
                     return 0

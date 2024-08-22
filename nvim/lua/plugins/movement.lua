@@ -54,10 +54,7 @@ return {
                 return v.buffer == vim.fn.bufnr()
             end,
             select_first = true,
-            escape = {
-                ["<esc>"] = true,
-                ["q"] = true,
-            },
+            escape = { ["<esc>"] = true, ["q"] = true },
             window_options = {
                 relative = "cursor",
                 width = 80,
@@ -84,24 +81,14 @@ return {
         opts = {
             -- Characters used for labels of jump spots (in supplied order)
             labels = "arstneioqwfpgh",
-            view = {
-                dim = true,
-                n_steps_ahead = 10,
-            },
-            allowed_windows = {
-                not_current = false,
-            },
-            mappings = {
-                start_jumping = "",
-            },
+            view = { dim = true, n_steps_ahead = 10 },
+            allowed_windows = { not_current = false },
+            mappings = { start_jumping = "" },
         },
     },
     {
         "echasnovski/mini.move",
-        keys = {
-            { "<M-j>" },
-            { "<M-h>" },
-        },
+        keys = { { "<M-j>" }, { "<M-h>" } },
         opts = {},
     },
     {
@@ -117,13 +104,7 @@ return {
     },
     {
         "glepnir/flybuf.nvim",
-        keys = {
-            {
-                "gb",
-                "<CMD>FlyBuf<CR>",
-                desc = "Open buffer menu",
-            },
-        },
+        keys = { { "gb", "<CMD>FlyBuf<CR>", desc = "Open buffer menu" } },
         opts = {},
     },
 }

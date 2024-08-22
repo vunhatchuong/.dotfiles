@@ -16,10 +16,7 @@ return {
         },
         opts = {
             focus = true,
-            keys = {
-                ["<cr>"] = "jump_close",
-                ["<space>"] = "jump",
-            },
+            keys = { ["<cr>"] = "jump_close", ["<space>"] = "jump" },
         },
     },
     -- Currently doesn't support only display current line. https://github.com/chrisgrieser/nvim-lsp-endhints/issues/3
@@ -67,7 +64,6 @@ return {
             hint_prefix = "󰏪 ",
             hint_scheme = "@variable.parameter",
             -- floating_window = false,
-            always_trigger = true,
         },
     },
     {
@@ -79,9 +75,7 @@ return {
     },
     {
         "briangwaltney/paren-hint.nvim",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         event = "LspAttach",
         opts = {},
     },
@@ -89,11 +83,7 @@ return {
         "dgagn/diagflow.nvim",
         enabled = false,
         event = "LspAttach",
-        opts = {
-            scope = "line",
-            toggle_event = { "InsertEnter" },
-            -- show_borders = true,
-        },
+        opts = { scope = "line", toggle_event = { "InsertEnter" } },
     },
     -- Better looking but currently suffer performance issues.
     -- {
