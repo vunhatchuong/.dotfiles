@@ -361,7 +361,42 @@ return {
 
             { "<leader>lr", function() require("chainsaw").removeLogs() end, desc = "󰐪 󰅗 Remove logs" },
         },
-        opts = { marker = "🖨️", logHighlightGroup = false },
+        opts = {
+            marker = ".>",
+            logHighlightGroup = false,
+            logStatements = {
+                variableLog = {
+                    zig = 'std.debug.print("%s %s: {}", .{%s});',
+                },
+                objectLog = {
+                    zig = 'std.debug.print("%s %s: {}", .{%s});',
+                },
+                assertLog = {
+                    zig = 'std.debug.assert(%s, "%s %s");',
+                },
+                typeLog = {
+                    zig = 'std.debug.print("%s %s: type is {}", .{@TypeOf(%s)});',
+                },
+                beepLog = {
+                    zig = 'std.debug.print("%s beep %s", .{});',
+                },
+                messageLog = {
+                    zig = 'std.debug.print("%s ", .{});',
+                },
+                stacktraceLog = {
+                    zig = "std.debug.dumpCurrentStackTrace(null);",
+                },
+                timeLogStart = {
+                    zig = "const timelogStart = std.time.Timer.start(); // %s",
+                },
+                timeLogStop = {
+                    zig = {
+                        "const durationNanos: f64 = @floatFromInt(timelogStart.read()); // %s",
+                        'std.debug.print("%s: {d:.3}ms", .{durationNanos / std.time.ns_per_ms});',
+                    },
+                },
+            },
+        },
     },
     {
         "tzachar/local-highlight.nvim",
