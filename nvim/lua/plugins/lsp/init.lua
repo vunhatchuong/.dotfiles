@@ -52,7 +52,7 @@ return {
                 },
                 -- Enable lsp cursor word highlighting
                 document_highlight = {
-                    enabled = true,
+                    enabled = false,
                 },
                 -- add any global capabilities here
                 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/

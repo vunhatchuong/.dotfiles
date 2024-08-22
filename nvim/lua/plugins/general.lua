@@ -135,11 +135,7 @@ return {
             )
         end,
     },
-    {
-        "psjay/buffer-closer.nvim",
-        keys = { "q" },
-        opts = {},
-    },
+    { "psjay/buffer-closer.nvim", keys = { "q" }, opts = {} },
     {
         "shortcuts/no-neck-pain.nvim",
         cmd = { "NoNeckPain" },
@@ -346,5 +342,50 @@ return {
                 desc = "Maximize window",
             },
         },
+    },
+    {
+        "chrisgrieser/nvim-chainsaw",
+        cmd = "ChainSaw",
+        -- stylua: ignore
+        keys = {
+            { "<leader>ll", function() require("chainsaw").variableLog() end, mode = { "n", "x" }, desc = "󰐪 Var" },
+            { "<leader>lo", function() require("chainsaw").objectLog() end, mode = { "n", "x" }, desc = "󰐪 Object" },
+            { "<leader>la", function() require("chainsaw").assertLog() end, mode = { "n", "x" }, desc = "󰐪 Assert" },
+            { "<leader>lt", function() require("chainsaw").typeLog() end, mode = { "n", "x" }, desc = "󰐪 Type" },
+            { "<leader>lm", function() require("chainsaw").messageLog() end, desc = "󰐪 Message" },
+            { "<leader>lb", function() require("chainsaw").beepLog() end, desc = "󰐪 Beep" },
+            { "<leader>l1", function() require("chainsaw").timeLog() end, desc = "󰐪 Time" },
+            { "<leader>ld", function() require("chainsaw").debugLog() end, desc = "󰐪 Debugger" },
+            { "<leader>ls", function() require("chainsaw").stacktraceLog() end, desc = "󰐪 Stacktrace" },
+            { "<leader>lk", function() require("chainsaw").clearLog() end, desc = "󰐪 Clear" },
+
+            { "<leader>lr", function() require("chainsaw").removeLogs() end, desc = "󰐪 󰅗 Remove logs" },
+        },
+        opts = { marker = "🖨️", logHighlightGroup = false },
+    },
+    {
+        "tzachar/local-highlight.nvim",
+        event = "BufRead",
+        opts = {
+            hlgroup = "LspReferenceText",
+            cw_hlgroup = "LspReferenceText",
+            highlight_single_match = false,
+        },
+    },
+    { -- Move in and out of brackets
+        "ysmb-wtsg/in-and-out.nvim",
+        -- Doesn't work on Windows and WSL :\
+        enabled = vim.fn.has("Linux") == 1 or vim.fn.has("wsl") == 1,
+        event = "VeryLazy",
+        config = function()
+            vim.keymap.set("i", "<C-CR>", function()
+                require("in-and-out").in_and_out()
+            end, { desc = "In and out" })
+        end,
+    },
+    { -- Keep cursor position when yank
+        "svban/YankAssassin.nvim",
+        event = "VeryLazy",
+        opts = { auto_normal = true, auto_visual = true },
     },
 }

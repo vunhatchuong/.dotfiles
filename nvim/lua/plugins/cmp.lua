@@ -18,6 +18,8 @@ return {
             cmp.setup({
                 auto_brackets = {}, -- configure any filetype to auto add brackets
                 completion = {
+                    -- Don't auto popup completion menu
+                    autocomplete = false,
                     completeopt = "menu,menuone,noselect,noinsert",
                 },
                 snippet = {
