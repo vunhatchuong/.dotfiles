@@ -6,6 +6,7 @@ return {
             layout = "float",
             schemes = {
                 "default",
+                "gruber-darker",
                 "lackluster-hack",
                 "Duskfox",
                 "blue-moon",
@@ -49,4 +50,5 @@ return {
     { "wadackel/vim-dogrun" },
     { "anAcc22/sakura.nvim" },
     { "aliqyan-21/darkvoid.nvim" },
+    { "blazkowolf/gruber-darker.nvim" },
 }
