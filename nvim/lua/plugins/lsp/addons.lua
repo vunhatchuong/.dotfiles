@@ -150,8 +150,8 @@ return {
         event = "LspAttach",
         -- stylua: ignore
         keys = {
-            { "<leader>gd", "<CMD>Lspsaga goto_definition<CR>", desc = "[G]oto [D]definition" },
-            { "<leader>gr", "<CMD>Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
+            { "gd", "<CMD>Lspsaga goto_definition<CR>", desc = "[G]oto [D]definition" },
+            { "gr", "<CMD>Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
             { "<leader>ca", "<CMD>Lspsaga code_action<CR>", desc = "[C]ode [A]ction" },
             { "<leader>o", "<cmd>Lspsaga outline<cr>", desc = "Outline (Lspsaga)" },
             { "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Diagnostic jump next" },
