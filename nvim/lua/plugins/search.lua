@@ -14,7 +14,9 @@ return {
         keys = {
             {
                 "<leader>st",
-                function() require("grug-far").grug_far() end,
+                function()
+                    require("grug-far").grug_far()
+                end,
                 desc = "Search and Replace",
             },
             {
@@ -27,5 +29,18 @@ return {
                 desc = "Search current word",
             },
         },
+    },
+    {
+        "cshuaimin/ssr.nvim",
+        keys = {
+            {
+                "<leader>sf",
+                function()
+                    require("ssr").open()
+                end,
+                mode = { "n", "x" },
+            },
+        },
+        opts = {},
     },
 }
