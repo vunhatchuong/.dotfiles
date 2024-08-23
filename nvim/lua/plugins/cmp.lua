@@ -17,9 +17,12 @@ return {
 
             cmp.setup({
                 auto_brackets = {}, -- configure any filetype to auto add brackets
+                performance = {
+                    debounce = 250,
+                },
                 completion = {
                     -- Don't auto popup completion menu
-                    autocomplete = false,
+                    -- autocomplete = false,
                     completeopt = "menu,menuone,noselect,noinsert",
                 },
                 snippet = {
@@ -65,7 +68,7 @@ return {
                 },
                 mapping = cmp.mapping.preset.insert({
                     -- Currently not working in powershell
-                    ["<C-Space>"] = cmp.mapping.complete(),
+                    ["<C-c>"] = cmp.mapping.complete(),
                     ["<CR>"] = cmp.mapping.confirm({
                         behavior = cmp.ConfirmBehavior.Insert,
                         select = false,

@@ -17,6 +17,7 @@ vim.g.maplocalleader = " "
 -- Netrw
 keymap("n", "<leader>e", vim.cmd.Ex)
 keymap("n", "Q", "<nop>")
+keymap("n", "<C-c>", "<nop>")
 
 -- Normal --
 keymap("n", "<Esc>", ":nohl<cr>", opts)
