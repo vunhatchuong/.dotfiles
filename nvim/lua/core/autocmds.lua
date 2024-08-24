@@ -1,4 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
 
 autocmd({ "FileType" }, {
     desc = "Close with q",
@@ -15,6 +16,7 @@ autocmd({ "FileType" }, {
         "grug-far",
         "undotree",
         "grapple",
+        "quicktest-output",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
@@ -116,4 +118,20 @@ autocmd({ "BufWinEnter" }, {
     desc = "Clear the last used search pattern",
     pattern = "*",
     command = "let @/ = ''",
+})
+
+-- Modified default theme
+-- https://github.com/glepnir/nvim/blob/main/lua/core/init.lua
+augroup("ModifyDefaultTheme", {})
+autocmd("ColorScheme", {
+    group = "ModifyDefaultTheme",
+    pattern = "default",
+    callback = function()
+        vim.cmd([[
+            hi link @property @variable
+            hi Type guifg=#eed49f ctermfg=11
+            hi link @type.builtin Type
+            hi link @type Type
+        ]])
+    end,
 })
