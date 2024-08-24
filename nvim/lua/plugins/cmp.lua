@@ -124,6 +124,7 @@ return {
     },
     {
         "supermaven-inc/supermaven-nvim",
+        cmd = "SupermavenToggle",
         opts = {
             disable_keymaps = true,
             disable_inline_completion = true,

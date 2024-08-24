@@ -12,7 +12,7 @@ if vim.fn.has("win32") == 1 or vim.fn.has("win64") == 1 then
 end
 
 ---  SYSTEM   ---
-opt.updatetime = 100                        -- faster completion
+opt.updatetime = 250                        -- faster completion
 opt.timeoutlen = 250                        -- time to wait for a mapped sequence to complete (in milliseconds)
 opt.swapfile = false                        -- creates a swapfile
 opt.backup = false                          -- creates a backup file

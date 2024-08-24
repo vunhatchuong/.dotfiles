@@ -67,6 +67,11 @@ return {
         },
     },
     {
+        "jinh0/eyeliner.nvim",
+        keys = { "f", "F", "t", "T" },
+        opts = { highlight_on_key = true, dim = true },
+    },
+    {
         "echasnovski/mini.jump2d",
         keys = {
             {
@@ -106,5 +111,16 @@ return {
         "glepnir/flybuf.nvim",
         keys = { { "gb", "<CMD>FlyBuf<CR>", desc = "Open buffer menu" } },
         opts = {},
+    },
+    { -- Move in and out of brackets
+        "ysmb-wtsg/in-and-out.nvim",
+        -- Doesn't work on Windows and WSL :\
+        enabled = vim.fn.has("Linux") == 1 or vim.fn.has("wsl") == 1,
+        event = "VeryLazy",
+        config = function()
+            vim.keymap.set("i", "<C-CR>", function()
+                require("in-and-out").in_and_out()
+            end, { desc = "In and out" })
+        end,
     },
 }
