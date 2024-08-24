@@ -13,14 +13,6 @@ return {
             servers = {
                 -- https://github.com/zigtools/zls/blob/master/src/Config.zig
                 zls = {
-                    on_attach = function()
-                        vim.keymap.set(
-                            { "n", "x", "o" },
-                            "<C-/>",
-                            "gcc",
-                            { remap = true }
-                        )
-                    end,
                     settings = {
                         zls = {
                             warn_style = true,

@@ -80,12 +80,6 @@ keymap("x", "<leader>p", [["_dP]], opts)
 keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- Tmux sessionizer
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-keymap(
-    "n",
-    "<leader>ge",
-    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
-    { silent = true }
-)
 
 -- windows
 keymap("n", "<leader>ww", "<C-W>w", opts)

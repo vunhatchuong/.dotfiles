@@ -21,15 +21,13 @@ require("lazy").setup({
     defaults = {
         lazy = true,
     },
-    install = {
-        colorscheme = { "catppuccin", "rose-pine" },
-    },
+    install = { colorscheme = { "default" } },
     checker = { enabled = true },
     ui = {
         border = "rounded",
     },
     change_detection = {
-        enabled = true,
+        enabled = false,
         notify = false,
     },
     performance = {
