@@ -67,28 +67,11 @@ return {
         },
     },
     {
-        "jinh0/eyeliner.nvim",
-        keys = { "f", "F", "t", "T" },
-        opts = { highlight_on_key = true, dim = true },
-    },
-    {
-        "echasnovski/mini.jump2d",
+        "xiaoshihou514/squirrel.nvim",
+        -- stylua: ignore
         keys = {
-            {
-                "<CR>",
-                function()
-                    require("mini.jump2d").start(
-                        require("mini.jump2d").builtin_opts.word_start
-                    )
-                end,
-            },
-        },
-        opts = {
-            -- Characters used for labels of jump spots (in supplied order)
-            labels = "arstneioqwfpgh",
-            view = { dim = true, n_steps_ahead = 10 },
-            allowed_windows = { not_current = false },
-            mappings = { start_jumping = "" },
+            { "f", function() require("squirrel.hop").hop_linewise() end },
+            { "<CR>", function() require("squirrel.hop").hop() end },
         },
     },
     {

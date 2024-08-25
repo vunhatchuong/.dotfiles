@@ -122,9 +122,8 @@ autocmd({ "BufWinEnter" }, {
 
 -- Modified default theme
 -- https://github.com/glepnir/nvim/blob/main/lua/core/init.lua
-augroup("ModifyDefaultTheme", {})
 autocmd("ColorScheme", {
-    group = "ModifyDefaultTheme",
+    group = augroup("ModifyDefaultTheme", {}),
     pattern = "default",
     callback = function()
         vim.cmd([[
