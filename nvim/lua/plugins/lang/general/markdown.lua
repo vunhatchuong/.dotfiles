@@ -115,4 +115,16 @@ return {
             },
         },
     },
+    {
+        "ChuufMaster/markdown-toc",
+        keys = { "GenerateTOC", "DeleteTOC" },
+        opts = {
+            ask_for_heading_level = false,
+        },
+    },
+    {
+        "Kicamon/markdown-table-mode.nvim",
+        ft = { "markdown", "norg", "rmd", "org" },
+        opts = {},
+    },
 }
