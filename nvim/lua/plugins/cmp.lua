@@ -144,8 +144,7 @@ return {
     },
     -- Manage libuv types with lazy. Plugin will never be loaded
     { "Bilal2453/luvit-meta", lazy = true },
-    -- Add lazydev source to cmp
-    {
+    { -- Add lazydev source to cmp
         "hrsh7th/nvim-cmp",
         opts = function(_, opts)
             opts.sources = opts.sources or {}

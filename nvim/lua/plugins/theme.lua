@@ -8,7 +8,7 @@ return {
                 "default",
                 "gruber-darker",
                 "lackluster-hack",
-                "Duskfox",
+                "lackluster-mint",
                 "blue-moon",
                 "nordic",
                 "sequoia",
@@ -19,6 +19,7 @@ return {
                 "crimson_moonlight",
                 "sakura",
                 "darkvoid",
+                "simple-dark"
             },
             window = {
                 border = "rounded",
@@ -51,4 +52,5 @@ return {
     { "anAcc22/sakura.nvim" },
     { "aliqyan-21/darkvoid.nvim" },
     { "blazkowolf/gruber-darker.nvim" },
+    { "tek256/simple-dark" },
 }
