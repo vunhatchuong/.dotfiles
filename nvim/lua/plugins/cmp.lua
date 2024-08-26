@@ -9,7 +9,7 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
             "uga-rosa/cmp-dynamic",
-            "supermaven-inc/supermaven-nvim",
+            -- "supermaven-inc/supermaven-nvim",
         },
         opts = function()
             vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
@@ -64,7 +64,7 @@ return {
                         end,
                     },
                     { name = "path" },
-                    { name = "supermaven" },
+                    -- { name = "supermaven" },
                     { name = "dynamic" },
                 },
                 mapping = cmp.mapping.preset.insert({
@@ -123,14 +123,14 @@ return {
             end
         end,
     },
-    {
-        "supermaven-inc/supermaven-nvim",
-        cmd = "SupermavenToggle",
-        opts = {
-            disable_keymaps = true,
-            disable_inline_completion = true,
-        },
-    },
+    -- {
+    --     "supermaven-inc/supermaven-nvim",
+    --     cmd = "SupermavenToggle",
+    --     opts = {
+    --         disable_keymaps = true,
+    --         disable_inline_completion = true,
+    --     },
+    -- },
     {
         "folke/lazydev.nvim",
         ft = "lua",

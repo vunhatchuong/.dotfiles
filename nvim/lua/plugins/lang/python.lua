@@ -76,6 +76,7 @@ return {
                 python = {
                     "ruff_fix", -- Fix lint errors
                     "ruff_format", -- Formatter
+                    "ruff_organize_imports",
                 },
             },
         },
