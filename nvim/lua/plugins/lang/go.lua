@@ -119,6 +119,7 @@ return {
     {
         "nvimtools/none-ls.nvim",
         optional = true,
+        ft = { "go", "gomod", "gowork", "gosum", "templ" },
         dependencies = {
             {
                 "williamboman/mason.nvim",

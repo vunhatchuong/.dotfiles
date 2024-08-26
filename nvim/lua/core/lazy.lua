@@ -54,7 +54,6 @@ require("lazy").setup({
                 "netrwPlugin",
                 "netrwSettings",
                 "netrwFileHandlers",
-                "rrhelper",
                 "synmenu",
                 "optwin",
                 "compiler",

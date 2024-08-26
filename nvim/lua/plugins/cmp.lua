@@ -1,6 +1,7 @@
 return {
     {
-        "hrsh7th/nvim-cmp",
+        "yioneko/nvim-cmp",
+        branch = "perf",
         version = false, -- last release is way too old
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
@@ -145,7 +146,7 @@ return {
     -- Manage libuv types with lazy. Plugin will never be loaded
     { "Bilal2453/luvit-meta", lazy = true },
     { -- Add lazydev source to cmp
-        "hrsh7th/nvim-cmp",
+        "yioneko/nvim-cmp",
         opts = function(_, opts)
             opts.sources = opts.sources or {}
             table.insert(opts.sources, {

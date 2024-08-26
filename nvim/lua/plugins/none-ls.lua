@@ -3,7 +3,7 @@ return {
     {
         "nvimtools/none-ls.nvim",
         -- Needs none-ls for spell checking lint/format
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        -- event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         keys = {
             {
                 "<leader>ca",
