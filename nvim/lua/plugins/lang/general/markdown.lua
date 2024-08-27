@@ -80,19 +80,7 @@ return {
             },
         },
         build = function()
-            local install_path = vim.fn.stdpath("data")
-                .. "/lazy/markdown-preview.nvim/app"
-
-            if vim.fn.executable("node") == 0 then
-                print("Node not found")
-                vim.fn["mkdp#util#install"]()
-            else
-                vim.cmd(
-                    "silent !cd "
-                        .. install_path
-                        .. " && npm install && git restore ."
-                )
-            end
+            vim.fn["mkdp#util#install"]()
         end,
         init = function()
             vim.g.mkdp_filetypes = { "markdown" }
