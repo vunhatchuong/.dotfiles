@@ -179,4 +179,36 @@ return {
             -- bg_color = "#535c68",
         },
     },
+    {
+        "HakonHarnes/img-clip.nvim",
+        cmd = { "PasteImage" },
+        keys = {
+            {
+                "<leader>p",
+                function()
+                    local telescope = require("telescope.builtin")
+                    local actions = require("telescope.actions")
+                    local action_state = require("telescope.actions.state")
+
+                    telescope.find_files({
+                        attach_mappings = function(_, map)
+                            local function embed_image(prompt_bufnr)
+                                local entry = action_state.get_selected_entry()
+                                local filepath = entry[1]
+                                actions.close(prompt_bufnr)
+
+                                require("img-clip").paste_image(nil, filepath)
+                            end
+
+                            map("i", "<CR>", embed_image)
+                            map("n", "<CR>", embed_image)
+
+                            return true
+                        end,
+                    })
+                end,
+            },
+        },
+        opts = {},
+    },
 }

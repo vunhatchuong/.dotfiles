@@ -9,7 +9,6 @@ return {
             "hrsh7th/cmp-nvim-lsp",
             "hrsh7th/cmp-path",
             "uga-rosa/cmp-dynamic",
-            -- "supermaven-inc/supermaven-nvim",
         },
         opts = function()
             vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
@@ -125,10 +124,16 @@ return {
     },
     -- {
     --     "supermaven-inc/supermaven-nvim",
+    --     build = ":SupermavenUseFree",
     --     cmd = "SupermavenToggle",
     --     opts = {
+    --         log_level = "off",
     --         disable_keymaps = true,
     --         disable_inline_completion = true,
+    --         ignore_filetypes = {
+    --             gitcommit = true,
+    --             TelescopePrompt = true,
+    --         },
     --     },
     -- },
     {
