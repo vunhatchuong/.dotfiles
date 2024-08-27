@@ -144,4 +144,39 @@ return {
         event = "VeryLazy",
         opts = { auto_normal = true, auto_visual = true },
     },
+    { -- Install distant then run :DistantConnect ssh://{username}@{IP}
+        "chipsenkbeil/distant.nvim",
+        cmd = { "DistantInstall", "DistantConnect", "DistantLaunch" },
+        opts = {
+            ["network.private"] = true,
+            -- manager = {
+            --     log_file = "/tmp/manager.log",
+            --     log_level = "trace",
+            -- },
+        },
+        config = function(_, opts)
+            require("distant"):setup(opts)
+        end,
+    },
+    {
+        "mistricky/codesnap.nvim",
+        -- Doesn't support Windows yet
+        enabled = vim.fn.has("Linux") == 1,
+        build = "make",
+        cmd = {
+            "CodeSnap",
+            "CodeSnapSave",
+            "CodeSnapASCII",
+            "CodeSnapHighlight",
+        },
+        opts = {
+            save_path = "~/Pictures",
+            mac_window_bar = false,
+            has_breadcrumbs = true,
+            show_workspace = true,
+            has_line_number = true,
+            bg_theme = "peach",
+            -- bg_color = "#535c68",
+        },
+    },
 }
