@@ -59,16 +59,18 @@ return {
         -- gao to turn into motion mode. Ex: gaouw means change a word to upper
         "johmsalas/text-case.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
-        keys = { "ga" },
+        keys = {
+            { "ga" },
+            {
+                "ga.",
+                "<cmd>TextCaseOpenTelescope<CR>",
+                mode = { "n", "x" },
+                desc = "Change word case",
+            },
+        },
         config = function()
             require("textcase").setup({})
             require("telescope").load_extension("textcase")
-            vim.keymap.set(
-                { "n", "v" },
-                "ga",
-                "TextCaseOpenTelescope",
-                { desc = "Change word case" }
-            )
         end,
     },
     { "psjay/buffer-closer.nvim", keys = { "q" }, opts = {} },
@@ -210,5 +212,20 @@ return {
             },
         },
         opts = {},
+    },
+    {
+        "rlychrisg/truncateline.nvim",
+        event = "VeryLazy",
+        opts = {
+            enabled_on_start = true,
+
+            -- Note: Make it less than sidescrolloff
+            line_start_length = 15,
+
+            -- which highlight group should be used for virtual text.
+            -- "Comment", or "Normal" are good choices, but anything in
+            -- :highlight can be used.
+            hilight_group = "Comment",
+        },
     },
 }
