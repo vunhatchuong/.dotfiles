@@ -217,15 +217,17 @@ return {
         "rlychrisg/truncateline.nvim",
         event = "VeryLazy",
         opts = {
-            enabled_on_start = true,
-
             -- Note: Make it less than sidescrolloff
             line_start_length = 15,
-
-            -- which highlight group should be used for virtual text.
-            -- "Comment", or "Normal" are good choices, but anything in
-            -- :highlight can be used.
-            hilight_group = "Comment",
+        },
+    },
+    {
+        "glepnir/template.nvim",
+        cmd = { "Template" },
+        opts = {
+            temp_dir = vim.fn.stdpath("config") .. "/template",
+            author = "Vu Nhat Chuong",
+            email = "ronnyvu321@gmail.com",
         },
     },
 }

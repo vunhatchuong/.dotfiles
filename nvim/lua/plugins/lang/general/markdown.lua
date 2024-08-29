@@ -105,7 +105,7 @@ return {
     },
     {
         "ChuufMaster/markdown-toc",
-        keys = { "GenerateTOC", "DeleteTOC" },
+        cmd = { "GenerateTOC", "DeleteTOC" },
         opts = {
             ask_for_heading_level = false,
         },
