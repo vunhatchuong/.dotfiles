@@ -67,18 +67,33 @@ return {
                     { name = "dynamic" },
                 },
                 mapping = cmp.mapping.preset.insert({
-                    -- Currently not working in powershell
                     ["<C-c>"] = cmp.mapping.complete(),
                     ["<CR>"] = cmp.mapping.confirm({
                         behavior = cmp.ConfirmBehavior.Insert,
                         select = false,
                     }),
-                    ["<Tab>"] = cmp.mapping.select_next_item({
-                        behavior = cmp.SelectBehavior.Select,
-                    }),
-                    ["<S-Tab>"] = cmp.mapping.select_prev_item({
-                        behavior = cmp.SelectBehavior.Select,
-                    }),
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item({
+                                behavior = cmp.SelectBehavior.Select,
+                            })
+                        elseif vim.snippet.active({ direction = 1 }) then
+                            vim.snippet.jump(1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
+                    ["<S-Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item({
+                                behavior = cmp.SelectBehavior.Select,
+                            })
+                        elseif vim.snippet.active({ direction = -1 }) then
+                            vim.snippet.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                 }),
             })
 
