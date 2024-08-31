@@ -9,7 +9,7 @@ return {
             return {
                 -- stylua: ignore start
                 { "<leader>a", function() mark_file() end },
-                { "<TAB>",     ":Grapple toggle_tags<CR>" },
+                { "<leader>m", "<CMD>Grapple toggle_tags<CR>" },
                 { "<leader>1", ":Grapple select index=1<CR>" },
                 { "<leader>2", ":Grapple select index=2<CR>" },
                 { "<leader>3", ":Grapple select index=3<CR>" },
@@ -19,52 +19,6 @@ return {
             }
         end,
         opts = {},
-    },
-    {
-        "cbochs/portal.nvim",
-        keys = function()
-            return {
-                {
-                    "<C-o>",
-                    function()
-                        local results = require("portal").search(
-                            require("portal.builtin").jumplist.query({
-                                direction = "forward",
-                            })
-                        )
-                        if vim.tbl_isempty(results) then
-                            require("portal").tunnel(
-                                require("portal.builtin").jumplist.query({
-                                    direction = "backward",
-                                })
-                            )
-                            return
-                        end
-                        require("portal").tunnel(
-                            require("portal.builtin").jumplist.query({
-                                direction = "forward",
-                            })
-                        )
-                    end,
-                },
-            }
-        end,
-        opts = {
-            filter = function(v)
-                return v.buffer == vim.fn.bufnr()
-            end,
-            select_first = true,
-            escape = { ["<esc>"] = true, ["q"] = true },
-            window_options = {
-                relative = "cursor",
-                width = 80,
-                height = 4,
-                col = 10,
-                focusable = false,
-                border = "rounded",
-                noautocmd = true,
-            },
-        },
     },
     {
         "xiaoshihou514/squirrel.nvim",
@@ -97,14 +51,16 @@ return {
     },
     { -- Move in and out of brackets
         "ysmb-wtsg/in-and-out.nvim",
-        -- Doesn't work on Windows and WSL :\
-        enabled = vim.fn.has("Linux") == 1 or vim.fn.has("wsl") == 1,
-        event = "VeryLazy",
-        config = function()
-            vim.keymap.set("i", "<C-CR>", function()
-                require("in-and-out").in_and_out()
-            end, { desc = "In and out" })
-        end,
+        keys = {
+            {
+                "<TAB>",
+                function()
+                    require("in-and-out").in_and_out()
+                end,
+                mode = "n",
+            },
+        },
+        opts = { additional_targets = { "<", ">" } },
     },
     { -- Don't touch anything! Has to config this way
         "mfussenegger/nvim-treehopper",
@@ -119,6 +75,23 @@ return {
                 ":lua require('tsht').nodes()<CR>",
                 { noremap = true, expr = false, silent = true }
             )
+        end,
+    },
+    {
+        "vunhatchuong/telescope-jumps.nvim",
+        dependencies = { { "nvim-telescope/telescope.nvim" } },
+        keys = { { "<C-o>", ":Telescope jumps jumpbuff<CR>" } },
+        opts = {
+            extensions = {
+                jumps = {
+                    -- max_results = 5,
+                    line_distance = 3,
+                },
+            },
+        },
+        config = function(_, opts)
+            require("telescope").setup(opts)
+            require("telescope").load_extension("jumps")
         end,
     },
 }
