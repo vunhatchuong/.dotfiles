@@ -2,7 +2,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        version = false, -- last release is way too old and doesn't work on Windows
+        version = false,             -- last release is way too old and doesn't work on Windows
         lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
         event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
         build = ":TSUpdate",
@@ -109,6 +109,10 @@ return {
     {
         "echasnovski/mini.ai",
         event = "VeryLazy",
+        dependencies = {
+            -- Not actually a dependency
+            "David-Kunz/treesitter-unit",
+        },
         opts = function()
             local ai = require("mini.ai")
             return {
@@ -138,10 +142,69 @@ return {
                         "<([%p%w]-)%f[^<%w][^<>]->.-</%1>",
                         "^<.->().*()</[^/]->$",
                     },
-                    u = ai.gen_spec.function_call(), -- u for "Usage"
-                    U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
+                    -- u = ai.gen_spec.function_call(), -- u for "Usage"
+                    -- U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
                 },
             }
         end,
+    },
+    {
+        "David-Kunz/treesitter-unit",
+        -- stylua: ignore
+        config = function()
+            vim.api.nvim_set_keymap("x", "iu", ':lua require"treesitter-unit".select()<CR>', { noremap = true })
+            vim.api.nvim_set_keymap("x", "au", ':lua require"treesitter-unit".select(true)<CR>', { noremap = true })
+            vim.api.nvim_set_keymap("o", "iu", ':<C-U>lua require"treesitter-unit".select()<CR>', { noremap = true })
+            vim.api.nvim_set_keymap("o", "au", ':<C-U>lua require"treesitter-unit".select(true)<CR>', { noremap = true })
+            vim.api.nvim_set_keymap("x", "u", ':lua require"treesitter-unit".select()<CR>', { noremap = true })
+            vim.api.nvim_set_keymap("o", "u", ':<c-u>lua require"treesitter-unit".select()<CR>', { noremap = true })
+        end,
+    },
+    {
+        "danymat/neogen",
+        cmd = { "Neogen" },
+        opts = {
+            languages = {
+                python = {
+                    template = {
+                        annotation_convention = "google_docstrings",
+                    },
+                },
+            },
+        },
+        keys = {
+            {
+                "<leader>cn",
+                function()
+                    require("neogen").generate()
+                end,
+                desc = "Generate Annotations (Neogen)",
+            },
+        },
+    },
+    { -- split-join lines
+        "Wansmer/treesj",
+        keys = { { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" } },
+        opts = { use_default_keymaps = false, max_join_length = 150 },
+    },
+    {
+        "mizlan/iswap.nvim",
+        -- stylua: ignore
+        keys = {
+            { "<leader>ii", ":ISwap<CR>",          desc = "iswap" },
+            { "<leader>in", ":ISwapNode<CR>",      desc = "swap-nodes" },
+            { "<leader>iw", ":ISwapWith<CR>",      desc = "swap-with" },
+            { "<leader>il", ":ISwapWithLeft<CR>",  desc = "swap-with-left" },
+            { "<leader>ir", ":ISwapWithRight<CR>", desc = "swap-with-right" },
+        },
+        opts = {
+            autoswap = true,
+        },
+    },
+    {
+        "briangwaltney/paren-hint.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        event = "VeryLazy",
+        opts = {},
     },
 }

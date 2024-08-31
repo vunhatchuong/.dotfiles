@@ -70,8 +70,8 @@ return {
         "xiaoshihou514/squirrel.nvim",
         -- stylua: ignore
         keys = {
-            { "f", function() require("squirrel.hop").hop_linewise() end },
-            { "<CR>", function() require("squirrel.hop").hop() end },
+            { "f", function() require("squirrel.hop").hop_linewise({ head = true, tail = true }) end },
+            { "<CR>", function() require("squirrel.hop").hop({ head = true, tail = true }) end },
         },
     },
     {
@@ -104,6 +104,21 @@ return {
             vim.keymap.set("i", "<C-CR>", function()
                 require("in-and-out").in_and_out()
             end, { desc = "In and out" })
+        end,
+    },
+    { -- Don't touch anything! Has to config this way
+        "mfussenegger/nvim-treehopper",
+        keys = { { "<CR>", mode = { "x", "o" } } },
+        config = function()
+            vim.keymap.set({ "o" }, "<CR>", function()
+                require("tsht").nodes()
+            end, { noremap = false, expr = false, silent = true })
+            vim.keymap.set(
+                { "x" },
+                "<CR>",
+                ":lua require('tsht').nodes()<CR>",
+                { noremap = true, expr = false, silent = true }
+            )
         end,
     },
 }

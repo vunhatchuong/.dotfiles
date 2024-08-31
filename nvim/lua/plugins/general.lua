@@ -19,7 +19,7 @@ return {
         event = "BufReadPost",
         -- stylua: ignore
         keys = {
-            { "<Left>", function() require("origami").h() end },
+            { "<Left>",  function() require("origami").h() end },
             { "<Right>", function() require("origami").l() end },
         },
         opts = {},
@@ -53,7 +53,6 @@ return {
             preview_opts = { border = "rounded" },
         },
     },
-
     { -- Upper: u, Lower: l, Snake: s, Dash: d, Const: n, Camel: c, Pascal: p
         -- Usage: ga{u} to change cursor word to upper
         -- gao to turn into motion mode. Ex: gaouw means change a word to upper
@@ -165,11 +164,11 @@ return {
         -- Doesn't support Windows yet
         enabled = vim.fn.has("Linux") == 1,
         build = "make",
-        cmd = {
-            "CodeSnap",
-            "CodeSnapSave",
-            "CodeSnapASCII",
-            "CodeSnapHighlight",
+        -- stylua: ignore
+        cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapASCII", "CodeSnapHighlight" },
+        keys = {
+            { "<leader>xs", ":CodeSnap<CR>", mode = { "n", "v" } },
+            { "<leader>xS", ":CodeSnapSave<CR>", mode = { "n", "v" } },
         },
         opts = {
             save_path = "~/Pictures",
@@ -228,6 +227,46 @@ return {
             temp_dir = vim.fn.stdpath("config") .. "/template",
             author = "Vu Nhat Chuong",
             email = "ronnyvu321@gmail.com",
+        },
+    },
+    {
+        "vunhatchuong/browse.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        -- stylua: ignore
+        keys = {
+            { "<leader>b", ":Browse<CR>" },
+            { "<leader>bi", ":BrowseInputSearch<CR>" },
+            { "<leader>bb", ":BrowseBookmarks<CR>" },
+            { "<leader>bd", ":BrowseDevdocsSearch<CR>" },
+            { "<leader>bf", ":BrowseDevdocsFiletypeSearch<CR>" },
+            { "<leader>bm", ":BrowseMdnSearch<CR>" }
+        },
+        opts = {
+            provider = "duckduckgo",
+            bookmarks = {
+                ["personal"] = {
+                    ["github"] = "https://github.com/vunhatchuong",
+                    ["dotfiles"] = "https://github.com/vunhatchuong/.dotfiles",
+                },
+                ["github"] = {
+                    ["repo_search"] = "https://github.com/%s",
+                    ["awesome-nvim"] = "https://github.com/rockerBOO/awesome-neovim",
+                },
+                ["docs"] = {
+                    ["learnxinyminutes"] = "https://learnxinyminutes.com/docs/%s",
+                    ["pkg.go.dev"] = "https://pkg.go.dev/search?q=%s",
+                    ["zig:std"] = "https://ziglang.org/documentation/master/std/",
+                },
+                ["entertainment"] = {
+                    ["neovim_reddit"] = "https://www.reddit.com/r/neovim/",
+                    ["unix-porn_reddit"] = "https://www.reddit.com/r/unixporn/",
+                },
+            },
+            icons = {
+                bookmarks_prompt = "󰂺 ",
+                bookmark_alias = " ",
+                grouped_bookmarks = "|",
+            },
         },
     },
 }

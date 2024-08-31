@@ -139,8 +139,8 @@ return {
             -- stylua: ignore end
             return {
                 defaults = {
-                    prompt_prefix = icons.ui.Telescope .. " ",
-                    selection_caret = icons.ui.Forward .. "  ",
+                    prompt_prefix = " " .. icons.ui.Telescope .. " ",
+                    selection_caret = " " .. icons.ui.Forward,
                     entry_prefix = "   ",
                     path_display = { "smart" },
                     mappings = {

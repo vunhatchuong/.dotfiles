@@ -74,12 +74,6 @@ return {
         end,
     },
     {
-        "briangwaltney/paren-hint.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        event = "LspAttach",
-        opts = {},
-    },
-    {
         "dgagn/diagflow.nvim",
         enabled = false,
         event = "LspAttach",
@@ -104,47 +98,6 @@ return {
     --         end,
     --     },
     -- },
-    { -- split-join lines
-        "Wansmer/treesj",
-        keys = { { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" } },
-        opts = { use_default_keymaps = false, max_join_length = 150 },
-    },
-    {
-        "Wansmer/sibling-swap.nvim",
-        keys = {
-            -- stylua: ignore start
-            { "<C-.>", function() require("sibling-swap").swap_with_right() end, desc = "󰔰 Move Node Right" },
-            { "<C-,>", function() require("sibling-swap").swap_with_left() end, desc = "󰶢 Move Node Left" },
-            -- stylua: ignore end
-        },
-        opts = {
-            use_default_keymaps = true,
-            allowed_separators = { "..", "*" }, -- add multiplication & lua string concatenation
-            highlight_node_at_cursor = true,
-        },
-    },
-    {
-        "danymat/neogen",
-        cmd = { "Neogen" },
-        opts = {
-            languages = {
-                python = {
-                    template = {
-                        annotation_convention = "google_docstrings",
-                    },
-                },
-            },
-        },
-        keys = {
-            {
-                "<leader>cn",
-                function()
-                    require("neogen").generate()
-                end,
-                desc = "Generate Annotations (Neogen)",
-            },
-        },
-    },
     {
         "nvimdev/lspsaga.nvim",
         event = "LspAttach",
