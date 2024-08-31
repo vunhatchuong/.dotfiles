@@ -19,7 +19,7 @@ return {
                 "crimson_moonlight",
                 "sakura",
                 "darkvoid",
-                "simple-dark"
+                "simple-dark",
             },
             window = {
                 border = "rounded",

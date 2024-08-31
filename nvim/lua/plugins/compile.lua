@@ -6,7 +6,7 @@ return {
             "nvim-lua/plenary.nvim",
         },
         keys = {
-            { "<leader>ox", "<cmd>Compile<cr>", desc = "Compile" },
+            { "<leader>ox", ":Compile<CR>", desc = "Compile" },
             {
                 "<leader>or",
                 function()
@@ -30,22 +30,22 @@ return {
         keys = {
             {
                 "<leader>tl",
-                "<CMD>CompileTestLine<CR>",
+                ":CompileTestLine<CR>",
                 desc = "[T]est Run [L]line",
             },
             {
                 "<leader>tf",
-                "<CMD>CompileTestFile<CR>",
+                ":CompileTestFile<CR>",
                 desc = "[T]est Run [F]ile",
             },
             {
                 "<leader>td",
-                "<CMD>CompileTestDir<CR>",
+                ":CompileTestDir<CR>",
                 desc = "[T]est Run [D]ir",
             },
             {
                 "<leader>ta",
-                "<CMD>CompileTestAll<CR>",
+                ":CompileTestAll<CR>",
                 desc = "[T]est Run [A]ll",
             },
         },

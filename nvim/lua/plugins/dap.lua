@@ -10,14 +10,14 @@ return {
         },
         -- stylua: ignore
         keys = {
-            { "<leader>dq", function() require("dap").terminate() end,             desc = "Terminate" },
-            { "<F1>", function() require("dap").toggle_breakpoint() end,           desc = "Toggle Breakpoint" },
-            { "<F2>", function() require("dap").continue() end,                    desc = "Continue" },
-            { "<F3>", function() require("dap").step_over() end,                   desc = "Step Over" },
-            { "<F4>", function() require("dap").step_into() end,                   desc = "Step Into" },
-            { "<F5>", function() require("dap").step_out() end,                    desc = "Step Out" },
-            { "<F6>", function() require("dap").restart() end,                     desc = "Restart" },
-            { "<F9>", function() require("dap").eval(nil, { enter = true }) end,   desc = "Eval var under cursor" },
+            { "<leader>dq", function() require("dap").terminate() end,                 desc = "Terminate" },
+            { "<F1>",       function() require("dap").toggle_breakpoint() end,         desc = "Toggle Breakpoint" },
+            { "<F2>",       function() require("dap").continue() end,                  desc = "Continue" },
+            { "<F3>",       function() require("dap").step_over() end,                 desc = "Step Over" },
+            { "<F4>",       function() require("dap").step_into() end,                 desc = "Step Into" },
+            { "<F5>",       function() require("dap").step_out() end,                  desc = "Step Out" },
+            { "<F6>",       function() require("dap").restart() end,                   desc = "Restart" },
+            { "<F9>",       function() require("dap").eval(nil, { enter = true }) end, desc = "Eval var under cursor" },
         },
         config = function()
             local mason_nvim_conf = require("lazy.core.plugin").values(

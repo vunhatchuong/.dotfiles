@@ -2,7 +2,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        version = false,             -- last release is way too old and doesn't work on Windows
+        version = false, -- last release is way too old and doesn't work on Windows
         lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
         event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
         build = ":TSUpdate",
@@ -184,7 +184,7 @@ return {
     },
     { -- split-join lines
         "Wansmer/treesj",
-        keys = { { "J", "<cmd>TSJToggle<cr>", desc = "Join Toggle" } },
+        keys = { { "J", ":TSJToggle<CR>", desc = "Join Toggle" } },
         opts = { use_default_keymaps = false, max_join_length = 150 },
     },
     {

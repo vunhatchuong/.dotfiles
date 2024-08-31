@@ -5,18 +5,18 @@ return {
         keys = {
             {
                 "<leader>dd",
-                "<cmd>Trouble diagnostics toggle<cr>",
+                ":Trouble diagnostics toggle<CR>",
                 desc = "Diagnostics (Trouble)",
             },
             {
                 "<leader>wd",
-                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                ":Trouble diagnostics toggle filter.buf=0<CR>",
                 desc = "Buffer Diagnostics (Trouble)",
             },
         },
         opts = {
             focus = true,
-            keys = { ["<cr>"] = "jump_close", ["<space>"] = "jump" },
+            keys = { ["<CR>"] = "jump_close", ["<space>"] = "jump" },
         },
     },
     -- Currently doesn't support only display current line. https://github.com/chrisgrieser/nvim-lsp-endhints/issues/3
@@ -103,13 +103,13 @@ return {
         event = "LspAttach",
         -- stylua: ignore
         keys = {
-            { "gd", "<CMD>Lspsaga goto_definition<CR>", desc = "[G]oto [D]definition" },
-            { "gr", "<CMD>Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
-            { "<leader>ca", "<CMD>Lspsaga code_action<CR>", desc = "[C]ode [A]ction" },
-            { "<leader>o", "<cmd>Lspsaga outline<cr>", desc = "Outline (Lspsaga)" },
-            { "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", desc = "Diagnostic jump next" },
-            { "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", desc = "Diagnostic jump prev" },
-            -- { "K", "<cmd>Lspsaga hover_doc<cr>", desc = "Hover" },
+            { "gd",         ":Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
+            { "gr",         ":Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
+            { "<leader>ca", ":Lspsaga code_action<CR>",          desc = "[C]ode [A]ction" },
+            { "<leader>o",  ":Lspsaga outline<CR>",              desc = "Outline (Lspsaga)" },
+            { "]d",         ":Lspsaga diagnostic_jump_next<CR>", desc = "Diagnostic jump next" },
+            { "[d",         ":Lspsaga diagnostic_jump_prev<CR>", desc = "Diagnostic jump prev" },
+            -- { "K", ":Lspsaga hover_doc<CR>", desc = "Hover" },
         },
         opts = function()
             local icons = require("core.icons")
@@ -125,13 +125,13 @@ return {
                 },
                 finder = {
                     keys = {
-                        toggle_or_open = "<cr>",
+                        toggle_or_open = "<CR>",
                     },
                 },
                 outline = {
                     layout = "float",
                     keys = {
-                        toggle_or_jump = "<cr>",
+                        toggle_or_jump = "<CR>",
                     },
                 },
                 lightbulb = { sign = false },

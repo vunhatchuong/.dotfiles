@@ -61,7 +61,8 @@ local function getLspName()
 
     local ok, conform = pcall(require, "conform")
     if ok then
-    local formatters = table.concat(conform.list_formatters_for_buffer(), " ")
+        local formatters =
+            table.concat(conform.list_formatters_for_buffer(), " ")
         for formatter in formatters:gmatch("%w+") do
             if formatter then
                 table.insert(buf_client_names, formatter)

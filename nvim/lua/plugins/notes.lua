@@ -2,13 +2,7 @@ return {
     {
         "JellyApple102/flote.nvim",
         cmd = { "Flote" },
-        keys = {
-            {
-                "<leader>n",
-                "<cmd>Flote<cr>",
-                desc = "Open note",
-            },
-        },
+        keys = { { "<leader>n", ":Flote<CR>", desc = "Open note" } },
         opts = {
             window_border = "rounded",
             files = {

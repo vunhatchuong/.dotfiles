@@ -9,12 +9,12 @@ return {
             return {
                 -- stylua: ignore start
                 { "<leader>a", function() mark_file() end },
-                { "<TAB>", "<cmd>Grapple toggle_tags<cr>" },
-                { "<leader>1", "<cmd>Grapple select index=1<cr>" },
-                { "<leader>2", "<cmd>Grapple select index=2<cr>" },
-                { "<leader>3", "<cmd>Grapple select index=3<cr>" },
-                { "<leader>4", "<cmd>Grapple select index=4<cr>" },
-                { "<leader>5", "<cmd>Grapple select index=5<cr>" },
+                { "<TAB>",     ":Grapple toggle_tags<CR>" },
+                { "<leader>1", ":Grapple select index=1<CR>" },
+                { "<leader>2", ":Grapple select index=2<CR>" },
+                { "<leader>3", ":Grapple select index=3<CR>" },
+                { "<leader>4", ":Grapple select index=4<CR>" },
+                { "<leader>5", ":Grapple select index=5<CR>" },
                 -- stylua: ignore end
             }
         end,
@@ -70,7 +70,7 @@ return {
         "xiaoshihou514/squirrel.nvim",
         -- stylua: ignore
         keys = {
-            { "f", function() require("squirrel.hop").hop_linewise({ head = true, tail = true }) end },
+            { "f",    function() require("squirrel.hop").hop_linewise({ head = true, tail = true }) end },
             { "<CR>", function() require("squirrel.hop").hop({ head = true, tail = true }) end },
         },
     },
@@ -92,7 +92,7 @@ return {
     },
     {
         "glepnir/flybuf.nvim",
-        keys = { { "gb", "<CMD>FlyBuf<CR>", desc = "Open buffer menu" } },
+        keys = { { "gb", ":FlyBuf<CR>", desc = "Open buffer menu" } },
         opts = {},
     },
     { -- Move in and out of brackets

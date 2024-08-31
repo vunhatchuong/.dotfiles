@@ -3,7 +3,7 @@ return {
         "mbbill/undotree",
         cmd = { "UndotreeToggle" },
         keys = {
-            { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree" },
+            { "<leader>u", ":UndotreeToggle<CR>", desc = "Undo Tree" },
         },
     },
     {
@@ -62,7 +62,7 @@ return {
             { "ga" },
             {
                 "ga.",
-                "<cmd>TextCaseOpenTelescope<CR>",
+                ":TextCaseOpenTelescope<CR>",
                 mode = { "n", "x" },
                 desc = "Change word case",
             },
@@ -80,7 +80,7 @@ return {
         keys = {
             {
                 "<leader>wf",
-                "<cmd>WindowsMaximize<cr>",
+                ":WindowsMaximize<CR>",
                 desc = "Maximize window",
             },
         },
@@ -234,7 +234,7 @@ return {
         dependencies = { "nvim-telescope/telescope.nvim" },
         -- stylua: ignore
         keys = {
-            { "<leader>b", ":Browse<CR>" },
+            { "<leader>b",  ":Browse<CR>" },
             { "<leader>bi", ":BrowseInputSearch<CR>" },
             { "<leader>bb", ":BrowseBookmarks<CR>" },
             { "<leader>bd", ":BrowseDevdocsSearch<CR>" },

@@ -75,7 +75,7 @@ return {
         keys = {
             {
                 "<leader>md",
-                "<cmd>MarkdownPreviewToggle<cr>",
+                ":MarkdownPreviewToggle<CR>",
                 desc = "Find recently opened Files",
             },
         },
