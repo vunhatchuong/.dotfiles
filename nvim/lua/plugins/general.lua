@@ -167,8 +167,8 @@ return {
         -- stylua: ignore
         cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapASCII", "CodeSnapHighlight" },
         keys = {
-            { "<leader>xs", ":CodeSnap<CR>", mode = { "n", "v" } },
-            { "<leader>xS", ":CodeSnapSave<CR>", mode = { "n", "v" } },
+            { "<leader>xs", ":CodeSnap<CR>", mode = { "n", "x" } },
+            { "<leader>xS", ":CodeSnapSave<CR>", mode = { "n", "x" } },
         },
         opts = {
             save_path = "~/Pictures",
