@@ -41,4 +41,27 @@ return {
             },
         },
     },
+    {
+        "Myzel394/jsonfly.nvim",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+        },
+        keys = {
+            {
+                "<leader>j",
+                "<cmd>Telescope jsonfly<cr>",
+                desc = "Open json(fly)",
+                ft = { "json", "xml", "yaml" },
+            },
+        },
+        opts = {
+            extensions = {
+                jsonfly = {},
+            },
+        },
+        config = function(_, opts)
+            require("telescope").setup(opts)
+            require("telescope").load_extension("jsonfly")
+        end,
+    },
 }
