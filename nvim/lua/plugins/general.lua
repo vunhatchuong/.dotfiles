@@ -269,4 +269,29 @@ return {
             },
         },
     },
+    {
+        "AckslD/nvim-neoclip.lua",
+        dependencies = { { "nvim-telescope/telescope.nvim" } },
+        keys = { { "<leader>y", ":Telescope neoclip<CR>" } },
+        opts = {
+            enable_macro_history = false,
+            preview = false,
+            filter = function(data)
+                local function is_whitespace(line)
+                    return vim.fn.match(line, [[^\s*$]]) ~= -1
+                end
+
+                local function all(tbl, check)
+                    for _, entry in ipairs(tbl) do
+                        if not check(entry) then
+                            return false
+                        end
+                    end
+                    return true
+                end
+                return not all(data.event.regcontents, is_whitespace)
+            end,
+            default_register = { '"', "+" },
+        },
+    },
 }
