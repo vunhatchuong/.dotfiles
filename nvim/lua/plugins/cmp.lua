@@ -1,3 +1,4 @@
+local icons = require("core.icons")
 return {
     {
         "yioneko/nvim-cmp",
@@ -34,7 +35,6 @@ return {
                     fields = { "kind", "abbr", "menu" },
                     expandable_indicator = true,
                     format = function(entry, item)
-                        local icons = require("core.icons")
                         if icons.kind[item.kind] then
                             item.kind = icons.kind[item.kind] .. item.kind
                         end

@@ -16,7 +16,7 @@ return {
     },
     {
         "chrisgrieser/nvim-origami",
-        event = "BufReadPost",
+        event = "VeryLazy",
         -- stylua: ignore
         keys = {
             { "<Left>",  function() require("origami").h() end },
@@ -74,16 +74,18 @@ return {
     },
     { "psjay/buffer-closer.nvim", keys = { "q" }, opts = {} },
     {
-        "anuvyklack/windows.nvim",
-        dependencies = { "anuvyklack/middleclass" },
-        opts = {},
+        "szw/vim-maximizer",
+        cmd = { "MaximizerToggle" },
         keys = {
             {
                 "<leader>wf",
-                ":WindowsMaximize<CR>",
+                ":MaximizerToggle<CR>",
                 desc = "Maximize window",
             },
         },
+        init = function()
+            vim.g.maximizer_set_default_mapping = 0
+        end,
     },
     {
         "chrisgrieser/nvim-chainsaw",
