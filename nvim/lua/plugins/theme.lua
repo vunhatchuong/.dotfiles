@@ -28,10 +28,9 @@ return {
     },
     {
         "mcchrish/zenbones.nvim",
-        dependencies = {
-            "rktjmp/lush.nvim",
-            cmd = { "Lushify" },
-        },
+        init = function()
+            vim.g.bones_compat = 1
+        end,
     },
     { "Hiroya-W/sequoia-moonlight.nvim" },
     { "slugbyte/lackluster.nvim" },
