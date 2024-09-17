@@ -1,0 +1,8 @@
+session_name: dotfiles
+start_directory: ${HOME}/.dotfiles
+windows:
+    - window_name: .dotfiles
+    - window_name: linux
+      start_directory: linux
+    - window_name: nvim
+      start_directory: nvim

@@ -36,6 +36,7 @@ depends = ["general"]
 "./linux/qt5ct" = "~/.config/qt5ct"
 "./linux/qt6ct" = "~/.config/qt6ct"
 "./linux/tmux" = "~/.config/tmux"
+"./linux/tmuxp" = "~/.config/tmuxp"
 "./linux/waybar" = "~/.config/waybar"
 "./linux/wlogout" = "~/.config/wlogout"
 "./linux/zsh" = "~/.config/zsh"

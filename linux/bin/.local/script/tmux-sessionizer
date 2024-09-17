@@ -2,7 +2,7 @@
 # https://github.com/ThePrimeagen/.dotfiles
 
 _find() {
-    find ~/.config/tmuxp -type f \( -name "*.yml" -o -name "*.yaml" \) -printf 'Tmuxp: %f\n'
+    find ~/.config/tmuxp -name "*.yaml" -printf 'Tmuxp: %f\n'
     find \
         {{ workspaces }} \
         -mindepth 1 -maxdepth 1 -type d
@@ -21,9 +21,9 @@ if [[ -z $selected ]]; then
 fi
 
 # If the selected item is a tmuxp configuration file, load it.
-if [[ $selected == *.yml || $selected == *.yaml ]]; then
+if [[ $selected == *.yaml ]]; then
     selected_file=$(echo "$selected" | sed 's/^Tmuxp: //')
-    selected=$(find ~/.config/tmuxp -type f -name "$selected_file")
+    selected=$(find ~/.config/tmuxp -type l -name "$selected_file")
     tmuxp load "$selected" -y
     exit 0
 fi
