@@ -97,7 +97,6 @@ return {
             { "<leader>la", function() require("chainsaw").assertLog() end, mode = { "n", "x" }, desc = "󰐪 Assert" },
             { "<leader>lt", function() require("chainsaw").typeLog() end, mode = { "n", "x" }, desc = "󰐪 Type" },
             { "<leader>lm", function() require("chainsaw").messageLog() end, desc = "󰐪 Message" },
-            { "<leader>lb", function() require("chainsaw").beepLog() end, desc = "󰐪 Beep" },
             { "<leader>l1", function() require("chainsaw").timeLog() end, desc = "󰐪 Time" },
             { "<leader>ld", function() require("chainsaw").debugLog() end, desc = "󰐪 Debugger" },
             { "<leader>ls", function() require("chainsaw").stacktraceLog() end, desc = "󰐪 Stacktrace" },
