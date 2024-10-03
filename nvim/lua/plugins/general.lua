@@ -295,4 +295,19 @@ return {
             default_register = { '"', "+" },
         },
     },
+    {
+        "jaimecgomezz/here.term",
+        keys = { { "<C-\\>" }, { "<C-S-\\>" } },
+        opts = {
+            mappings = {
+                toggle = "<C-\\>",
+                kill = "<C-S-\\>",
+            },
+        },
+    },
+    {
+        "Tronikelis/xylene.nvim",
+        cmd = { "Xylene" },
+        opts = {},
+    },
 }
