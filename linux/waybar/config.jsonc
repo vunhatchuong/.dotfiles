@@ -6,7 +6,7 @@
     "reload_style_on_change": true,
 
     "include": [
-        "~/.config/waybar/modules.jsonc"
+        "$HOME/.config/waybar/modules.jsonc"
     ],
     "modules-left": [
         "hyprland/workspaces"
