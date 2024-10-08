@@ -42,33 +42,33 @@ local function getLspName()
         end
     end
 
-    local lint_s, lint = pcall(require, "lint")
-    if lint_s then
-        for ft_k, ft_v in pairs(lint.linters_by_ft) do
-            if type(ft_v) == "table" then
-                for _, linter in ipairs(ft_v) do
-                    if buf_ft == ft_k then
-                        table.insert(buf_client_names, linter)
-                    end
-                end
-            elseif type(ft_v) == "string" then
-                if buf_ft == ft_k then
-                    table.insert(buf_client_names, ft_v)
-                end
-            end
-        end
-    end
+    -- local lint_s, lint = pcall(require, "lint")
+    -- if lint_s then
+    --     for ft_k, ft_v in pairs(lint.linters_by_ft) do
+    --         if type(ft_v) == "table" then
+    --             for _, linter in ipairs(ft_v) do
+    --                 if buf_ft == ft_k then
+    --                     table.insert(buf_client_names, linter)
+    --                 end
+    --             end
+    --         elseif type(ft_v) == "string" then
+    --             if buf_ft == ft_k then
+    --                 table.insert(buf_client_names, ft_v)
+    --             end
+    --         end
+    --     end
+    -- end
 
-    local ok, conform = pcall(require, "conform")
-    if ok then
-        local formatters =
-            table.concat(conform.list_formatters_for_buffer(), " ")
-        for formatter in formatters:gmatch("%w+") do
-            if formatter then
-                table.insert(buf_client_names, formatter)
-            end
-        end
-    end
+    -- local ok, conform = pcall(require, "conform")
+    -- if ok then
+    --     local formatters =
+    --         table.concat(conform.list_formatters_for_buffer(), " ")
+    --     for formatter in formatters:gmatch("%w+") do
+    --         if formatter then
+    --             table.insert(buf_client_names, formatter)
+    --         end
+    --     end
+    -- end
 
     local hash = {}
     local unique_client_names = {}
