@@ -1,8 +1,8 @@
 local icons = require("core.icons")
 return {
     {
-        "yioneko/nvim-cmp",
-        branch = "perf",
+        "iguanacucumber/magazine.nvim",
+        name = "nvim-cmp",
         version = false, -- last release is way too old
         event = { "InsertEnter", "CmdlineEnter" },
         dependencies = {
