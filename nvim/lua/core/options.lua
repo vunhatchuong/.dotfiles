@@ -52,6 +52,7 @@ opt.showmode = false     -- Already has lualine
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.cursorline = true    -- highlight the current line
 opt.signcolumn = "yes"   -- always show the sign column otherwise it would shift the text each time
+opt.statuscolumn = "%s %3r  %="
 opt.colorcolumn = "80"
 opt.scrolloff = 8
 opt.sidescrolloff = 20
