@@ -53,6 +53,20 @@ function git_develop_branch() {
   echo develop
 }
 
+function pretty_git_log() {
+  local HASH="%C(always,yellow)%h%C(always,reset)"
+  local RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
+  local AUTHOR="%C(always,bold blue)%an%C(always,reset)"
+  local REFS="%C(always,red)%d%C(always,reset)"
+  local SUBJECT="%s"
+
+  local FORMAT="$HASH $RELATIVE_TIME{$AUTHOR{$REFS $SUBJECT"
+
+  git log --graph --pretty="tformat:$FORMAT" "$@" | \
+  column -t -s '{' | \
+  less -XRS --quit-if-one-screen
+}
+
 #
 # Aliases
 #
@@ -80,12 +94,15 @@ alias gco='git checkout'
 alias gcb='git checkout -b'
 
 alias gd='git diff'
+alias gdc='git diff --cached'
 
 alias gp='git push'
 alias gpd='git push --dry-run'
 
 alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
+# Can add any additional flags like `glp --all`
+alias glp="pretty_git_log"
 
 function grename() {
   if [[ -z "$1" || -z "$2" ]]; then

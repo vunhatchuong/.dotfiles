@@ -10,6 +10,7 @@ nvim = "~/.config/nvim"
 wezterm = "~/.config/wezterm"
 ".gitconfig" = { target = "~/.gitconfig", type = "template" }
 "starship.toml" = "~/.config/starship.toml"
+"gitignore" = "~/.gitignore"
 
 [general.variables]
 alacritty-theme = "~/.config/alacritty/themes/sequoia-monochrome.toml"
