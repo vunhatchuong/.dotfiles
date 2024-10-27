@@ -310,4 +310,9 @@ return {
         cmd = { "Xylene" },
         opts = {},
     },
+    {
+        "smilhey/ed-cmd.nvim",
+        event = { "CmdlineEnter" },
+        opts = { cmdline = { keymaps = { close = "<ESC>" } } },
+    },
 }
