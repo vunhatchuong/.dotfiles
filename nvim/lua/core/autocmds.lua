@@ -20,12 +20,16 @@ autocmd({ "FileType" }, {
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
-        vim.keymap.set(
-            "n",
-            "q",
-            "<cmd>close<cr>",
-            { buffer = event.buf, silent = true }
-        )
+        vim.schedule(function()
+            vim.keymap.set("n", "q", function()
+                vim.cmd("close")
+                pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+            end, {
+                buffer = event.buf,
+                silent = true,
+                desc = "Quit buffer",
+            })
+        end)
     end,
 })
 
@@ -40,7 +44,7 @@ autocmd("TextYankPost", {
     desc = "Highlight when yank text",
     pattern = "*",
     callback = function()
-        vim.highlight.on_yank({
+        (vim.hl or vim.highlight).on_yank({
             timeout = 40,
         })
     end,
