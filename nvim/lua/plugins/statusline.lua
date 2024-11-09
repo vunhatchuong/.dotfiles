@@ -84,6 +84,62 @@ local function getLspName()
     return language_servers
 end
 
+-- https://github.com/sschleemilch/slimline.nvim/blob/main/lua/slimline/utils.lua
+local function get_mode()
+    -- Note that: \19 = ^S and \22 = ^V.
+    local mode_map = {
+        ["n"] = "NORMAL",
+        ["no"] = "OP-PENDING",
+        ["nov"] = "OP-PENDING",
+        ["noV"] = "OP-PENDING",
+        ["no\22"] = "OP-PENDING",
+        ["niI"] = "NORMAL",
+        ["niR"] = "NORMAL",
+        ["niV"] = "NORMAL",
+        ["nt"] = "NORMAL",
+        ["ntT"] = "NORMAL",
+        ["v"] = "VISUAL",
+        ["vs"] = "VISUAL",
+        ["V"] = "VISUAL",
+        ["Vs"] = "VISUAL",
+        ["\22"] = "VISUAL",
+        ["\22s"] = "VISUAL",
+        ["s"] = "SELECT",
+        ["S"] = "SELECT",
+        ["\19"] = "SELECT",
+        ["i"] = "INSERT",
+        ["ic"] = "INSERT",
+        ["ix"] = "INSERT",
+        ["R"] = "REPLACE",
+        ["Rc"] = "REPLACE",
+        ["Rx"] = "REPLACE",
+        ["Rv"] = "VIRT REPLACE",
+        ["Rvc"] = "VIRT REPLACE",
+        ["Rvx"] = "VIRT REPLACE",
+        ["c"] = "COMMAND",
+        ["cv"] = "VIM EX",
+        ["ce"] = "EX",
+        ["r"] = "PROMPT",
+        ["rm"] = "MORE",
+        ["r?"] = "CONFIRM",
+        ["!"] = "SHELL",
+        ["t"] = "TERMINAL",
+    }
+
+    local mode = mode_map[vim.api.nvim_get_mode().mode] or "UNKNOWN"
+    return mode
+end
+local function get_highlight_color(group)
+    local hl = vim.api.nvim_get_hl(0, { name = group })
+
+    if hl.link then
+        return get_highlight_color(hl.link)
+    end
+
+    local fg = hl.fg and string.format("#%06x", hl.fg) or "none"
+
+    return fg
+end
 return {
     {
         "nvim-lualine/lualine.nvim",
@@ -111,7 +167,47 @@ return {
                 options = {
                     theme = {
                         normal = {
-                            a = { fg = "fg", bg = "bg", gui = "bold" },
+                            a = {
+                                fg = get_highlight_color("Type"),
+                                bg = "bg",
+                                gui = "bold",
+                            },
+                            b = { fg = "fg", bg = "bg" },
+                            c = { fg = "fg", bg = "bg" },
+                        },
+                        insert = {
+                            a = {
+                                fg = get_highlight_color("Function"),
+                                bg = "bg",
+                                gui = "bold",
+                            },
+                            b = { fg = "fg", bg = "bg" },
+                            c = { fg = "fg", bg = "bg" },
+                        },
+                        visual = {
+                            a = {
+                                fg = get_highlight_color("Keyword"),
+                                bg = "bg",
+                                gui = "bold",
+                            },
+                            b = { fg = "fg", bg = "bg" },
+                            c = { fg = "fg", bg = "bg" },
+                        },
+                        replace = {
+                            a = {
+                                fg = get_highlight_color("Boolean"),
+                                bg = "bg",
+                                gui = "bold",
+                            },
+                            b = { fg = "fg", bg = "bg" },
+                            c = { fg = "fg", bg = "bg" },
+                        },
+                        command = {
+                            a = {
+                                fg = get_highlight_color("String"),
+                                bg = "bg",
+                                gui = "bold",
+                            },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
@@ -122,8 +218,13 @@ return {
                 },
                 sections = {
                     lualine_a = {
-                        { "mode" },
-                        {
+                        { -- mode
+                            function()
+                                local mode = get_mode()
+                                return string.sub(mode, 1, 1)
+                            end,
+                        },
+                        { -- Sep
                             function()
                                 return icons.ui.BoldLineMiddle
                             end,
@@ -141,12 +242,12 @@ return {
                                 removed = "Removed",
                             },
                             symbols = {
-                                added = icons.git.LineAdded,
-                                modified = icons.git.LineModified,
-                                removed = icons.git.LineRemoved,
+                                added = "+",
+                                modified = "~",
+                                removed = "-",
                             },
                         },
-                        {
+                        { -- Sep
                             function()
                                 return icons.ui.BoldLineMiddle
                             end,
@@ -158,9 +259,13 @@ return {
                         {
                             "filetype",
                             icon_only = true,
-                            padding = { left = 1, right = 0 },
+                            padding = { left = 1 },
                         },
                         { "filename", path = 1 },
+                    },
+                    -- Right
+                    lualine_x = {},
+                    lualine_y = {
                         {
                             "diagnostics",
                             sources = { "nvim_diagnostic" },
@@ -171,21 +276,7 @@ return {
                                 hint = icons.diagnostics.BoldHint,
                             },
                         },
-                        -- {
-                        --     require("dr-lsp").lspCount,
-                        --     fmt = function(str)
-                        --         return str:gsub("R", "impls")
-                        --             :gsub("D", "defs")
-                        --             :gsub("LSP:", "")
-                        --     end,
-                        -- },
-                    },
-                    -- Right
-                    lualine_x = {},
-                    lualine_y = {
-                        {
-                            lspProgress,
-                        },
+                        { lspProgress },
                         {
                             getLspName,
                             icon = icons.git.Octoface,
@@ -193,7 +284,11 @@ return {
                         },
                     },
                     lualine_z = {
-                        { "progress", padding = { left = 5, right = 0 } },
+                        {
+                            "progress",
+                            icon = icons.ui.Text,
+                            padding = { left = 3, right = 0 },
+                        },
                         { "location" },
                     },
                 },
@@ -201,9 +296,4 @@ return {
             }
         end,
     },
-    -- { -- lsp definitions & references count in the status line
-    --     "chrisgrieser/nvim-dr-lsp",
-    --     event = "LspAttach",
-    --     opts = {},
-    -- },
 }
