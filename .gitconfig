@@ -25,6 +25,9 @@
 [pull]
     rebase = true
 
+[rebase]
+	autoStash = true
+
 [commit]
     verbose = true
 
