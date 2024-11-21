@@ -104,6 +104,12 @@ alias glog='git log --oneline --decorate --graph'
 # Can add any additional flags like `glp --all`
 alias glp="pretty_git_log"
 
+alias gwt="git worktree"
+alias gwtls="git worktree list"
+alias gwta="git worktree add"
+alias gwtrm="git worktree remove"
+alias gwtmv="git worktree move"
+
 function grename() {
   if [[ -z "$1" || -z "$2" ]]; then
     echo "Usage: $0 old_branch new_branch"
