@@ -315,4 +315,9 @@ return {
         event = { "CmdlineEnter" },
         opts = { cmdline = { keymaps = { close = "<ESC>" } } },
     },
+    {
+        "meznaric/key-analyzer.nvim",
+        cmd = { "KeyAnalyzer" },
+        opts = {},
+    },
 }

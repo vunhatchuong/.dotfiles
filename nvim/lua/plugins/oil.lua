@@ -42,6 +42,7 @@ return {
                 signcolumn = "yes:2",
                 statuscolumn = "",
             },
+            lsp_file_methods = { autosave_changes = true },
         },
     },
     {
