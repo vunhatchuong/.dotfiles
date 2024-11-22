@@ -1,1 +1,3 @@
-require "core"
+_G.Util = require("util")
+
+require("core")

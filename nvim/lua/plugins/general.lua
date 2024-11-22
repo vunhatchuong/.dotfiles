@@ -320,4 +320,44 @@ return {
         cmd = { "KeyAnalyzer" },
         opts = {},
     },
+    {
+        "xavierchanth/arbor.nvim",
+        cmd = { "Arbor" },
+        ---@type arbor.config
+        opts = {
+            apply_recommended = false,
+            worktree = {
+                normal = { base = "relative_common", path = "../.." },
+                bare = { base = "relative_common", path = "../.." },
+            },
+            actions = {
+                add = {
+                    ["add new branch"] = function(info)
+                        require("arbor").actions.add_new_branch(info, {
+                            path_style = function()
+                                return vim.fs.basename(info.new_branch)
+                            end,
+                            branch_style = "prompt",
+                        })
+                    end,
+                },
+                pick = {
+                    ["remove worktree"] = function()
+                        require("arbor").remove()
+                    end,
+                },
+            },
+            hooks = {
+                post_add = function(info)
+                    return Util.worktree.arbor_post_add(info)
+                end,
+                post_pick = function(info)
+                    return Util.worktree.arbor_post_switch(info)
+                end,
+                pre_remove = function(info)
+                    return Util.worktree.arbor_pre_remove(info)
+                end,
+            },
+        },
+    },
 }
