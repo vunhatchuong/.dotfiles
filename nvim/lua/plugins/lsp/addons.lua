@@ -19,16 +19,8 @@ return {
             keys = { ["<CR>"] = "jump_close", ["<space>"] = "jump" },
         },
     },
-    -- Currently doesn't support only display current line. https://github.com/chrisgrieser/nvim-lsp-endhints/issues/3
-    {
-        "vunhatchuong/nvim-lsp-endhints",
-        enabled = false,
-        event = "LspAttach",
-        opts = {},
-    },
     {
         "Wansmer/symbol-usage.nvim",
-        -- enabled = false,
         event = "LspAttach",
         opts = {
             request_pending_text = false,
@@ -73,31 +65,6 @@ return {
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
         end,
     },
-    {
-        "dgagn/diagflow.nvim",
-        enabled = false,
-        event = "LspAttach",
-        opts = { scope = "line", toggle_event = { "InsertEnter" } },
-    },
-    -- Better looking but currently suffer performance issues.
-    -- {
-    --     "RaafatTurki/corn.nvim",
-    --     event = "LspAttach",
-    --     init = function()
-    --         vim.diagnostic.config({ virtual_text = false })
-    --     end,
-    --     opts = {
-    --         border_style = "rounded",
-    --         on_toggle = function(is_hidden)
-    --             vim.diagnostic.config({
-    --                 virtual_text = not vim.diagnostic.config().virtual_text,
-    --             })
-    --         end,
-    --         item_preprocess_func = function(item)
-    --             return item
-    --         end,
-    --     },
-    -- },
     {
         "nvimdev/lspsaga.nvim",
         event = "LspAttach",

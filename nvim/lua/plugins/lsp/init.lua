@@ -26,11 +26,6 @@ return {
                     underline = true,
                     update_in_insert = false,
                     virtual_text = false,
-                    -- virtual_text = {
-                    --     spacing = 4,
-                    --     source = "if_many",
-                    --     prefix = "icons",
-                    -- },
                     float = { border = "rounded" },
                     severity_sort = true,
                     signs = {
@@ -118,115 +113,9 @@ return {
             }
         end,
         config = function(_, opts)
-            local on_supports_method = function(method, fn)
-                return vim.api.nvim_create_autocmd("LspAttach", {
-                    callback = function(args)
-                        local client =
-                            vim.lsp.get_client_by_id(args.data.client_id)
-                        if client and client.supports_method(method) then
-                            return fn(client, args.buf)
-                        end
-                    end,
-                })
-            end
-
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = require("plugins.lsp.keymaps").on_attach,
             })
-
-            local function cmp_visible()
-                local cmp = package.loaded["cmp"]
-                return cmp and cmp.core.view:visible()
-            end
-
-            -- document highlight
-            if opts.document_highlight.enabled then
-                on_supports_method(
-                    "textDocument/documentHighlight",
-                    function(_, buffer)
-                        vim.api.nvim_create_autocmd({
-                            "CursorHold",
-                            "CursorHoldI",
-                            "CursorMoved",
-                            "CursorMovedI",
-                        }, {
-                            group = vim.api.nvim_create_augroup(
-                                "lsp_word_" .. buffer,
-                                { clear = true }
-                            ),
-                            buffer = buffer,
-                            callback = function(ev)
-                                if ev.event:find("CursorMoved") then
-                                    vim.lsp.buf.clear_references()
-                                elseif not cmp_visible() then
-                                    vim.lsp.buf.document_highlight()
-                                end
-                            end,
-                        })
-                    end
-                )
-            end
-            -- inlay hints
-            if opts.inlay_hints.enabled then
-                on_supports_method("textDocument/inlayHint", function(_, buffer)
-                    if
-                        vim.api.nvim_buf_is_valid(buffer)
-                        and vim.bo[buffer].buftype == ""
-                        and not vim.tbl_contains(
-                            opts.inlay_hints.exclude,
-                            vim.bo[buffer].filetype
-                        )
-                    then
-                        local lh = vim.lsp.inlay_hint
-                        vim.api.nvim_create_autocmd("InsertEnter", {
-                            callback = function()
-                                lh.enable(false, { bufnr = buffer })
-                            end,
-                        })
-                        vim.api.nvim_create_autocmd("InsertLeave", {
-                            callback = function()
-                                lh.enable(true, { bufnr = buffer })
-                            end,
-                        })
-                        vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-                            desc = "Update inlay hints on line change",
-                            callback = function()
-                                lh.enable(true, { bufnr = buffer })
-                            end,
-                        })
-                    end
-                end)
-            end
-            -- code lens
-            if opts.codelens.enabled and vim.lsp.codelens then
-                on_supports_method("textDocument/codeLens", function(_, buffer)
-                    vim.lsp.codelens.refresh()
-                    vim.api.nvim_create_autocmd(
-                        { "BufEnter", "CursorHold", "InsertLeave" },
-                        {
-                            buffer = buffer,
-                            callback = vim.lsp.codelens.refresh,
-                        }
-                    )
-                end)
-            end
-
-            if
-                type(opts.diagnostics.virtual_text) == "table"
-                and opts.diagnostics.virtual_text.prefix == "icons"
-            then
-                opts.diagnostics.virtual_text.prefix = function(diagnostic)
-                    local icons = require("core.icons")
-                    for d, icon in pairs(icons.diagnostics) do
-                        if
-                            diagnostic.severity
-                            == vim.diagnostic.severity[d:upper()]
-                        then
-                            return icon
-                        end
-                    end
-                end
-            end
 
             vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
