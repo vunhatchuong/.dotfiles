@@ -105,4 +105,14 @@ return {
             }
         end,
     },
+    {
+        "mhanberg/output-panel.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+        "urizennnn/rescue-lsp.nvim",
+        cmd = { "Rescue" },
+        opts = {},
+    },
 }

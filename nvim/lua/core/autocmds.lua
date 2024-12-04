@@ -17,6 +17,7 @@ autocmd({ "FileType" }, {
         "undotree",
         "grapple",
         "quicktest-output",
+        "outputpanel",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
