@@ -1,142 +1,5 @@
 local icons = require("core.icons")
 return {
-    {
-        "iguanacucumber/magazine.nvim",
-        name = "nvim-cmp",
-        version = false, -- last release is way too old
-        event = { "InsertEnter", "CmdlineEnter" },
-        dependencies = {
-            -- https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-path",
-            "uga-rosa/cmp-dynamic",
-        },
-        opts = function()
-            vim.api.nvim_set_hl(0, "CmpItemKindTabnine", { fg = "#cba6f7" })
-            vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
-            local cmp = require("cmp")
-
-            cmp.setup({
-                auto_brackets = {}, -- configure any filetype to auto add brackets
-                performance = {
-                    debounce = 250,
-                },
-                completion = {
-                    -- Don't auto popup completion menu
-                    -- autocomplete = false,
-                    completeopt = "menu,menuone,noselect,noinsert",
-                },
-                snippet = {
-                    expand = function(args)
-                        vim.snippet.expand(args.body)
-                    end,
-                },
-                formatting = {
-                    fields = { "kind", "abbr", "menu" },
-                    expandable_indicator = true,
-                    format = function(entry, item)
-                        if icons.kind[item.kind] then
-                            item.kind = icons.kind[item.kind] .. item.kind
-                        end
-                        item.menu = ({
-                            nvim_lsp = "[LSP]",
-                            nvim_lua = "[Lua]",
-                        })[entry.source.name]
-                        return item
-                    end,
-                },
-                window = {
-                    completion = cmp.config.window.bordered(),
-                    documentation = cmp.config.window.bordered(),
-                },
-                sources = {
-                    {
-                        name = "nvim_lsp",
-                        entry_filter = function(entry, _)
-                            local kind =
-                                require("cmp.types.lsp").CompletionItemKind[entry:get_kind()]
-
-                            if kind == "Text" then
-                                return false
-                            end
-                            return true
-                        end,
-                    },
-                    { name = "path" },
-                    -- { name = "supermaven" },
-                    { name = "dynamic" },
-                },
-                mapping = cmp.mapping.preset.insert({
-                    ["<C-c>"] = cmp.mapping.complete(),
-                    ["<CR>"] = cmp.mapping.confirm({
-                        behavior = cmp.ConfirmBehavior.Insert,
-                        select = false,
-                    }),
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item({
-                                behavior = cmp.SelectBehavior.Select,
-                            })
-                        elseif vim.snippet.active({ direction = 1 }) then
-                            vim.snippet.jump(1)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item({
-                                behavior = cmp.SelectBehavior.Select,
-                            })
-                        elseif vim.snippet.active({ direction = -1 }) then
-                            vim.snippet.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                }),
-            })
-
-            local cwd = require("lspconfig").util.find_git_ancestor(
-                vim.fs.normalize(vim.api.nvim_buf_get_name(0))
-            )
-            local raw_files = vim.fn.globpath(cwd, ".env*", false, true)
-
-            local env_vars = {}
-            for i = 1, #raw_files do
-                local file = raw_files[i]
-                if string.match(vim.fn.fnamemodify(file, ":t"), "template") then
-                    goto continue
-                end
-
-                local data = {}
-                for line in io.lines(file) do
-                    for key, value in string.gmatch(line, "([^=]+)=([^=]+)") do
-                        data[key] = value
-                    end
-                end
-                for key, value in pairs(data) do
-                    table.insert(env_vars, {
-                        label = key,
-                        insertText = key,
-                        detail = "From " .. vim.fn.fnamemodify(file, ":t"),
-                        cmp = {
-                            kind_text = "Env",
-                            kind_hl_group = "CmpItemKindTabNine",
-                        },
-                    })
-                end
-                ::continue::
-            end
-            require("cmp_dynamic").register(env_vars)
-        end,
-        config = function(_, opts)
-            -- Auto popup
-            for _, source in ipairs(opts.sources) do
-                source.group_index = source.group_index or 1
-            end
-        end,
-    },
     -- {
     --     "supermaven-inc/supermaven-nvim",
     --     build = ":SupermavenUseFree",
@@ -154,25 +17,91 @@ return {
     {
         "folke/lazydev.nvim",
         ft = "lua",
-        opts = function()
-            return {
-                library = {
-                    uv = "luvit-meta/library",
-                    lazyvim = "LazyVim",
-                },
-            }
-        end,
+        opts = {
+            library = {
+                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                { path = "snacks.nvim", words = { "Snacks" } },
+                { path = "lazy.nvim", words = { "LazyVim" } },
+            },
+        },
     },
-    -- Manage libuv types with lazy. Plugin will never be loaded
-    { "Bilal2453/luvit-meta", lazy = true },
-    { -- Add lazydev source to cmp
-        "yioneko/nvim-cmp",
-        opts = function(_, opts)
-            opts.sources = opts.sources or {}
-            table.insert(opts.sources, {
-                name = "lazydev",
-                group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-            })
-        end,
+    {
+        "saghen/blink.cmp",
+        version = "v0.*",
+        event = { "InsertEnter", "CmdlineEnter" },
+        --- @module 'blink.cmp'
+        --- @type blink.cmp.Config
+        --- @diagnostic disable: missing-fields
+        opts = {
+            keymap = {
+                preset = "enter",
+                ["<C-e>"] = {},
+
+                ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+                ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+
+                ["<C-p>"] = {},
+                ["<C-n>"] = {},
+
+                ["<C-b>"] = {},
+                ["<C-f>"] = {},
+            },
+            completion = {
+                keyword = {
+                    -- Remove `\`, so it does not trigger completion.
+                    -- Useful when breaking up lines in bash/zsh.
+                    regex = "[%w_-]",
+                },
+                list = { selection = "manual" },
+                accept = { auto_brackets = { enabled = true } },
+                menu = {
+                    border = "rounded",
+                    draw = {
+                        treesitter = true,
+                        columns = {
+                            { "kind_icon", "kind", gap = 1 },
+                            { "label", "label_description", gap = 1 },
+                            { "source_name" },
+                        },
+                    },
+                    -- Don't auto popup completion menu
+                    -- auto_show = false,
+                },
+                documentation = {
+                    auto_show = true,
+                    auto_show_delay_ms = 200,
+                    window = { border = "rounded" },
+                },
+                -- Experimental signature help support
+                signature = {
+                    enabled = true,
+                    window = { border = "border" },
+                },
+            },
+            sources = {
+                completion = {
+                    enabled_providers = {
+                        "lsp",
+                        "path",
+                        "snippets",
+                        "buffer",
+                        "lazydev",
+                    },
+                },
+                providers = {
+                    lsp = { fallback_for = { "lazydev" } },
+                    buffer = {
+                        max_items = 4,
+                        min_keyword_length = 4,
+                        score_offset = -3,
+                    },
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                    },
+                },
+            },
+            appearance = { kind_icons = icons.kind },
+        },
     },
 }
