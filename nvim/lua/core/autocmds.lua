@@ -45,17 +45,17 @@ autocmd("TextYankPost", {
     desc = "Highlight when yank text",
     pattern = "*",
     callback = function()
-        (vim.hl or vim.highlight).on_yank({
-            timeout = 40,
-        })
+        (vim.hl or vim.highlight).on_yank({ timeout = 40 })
     end,
 })
 
-autocmd({ "FocusGained", "TermClose", "TermLeave", "BufWinEnter" }, {
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     desc = "Check if we need to reload the file when it changed",
     pattern = { "*" },
     callback = function()
-        vim.cmd("checktime")
+        if vim.o.buftype ~= "nofile" then
+            vim.cmd("checktime")
+        end
     end,
 })
 
@@ -90,7 +90,7 @@ autocmd("BufReadPost", {
 
 autocmd("FileType", {
     desc = "Wrap and check for spell in text filetypes",
-    pattern = { "gitcommit", "markdown", "*.json" },
+    pattern = { "text", "plaintex", "typst", "gitcommit", "markdown", "*.json" },
     callback = function()
         vim.opt_local.wrap = true
         vim.opt_local.spell = true
@@ -114,7 +114,7 @@ autocmd({ "BufWritePre" }, {
         if event.match:match("^%w%w+:[\\/][\\/]") then
             return
         end
-        local file = vim.loop.fs_realpath(event.match) or event.match
+        local file = vim.uv.fs_realpath(event.match) or event.match
         vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
     end,
 })
@@ -122,7 +122,46 @@ autocmd({ "BufWritePre" }, {
 autocmd({ "BufWinEnter" }, {
     desc = "Clear the last used search pattern",
     pattern = "*",
-    command = "let @/ = ''",
+    callback = function()
+        vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes(
+                "<Cmd>noh<CR>",
+                true,
+                false,
+                true
+            ),
+            "n",
+            false
+        )
+    end,
+})
+
+local mode_hl_groups = {
+    [""] = "NORMAL",
+    v = "NORMAL",
+    V = "NORMAL",
+    ["\22"] = "NORMAL",
+    n = "NORMAL",
+    no = "NORMAL",
+    i = "MoreMsg",
+    c = "ModeMsg",
+    s = "SELECT",
+    S = "SELECT",
+    R = "REPLACE",
+    t = "TERMINAL",
+    nt = "TERMINAL",
+}
+
+autocmd({ "BufEnter", "ModeChanged" }, {
+    desc = "Change cursor color based on mode",
+    callback = function()
+        local mode_hl_group = mode_hl_groups[vim.api.nvim_get_mode().mode]
+            or "NORMAL"
+        local hl =
+            vim.api.nvim_get_hl(0, { name = mode_hl_group, link = false })
+        hl = vim.tbl_extend("force", { bold = true }, hl)
+        vim.api.nvim_set_hl(0, "CursorLineNr", hl)
+    end,
 })
 
 -- Modified default theme

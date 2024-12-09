@@ -60,7 +60,6 @@ return {
     },
     {
         "lewis6991/satellite.nvim",
-        enabled = false,
         dependencies = { { "echasnovski/mini.diff" } },
         event = "VeryLazy",
         opts = {
@@ -68,7 +67,7 @@ return {
             zindex = 1, -- below most stuff
             handlers = {
                 cursor = { enable = false },
-                -- gitsigns = { enable = false },
+                gitsigns = { enable = false },
                 -- require diff.lua
                 minidiff = { enable = true },
                 marks = { enable = false },
