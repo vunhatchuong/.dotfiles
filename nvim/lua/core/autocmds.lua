@@ -124,12 +124,7 @@ autocmd({ "BufWinEnter" }, {
     pattern = "*",
     callback = function()
         vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes(
-                "<Cmd>noh<CR>",
-                true,
-                false,
-                true
-            ),
+            vim.api.nvim_replace_termcodes("<Cmd>noh<CR>", true, false, true),
             "n",
             false
         )

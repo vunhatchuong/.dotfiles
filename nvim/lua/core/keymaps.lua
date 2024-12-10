@@ -20,7 +20,7 @@ keymap("n", "Q", "<nop>")
 keymap("n", "<C-c>", "<nop>")
 
 -- Normal --
-keymap("n", "<Esc>", ":nohl<cr>", opts)
+keymap("n", "<Esc>", "<CMD>nohlsearch<CR>", opts)
 keymap("n", "<leader>w", ":w<cr>", opts)
 keymap("n", "<leader>q", ":q<cr>", opts)
 keymap("n", "c", '"_c', opts)
@@ -76,6 +76,8 @@ keymap("v", "p", '"_dP', opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<leader>p", [["_dP]], opts)
+
+keymap("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Others --
 -- Replace the word that cursor is on

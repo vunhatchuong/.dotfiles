@@ -26,15 +26,6 @@ return {
     {
         "echasnovski/mini.indentscope",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        opts = {
-            symbol = "│",
-            options = { indent_at_cursor = true, try_as_border = true },
-            draw = {
-                animation = function()
-                    return 0
-                end,
-            },
-        },
         init = function()
             vim.api.nvim_create_autocmd("FileType", {
                 pattern = {
@@ -56,6 +47,20 @@ return {
                     vim.b.miniindentscope_disable = true
                 end,
             })
+        end,
+        opts = {
+            -- symbol = "╷",
+            symbol = "┃",
+            options = { indent_at_cursor = true, try_as_border = true },
+            draw = {
+                animation = function()
+                    return 0
+                end,
+            },
+        },
+        config = function(_, opts)
+            require("mini.indentscope").setup(opts)
+            vim.cmd("hi! link MiniIndentscopeSymbol Comment")
         end,
     },
     {

@@ -15,17 +15,6 @@ return {
     --     },
     -- },
     {
-        "folke/lazydev.nvim",
-        ft = "lua",
-        opts = {
-            library = {
-                { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-                { path = "snacks.nvim", words = { "Snacks" } },
-                { path = "lazy.nvim", words = { "LazyVim" } },
-            },
-        },
-    },
-    {
         "saghen/blink.cmp",
         version = "v0.*",
         event = { "InsertEnter", "CmdlineEnter" },
@@ -47,13 +36,7 @@ return {
                 ["<C-f>"] = {},
             },
             completion = {
-                keyword = {
-                    -- Remove `\`, so it does not trigger completion.
-                    -- Useful when breaking up lines in bash/zsh.
-                    regex = "[%w_-]",
-                },
                 list = { selection = "manual" },
-                accept = { auto_brackets = { enabled = true } },
                 menu = {
                     border = "rounded",
                     draw = {

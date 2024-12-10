@@ -30,7 +30,6 @@ vim.api.nvim_create_autocmd("LspProgress", {
 local function getLspName()
     local bufnr = vim.api.nvim_get_current_buf()
     local buf_clients = vim.lsp.get_clients({ bufnr = bufnr })
-    local buf_ft = vim.bo.filetype
     if next(buf_clients) == nil then
         return "No servers"
     end
@@ -41,34 +40,6 @@ local function getLspName()
             table.insert(buf_client_names, client.name)
         end
     end
-
-    -- local lint_s, lint = pcall(require, "lint")
-    -- if lint_s then
-    --     for ft_k, ft_v in pairs(lint.linters_by_ft) do
-    --         if type(ft_v) == "table" then
-    --             for _, linter in ipairs(ft_v) do
-    --                 if buf_ft == ft_k then
-    --                     table.insert(buf_client_names, linter)
-    --                 end
-    --             end
-    --         elseif type(ft_v) == "string" then
-    --             if buf_ft == ft_k then
-    --                 table.insert(buf_client_names, ft_v)
-    --             end
-    --         end
-    --     end
-    -- end
-
-    -- local ok, conform = pcall(require, "conform")
-    -- if ok then
-    --     local formatters =
-    --         table.concat(conform.list_formatters_for_buffer(), " ")
-    --     for formatter in formatters:gmatch("%w+") do
-    --         if formatter then
-    --             table.insert(buf_client_names, formatter)
-    --         end
-    --     end
-    -- end
 
     local hash = {}
     local unique_client_names = {}
@@ -85,6 +56,7 @@ local function getLspName()
 end
 
 -- https://github.com/sschleemilch/slimline.nvim/blob/main/lua/slimline/utils.lua
+--- @return string
 local function get_mode()
     -- Note that: \19 = ^S and \22 = ^V.
     local mode_map = {
@@ -129,11 +101,11 @@ local function get_mode()
     local mode = mode_map[vim.api.nvim_get_mode().mode] or "UNKNOWN"
     return mode
 end
-local function get_highlight_color(group)
+local function get_hl_color(group)
     local hl = vim.api.nvim_get_hl(0, { name = group })
 
     if hl.link then
-        return get_highlight_color(hl.link)
+        return get_hl_color(hl.link)
     end
 
     local fg = hl.fg and string.format("#%06x", hl.fg) or "none"
@@ -167,47 +139,27 @@ return {
                 options = {
                     theme = {
                         normal = {
-                            a = {
-                                fg = get_highlight_color("Type"),
-                                bg = "bg",
-                                gui = "bold",
-                            },
+                            a = { fg = get_hl_color("Type"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         insert = {
-                            a = {
-                                fg = get_highlight_color("Function"),
-                                bg = "bg",
-                                gui = "bold",
-                            },
+                            a = { fg = get_hl_color("Function"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         visual = {
-                            a = {
-                                fg = get_highlight_color("Keyword"),
-                                bg = "bg",
-                                gui = "bold",
-                            },
+                            a = { fg = get_hl_color("Keyword"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         replace = {
-                            a = {
-                                fg = get_highlight_color("Boolean"),
-                                bg = "bg",
-                                gui = "bold",
-                            },
+                            a = { fg = get_hl_color("Boolean"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         command = {
-                            a = {
-                                fg = get_highlight_color("String"),
-                                bg = "bg",
-                                gui = "bold",
-                            },
+                            a = { fg = get_hl_color("String"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
@@ -220,39 +172,21 @@ return {
                     lualine_a = {
                         { -- mode
                             function()
-                                local mode = get_mode()
-                                return string.sub(mode, 1, 1)
+                                return string.sub(get_mode(), 1, 1)
                             end,
-                        },
-                        { -- Sep
-                            function()
-                                return icons.ui.BoldLineMiddle
-                            end,
-                            color = { fg = "fg" },
-                            padding = 0,
+                            padding = 2,
                         },
                     },
                     lualine_b = {
-                        { "branch", color = { gui = "bold" } },
+                        { "branch", icon = icons.git.Branch },
                         {
                             "diff",
                             diff_color = {
-                                added = "Added",
-                                modified = "Changed",
-                                removed = "Removed",
+                                added = "Comment",
+                                modified = "Comment",
+                                removed = "Comment",
                             },
-                            symbols = {
-                                added = "+",
-                                modified = "~",
-                                removed = "-",
-                            },
-                        },
-                        { -- Sep
-                            function()
-                                return icons.ui.BoldLineMiddle
-                            end,
-                            color = { fg = "fg" },
-                            padding = 0,
+                            padding = { right = 2 },
                         },
                     },
                     lualine_c = {
@@ -261,7 +195,13 @@ return {
                             icon_only = true,
                             padding = { left = 1 },
                         },
-                        { "filename", path = 1 },
+                        {
+                            "filename",
+                            path = 1,
+                            color = "Comment",
+                            symbols = { modified = "", readonly = "" },
+                            padding = {},
+                        },
                     },
                     -- Right
                     lualine_x = {},
@@ -273,14 +213,14 @@ return {
                                 error = icons.diagnostics.BoldError,
                                 warn = icons.diagnostics.BoldWarning,
                                 info = icons.diagnostics.BoldInformation,
-                                hint = icons.diagnostics.BoldHint,
+                                hint = icons.diagnostics.Hint,
                             },
                         },
                         { lspProgress },
                         {
                             getLspName,
                             icon = icons.git.Octoface,
-                            color = { gui = "bold" },
+                            color = "Comment",
                         },
                     },
                     lualine_z = {
@@ -289,7 +229,7 @@ return {
                             icon = icons.ui.Text,
                             padding = { left = 3, right = 0 },
                         },
-                        { "location" },
+                        { "location", icon = "/" },
                     },
                 },
                 extensions = { "nvim-dap-ui", "oil", "quickfix", "trouble" },

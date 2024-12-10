@@ -36,7 +36,7 @@ vim.schedule(function()                     -- includes system call responsible 
 end)
 
 opt.guicursor = ""
-opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- mostly just for cmp
+opt.completeopt = { "menu", "menuone", "preview", "noselect", "noinsert" }
 
 opt.splitbelow = false
 opt.splitright = true
@@ -70,7 +70,9 @@ opt.showcmd = false
 ---  INDENT  ---
 opt.formatoptions = "tcnlj"
 opt.list = true           -- Show some invisible characters (tabs...
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+opt.breakindent =  true
 
 ---  TABS  ---
 opt.wrap = false                            -- display lines as one long line
