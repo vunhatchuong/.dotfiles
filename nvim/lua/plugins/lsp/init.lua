@@ -18,25 +18,7 @@ return {
             require("lspconfig.ui.windows").default_options.border = "rounded"
         end,
         opts = function()
-            local icons = require("core.icons")
             return {
-                -- options for vim.diagnostic.config()
-                ---@type vim.diagnostic.Opts
-                diagnostics = {
-                    underline = true,
-                    update_in_insert = false,
-                    virtual_text = false,
-                    float = { border = "rounded" },
-                    severity_sort = true,
-                    signs = {
-                        text = {
-                            [vim.diagnostic.severity.ERROR] = icons.diagnostics.BoldError,
-                            [vim.diagnostic.severity.WARN] = icons.diagnostics.BoldWarning,
-                            [vim.diagnostic.severity.HINT] = icons.diagnostics.BoldHint,
-                            [vim.diagnostic.severity.INFO] = icons.diagnostics.BoldInformation,
-                        },
-                    },
-                },
                 inlay_hints = {
                     enabled = false,
                     exclude = {}, -- filetypes for which you don't want to enable inlay hints
@@ -65,7 +47,8 @@ return {
                     timeout_ms = nil,
                 },
                 -- LSP Server Settings
-                ---@type lspconfig.options
+                --- @type lspconfig.Config
+                --- @diagnostic disable: missing-fields
                 servers = {
                     lua_ls = {
                         -- Use this to add any additional keymaps
@@ -100,7 +83,7 @@ return {
                 },
                 -- you can do any additional lsp server setup here
                 -- return true if you don't want this server to be setup with lspconfig
-                ---@type table<string, fun(server:string, opts:_.lspconfig.options):boolean?>
+                ---@type table<string, fun(server:string, opts:lspconfig.Config):boolean?>
                 setup = {
                     -- example to setup with typescript.nvim
                     -- tsserver = function(_, opts)
@@ -116,8 +99,6 @@ return {
             vim.api.nvim_create_autocmd("LspAttach", {
                 callback = require("plugins.lsp.keymaps").on_attach,
             })
-
-            vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
             local servers = opts.servers
 
