@@ -11,7 +11,6 @@ autocmd({ "FileType" }, {
         "lazy",
         "mason",
         "oil",
-        "trouble",
         "harpoon",
         "grug-far",
         "undotree",

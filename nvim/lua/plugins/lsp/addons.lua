@@ -13,10 +13,25 @@ return {
                 ":Trouble diagnostics toggle filter.buf=0<CR>",
                 desc = "Buffer Diagnostics (Trouble)",
             },
+            {
+                "<leader>o",
+                ":Trouble symbols toggle<CR>",
+                desc = "Buffer Symbols (Trouble)",
+            },
         },
         opts = {
             focus = true,
             keys = { ["<CR>"] = "jump_close", ["<space>"] = "jump" },
+            modes = {
+                lsp_document_symbols = {
+                    title = false,
+                    format = "{kind_icon} {symbol.name} {pos}",
+                },
+                symbols = {
+                    focus = true,
+                    win = { position = "bottom" },
+                },
+            },
         },
     },
     {
@@ -73,7 +88,6 @@ return {
             { "gd",         ":Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
             { "gr",         ":Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
             { "<leader>ca", ":Lspsaga code_action<CR>",          desc = "[C]ode [A]ction" },
-            { "<leader>o",  ":Lspsaga outline<CR>",              desc = "Outline (Lspsaga)" },
             { "]d",         ":Lspsaga diagnostic_jump_next<CR>", desc = "Diagnostic jump next" },
             { "[d",         ":Lspsaga diagnostic_jump_prev<CR>", desc = "Diagnostic jump prev" },
             -- { "K", ":Lspsaga hover_doc<CR>", desc = "Hover" },
@@ -91,15 +105,7 @@ return {
                     show_code_action = false,
                 },
                 finder = {
-                    keys = {
-                        toggle_or_open = "<CR>",
-                    },
-                },
-                outline = {
-                    layout = "float",
-                    keys = {
-                        toggle_or_jump = "<CR>",
-                    },
+                    keys = { toggle_or_open = "<CR>" },
                 },
                 lightbulb = { sign = false },
             }
@@ -108,11 +114,36 @@ return {
     {
         "mhanberg/output-panel.nvim",
         event = "VeryLazy",
+        cmd = { "OutputPanel" },
         opts = {},
     },
     {
-        "urizennnn/rescue-lsp.nvim",
-        cmd = { "Rescue" },
+        "kyallanum/ndi.nvim",
+        cmd = { "GetLSPClientInfo", "GetPluginInfo" },
         opts = {},
+    },
+    {
+        "smjonas/inc-rename.nvim",
+        keys = "<leader>rn",
+        opts = {
+            save_in_cmdline_history = false,
+        },
+        config = function(_, opts)
+            require("inc_rename").setup(opts)
+            -- https://github.com/smjonas/dotfiles/blob/main/nvim/.config/nvim/lua/plugins/personal.lua
+            vim.keymap.set("n", "<leader>rn", function()
+                -- Fallback to text substitution when LSP is not available
+                local cur_word = vim.fn.expand("<cword>")
+                if
+                    vim.tbl_isempty(vim.lsp.get_clients({
+                        bufnr = vim.api.nvim_get_current_buf(),
+                    }))
+                then
+                    return ":%s/" .. cur_word .. "//gc" .. ("<left>"):rep(3)
+                else
+                    return ":IncRename " .. cur_word
+                end
+            end, { expr = true, desc = "Start IncRename" })
+        end,
     },
 }

@@ -1,5 +1,6 @@
 ---@class util
 ---@field worktree util.worktree
+---@field telescope util.telescope
 local M = {}
 
 setmetatable(M, {
