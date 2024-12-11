@@ -50,7 +50,8 @@ return {
         end,
         opts = {
             -- symbol = "╷",
-            symbol = "┃",
+            -- symbol = "┃",
+            symbol = "│",
             options = { indent_at_cursor = true, try_as_border = true },
             draw = {
                 animation = function()
@@ -60,7 +61,7 @@ return {
         },
         config = function(_, opts)
             require("mini.indentscope").setup(opts)
-            vim.cmd("hi! link MiniIndentscopeSymbol Comment")
+            vim.cmd("hi! link MiniIndentscopeSymbol Special")
         end,
     },
     {

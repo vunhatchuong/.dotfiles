@@ -6,12 +6,11 @@ return {
         require("snacks").toggle.profiler():map("<leader>pp")
         require("snacks").toggle.profiler_highlights():map("<leader>ph")
         return {
+            input = { enabled = true },
             notifier = { enabled = true },
             quickfile = { enabled = true },
+            scratch = { ft = "markdown" },
             statuscolumn = { enabled = false }, -- we set this in options.lua
-            scratch = {
-                ft = "markdown",
-            },
         }
     end,
     keys = {

@@ -12,6 +12,7 @@ return {
                 desc = "Open file explorer",
             },
         },
+        --- @type oil.SetupOpts
         opts = {
             skip_confirm_for_simple_edits = true,
             -- Set to `false` to remove a keymap
