@@ -130,34 +130,6 @@ autocmd({ "BufWinEnter" }, {
     end,
 })
 
-local mode_hl_groups = {
-    [""] = "NORMAL",
-    v = "NORMAL",
-    V = "NORMAL",
-    ["\22"] = "NORMAL",
-    n = "NORMAL",
-    no = "NORMAL",
-    i = "MoreMsg",
-    c = "ModeMsg",
-    s = "SELECT",
-    S = "SELECT",
-    R = "REPLACE",
-    t = "TERMINAL",
-    nt = "TERMINAL",
-}
-
-autocmd({ "BufEnter", "ModeChanged" }, {
-    desc = "Change cursor color based on mode",
-    callback = function()
-        local mode_hl_group = mode_hl_groups[vim.api.nvim_get_mode().mode]
-            or "NORMAL"
-        local hl =
-            vim.api.nvim_get_hl(0, { name = mode_hl_group, link = false })
-        hl = vim.tbl_extend("force", { bold = true }, hl)
-        vim.api.nvim_set_hl(0, "CursorLineNr", hl)
-    end,
-})
-
 -- Modified default theme
 -- https://github.com/glepnir/nvim/blob/main/lua/core/init.lua
 autocmd("ColorScheme", {

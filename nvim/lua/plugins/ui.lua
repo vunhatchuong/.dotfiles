@@ -136,4 +136,19 @@ return {
             default_mappings = false,
         },
     },
+    {
+        "mawkler/modicator.nvim",
+        dependencies = { "nvim-lualine/lualine.nvim" },
+        event = "VeryLazy",
+        opts = {
+            show_warnings = true,
+            integration = {
+                lualine = {
+                    enabled = true,
+                    mode_section = "a",
+                    highlight = "fg",
+                },
+            },
+        },
+    },
 }

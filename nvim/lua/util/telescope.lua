@@ -68,9 +68,7 @@ end
 ---
 ---@return string path The resolved folder path.
 ---@return string prompt_title A title describing the source of the path.
-function M.get_folder_location(buf)
-    print(buf)
-
+function M.get_folder_location()
     local activeClients = require("lspconfig").util.get_managed_clients()
 
     local path = vim.fn.getcwd()
