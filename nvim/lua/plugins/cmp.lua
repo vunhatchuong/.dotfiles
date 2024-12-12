@@ -62,17 +62,8 @@ return {
                 },
             },
             sources = {
-                completion = {
-                    enabled_providers = {
-                        "lsp",
-                        "path",
-                        "snippets",
-                        "buffer",
-                        "lazydev",
-                    },
-                },
+                default = { "lsp", "path", "snippets", "buffer", "lazydev" },
                 providers = {
-                    lsp = { fallback_for = { "lazydev" } },
                     buffer = {
                         max_items = 4,
                         min_keyword_length = 4,
