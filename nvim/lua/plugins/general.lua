@@ -95,33 +95,30 @@ return {
             logHighlightGroup = false,
             logStatements = {
                 variableLog = {
-                    zig = 'std.debug.print("%s %s: {}", .{%s});',
+                    zig = 'std.debug.print("{{marker}} {{var}}: {}", .{{{var}}});',
                 },
                 objectLog = {
-                    zig = 'std.debug.print("%s %s: {}", .{%s});',
+                    zig = 'std.debug.print("{{marker}} {{var}}: {}", .{{{var}}});',
                 },
                 assertLog = {
-                    zig = 'std.debug.assert(%s, "%s %s");',
+                    zig = 'std.debug.assert({{var}}, "{{marker}} {{var}}");',
                 },
                 typeLog = {
-                    zig = 'std.debug.print("%s %s: type is {}", .{@TypeOf(%s)});',
-                },
-                beepLog = {
-                    zig = 'std.debug.print("%s beep %s", .{});',
+                    zig = 'std.debug.print("{{marker}} {{var}}: type is {}", .{@TypeOf({{var}})});',
                 },
                 messageLog = {
-                    zig = 'std.debug.print("%s ", .{});',
+                    zig = 'std.debug.print("{{marker}} ", .{});',
                 },
                 stacktraceLog = {
                     zig = "std.debug.dumpCurrentStackTrace(null);",
                 },
                 timeLogStart = {
-                    zig = "const timelogStart = std.time.Timer.start(); // %s",
+                    zig = "const timelogStart{{index}} = std.time.Timer.start(); // {{marker}}",
                 },
                 timeLogStop = {
                     zig = {
-                        "const durationNanos: f64 = @floatFromInt(timelogStart.read()); // %s",
-                        'std.debug.print("%s: {d:.3}ms", .{durationNanos / std.time.ns_per_ms});',
+                        "const durationNanos: f64 = @floatFromInt(timelogStart{{index}}.read()); // %s",
+                        'std.debug.print("{{marker}}: {d:.3}ms", .{durationNanos / std.time.ns_per_ms});',
                     },
                 },
             },
@@ -283,6 +280,7 @@ return {
     },
     {
         "jaimecgomezz/here.term",
+        enabled = false,
         keys = { { "<C-\\>" }, { "<C-S-\\>" } },
         opts = {
             mappings = {
@@ -299,7 +297,23 @@ return {
     {
         "smilhey/ed-cmd.nvim",
         event = { "CmdlineEnter" },
-        opts = { cmdline = { keymaps = { close = "<ESC>" } } },
+        opts = {
+            cmdline = {
+                keymaps = { close = "<ESC>" },
+                win_config = function()
+                    return {
+                        relative = "editor",
+                        width = math.ceil(vim.o.columns / 3),
+                        row = math.floor(vim.o.lines * 0.2),
+                        col = math.floor(vim.o.columns / 3),
+                        height = 1,
+                        style = "minimal",
+                        border = "single",
+                        zindex = 200,
+                    }
+                end,
+            },
+        },
     },
     {
         "meznaric/key-analyzer.nvim",

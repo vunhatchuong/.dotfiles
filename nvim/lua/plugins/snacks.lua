@@ -2,17 +2,16 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
-    opts = function()
-        require("snacks").toggle.profiler():map("<leader>pp")
-        require("snacks").toggle.profiler_highlights():map("<leader>ph")
-        return {
-            input = { enabled = true },
-            notifier = { enabled = true },
-            quickfile = { enabled = true },
-            scratch = { ft = "markdown" },
-            statuscolumn = { enabled = false }, -- we set this in options.lua
-        }
-    end,
+    opts = {
+        input = { enabled = true },
+        notifier = { enabled = true },
+        quickfile = { enabled = true },
+        scratch = { ft = "markdown" },
+        statuscolumn = { enabled = false }, -- we set this in options.lua
+        styles = {
+            terminal = { keys = { q = false, gf = false, term_normal = false } },
+        },
+    },
     keys = {
         {
             "<leader>ps",
@@ -34,6 +33,13 @@ return {
                 Snacks.zen.zoom()
             end,
             desc = "Maximize window",
+        },
+        {
+            "<C-\\>",
+            function()
+                Snacks.terminal.toggle(nil, { cwd = Snacks.git.get_root() })
+            end,
+            desc = "Toggle term",
         },
     },
 }

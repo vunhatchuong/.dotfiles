@@ -2,21 +2,29 @@ return {
     {
         "cbochs/grapple.nvim",
         keys = function()
+            local grapple = require("grapple")
+
             local function mark_file()
-                require("grapple").toggle()
+                grapple.toggle()
                 vim.notify("󱡁 Toggle mark")
             end
-            return {
-                -- stylua: ignore start
+
+            -- stylua: ignore
+            local keys = {
                 { "<leader>a", function() mark_file() end },
-                { "<leader>m", "<CMD>Grapple toggle_tags<CR>" },
-                { "<leader>1", ":Grapple select index=1<CR>" },
-                { "<leader>2", ":Grapple select index=2<CR>" },
-                { "<leader>3", ":Grapple select index=3<CR>" },
-                { "<leader>4", ":Grapple select index=4<CR>" },
-                { "<leader>5", ":Grapple select index=5<CR>" },
-                -- stylua: ignore end
+                { "<leader>m", function() grapple.toggle_tags() end},
             }
+            for i = 1, 5 do
+                keys[#keys + 1] = {
+                    "<leader>" .. i,
+                    function()
+                        grapple.select({ index = i })
+                    end,
+                    desc = "Grapple " .. i,
+                }
+            end
+
+            return keys
         end,
         opts = {},
     },
