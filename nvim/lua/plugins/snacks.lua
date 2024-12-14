@@ -28,5 +28,12 @@ return {
             end,
             desc = "Toggle Scratch Buffer",
         },
+        {
+            "<leader>wf",
+            function()
+                Snacks.zen.zoom()
+            end,
+            desc = "Maximize window",
+        },
     },
 }

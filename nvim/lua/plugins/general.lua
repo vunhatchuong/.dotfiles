@@ -74,20 +74,6 @@ return {
     },
     { "psjay/buffer-closer.nvim", keys = { "q" }, opts = {} },
     {
-        "szw/vim-maximizer",
-        cmd = { "MaximizerToggle" },
-        keys = {
-            {
-                "<leader>wf",
-                ":MaximizerToggle<CR>",
-                desc = "Maximize window",
-            },
-        },
-        init = function()
-            vim.g.maximizer_set_default_mapping = 0
-        end,
-    },
-    {
         "chrisgrieser/nvim-chainsaw",
         cmd = "ChainSaw",
         -- stylua: ignore
