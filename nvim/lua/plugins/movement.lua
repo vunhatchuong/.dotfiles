@@ -2,23 +2,25 @@ return {
     {
         "cbochs/grapple.nvim",
         keys = function()
-            local grapple = require("grapple")
-
             local function mark_file()
-                grapple.toggle()
-                vim.notify("󱡁 Toggle mark")
+                if require("grapple").exists() then
+                    vim.notify("󱡁 Mark")
+                else
+                    vim.notify("󱡁 Unmark")
+                end
+                require("grapple").toggle()
             end
 
             -- stylua: ignore
             local keys = {
                 { "<leader>a", function() mark_file() end },
-                { "<leader>m", function() grapple.toggle_tags() end},
+                { "<leader>m", function() require("grapple").toggle_tags() end},
             }
             for i = 1, 5 do
                 keys[#keys + 1] = {
                     "<leader>" .. i,
                     function()
-                        grapple.select({ index = i })
+                        require("grapple").select({ index = i })
                     end,
                     desc = "Grapple " .. i,
                 }
@@ -50,7 +52,8 @@ return {
         opts = {},
     },
     { -- Move in and out of brackets
-        "ysmb-wtsg/in-and-out.nvim",
+        "vunhatchuong/in-and-out.nvim",
+        branch = "fix/nvim-v0.10.1-compatibility",
         keys = {
             {
                 "<TAB>",
@@ -58,6 +61,13 @@ return {
                     require("in-and-out").in_and_out()
                 end,
                 mode = "n",
+            },
+            { -- Doesn't work on Windows?
+                "<C-CR>",
+                function()
+                    require("in-and-out").in_and_out()
+                end,
+                mode = "i",
             },
         },
         opts = { additional_targets = { "<", ">" } },
