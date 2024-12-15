@@ -14,9 +14,9 @@ return {
                 },
             },
             mappings = {
-                apply = "<leader>ha",
-                reset = "<leader>hr",
-                textobject = "<leader>ha",
+                apply = "",
+                reset = "",
+                textobject = "",
 
                 goto_first = "",
                 goto_prev = "",

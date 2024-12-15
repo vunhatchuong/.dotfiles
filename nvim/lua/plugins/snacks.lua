@@ -2,30 +2,45 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    ---@type snacks.Config
+    --- @diagnostic disable: missing-fields
     opts = {
         input = { enabled = true },
         notifier = { enabled = true },
         quickfile = { enabled = true },
         scratch = { ft = "markdown" },
         statuscolumn = { enabled = false }, -- we set this in options.lua
+        terminal = {
+            win = {
+                position = "float",
+                wo = { winbar = "" },
+            },
+        },
         styles = {
             terminal = { keys = { q = false, gf = false, term_normal = false } },
         },
     },
     keys = {
         {
-            "<leader>ps",
-            function()
-                require("snacks").profiler.scratch()
-            end,
-            desc = "Profiler Scratch Buffer",
-        },
-        {
             "<leader>n",
             function()
-                require("snacks").scratch()
+                Snacks.scratch()
             end,
             desc = "Toggle Scratch Buffer",
+        },
+        {
+            "<leader>lg",
+            function()
+                Snacks.lazygit({ cwd = Snacks.git.get_root() })
+            end,
+            desc = "Lazygit (Root Dir)",
+        },
+        {
+            "<C-\\>",
+            function()
+                Snacks.terminal.toggle(nil, { cwd = Snacks.git.get_root() })
+            end,
+            desc = "Term (Root Dir)",
         },
         {
             "<leader>wf",
@@ -33,13 +48,6 @@ return {
                 Snacks.zen.zoom()
             end,
             desc = "Maximize window",
-        },
-        {
-            "<C-\\>",
-            function()
-                Snacks.terminal.toggle(nil, { cwd = Snacks.git.get_root() })
-            end,
-            desc = "Toggle term",
         },
     },
 }

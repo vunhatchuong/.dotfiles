@@ -40,7 +40,7 @@ return {
                 menu = {
                     border = "rounded",
                     draw = {
-                        treesitter = true,
+                        treesitter = { "lsp" },
                         columns = {
                             { "kind_icon", "kind", gap = 1 },
                             { "label", "label_description", gap = 1 },
