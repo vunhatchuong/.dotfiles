@@ -41,9 +41,7 @@ return {
     {
         "lewis6991/hover.nvim",
         -- stylua: ignore
-        keys = {
-            { "K", function() require("hover").hover() end },
-        },
+        keys = { { "K", function() require("hover").hover() end } },
         opts = {
             init = function()
                 -- require("hover.providers.lsp")
@@ -359,5 +357,11 @@ return {
                 end,
             },
         },
+    },
+    {
+        "vunhatchuong/guess-indent.nvim",
+        branch = "feat/auto-retab",
+        cmd = { "GuessIndent" },
+        opts = { auto_cmd = false },
     },
 }
