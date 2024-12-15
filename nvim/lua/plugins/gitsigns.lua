@@ -51,7 +51,7 @@ return {
         end
 
         -- stylua: ignore start
-        nmap("<leader>hh", function() mini_diff.toggle_overlay(0) end, "Toggle mini.diff overlay")
+        nmap("<leader>hh", function() mini_diff.toggle_overlay(0) end, "Toggle overlay")
         nmap("<leader>hn", function() hunk_navigation("next") end, "Next hunk")
         nmap("<leader>hp", function() hunk_navigation("prev") end, "Prev hunk")
         -- stylua: ignore end

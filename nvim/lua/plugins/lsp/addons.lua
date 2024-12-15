@@ -6,17 +6,17 @@ return {
             {
                 "<leader>dd",
                 ":Trouble diagnostics toggle<CR>",
-                desc = "Diagnostics (Trouble)",
+                desc = "Trouble: Diagnostics",
             },
             {
                 "<leader>wd",
                 ":Trouble diagnostics toggle filter.buf=0<CR>",
-                desc = "Buffer Diagnostics (Trouble)",
+                desc = "Trouble: Buffer Diagnostics",
             },
             {
                 "<leader>o",
                 ":Trouble symbols toggle<CR>",
-                desc = "Buffer Symbols (Trouble)",
+                desc = "Trouble: Buffer Symbols",
             },
         },
         opts = {
@@ -63,14 +63,13 @@ return {
                 function()
                     vim.lsp.buf.signature_help()
                 end,
-                "Toggle signature help",
+                desc = "Toggle signature help",
             },
         },
         opts = {
             hint_enable = false,
             hint_prefix = "󰏪 ",
             hint_scheme = "@variable.parameter",
-            -- floating_window = false,
         },
     },
     {
@@ -90,7 +89,6 @@ return {
             { "<leader>ca", ":Lspsaga code_action<CR>",          desc = "[C]ode [A]ction" },
             { "]d",         ":Lspsaga diagnostic_jump_next<CR>", desc = "Diagnostic jump next" },
             { "[d",         ":Lspsaga diagnostic_jump_prev<CR>", desc = "Diagnostic jump prev" },
-            -- { "K", ":Lspsaga hover_doc<CR>", desc = "Hover" },
         },
         opts = function()
             local icons = require("core.icons")
@@ -124,7 +122,7 @@ return {
     },
     {
         "smjonas/inc-rename.nvim",
-        keys = "<leader>rn",
+        keys = { { "<leader>rn", desc = "Inc rename" } },
         opts = {
             save_in_cmdline_history = false,
         },

@@ -13,8 +13,8 @@ return {
 
             -- stylua: ignore
             local keys = {
-                { "<leader>a", function() mark_file() end },
-                { "<leader>m", function() require("grapple").toggle_tags() end},
+                { "<leader>a", function() mark_file() end, desc = "Grapple: Toggle mark" },
+                { "<leader>m", function() require("grapple").toggle_tags() end, desc = "Grapple: Toggle UI" },
             }
             for i = 1, 5 do
                 keys[#keys + 1] = {
@@ -36,25 +36,6 @@ return {
         opts = {},
     },
     {
-        "gbprod/substitute.nvim",
-        keys = { { "s", mode = { "n", "x" } }, { "ss" } },
-        opts = {
-            preserve_cursor_position = true,
-            highlight_substituted_text = { timer = 40 },
-        },
-        config = function(_, opts)
-            require("substitute").setup(opts)
-
-            -- stylua: ignore start
-            vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
-            vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
-            vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
-            -- stylua: ignore end
-
-            vim.cmd("hi! link SubstituteSubstituted IncSearch")
-        end,
-    },
-    {
         "glepnir/flybuf.nvim",
         keys = { { "gb", ":FlyBuf<CR>", desc = "Open buffer menu" } },
         opts = {},
@@ -69,6 +50,7 @@ return {
                     require("in-and-out").in_and_out()
                 end,
                 mode = "n",
+                desc = "In and out",
             },
             { -- Doesn't work on Windows?
                 "<C-CR>",
@@ -76,6 +58,7 @@ return {
                     require("in-and-out").in_and_out()
                 end,
                 mode = "i",
+                desc = "In and out",
             },
         },
         opts = { additional_targets = { "<", ">" } },
@@ -104,6 +87,7 @@ return {
             {
                 "<CR>",
                 mode = { "n", "x", "o" },
+                desc = "Flash",
                 function()
                     local Flash = require("flash")
 
@@ -157,7 +141,14 @@ return {
                         end,
                     })
                 end,
-                desc = "Flash",
+            },
+            {
+                "r",
+                mode = "o",
+                desc = "Remote Flash",
+                function()
+                    require("flash").remote()
+                end,
             },
         },
         ---@type Flash.Config
@@ -168,9 +159,7 @@ return {
                     jump_labels = true,
                     multi_line = false,
                     search = { wrap = true },
-                    jump = {
-                        autojump = true,
-                    },
+                    jump = { autojump = true },
                 },
             },
             remote_op = {
@@ -178,5 +167,15 @@ return {
                 motion = true,
             },
         },
+        config = function(_, opts)
+            require("flash").setup(opts)
+
+            --[[ Fix motion doesn't work like vanilla
+                https://github.com/folke/flash.nvim/discussions/263 ]]
+            vim.api.nvim_del_keymap("o", "t")
+            vim.api.nvim_del_keymap("o", "f")
+            vim.api.nvim_del_keymap("o", "T")
+            vim.api.nvim_del_keymap("o", "F")
+        end,
     },
 }

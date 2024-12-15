@@ -2,15 +2,6 @@ return {
     {
         "MagicDuck/grug-far.nvim",
         cmd = "GrugFar",
-        opts = {
-            startInInsertMode = false,
-            transient = true,
-            keymaps = {
-                qflist = false,
-                close = { n = "<localleader>q" },
-                historyAdd = false,
-            },
-        },
         keys = {
             {
                 "<leader>st",
@@ -27,6 +18,15 @@ return {
                     })
                 end,
                 desc = "Search current word",
+            },
+        },
+        opts = {
+            startInInsertMode = false,
+            transient = true,
+            keymaps = {
+                qflist = false,
+                close = { n = "<localleader>q" },
+                historyAdd = false,
             },
         },
     },

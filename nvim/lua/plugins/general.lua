@@ -51,77 +51,7 @@ return {
             preview_opts = { border = "rounded" },
         },
     },
-    { -- Upper: u, Lower: l, Snake: s, Dash: d, Const: n, Camel: c, Pascal: p
-        -- Usage: ga{u} to change cursor word to upper
-        -- gao to turn into motion mode. Ex: gaouw means change a word to upper
-        "johmsalas/text-case.nvim",
-        dependencies = { "nvim-telescope/telescope.nvim" },
-        keys = {
-            { "ga" },
-            {
-                "ga.",
-                ":TextCaseOpenTelescope<CR>",
-                mode = { "n", "x" },
-                desc = "Change word case",
-            },
-        },
-        config = function()
-            require("textcase").setup({})
-            require("telescope").load_extension("textcase")
-        end,
-    },
     { "psjay/buffer-closer.nvim", keys = { "q" }, opts = {} },
-    {
-        "chrisgrieser/nvim-chainsaw",
-        cmd = "ChainSaw",
-        -- stylua: ignore
-        keys = {
-            { "<leader>ll", function() require("chainsaw").variableLog() end, mode = { "n", "x" }, desc = "󰐪 Var" },
-            { "<leader>lo", function() require("chainsaw").objectLog() end, mode = { "n", "x" }, desc = "󰐪 Object" },
-            { "<leader>la", function() require("chainsaw").assertLog() end, mode = { "n", "x" }, desc = "󰐪 Assert" },
-            { "<leader>lt", function() require("chainsaw").typeLog() end, mode = { "n", "x" }, desc = "󰐪 Type" },
-            { "<leader>lm", function() require("chainsaw").messageLog() end, desc = "󰐪 Message" },
-            { "<leader>l1", function() require("chainsaw").timeLog() end, desc = "󰐪 Time" },
-            { "<leader>ld", function() require("chainsaw").debugLog() end, desc = "󰐪 Debugger" },
-            { "<leader>ls", function() require("chainsaw").stacktraceLog() end, desc = "󰐪 Stacktrace" },
-            { "<leader>lk", function() require("chainsaw").clearLog() end, desc = "󰐪 Clear" },
-
-            { "<leader>lr", function() require("chainsaw").removeLogs() end, desc = "󰐪 󰅗 Remove logs" },
-        },
-        opts = {
-            marker = ".>",
-            logHighlightGroup = false,
-            logStatements = {
-                variableLog = {
-                    zig = 'std.debug.print("{{marker}} {{var}}: {}", .{{{var}}});',
-                },
-                objectLog = {
-                    zig = 'std.debug.print("{{marker}} {{var}}: {}", .{{{var}}});',
-                },
-                assertLog = {
-                    zig = 'std.debug.assert({{var}}, "{{marker}} {{var}}");',
-                },
-                typeLog = {
-                    zig = 'std.debug.print("{{marker}} {{var}}: type is {}", .{@TypeOf({{var}})});',
-                },
-                messageLog = {
-                    zig = 'std.debug.print("{{marker}} ", .{});',
-                },
-                stacktraceLog = {
-                    zig = "std.debug.dumpCurrentStackTrace(null);",
-                },
-                timeLogStart = {
-                    zig = "const timelogStart{{index}} = std.time.Timer.start(); // {{marker}}",
-                },
-                timeLogStop = {
-                    zig = {
-                        "const durationNanos: f64 = @floatFromInt(timelogStart{{index}}.read()); // %s",
-                        'std.debug.print("{{marker}}: {d:.3}ms", .{durationNanos / std.time.ns_per_ms});',
-                    },
-                },
-            },
-        },
-    },
     { -- Keep cursor position when yank
         "svban/YankAssassin.nvim",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
@@ -149,8 +79,18 @@ return {
         -- stylua: ignore
         cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapASCII", "CodeSnapHighlight" },
         keys = {
-            { "<leader>xs", ":CodeSnap<CR>", mode = { "n", "x" } },
-            { "<leader>xS", ":CodeSnapSave<CR>", mode = { "n", "x" } },
+            {
+                "<leader>xs",
+                mode = { "n", "x" },
+                desc = "CodeSnap",
+                ":CodeSnap<CR>",
+            },
+            {
+                "<leader>xS",
+                mode = { "n", "x" },
+                desc = "CodeSnap: Save",
+                ":CodeSnapSave<CR>",
+            },
         },
         opts = {
             save_path = "~/Pictures",
@@ -190,6 +130,7 @@ return {
                         end,
                     })
                 end,
+                desc = "Paste Image",
             },
         },
         opts = {},
@@ -203,25 +144,16 @@ return {
         },
     },
     {
-        "glepnir/template.nvim",
-        cmd = { "Template" },
-        opts = {
-            temp_dir = vim.fn.stdpath("config") .. "/template",
-            author = "Vu Nhat Chuong",
-            email = "ronnyvu321@gmail.com",
-        },
-    },
-    {
         "vunhatchuong/browse.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
         -- stylua: ignore
         keys = {
-            { "<leader>b",  ":Browse<CR>" },
-            { "<leader>bi", ":BrowseInputSearch<CR>" },
-            { "<leader>bb", ":BrowseBookmarks<CR>" },
-            { "<leader>bd", ":BrowseDevdocsSearch<CR>" },
-            { "<leader>bf", ":BrowseDevdocsFiletypeSearch<CR>" },
-            { "<leader>bm", ":BrowseMdnSearch<CR>" }
+            { "<leader>b",  ":Browse<CR>", desc = "Browse" },
+            { "<leader>bi", ":BrowseInputSearch<CR>", desc = "Browse: Input Search"  },
+            { "<leader>bb", ":BrowseBookmarks<CR>", desc = "Browse: Bookmarks"  },
+            { "<leader>bd", ":BrowseDevdocsSearch<CR>", desc = "Browse: Dev docs"  },
+            { "<leader>bf", ":BrowseDevdocsFiletypeSearch<CR>", desc = "Browse: Filetype"  },
+            { "<leader>bm", ":BrowseMdnSearch<CR>", desc = "Browse: MDN"  }
         },
         opts = {
             provider = "duckduckgo",
@@ -254,7 +186,7 @@ return {
     {
         "AckslD/nvim-neoclip.lua",
         dependencies = { { "nvim-telescope/telescope.nvim" } },
-        keys = { { "<leader>y", ":Telescope neoclip<CR>" } },
+        keys = { { "<leader>y", ":Telescope neoclip<CR>", desc = "Neoclip" } },
         opts = {
             enable_macro_history = false,
             preview = false,
@@ -274,17 +206,6 @@ return {
                 return not all(data.event.regcontents, is_whitespace)
             end,
             default_register = { '"', "+" },
-        },
-    },
-    {
-        "jaimecgomezz/here.term",
-        enabled = false,
-        keys = { { "<C-\\>" }, { "<C-S-\\>" } },
-        opts = {
-            mappings = {
-                toggle = "<C-\\>",
-                kill = "<C-S-\\>",
-            },
         },
     },
     {
@@ -357,11 +278,5 @@ return {
                 end,
             },
         },
-    },
-    {
-        "vunhatchuong/guess-indent.nvim",
-        branch = "feat/auto-retab",
-        cmd = { "GuessIndent" },
-        opts = { auto_cmd = false },
     },
 }

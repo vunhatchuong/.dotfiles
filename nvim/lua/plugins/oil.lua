@@ -9,7 +9,7 @@ return {
                 function()
                     require("oil").open()
                 end,
-                desc = "Open file explorer",
+                desc = "Oil: Open",
             },
         },
         --- @type oil.SetupOpts
