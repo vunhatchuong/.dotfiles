@@ -124,7 +124,7 @@ return {
     },
     { -- Keep cursor position when yank
         "svban/YankAssassin.nvim",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = { auto_normal = true, auto_visual = true },
     },
     { -- Install distant then run :DistantConnect ssh://{username}@{IP}

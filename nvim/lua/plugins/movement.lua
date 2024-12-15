@@ -36,15 +36,23 @@ return {
         opts = {},
     },
     {
-        "echasnovski/mini.operators",
-        keys = { { "gs" } },
+        "gbprod/substitute.nvim",
+        keys = { { "s", mode = { "n", "x" } }, { "ss" } },
         opts = {
-            evaluate = { prefix = "" },
-            exchange = { prefix = "" },
-            multiply = { prefix = "" },
-            replace = { prefix = "gs" }, -- go substitute
-            sort = { prefix = "" },
+            preserve_cursor_position = true,
+            highlight_substituted_text = { timer = 40 },
         },
+        config = function(_, opts)
+            require("substitute").setup(opts)
+
+            -- stylua: ignore start
+            vim.keymap.set("n", "s", require("substitute").operator, { noremap = true })
+            vim.keymap.set("n", "ss", require("substitute").line, { noremap = true })
+            vim.keymap.set("x", "s", require("substitute").visual, { noremap = true })
+            -- stylua: ignore end
+
+            vim.cmd("hi! link SubstituteSubstituted IncSearch")
+        end,
     },
     {
         "glepnir/flybuf.nvim",
@@ -108,6 +116,7 @@ return {
                         }
                     end
 
+                    --- @diagnostic disable: missing-fields
                     Flash.jump({
                         search = { mode = "search" },
                         label = {
