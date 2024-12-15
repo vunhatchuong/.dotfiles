@@ -21,7 +21,7 @@ return {
         },
         opts = {
             focus = true,
-            keys = { ["<CR>"] = "jump_close", ["<space>"] = "jump" },
+            keys = { ["<cr>"] = "jump_close", ["<space>"] = "jump" },
             modes = {
                 lsp_document_symbols = {
                     title = false,
