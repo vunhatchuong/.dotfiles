@@ -1,6 +1,6 @@
 ---@class util
----@field worktree util.worktree
 ---@field telescope util.telescope
+---@field worktree util.worktree
 local M = {}
 
 setmetatable(M, {
@@ -10,6 +10,7 @@ setmetatable(M, {
     end,
 })
 
+---@return boolean
 function M.is_win()
     return vim.uv.os_uname().sysname:find("Windows") ~= nil
 end
