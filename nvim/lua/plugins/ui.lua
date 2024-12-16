@@ -131,12 +131,6 @@ return {
         },
     },
     {
-        "akinsho/git-conflict.nvim",
-        opts = {
-            default_mappings = false,
-        },
-    },
-    {
         "mawkler/modicator.nvim",
         dependencies = { "nvim-lualine/lualine.nvim" },
         event = "VeryLazy",

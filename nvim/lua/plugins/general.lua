@@ -216,6 +216,25 @@ return {
     {
         "smilhey/ed-cmd.nvim",
         event = { "CmdlineEnter" },
+        init = function()
+            local saved_sidescrolloff
+            vim.api.nvim_create_autocmd("CmdlineEnter", {
+                desc = "Temporarily set sidescrolloff to 0 in command-line mode",
+                callback = function()
+                    saved_sidescrolloff = vim.opt.sidescrolloff
+                    vim.opt.sidescrolloff = 0
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("CmdlineLeave", {
+                desc = "Restore sidescrolloff after leaving command-line mode",
+                callback = function()
+                    if saved_sidescrolloff then
+                        vim.opt.sidescrolloff = saved_sidescrolloff
+                    end
+                end,
+            })
+        end,
         opts = {
             cmdline = {
                 keymaps = { close = "<ESC>" },
@@ -238,45 +257,5 @@ return {
         "meznaric/key-analyzer.nvim",
         cmd = { "KeyAnalyzer" },
         opts = {},
-    },
-    {
-        "xavierchanth/arbor.nvim",
-        cmd = { "Arbor" },
-        ---@type arbor.config
-        opts = {
-            apply_recommended = false,
-            worktree = {
-                normal = { base = "relative_common", path = "../.." },
-                bare = { base = "relative_common", path = "../.." },
-            },
-            actions = {
-                add = {
-                    ["add new branch"] = function(info)
-                        require("arbor").actions.add_new_branch(info, {
-                            path_style = function()
-                                return vim.fs.basename(info.new_branch)
-                            end,
-                            branch_style = "prompt",
-                        })
-                    end,
-                },
-                pick = {
-                    ["remove worktree"] = function()
-                        require("arbor").remove()
-                    end,
-                },
-            },
-            hooks = {
-                post_add = function(info)
-                    return Util.worktree.arbor_post_add(info)
-                end,
-                post_pick = function(info)
-                    return Util.worktree.arbor_post_switch(info)
-                end,
-                pre_remove = function(info)
-                    return Util.worktree.arbor_pre_remove(info)
-                end,
-            },
-        },
     },
 }
