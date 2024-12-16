@@ -22,7 +22,10 @@ return {
             { "<Left>",  function() require("origami").h() end },
             { "<Right>", function() require("origami").l() end },
         },
-        opts = {},
+        opts = {
+            -- This breaks fileline.nvim and actually.nvim
+            keepFoldsAcrossSessions = false,
+        },
     },
     { -- Turn off features when file > ? MB
         "pteroctopus/faster.nvim",
@@ -38,6 +41,12 @@ return {
     },
     -- open file given a line, Ex in terminal: nvim general.lua:20
     { "lewis6991/fileline.nvim", event = "BufNewFile" },
+    -- Ask when try to open a disambiguate file: nvim gener
+    {
+        "vunhatchuong/actually.nvim",
+        branch = "fix/nested-autocmd",
+        event = "BufNewFile",
+    },
     {
         "lewis6991/hover.nvim",
         -- stylua: ignore
