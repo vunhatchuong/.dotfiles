@@ -184,6 +184,20 @@ return {
         },
     },
     {
+        "chrishrb/gx.nvim",
+        cmd = { "Browse" },
+        keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+        init = function()
+            vim.g.netrw_nogx = 1 -- disable netrw gx
+        end,
+        opts = {
+            handlers = {
+                brewfile = false,
+            },
+            handler_options = { search_engine = "duckduckgo" },
+        },
+    },
+    {
         "AckslD/nvim-neoclip.lua",
         dependencies = { { "nvim-telescope/telescope.nvim" } },
         keys = { { "<leader>y", ":Telescope neoclip<CR>", desc = "Neoclip" } },
