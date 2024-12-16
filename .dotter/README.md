@@ -11,6 +11,15 @@ includes = [".dotter/include/windows.toml"]
 packages = ["windows"]
 ```
 
+### Alacritty
+
+For WSL
+
+```toml
+[terminal]
+shell = { program = "wsl", args = ["--cd ~"] }
+```
+
 ## Linux
 
 Create a `local.toml` file in the `.dotter` directory with the following content:

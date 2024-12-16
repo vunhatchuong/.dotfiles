@@ -1,4 +1,7 @@
-import = ["{{ alacritty-theme }}"]
+[general]
+import = [
+"{{ alacritty-theme }}"
+]
 
 [env]
 TERM = "xterm-256color"
