@@ -99,7 +99,7 @@ vim.g.netrw_alto = 0
 ---  OTHERS  ---
 -- opt.wildmode = "longest:full,full"       -- Command-line completion mode
 opt.wildmode = "list:full"                  -- Shows a menu bar as opposed to an enormous list
-opt.wildoptions = { "pum", "fuzzy" }
+-- opt.wildoptions = { "pum", "fuzzy" }
 opt.wildignorecase = true                   -- Ignore case when completing file names and directories
 opt.shortmess:append("tToOWIcsSF")          -- don't show redundant messages from ins-completion-menu
 opt.fillchars = vim.opt.fillchars + "eob: "
