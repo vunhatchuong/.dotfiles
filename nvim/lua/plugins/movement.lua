@@ -4,9 +4,9 @@ return {
         keys = function()
             local function mark_file()
                 if require("grapple").exists() then
-                    vim.notify("󱡁 Mark")
-                else
                     vim.notify("󱡁 Unmark")
+                else
+                    vim.notify("󱡁 Mark")
                 end
                 require("grapple").toggle()
             end

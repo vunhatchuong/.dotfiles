@@ -97,6 +97,7 @@ return {
             },
         },
         opts = {
+            default_args = { DiffviewFileHistory = { "%" } },
             enhanced_diff_hl = true,
             hooks = {
                 diff_buf_read = function()

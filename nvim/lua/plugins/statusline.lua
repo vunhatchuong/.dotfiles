@@ -202,6 +202,20 @@ return {
                             symbols = { modified = "", readonly = "" },
                             padding = {},
                         },
+                        {
+                            "grapple",
+                            inactive = "%s",
+                            padding = { left = 1, right = 5 },
+                        },
+                        -- {
+                        --     function()
+                        --         return require("grapple").name_or_index()
+                        --     end,
+                        --     cond = function()
+                        --         return package.loaded["grapple"]
+                        --             and require("grapple").exists()
+                        --     end,
+                        -- },
                     },
                     -- Right
                     lualine_x = {},
