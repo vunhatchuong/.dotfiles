@@ -25,7 +25,7 @@ opt.autowrite = true                        -- save when kinda change buffer?
 opt.fileformat = "unix"
 opt.confirm = true                          -- Confirm to save changes before exiting modified buffer
 opt.spelllang = { "en" }
-opt.spelloptions:append("noplainbuffer")
+opt.spelloptions:append({ "camel", "noplainbuffer" })
 opt.smoothscroll = true
 opt.jumpoptions = "view"
 opt.startofline = true
@@ -64,15 +64,19 @@ opt.laststatus = 3        -- always show the last status {default 2}
 -- opt.conceallevel = 2      -- Hide * markup for bold and italic
 opt.pumblend = 10         -- Popup blend
 opt.pumheight = 10        -- Maximum number of entries in a popup
-opt.cmdheight = 1
+opt.cmdheight = 0
 opt.showcmd = false
 
 ---  INDENT  ---
-opt.formatoptions = "tcnlj"
+opt.formatoptions = "12tcnlj"
 opt.list = true           -- Show some invisible characters (tabs...
 opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 opt.virtualedit = "block" -- Allow cursor to move where there is no text in visual block mode
+
 opt.breakindent =  true
+opt.breakindentopt = "sbr"
+opt.linebreak = true
+opt.showbreak = [[↪ ]]
 
 ---  TABS  ---
 opt.wrap = false                            -- display lines as one long line
@@ -82,7 +86,7 @@ opt.shiftround = true                       -- Round indent
 opt.shiftwidth = 4                          -- the number of spaces inserted for each indentation
 opt.tabstop = 4                             -- insert 2 spaces for a tab
 opt.foldmethod = "expr"                     -- folding set to "manual" for if no treesitter
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 
@@ -93,8 +97,11 @@ vim.g.netrw_preview = 1
 vim.g.netrw_alto = 0
 
 ---  OTHERS  ---
-opt.wildmode = "longest:full,full" -- Command-line completion mode
-opt.shortmess:append("WIcsS")        -- don't show redundant messages from ins-completion-menu
+-- opt.wildmode = "longest:full,full"       -- Command-line completion mode
+opt.wildmode = "list:full"                  -- Shows a menu bar as opposed to an enormous list
+opt.wildoptions = { "pum", "fuzzy" }
+opt.wildignorecase = true                   -- Ignore case when completing file names and directories
+opt.shortmess:append("tToOWIcsSF")          -- don't show redundant messages from ins-completion-menu
 opt.fillchars = vim.opt.fillchars + "eob: "
 opt.fillchars:append({
     foldopen = "",
