@@ -10,6 +10,7 @@
 
 [core]
     editor = nvim
+    pager = delta
     ui = true
     ignorecase = false
     autocrlf = input
@@ -46,6 +47,19 @@
 
 [mergetool "nvim"]
     cmd = nvim -c "DiffviewOpen"
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    true-color = always
+    features = line-numbers decorations
+    navigate = true    # use n and N to move between diff sections
+
+[delta "decorations"]
+    commit-decoration-style = bold yellow box ul
+    file-style = bold yellow ul
+    file-decoration-style = yellow ul
 
 [credential]
     helper = /sbin/git-credential-manager
