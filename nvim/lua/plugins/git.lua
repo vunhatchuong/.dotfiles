@@ -60,6 +60,7 @@ return {
     },
     {
         "akinsho/git-conflict.nvim",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
         opts = {
             -- Use :GitConflictChoose{WHO}
             default_mappings = {
@@ -105,6 +106,17 @@ return {
                     opt.wrap, opt.list, opt.relativenumber = false, false, false
                     opt.colorcolumn = ""
                 end,
+            },
+            view = {
+                default = {
+                    -- layout = "diff1_inline",
+                    disable_diagnostics = true,
+                },
+                merge_tool = { layout = "diff3_mixed" },
+                file_history = {
+                    -- layout = "diff1_inline",
+                    disable_diagnostics = true,
+                },
             },
             file_panel = { win_config = { width = 30 } },
             keymaps = {
