@@ -21,15 +21,24 @@
 
 [branch]
     autosetuprebase = always
+    # Show most recently changed branches first.
+    sort = -committerdate
 
 [pull]
     rebase = true
 
 [rebase]
-	autoStash = true
+    autoStash = true
 
 [commit]
     verbose = true
+
+[diff]
+    colorMoved = default # Moved lines in a diff are colored differently
+    # renames = copies # Detect copies as well as renames.
+
+# [merge]
+    # conflictstyle = diff3
 
 [credential]
     helper = /sbin/git-credential-manager
