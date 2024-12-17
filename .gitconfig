@@ -14,7 +14,7 @@
     ignorecase = false
     autocrlf = input
     eol = lf
-    excludesfile = ~/.gitignore
+    # excludesfile = ~/.gitignore
 
 [remote]
     pushDefault = origin
@@ -37,8 +37,15 @@
     colorMoved = default # Moved lines in a diff are colored differently
     # renames = copies # Detect copies as well as renames.
 
-# [merge]
-    # conflictstyle = diff3
+[merge]
+    conflictstyle = diff3
+    tool = nvim
+
+[mergetool]
+    prompt = false
+
+[mergetool "nvim"]
+    cmd = nvim -c "DiffviewOpen"
 
 [credential]
     helper = /sbin/git-credential-manager
