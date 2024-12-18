@@ -21,9 +21,9 @@ plug "zap-zsh/exa"
 plug "esc/conda-zsh-completion"
 plug "Bhupesh-V/ugit"
 
-# This seems to bug out `Ctrl+` keymap for WSL
-plug "jeffreytse/zsh-vi-mode"
-ZVM_CURSOR_STYLE_ENABLED=false
+# This seems to bug out `Ctrl+` keymaps
+# plug "jeffreytse/zsh-vi-mode"
+# ZVM_CURSOR_STYLE_ENABLED=false
 
 # fzf-tab
 plug "Aloxaf/fzf-tab"
