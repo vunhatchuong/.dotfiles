@@ -1,3 +1,5 @@
+export KEYTIMEOUT=1           # Reduce input lag
+
 autoload -Uz plug
 
 autoload -Uz colors && colors

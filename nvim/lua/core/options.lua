@@ -14,6 +14,7 @@ end
 ---  SYSTEM   ---
 opt.updatetime = 250                        -- faster completion
 opt.timeoutlen = 250                        -- time to wait for a mapped sequence to complete (in milliseconds)
+opt.ttimeoutlen = 10                        -- Time in milliseconds to wait for a key code sequence to complete
 opt.swapfile = false                        -- creates a swapfile
 opt.backup = false                          -- creates a backup file
 opt.writebackup = false                     -- if a file is being edited by another program (or was written to file while editing with another program) it is not allowed to be edited
