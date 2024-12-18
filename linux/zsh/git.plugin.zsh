@@ -110,6 +110,10 @@ alias gwta="git worktree add"
 alias gwtrm="git worktree remove"
 alias gwtmv="git worktree move"
 
+alias gstl="git stash list"
+alias gstp="git stash pop"
+alias gstd="git stash drop"
+
 function grename() {
   if [[ -z "$1" || -z "$2" ]]; then
     echo "Usage: $0 old_branch new_branch"

@@ -2,7 +2,8 @@
 # Aliases
 # For a full list of active aliases, run `alias`.
 #
-# Color ls, required exa plugin
+alias cl="clear"
+
 alias eza="eza --color=always --icons --time-style=long-iso"
 alias ls="eza"
 alias ll="ls -la --header"

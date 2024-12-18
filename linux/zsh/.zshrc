@@ -35,6 +35,7 @@ plug "$ZDOTDIR/fzf-tab.zsh"
 # Put it before the plugin
 plug "catppuccin_mocha-zsh-syntax-highlighting.zsh"
 plug "MichaelAquilina/zsh-you-should-use"
+plug "MichaelAquilina/zsh-auto-notify"
 
 plug "$ZDOTDIR/alias.zsh"
 plug "$ZDOTDIR/git.plugin.zsh"
