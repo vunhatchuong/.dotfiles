@@ -9,7 +9,6 @@ alias ll="ls -la --header"
 alias la="ls -a"
 alias tree="eza --tree --level=2 --group-directories-first"
 
-alias fd="fdfind"
 alias less="less -R"
 alias lg="lazygit"
 alias lzd="lazydocker"
