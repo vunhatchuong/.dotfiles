@@ -90,6 +90,8 @@ return {
                     results_title = false,
                     entry_prefix = "   ",
                     path_display = { "smart" },
+                    sorting_strategy = "ascending",
+                    layout_config = { horizontal = { prompt_position = "top" } },
                     mappings = {
                         n = { ["q"] = "close" },
                         i = { ["<ESC>"] = "close" },
@@ -100,7 +102,6 @@ return {
                         find_command = Util.telescope.find_command,
                         hidden = true,
                         previewer = false,
-                        sorting_strategy = "ascending",
                         layout_config = {
                             horizontal = { prompt_position = "top" },
                             width = 0.6,
