@@ -20,8 +20,12 @@ autocmd({ "FileType" }, {
         vim.bo[event.buf].buflisted = false
         vim.schedule(function()
             vim.keymap.set("n", "q", function()
-                vim.cmd("close")
-                pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+                if vim.bo.filetype == "oil" and vim.fn.winnr("$") == 1 then
+                    vim.cmd("quit")
+                else
+                    vim.cmd("close")
+                    pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+                end
             end, {
                 buffer = event.buf,
                 silent = true,
