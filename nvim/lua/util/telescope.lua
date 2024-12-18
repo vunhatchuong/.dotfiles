@@ -69,19 +69,17 @@ end
 ---@return string path The resolved folder path.
 ---@return string prompt_title A title describing the source of the path.
 function M.get_folder_location()
-    local activeClients = require("lspconfig").util.get_managed_clients()
+    local clients = vim.lsp.get_clients()
 
     local path = vim.fn.getcwd()
     local prompt_title = "Default"
 
-    if #activeClients > 0 and false then
-        path = activeClients[1].config.root_dir
-        prompt_title = activeClients[1].name
+    if #clients > 0 then
+        path = clients[1].config.root_dir and clients[1].config.root_dir or path
+        prompt_title = clients[1].name
     elseif Snacks.git.get_root() then
         path = Snacks.git.get_root()
         prompt_title = "Git root"
-    else
-        prompt_title = "Fall back"
     end
 
     return path, prompt_title
