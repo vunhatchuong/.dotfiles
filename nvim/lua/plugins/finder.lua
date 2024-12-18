@@ -87,6 +87,7 @@ return {
                 defaults = {
                     prompt_prefix = " " .. icons.ui.Telescope .. " ",
                     selection_caret = " " .. icons.ui.Forward,
+                    results_title = false,
                     entry_prefix = "   ",
                     path_display = { "smart" },
                     mappings = {
@@ -99,7 +100,37 @@ return {
                         find_command = Util.telescope.find_command,
                         hidden = true,
                         previewer = false,
-                        layout_config = { width = 0.6, height = 0.8 },
+                        sorting_strategy = "ascending",
+                        layout_config = {
+                            horizontal = { prompt_position = "top" },
+                            width = 0.6,
+                            height = 0.8,
+                        },
+                    },
+                    live_grep = { disable_coordinates = true },
+                    highlights = {
+                        -- stylua: ignore
+                        mappings = {
+                            i = { -- copy highlight values
+                                ["<CR>"] = function(promptBufnr)
+                                    local hlName = require("telescope.actions.state").get_selected_entry().value
+
+                                    require("telescope.actions").close(promptBufnr)
+
+                                    local hlValue = vim.api.nvim_get_hl(0, { name = hlName })
+                                    local out = vim.iter(hlValue):fold({}, function(acc, key, val)
+                                        if key == "link" then acc.link = val end
+                                        if key == "fg" then acc.fg = ("#%06x"):format(val) end
+                                        if key == "bg" then acc.bg = ("#%06x"):format(val) end
+                                        return acc
+                                    end)
+                                    if vim.tbl_isempty(out) then return end
+
+                                    local values = table.concat(vim.tbl_values(out), "\n")
+                                    vim.fn.setreg("+", values)
+                                end,
+                            },
+                        },
                     },
                 },
             }

@@ -1,0 +1,15 @@
+# vim: filetype=gitignore
+# https://github.com/chrisgrieser/.config/blob/main/ripgrep/ignore
+#───────────────────────────────────────────────────────────────────────────────
+
+# git isn't ignored by default
+.git/
+
+#───────────────────────────────────────────────────────────────────────────────
+# IGNORE PROJECT BOILERPLATE
+
+# general
+.github
+
+# python
+typings/**/*.pyi
