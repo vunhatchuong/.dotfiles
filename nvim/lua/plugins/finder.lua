@@ -83,21 +83,6 @@ return {
         opts = function()
             local icons = require("core.icons")
 
-            -- stylua: ignore
-            local function find_command()
-                if 1 == vim.fn.executable("rg") then
-                return { "rg", "--files", "--color", "never", "-g", "!.git" }
-                elseif 1 == vim.fn.executable("rg") then
-                return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
-                elseif 1 == vim.fn.executable("fdfind") then
-                return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
-                elseif 1 == vim.fn.executable("find") and vim.fn.has("win32") == 0 then
-                return { "find", ".", "-type", "f" }
-                elseif 1 == vim.fn.executable("where") then
-                return { "where", "/r", ".", "*" }
-                end
-            end
-
             return {
                 defaults = {
                     prompt_prefix = " " .. icons.ui.Telescope .. " ",
@@ -111,7 +96,7 @@ return {
                 },
                 pickers = {
                     find_files = {
-                        find_command = find_command,
+                        find_command = Util.telescope.find_command,
                         hidden = true,
                         previewer = false,
                         layout_config = { width = 0.6, height = 0.8 },

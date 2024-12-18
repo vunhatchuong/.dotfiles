@@ -74,15 +74,38 @@ function M.get_folder_location()
     local path = vim.fn.getcwd()
     local prompt_title = "Default"
 
-    if #activeClients > 0 then
+    if #activeClients > 0 and false then
         path = activeClients[1].config.root_dir
         prompt_title = activeClients[1].name
-    elseif Snacks.git.get_root(1) then
-        path = Snacks.git.get_root(1)
+    elseif Snacks.git.get_root() then
+        path = Snacks.git.get_root()
         prompt_title = "Git root"
+    else
+        prompt_title = "Fall back"
     end
 
     return path, prompt_title
+end
+
+--- Find and use the appropriate find command
+--- Stole from: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/editor/telescope.lua#L177
+--- Same as default but ignore .git: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/extras/editor/telescope.lua#L177
+--- Unfortunately no way to whitelist .env file when ignore .gitignore: https://github.com/BurntSushi/ripgrep/discussions/2428
+---
+-- stylua: ignore
+---@return table command The find command
+function M.find_command()
+    if 1 == vim.fn.executable("rg") then
+        return { "rg", "--files", "--color", "never", "-g", "!.git" }
+    elseif 1 == vim.fn.executable("rg") then
+        return { "fd", "--type", "f", "--color", "never", "-E", ".git" }
+    elseif 1 == vim.fn.executable("fdfind") then
+        return { "fdfind", "--type", "f", "--color", "never", "-E", ".git" }
+    elseif 1 == vim.fn.executable("find") and vim.fn.has("win32") == 0 then
+        return { "find", ".", "-type", "f" }
+    elseif 1 == vim.fn.executable("where") then
+        return { "where", "/r", ".", "*" }
+    end
 end
 
 return M
