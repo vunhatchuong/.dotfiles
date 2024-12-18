@@ -57,7 +57,7 @@ return {
                 require("plugins.lsp.lspsaga-hover")
                 require("hover.providers.fold_preview")
             end,
-            preview_opts = { border = "rounded" },
+            preview_opts = { border = vim.g.bordor_style },
         },
     },
     { "psjay/buffer-closer.nvim", keys = { "q" }, opts = {} },

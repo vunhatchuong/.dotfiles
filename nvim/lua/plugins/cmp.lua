@@ -41,7 +41,7 @@ return {
                 },
                 list = { selection = "manual" },
                 menu = {
-                    border = "rounded",
+                    border = vim.g.bordor_style,
                     draw = {
                         treesitter = { "lsp" },
                         columns = {
@@ -56,12 +56,12 @@ return {
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 200,
-                    window = { border = "rounded" },
+                    window = { border = vim.g.bordor_style },
                 },
                 -- Experimental signature help support
                 signature = {
                     enabled = true,
-                    window = { border = "border" },
+                    window = { border = vim.g.bordor_style },
                 },
             },
             sources = {

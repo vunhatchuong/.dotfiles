@@ -8,14 +8,17 @@ return {
             { "williamboman/mason-lspconfig.nvim", config = function() end },
         },
         init = function()
-            vim.lsp.handlers["textDocument/hover"] =
-                vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+            vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+                vim.lsp.handlers.hover,
+                { border = vim.g.bordor_style }
+            )
 
             vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
                 vim.lsp.handlers.signature_help,
-                { border = "rounded" }
+                { border = vim.g.bordor_style }
             )
-            require("lspconfig.ui.windows").default_options.border = "rounded"
+            require("lspconfig.ui.windows").default_options.border =
+                vim.g.bordor_style
         end,
         opts = function()
             return {

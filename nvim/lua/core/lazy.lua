@@ -23,9 +23,7 @@ require("lazy").setup({
     },
     install = { colorscheme = { "default" } },
     checker = { enabled = true },
-    ui = {
-        border = "rounded",
-    },
+    ui = { border = vim.g.bordor_style },
     change_detection = {
         enabled = false,
         notify = false,

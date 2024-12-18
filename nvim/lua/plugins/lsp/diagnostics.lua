@@ -12,7 +12,7 @@ local config = {
     update_in_insert = false,
     virtual_text = false,
     severity_sort = true,
-    float = { border = "rounded" },
+    float = { border = vim.g.bordor_style },
     signs = { text = signs },
 }
 
