@@ -1,4 +1,4 @@
----@class util.telescope
+---@class util.finder
 local M = {}
 
 -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/init.lua#L101
@@ -61,6 +61,19 @@ function M.get_kind_filter(buf)
         or nil
 end
 
+--- fzf-lua version of lsp symbols filter
+---
+---@return boolean
+function M.symbols_filter(entry, ctx)
+    if ctx.symbols_filter == nil then
+        ctx.symbols_filter = Util.finder.get_kind_filter(ctx.bufnr) or false
+    end
+    if ctx.symbols_filter == false then
+        return true
+    end
+    return vim.tbl_contains(ctx.symbols_filter, entry.kind)
+end
+
 --- Retrieves the folder location for the given buffer.
 --- If an LSP client is active, it uses the LSP root directory.
 --- If a Git root is found, it uses the Git root.
@@ -106,4 +119,21 @@ function M.find_command()
     end
 end
 
+--- Fzf-lua: Retrieves a list of cmds to use for view image
+---
+---@return string[]? img_previewer List of cmds to preview image
+function M.image_previewer()
+    local img_previewer ---@type string[]?
+    for _, v in ipairs({
+        { cmd = "ueberzug", args = {} },
+        { cmd = "chafa", args = { "{file}", "--format=symbols" } },
+        { cmd = "viu", args = { "-b" } },
+    }) do
+        if vim.fn.executable(v.cmd) == 1 then
+            img_previewer = vim.list_extend({ v.cmd }, v.args)
+            break
+        end
+    end
+    return img_previewer
+end
 return M

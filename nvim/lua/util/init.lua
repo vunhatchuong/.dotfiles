@@ -1,5 +1,5 @@
 ---@class util
----@field telescope util.telescope
+---@field finder util.finder
 ---@field worktree util.worktree
 local M = {}
 

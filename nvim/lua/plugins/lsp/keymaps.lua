@@ -21,15 +21,9 @@ function M.on_attach()
     nmap("gt", require("telescope.builtin").lsp_type_definitions, "Type [D]definition")
     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-    -- nmap("<leader>ds", function()
-    --     require("telescope.builtin").lsp_document_symbols({
-    --         symbols = Util.telescope.get_kind_filter(),
-    --     })
-    -- end, "[D]ocument [S]symbols")
-
     nmap("<leader>ws", function()
-        require("telescope.builtin").lsp_dynamic_workspace_symbols({
-            symbols = Util.telescope.get_kind_filter(),
+        require("fzf-lua").lsp_live_workspace_symbols({
+            regex_filter = Util.finder.symbols_filter,
         })
     end, "[W]orkspace [S]symbols")
 

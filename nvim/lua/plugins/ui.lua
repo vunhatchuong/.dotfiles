@@ -38,6 +38,7 @@ return {
                     "trouble",
                     "harpoon",
                     "TelescopePrompt",
+                    "fzf",
                     "notify",
                     "undotree",
                     "grapple",
@@ -132,6 +133,7 @@ return {
     },
     {
         "mawkler/modicator.nvim",
+        enabled = false,
         dependencies = { "nvim-lualine/lualine.nvim" },
         event = "VeryLazy",
         opts = {

@@ -29,6 +29,9 @@ export FZF_DEFAULT_OPTS=" \
 
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 
+# Remove FZF delay when press ESC
+export ESCDELAY="0"
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(vfox activate zsh)"
