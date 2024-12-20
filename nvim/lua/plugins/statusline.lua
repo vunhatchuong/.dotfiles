@@ -1,8 +1,5 @@
 -- Credits to https://github.com/chrisgrieser/.config/blob/main/nvim/lua/plugins/lualine.lua#L4
 local progressText = ""
-local function lspProgress()
-    return progressText
-end
 
 vim.api.nvim_create_autocmd("LspProgress", {
     callback = function(ctx)
@@ -26,92 +23,6 @@ vim.api.nvim_create_autocmd("LspProgress", {
     end,
 })
 
--- https://github.com/dgox16/dotfiles/blob/main/.config/nvim/lua/configs/lualine.lua#L92
-local function getLspName()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local buf_clients = vim.lsp.get_clients({ bufnr = bufnr })
-    if next(buf_clients) == nil then
-        return "No servers"
-    end
-    local buf_client_names = {}
-
-    for _, client in pairs(buf_clients) do
-        if client.name ~= "null-ls" then
-            table.insert(buf_client_names, client.name)
-        end
-    end
-
-    local hash = {}
-    local unique_client_names = {}
-
-    for _, v in ipairs(buf_client_names) do
-        if not hash[v] then
-            unique_client_names[#unique_client_names + 1] = v
-            hash[v] = true
-        end
-    end
-    local language_servers = table.concat(unique_client_names, ", ")
-
-    return language_servers
-end
-
--- https://github.com/sschleemilch/slimline.nvim/blob/main/lua/slimline/utils.lua
---- @return string
-local function get_mode()
-    -- Note that: \19 = ^S and \22 = ^V.
-    local mode_map = {
-        ["n"] = "NORMAL",
-        ["no"] = "OP-PENDING",
-        ["nov"] = "OP-PENDING",
-        ["noV"] = "OP-PENDING",
-        ["no\22"] = "OP-PENDING",
-        ["niI"] = "NORMAL",
-        ["niR"] = "NORMAL",
-        ["niV"] = "NORMAL",
-        ["nt"] = "NORMAL",
-        ["ntT"] = "NORMAL",
-        ["v"] = "VISUAL",
-        ["vs"] = "VISUAL",
-        ["V"] = "VISUAL",
-        ["Vs"] = "VISUAL",
-        ["\22"] = "VISUAL",
-        ["\22s"] = "VISUAL",
-        ["s"] = "SELECT",
-        ["S"] = "SELECT",
-        ["\19"] = "SELECT",
-        ["i"] = "INSERT",
-        ["ic"] = "INSERT",
-        ["ix"] = "INSERT",
-        ["R"] = "REPLACE",
-        ["Rc"] = "REPLACE",
-        ["Rx"] = "REPLACE",
-        ["Rv"] = "VIRT REPLACE",
-        ["Rvc"] = "VIRT REPLACE",
-        ["Rvx"] = "VIRT REPLACE",
-        ["c"] = "COMMAND",
-        ["cv"] = "VIM EX",
-        ["ce"] = "EX",
-        ["r"] = "PROMPT",
-        ["rm"] = "MORE",
-        ["r?"] = "CONFIRM",
-        ["!"] = "SHELL",
-        ["t"] = "TERMINAL",
-    }
-
-    local mode = mode_map[vim.api.nvim_get_mode().mode] or "UNKNOWN"
-    return mode
-end
-local function get_hl_color(group)
-    local hl = vim.api.nvim_get_hl(0, { name = group })
-
-    if hl.link then
-        return get_hl_color(hl.link)
-    end
-
-    local fg = hl.fg and string.format("#%06x", hl.fg) or "none"
-
-    return fg
-end
 return {
     {
         -- Show amount of lines in a file?
@@ -138,29 +49,30 @@ return {
 
             return {
                 options = {
+                    -- stylua: ignore
                     theme = {
                         normal = {
-                            a = { fg = get_hl_color("Type"), bg = "bg" },
+                            a = { fg = Util.statusline.get_hl_color("WarningMsg"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         insert = {
-                            a = { fg = get_hl_color("Function"), bg = "bg" },
+                            a = { fg = Util.statusline.get_hl_color("Function"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         visual = {
-                            a = { fg = get_hl_color("Keyword"), bg = "bg" },
+                            a = { fg = Util.statusline.get_hl_color("Keyword"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         replace = {
-                            a = { fg = get_hl_color("Boolean"), bg = "bg" },
+                            a = { fg = Util.statusline.get_hl_color("Boolean"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
                         command = {
-                            a = { fg = get_hl_color("String"), bg = "bg" },
+                            a = { fg = Util.statusline.get_hl_color("String"), bg = "bg" },
                             b = { fg = "fg", bg = "bg" },
                             c = { fg = "fg", bg = "bg" },
                         },
@@ -170,11 +82,10 @@ return {
                     section_separators = "",
                 },
                 sections = {
+                    -- stylua: ignore
                     lualine_a = {
                         { -- mode
-                            function()
-                                return string.sub(get_mode(), 1, 1)
-                            end,
+                            function() return string.sub(Util.statusline.get_mode(), 1, 1) end,
                             padding = 2,
                         },
                     },
@@ -231,9 +142,13 @@ return {
                                 hint = icons.diagnostics.Hint,
                             },
                         },
-                        { lspProgress },
                         {
-                            getLspName,
+                            function()
+                                return progressText
+                            end,
+                        },
+                        {
+                            Util.statusline.get_lsp_names,
                             icon = icons.git.Octoface,
                             color = "Comment",
                         },

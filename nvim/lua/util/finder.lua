@@ -88,8 +88,13 @@ function M.get_folder_location()
     local prompt_title = "Default"
 
     if #clients > 0 then
-        path = clients[1].config.root_dir and clients[1].config.root_dir or path
-        prompt_title = clients[1].name
+        for _, client in pairs(clients) do
+            if client.name ~= "null-ls" then
+                path = client.config.root_dir and client.config.root_dir or path
+                prompt_title = client.name
+                break
+            end
+        end
     elseif Snacks.git.get_root() then
         path = Snacks.git.get_root()
         prompt_title = "Git root"
