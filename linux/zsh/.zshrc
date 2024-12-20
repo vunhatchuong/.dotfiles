@@ -37,6 +37,7 @@ plug "$ZDOTDIR/fzf-tab.zsh"
 plug "catppuccin_mocha-zsh-syntax-highlighting.zsh"
 plug "MichaelAquilina/zsh-you-should-use"
 plug "MichaelAquilina/zsh-auto-notify"
+export AUTO_NOTIFY_THRESHOLD=600 #Seconds
 
 plug "$ZDOTDIR/alias.zsh"
 plug "$ZDOTDIR/git.plugin.zsh"
