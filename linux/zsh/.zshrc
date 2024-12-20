@@ -20,6 +20,7 @@ plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
 plug "esc/conda-zsh-completion"
 plug "Bhupesh-V/ugit"
+plug "zap-zsh/sudo"
 
 # This seems to bug out `Ctrl+` keymaps
 # plug "jeffreytse/zsh-vi-mode"
@@ -41,6 +42,7 @@ plug "$ZDOTDIR/alias.zsh"
 plug "$ZDOTDIR/git.plugin.zsh"
 plug "$ZDOTDIR/conda.zsh"
 plug "$ZDOTDIR/keymap.zsh"
+plug "$ZDOTDIR/function.zsh"
 
 # Must be at the end of the file
 plug "zsh-users/zsh-syntax-highlighting"
