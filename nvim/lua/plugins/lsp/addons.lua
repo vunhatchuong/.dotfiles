@@ -125,6 +125,9 @@ return {
         keys = { { "<leader>rn", desc = "Inc rename" } },
         opts = {
             save_in_cmdline_history = false,
+            post_hook = function()
+                vim.cmd("silent! wa")
+            end,
         },
         config = function(_, opts)
             require("inc_rename").setup(opts)

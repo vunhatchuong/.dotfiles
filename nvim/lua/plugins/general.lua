@@ -12,6 +12,7 @@ return {
         opts = {
             -- retirementAgeMins = 20,
             notificationOnAutoClose = true,
+            deleteBufferWhenFileDeleted = true,
         },
     },
     {
@@ -208,11 +209,17 @@ return {
     },
     {
         "AckslD/nvim-neoclip.lua",
-        dependencies = { { "nvim-telescope/telescope.nvim" } },
-        keys = { { "<leader>y", ":Telescope neoclip<CR>", desc = "Neoclip" } },
+        dependencies = { "ibhagwan/fzf-lua" },
+        event = { "VeryLazy" },
+        keys = {
+            {
+                "<leader>y",
+                ":lua require('neoclip.fzf')()<CR>",
+                desc = "Neoclip",
+            },
+        },
         opts = {
             enable_macro_history = false,
-            preview = false,
             filter = function(data)
                 local function is_whitespace(line)
                     return vim.fn.match(line, [[^\s*$]]) ~= -1

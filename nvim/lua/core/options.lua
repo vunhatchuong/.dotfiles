@@ -67,6 +67,7 @@ opt.pumblend = 10         -- Popup blend
 opt.pumheight = 10        -- Maximum number of entries in a popup
 opt.cmdheight = 1
 opt.showcmd = false
+opt.inccommand = "split"
 
 ---  INDENT  ---
 opt.formatoptions = "12tcnlj"
