@@ -7,7 +7,13 @@ return {
             {
                 "<leader>e",
                 function()
+                    local oil = require("oil")
+                    local util = require("oil.util")
+
                     require("oil").open()
+                    util.run_after_load(0, function()
+                        oil.open_preview()
+                    end)
                 end,
                 desc = "Oil: Open",
             },

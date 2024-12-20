@@ -114,6 +114,7 @@ local function get_hl_color(group)
 end
 return {
     {
+        -- Show amount of lines in a file?
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         init = function()
@@ -244,6 +245,7 @@ return {
                             padding = { left = 3, right = 0 },
                         },
                         { "location", icon = "/" },
+                        { Util.statusline.mixed_indent },
                     },
                 },
                 extensions = { "nvim-dap-ui", "oil", "quickfix", "trouble" },
