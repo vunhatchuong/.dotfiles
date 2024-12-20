@@ -17,7 +17,7 @@ return {
     {
         "saghen/blink.cmp",
         version = "v0.*",
-        event = { "InsertEnter", "CmdlineEnter" },
+        opts_extend = { "sources.default" },
         --- @module 'blink.cmp'
         --- @type blink.cmp.Config
         --- @diagnostic disable: missing-fields
@@ -34,12 +34,17 @@ return {
 
                 ["<C-b>"] = {},
                 ["<C-f>"] = {},
+
+                cmdline = {
+                    preset = "enter",
+                },
             },
             completion = {
                 trigger = {
-                    show_on_insert_on_trigger_character = false,
+                    -- show_on_insert_on_trigger_character = false,
                 },
                 list = { selection = "manual" },
+                accept = { auto_brackets = { enabled = false } },
                 menu = {
                     border = vim.g.bordor_style,
                     draw = {
@@ -58,27 +63,38 @@ return {
                     auto_show_delay_ms = 200,
                     window = { border = vim.g.bordor_style },
                 },
-                -- Experimental signature help support
-                signature = {
-                    enabled = true,
-                    window = { border = vim.g.bordor_style },
-                },
+            },
+            -- Experimental signature help support
+            signature = {
+                enabled = true,
+                window = { border = vim.g.bordor_style },
             },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+                default = { "lsp", "path", "snippets", "buffer" },
                 providers = {
                     buffer = {
                         max_items = 4,
                         min_keyword_length = 4,
                         score_offset = -3,
                     },
-                    lazydev = {
-                        name = "LazyDev",
-                        module = "lazydev.integrations.blink",
-                    },
                 },
             },
             appearance = { kind_icons = icons.kind },
+        },
+    },
+    {
+        "saghen/blink.cmp",
+        opts = {
+            sources = {
+                default = { "lazydev" },
+                providers = {
+                    lazydev = {
+                        name = "LazyDev",
+                        module = "lazydev.integrations.blink",
+                        score_offset = 100, -- show at a higher priority than lsp
+                    },
+                },
+            },
         },
     },
     {

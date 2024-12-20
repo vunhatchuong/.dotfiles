@@ -37,7 +37,8 @@ vim.schedule(function()                     -- includes system call responsible 
 end)
 
 opt.guicursor = ""
-opt.completeopt = { "menu", "menuone", "preview", "noselect", "noinsert" }
+opt.completeopt = "menu,menuone,preview,noselect,noinsert"
+-- opt.completeopt = "menu,menuone,noselect"
 
 opt.splitbelow = false
 opt.splitright = true
@@ -99,8 +100,7 @@ vim.g.netrw_preview = 1
 vim.g.netrw_alto = 0
 
 ---  OTHERS  ---
--- opt.wildmode = "longest:full,full"       -- Command-line completion mode
-opt.wildmode = "list:full"                  -- Shows a menu bar as opposed to an enormous list
+opt.wildmode = "longest:full,full"       -- Command-line completion mode
 -- opt.wildoptions = { "pum", "fuzzy" }
 opt.wildignorecase = true                   -- Ignore case when completing file names and directories
 opt.shortmess:append("tToOWIcsSF")          -- don't show redundant messages from ins-completion-menu
