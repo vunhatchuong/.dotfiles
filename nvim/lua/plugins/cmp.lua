@@ -40,12 +40,8 @@ return {
 
                     ["<C-e>"] = {},
 
-                    ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
-                    ["<S-Tab>"] = {
-                        "snippet_backward",
-                        "select_prev",
-                        "fallback",
-                    },
+                    ["<Tab>"] = { "select_next", "fallback" },
+                    ["<S-Tab>"] = { "select_prev", "fallback" },
 
                     ["<C-p>"] = {},
                     ["<C-n>"] = {},
@@ -83,11 +79,37 @@ return {
             },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },
+                -- Don't show completion if len(cmd) < 2 words
+                -- https://github.com/Saghen/blink.cmp/issues/585
+                min_keyword_length = function(ctx)
+                    if
+                        ctx.mode == "cmdline"
+                        and string.find(ctx.line, " ") == nil
+                    then
+                        return 2
+                    end
+                    return 0
+                end,
                 providers = {
+                    lsp = {
+                        name = "[LSP]",
+                        score_offset = 4,
+                    },
+                    snippets = {
+                        -- don't show when triggered manually (= length 0), useful
+                        -- when manually showing completions to see available JSON keys
+                        min_keyword_length = 1,
+                        score_offset = 3,
+                    },
+                    path = {
+                        name = "[Path]",
+                        score_offset = 2,
+                    },
                     buffer = {
+                        name = "[Buffer]",
                         max_items = 4,
                         min_keyword_length = 4,
-                        score_offset = -3,
+                        score_offset = 1,
                     },
                 },
             },
@@ -101,7 +123,7 @@ return {
                 default = { "lazydev" },
                 providers = {
                     lazydev = {
-                        name = "LazyDev",
+                        name = "[LazyDev]",
                         module = "lazydev.integrations.blink",
                         score_offset = 100, -- show at a higher priority than lsp
                     },
@@ -156,8 +178,9 @@ return {
                 default = { "ecolog" },
                 providers = {
                     ecolog = {
-                        name = "Ecolog",
+                        name = "[Ecolog]",
                         module = "ecolog.integrations.cmp.blink_cmp",
+                        score_offset = 101,
                     },
                 },
             },
