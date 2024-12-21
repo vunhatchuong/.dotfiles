@@ -55,6 +55,7 @@ return {
         opts = {
             init = function()
                 -- require("hover.providers.lsp")
+                require("plugins.lsp.ecolog-hover")
                 require("plugins.lsp.lspsaga-hover")
                 require("hover.providers.fold_preview")
             end,
@@ -268,18 +269,19 @@ return {
         opts = {
             cmdline = {
                 keymaps = { close = "<ESC>" },
-                win_config = function()
-                    return {
-                        relative = "editor",
-                        width = math.ceil(vim.o.columns / 3),
-                        row = math.floor(vim.o.lines * 0.2),
-                        col = math.floor(vim.o.columns / 3),
-                        height = 1,
-                        style = "minimal",
-                        border = "single",
-                        zindex = 200,
-                    }
-                end,
+                -- blink.cmp v0.8.0 cmdline completion breaks this
+                -- win_config = function()
+                --     return {
+                --         relative = "editor",
+                --         width = math.ceil(vim.o.columns / 3),
+                --         row = math.floor(vim.o.lines * 0.2),
+                --         col = math.floor(vim.o.columns / 3),
+                --         height = 1,
+                --         style = "minimal",
+                --         border = "single",
+                --         zindex = 200,
+                --     }
+                -- end,
             },
         },
     },

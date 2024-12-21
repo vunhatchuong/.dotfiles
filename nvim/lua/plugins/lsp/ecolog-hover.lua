@@ -1,7 +1,7 @@
 local get_clients = vim.lsp.get_active_clients
 
 require("hover").register({
-    name = "LSPSaga Hover Doc",
+    name = "Ecolog Saga Hover",
     priority = 1000,
     enabled = function(bufnr)
         for _, client in pairs(get_clients()) do
@@ -14,6 +14,6 @@ require("hover").register({
         return false
     end,
     execute = function()
-        vim.cmd("Lspsaga hover_doc")
+        vim.cmd("EcologSagaHover")
     end,
 })

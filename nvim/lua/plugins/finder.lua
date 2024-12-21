@@ -50,7 +50,7 @@ return {
         --         "<leader><space>",
         --         desc = "Find Files",
         --         function()
-        --             local path, prompt_title = Util.finder.get_folder_location()
+        --             local path, prompt_title = Util.get_folder_location()
         --             require("telescope.builtin").find_files({
         --                 cwd = path,
         --                 prompt_title = prompt_title,
@@ -61,7 +61,7 @@ return {
         --         "<leader>ft",
         --         desc = "[F]ind [T]ext",
         --         function()
-        --             local path, prompt_title = Util.finder.get_folder_location()
+        --             local path, prompt_title = Util.get_folder_location()
         --             require("telescope.builtin").live_grep({
         --                 cwd = path,
         --                 prompt_title = prompt_title,
@@ -72,7 +72,7 @@ return {
         --         "<leader>fs",
         --         desc = "[F]ind [S]tring",
         --         function()
-        --             local path, prompt_title = Util.finder.get_folder_location()
+        --             local path, prompt_title = Util.get_folder_location()
         --             require("telescope.builtin").grep_string({
         --                 cwd = path,
         --                 prompt_title = prompt_title,
@@ -146,7 +146,7 @@ return {
                 "<leader><space>",
                 desc = "Find Files",
                 function()
-                    local path, prompt_title = Util.finder.get_folder_location()
+                    local path, prompt_title = Util.get_folder_location()
                     require("fzf-lua").files({
                         cwd = path,
                         winopts = { title = prompt_title }
@@ -157,7 +157,7 @@ return {
                 "<leader>ft",
                 desc = "[F]ind [T]ext",
                 function()
-                    local path, prompt_title = Util.finder.get_folder_location()
+                    local path, prompt_title = Util.get_folder_location()
                     require("fzf-lua").live_grep_native({
                         cwd = path,
                         winopts = { title = prompt_title }
@@ -168,13 +168,19 @@ return {
                 "<leader>fs",
                 desc = "[F]ind [S]tring",
                 function()
-                    local path, prompt_title = Util.finder.get_folder_location()
+                    local path, prompt_title = Util.get_folder_location()
                     require("fzf-lua").grep_cword({
                         cwd = path,
                         winopts = { title = prompt_title }
                     })
                 end
             },
+            {
+                "<C-o>",
+                function()
+                    require("fzf-lua-jumplist").jumplist()
+                end,
+            }
         },
         init = function()
             require("lazy").load({ plugins = { "fzf-lua" } })

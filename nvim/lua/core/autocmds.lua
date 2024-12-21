@@ -120,17 +120,18 @@ autocmd({ "BufWritePre" }, {
     end,
 })
 
-autocmd({ "BufWinEnter" }, {
-    desc = "Clear the last used search pattern",
-    pattern = "*",
-    callback = function()
-        vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<Cmd>noh<CR>", true, false, true),
-            "n",
-            false
-        )
-    end,
-})
+-- blink.cmp v0.8.0 cmdline completion breaks this
+-- autocmd({ "BufWinEnter" }, {
+--     desc = "Clear the last used search pattern",
+--     pattern = "*",
+--     callback = function()
+--         vim.api.nvim_feedkeys(
+--             vim.api.nvim_replace_termcodes("<Cmd>noh<CR>", true, false, true),
+--             "n",
+--             false
+--         )
+--     end,
+-- })
 
 -- Modified default theme
 -- https://github.com/glepnir/nvim/blob/main/lua/core/init.lua

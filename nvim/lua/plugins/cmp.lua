@@ -37,12 +37,24 @@ return {
 
                 cmdline = {
                     preset = "enter",
+
+                    ["<C-e>"] = {},
+
+                    ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
+                    ["<S-Tab>"] = {
+                        "snippet_backward",
+                        "select_prev",
+                        "fallback",
+                    },
+
+                    ["<C-p>"] = {},
+                    ["<C-n>"] = {},
+
+                    ["<C-b>"] = {},
+                    ["<C-f>"] = {},
                 },
             },
             completion = {
-                trigger = {
-                    -- show_on_insert_on_trigger_character = false,
-                },
                 list = { selection = "manual" },
                 accept = { auto_brackets = { enabled = false } },
                 menu = {
@@ -98,16 +110,57 @@ return {
         },
     },
     {
-        "neovim/nvim-lspconfig",
-        dependencies = { "saghen/blink.cmp" },
+        "philosofonusus/ecolog.nvim",
+        lazy = false,
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "saghen/blink.cmp",
+            "nvimdev/lspsaga.nvim",
+        },
+        keys = {
+            {
+                "<leader>fe",
+                ":Telescope ecolog env<CR>",
+                desc = "Ecolog: [F]ind [E]nvironment",
+            },
+        },
+        opts = {
+            path = Util.get_folder_location(),
+            -- preferred_environment = "local",
+            types = true,
+            integrations = {
+                lspsaga = true,
+                blink_cmp = true,
+                nvim_cmp = false,
+                telescope = true,
+            },
+            shelter = {
+                configuration = { partial_mode = true },
+                modules = {
+                    files = true,
+                    peek = true,
+                    telescope = true,
+                    cmp = true,
+                },
+            },
+        },
         config = function(_, opts)
-            local lspconfig = require("lspconfig")
-            for server, config in pairs(opts.servers) do
-                config.capabilities = require("blink.cmp").get_lsp_capabilities(
-                    config.capabilities
-                )
-                lspconfig[server].setup(config)
-            end
+            require("ecolog").setup(opts)
+            require("telescope").load_extension("ecolog")
         end,
+    },
+    {
+        "saghen/blink.cmp",
+        opts = {
+            sources = {
+                default = { "ecolog" },
+                providers = {
+                    ecolog = {
+                        name = "Ecolog",
+                        module = "ecolog.integrations.cmp.blink_cmp",
+                    },
+                },
+            },
+        },
     },
 }
