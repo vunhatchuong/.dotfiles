@@ -175,12 +175,6 @@ return {
                     })
                 end
             },
-            {
-                "<C-o>",
-                function()
-                    require("fzf-lua-jumplist").jumplist()
-                end,
-            }
         },
         init = function()
             require("lazy").load({ plugins = { "fzf-lua" } })

@@ -65,6 +65,7 @@ return {
     },
     {
         "vunhatchuong/telescope-jumps.nvim",
+        enabled = false,
         dependencies = { { "nvim-telescope/telescope.nvim" } },
         keys = { { "<C-o>", ":Telescope jumps jumpbuff<CR>" } },
         opts = {
@@ -79,6 +80,23 @@ return {
             require("telescope").setup(opts)
             require("telescope").load_extension("jumps")
         end,
+    },
+    {
+        "vunhatchuong/fzf-lua-jumplist.nvim",
+        dependencies = { "ibhagwan/fzf-lua" },
+        keys = {
+            {
+                "<C-o>",
+                function()
+                    require("fzf-lua-jumplist").jumplist()
+                end,
+            },
+        },
+        opts = {
+            start_of_line = false,
+            -- max_result = 5,
+            line_distance_threshold = 3,
+        },
     },
     {
         "folke/flash.nvim",

@@ -73,8 +73,9 @@ return {
                 },
             },
             -- Experimental signature help support
+            -- Already use ray-x/lsp_signature.nvim
             signature = {
-                enabled = true,
+                -- enabled = true,
                 window = { border = vim.g.bordor_style },
             },
             sources = {

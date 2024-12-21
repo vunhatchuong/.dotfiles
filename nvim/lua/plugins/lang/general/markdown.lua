@@ -115,22 +115,6 @@ return {
         opts = {},
     },
     {
-        "jmbuhr/otter.nvim",
-        ft = { "markdown" },
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        opts = {},
-        config = function(_, opts)
-            require("otter").setup(opts)
-
-            vim.api.nvim_create_autocmd({ "BufEnter" }, {
-                pattern = { "*.md", "*.ipynb" },
-                callback = function()
-                    require("otter").activate()
-                end,
-            })
-        end,
-    },
-    {
         "gaoDean/autolist.nvim",
         ft = { "markdown", "text", "tex", "plaintex", "norg" },
         config = function()
