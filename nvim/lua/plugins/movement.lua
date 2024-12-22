@@ -44,15 +44,7 @@ return {
         "vunhatchuong/in-and-out.nvim",
         branch = "fix/nvim-v0.10.1-compatibility",
         keys = {
-            {
-                "<TAB>",
-                function()
-                    require("in-and-out").in_and_out()
-                end,
-                mode = "n",
-                desc = "In and out",
-            },
-            { -- Doesn't work on Windows?
+            { -- Doesn't work on Windows
                 "<C-CR>",
                 function()
                     require("in-and-out").in_and_out()
@@ -62,6 +54,25 @@ return {
             },
         },
         opts = { additional_targets = { "<", ">" } },
+    },
+    {
+        "kawre/neotab.nvim",
+        event = "InsertEnter",
+        --- @module "neotab"
+        --- @diagnostic disable: missing-fields
+        opts = {
+            smart_punctuators = {
+                enabled = true,
+                semicolon = { -- Put semicolon(;) at the right place
+                    enabled = true,
+                    ft = { "zig" },
+                },
+                escape = { -- Insert char like + at the right place
+                    enabled = true,
+                    triggers = {}, ---@type table<string, ntab.trigger>
+                },
+            },
+        },
     },
     {
         "vunhatchuong/telescope-jumps.nvim",
@@ -195,5 +206,49 @@ return {
             vim.api.nvim_del_keymap("o", "T")
             vim.api.nvim_del_keymap("o", "F")
         end,
+    },
+    {
+        "saghen/blink.nvim",
+        lazy = false, -- all modules handle lazy loading internally
+        keys = {
+            {
+                ";",
+                function()
+                    require("blink.chartoggle").toggle_char_eol(";")
+                end,
+                mode = { "n", "v" },
+                desc = "Toggle ; at eol",
+            },
+            {
+                "<C-;>",
+                function()
+                    require("blink.chartoggle").toggle_char_eol(";")
+                end,
+                mode = { "i", "n" },
+                desc = "Toggle ; at eol",
+            },
+            {
+                ",",
+                function()
+                    require("blink.chartoggle").toggle_char_eol(",")
+                end,
+                mode = { "n", "v" },
+                desc = "Toggle , at eol",
+            },
+            {
+                "<C-,>",
+                function()
+                    require("blink.chartoggle").toggle_char_eol(",")
+                end,
+                mode = "i",
+                desc = "Toggle , at eol",
+            },
+        },
+        opts = {
+            chartoggle = { enabled = true },
+            select = {
+                enabled = true,
+            },
+        },
     },
 }
