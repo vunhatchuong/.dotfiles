@@ -67,6 +67,7 @@ return {
             },
         },
         opts = {
+            floating_window = false,
             hint_enable = false,
             hint_prefix = "󰏪 ",
             hint_scheme = "@variable.parameter",

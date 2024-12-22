@@ -163,7 +163,7 @@ return {
                         { Util.statusline.mixed_indent },
                     },
                 },
-                extensions = { "nvim-dap-ui", "oil", "quickfix", "trouble" },
+                extensions = { "nvim-dap-ui", "oil", "quickfix", "trouble", "fzf" },
             }
         end,
     },

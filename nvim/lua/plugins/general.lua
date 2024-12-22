@@ -290,4 +290,44 @@ return {
         cmd = { "KeyAnalyzer" },
         opts = {},
     },
+    {
+        "philosofonusus/ecolog.nvim",
+        lazy = false,
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "saghen/blink.cmp",
+            "nvimdev/lspsaga.nvim",
+        },
+        keys = {
+            {
+                "<leader>fe",
+                ":Telescope ecolog env<CR>",
+                desc = "Ecolog: [F]ind [E]nvironment",
+            },
+        },
+        opts = {
+            path = Util.get_folder_location(),
+            -- preferred_environment = "local",
+            types = true,
+            integrations = {
+                lspsaga = true,
+                blink_cmp = true,
+                nvim_cmp = false,
+                telescope = true,
+            },
+            shelter = {
+                configuration = { partial_mode = true },
+                modules = {
+                    files = true,
+                    peek = true,
+                    telescope = true,
+                    cmp = true,
+                },
+            },
+        },
+        config = function(_, opts)
+            require("ecolog").setup(opts)
+            require("telescope").load_extension("ecolog")
+        end,
+    },
 }

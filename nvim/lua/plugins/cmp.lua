@@ -1,23 +1,10 @@
 local icons = require("core.icons")
 return {
-    -- {
-    --     "supermaven-inc/supermaven-nvim",
-    --     build = ":SupermavenUseFree",
-    --     cmd = "SupermavenToggle",
-    --     opts = {
-    --         log_level = "off",
-    --         disable_keymaps = true,
-    --         disable_inline_completion = true,
-    --         ignore_filetypes = {
-    --             gitcommit = true,
-    --             TelescopePrompt = true,
-    --         },
-    --     },
-    -- },
     {
         "saghen/blink.cmp",
-        version = "v0.*",
-        opts_extend = { "sources.default" },
+        version = "*",
+        opts_extend = { "sources.compat", "sources.default" },
+        dependencies = { "saghen/blink.compat" },
         --- @module 'blink.cmp'
         --- @type blink.cmp.Config
         --- @diagnostic disable: missing-fields
@@ -73,9 +60,9 @@ return {
                 },
             },
             -- Experimental signature help support
-            -- Already use ray-x/lsp_signature.nvim
+            -- Disable floating win in ray-x/lsp_signature.nvim instead
             signature = {
-                -- enabled = true,
+                enabled = true,
                 window = { border = vim.g.bordor_style },
             },
             sources = {
@@ -133,46 +120,6 @@ return {
         },
     },
     {
-        "philosofonusus/ecolog.nvim",
-        lazy = false,
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "saghen/blink.cmp",
-            "nvimdev/lspsaga.nvim",
-        },
-        keys = {
-            {
-                "<leader>fe",
-                ":Telescope ecolog env<CR>",
-                desc = "Ecolog: [F]ind [E]nvironment",
-            },
-        },
-        opts = {
-            path = Util.get_folder_location(),
-            -- preferred_environment = "local",
-            types = true,
-            integrations = {
-                lspsaga = true,
-                blink_cmp = true,
-                nvim_cmp = false,
-                telescope = true,
-            },
-            shelter = {
-                configuration = { partial_mode = true },
-                modules = {
-                    files = true,
-                    peek = true,
-                    telescope = true,
-                    cmp = true,
-                },
-            },
-        },
-        config = function(_, opts)
-            require("ecolog").setup(opts)
-            require("telescope").load_extension("ecolog")
-        end,
-    },
-    {
         "saghen/blink.cmp",
         opts = {
             sources = {
@@ -182,6 +129,22 @@ return {
                         name = "[Ecolog]",
                         module = "ecolog.integrations.cmp.blink_cmp",
                         score_offset = 101,
+                    },
+                },
+            },
+        },
+    },
+    {
+        "saghen/blink.cmp",
+        opts = {
+            sources = {
+                default = { "supermaven" },
+                providers = {
+                    supermaven = {
+                        name = "[Supermaven]",
+                        module = "blink.compat.source",
+                        score_offset = 100,
+                        async = true,
                     },
                 },
             },
