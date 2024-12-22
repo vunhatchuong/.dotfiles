@@ -94,7 +94,12 @@ return {
                     --   return true
                     -- end,
                     -- Specify * to use this function as a fallback for any server
-                    -- ["*"] = function(server, opts) end,
+                    -- return true to only apply this opts
+                    ["*"] = function(_, opts)
+                        opts.on_attach =
+                            require("plugins.lsp.keymaps").workspace_diagnostics
+                        return false
+                    end,
                 },
             }
         end,

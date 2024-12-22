@@ -5,13 +5,13 @@ return {
         keys = {
             {
                 "<leader>dd",
-                ":Trouble diagnostics toggle<CR>",
-                desc = "Trouble: Diagnostics",
+                ":Trouble diagnostics toggle filter.buf=0<CR>",
+                desc = "Trouble: Buffer Diagnostics",
             },
             {
                 "<leader>wd",
-                ":Trouble diagnostics toggle filter.buf=0<CR>",
-                desc = "Trouble: Buffer Diagnostics",
+                ":Trouble diagnostics toggle<CR>",
+                desc = "Trouble: Workspace Diagnostics",
             },
             {
                 "<leader>o",
@@ -147,5 +147,9 @@ return {
                 end
             end, { expr = true, desc = "Start IncRename" })
         end,
+    },
+    { -- Auto launch when lsp.keymap.workspace_diagnostics run
+        "artemave/workspace-diagnostics.nvim",
+        opts = {},
     },
 }

@@ -34,4 +34,11 @@ function M.on_attach()
     -- stylua: ignore end
 end
 
+function M.workspace_diagnostics(client, bufnr)
+    require("workspace-diagnostics").populate_workspace_diagnostics(
+        client,
+        bufnr
+    )
+end
+
 return M
