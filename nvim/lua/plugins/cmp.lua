@@ -1,47 +1,51 @@
 local icons = require("core.icons")
 return {
     {
+        "saghen/blink.compat",
+        version = "*",
+        lazy = true,
+        opts = {},
+    },
+    {
         "saghen/blink.cmp",
         version = "*",
+        event = "InsertEnter",
         opts_extend = { "sources.compat", "sources.default" },
-        dependencies = { "saghen/blink.compat" },
-        --- @module 'blink.cmp'
+        dependencies = {
+            { "supermaven-nvim" },
+        },
+        --- @module "blink.cmp"
         --- @type blink.cmp.Config
         --- @diagnostic disable: missing-fields
         opts = {
             keymap = {
-                preset = "enter",
-                ["<C-e>"] = {},
+                preset = "none",
+                ["<C-space>"] = { "show", "hide" },
 
                 ["<Tab>"] = { "snippet_forward", "select_next", "fallback" },
                 ["<S-Tab>"] = { "snippet_backward", "select_prev", "fallback" },
+                ["<Up>"] = { "select_prev", "fallback" },
+                ["<Down>"] = { "select_next", "fallback" },
 
-                ["<C-p>"] = {},
-                ["<C-n>"] = {},
-
-                ["<C-b>"] = {},
-                ["<C-f>"] = {},
+                ["<CR>"] = { "accept", "fallback" },
 
                 cmdline = {
-                    preset = "enter",
-
-                    ["<C-e>"] = {},
+                    preset = "none",
+                    ["<C-space>"] = { "show", "hide" },
 
                     ["<Tab>"] = { "select_next", "fallback" },
                     ["<S-Tab>"] = { "select_prev", "fallback" },
+                    ["<Up>"] = { "select_prev", "fallback" },
+                    ["<Down>"] = { "select_next", "fallback" },
 
-                    ["<C-p>"] = {},
-                    ["<C-n>"] = {},
-
-                    ["<C-b>"] = {},
-                    ["<C-f>"] = {},
+                    ["<CR>"] = { "accept", "fallback" },
                 },
             },
             completion = {
                 list = { selection = "manual" },
                 accept = { auto_brackets = { enabled = false } },
                 menu = {
-                    border = vim.g.bordor_style,
+                    -- auto_show = false,
                     draw = {
                         treesitter = { "lsp" },
                         columns = {
@@ -50,13 +54,18 @@ return {
                             { "source_name" },
                         },
                     },
-                    -- Don't auto popup completion menu
-                    -- auto_show = false,
+                    border = vim.g.bordor_style,
+                    winblend = vim.o.pumblend,
+                    winhighlight = "Normal:None,FloatBorder:None,CursorLine:BlinkCmpMenuSelection,Search:None",
                 },
                 documentation = {
                     auto_show = true,
                     auto_show_delay_ms = 200,
-                    window = { border = vim.g.bordor_style },
+                    window = {
+                        border = vim.g.bordor_style,
+                        winblend = vim.o.pumblend,
+                        winhighlight = "Normal:None,FloatBorder:None,CursorLine:BlinkCmpDocCursorLine,Search:None",
+                    },
                 },
             },
             -- Experimental signature help support
@@ -84,9 +93,7 @@ return {
                         score_offset = 4,
                     },
                     snippets = {
-                        -- don't show when triggered manually (= length 0), useful
-                        -- when manually showing completions to see available JSON keys
-                        min_keyword_length = 1,
+                        name = "[Snip]",
                         score_offset = 3,
                     },
                     path = {
@@ -94,7 +101,7 @@ return {
                         score_offset = 2,
                     },
                     buffer = {
-                        name = "[Buffer]",
+                        name = "[Buf]",
                         max_items = 4,
                         min_keyword_length = 4,
                         score_offset = 1,
@@ -126,7 +133,7 @@ return {
                 default = { "ecolog" },
                 providers = {
                     ecolog = {
-                        name = "[Ecolog]",
+                        name = "[Env]",
                         module = "ecolog.integrations.cmp.blink_cmp",
                         score_offset = 101,
                     },
@@ -141,7 +148,7 @@ return {
                 default = { "supermaven" },
                 providers = {
                     supermaven = {
-                        name = "[Supermaven]",
+                        name = "supermaven",
                         module = "blink.compat.source",
                         score_offset = 100,
                         async = true,

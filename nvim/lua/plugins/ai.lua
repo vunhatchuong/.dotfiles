@@ -3,7 +3,6 @@ return {
         "supermaven-inc/supermaven-nvim",
         build = ":SupermavenUseFree",
         event = "InsertEnter",
-        dependencies = { "saghen/blink.cmp" },
         cmd = "SupermavenToggle",
         opts = {
             log_level = "off",
