@@ -244,8 +244,9 @@ return {
         cmd = { "Xylene" },
         opts = {},
     },
-    {
+    { -- Breaks numb.nvim and blink.nvim
         "smilhey/ed-cmd.nvim",
+        enabled = false,
         event = { "CmdlineEnter" },
         init = function()
             local saved_sidescrolloff
@@ -329,5 +330,10 @@ return {
             require("ecolog").setup(opts)
             require("telescope").load_extension("ecolog")
         end,
+    },
+    {
+        "nacro90/numb.nvim",
+        event = "VeryLazy",
+        opts = {},
     },
 }

@@ -147,4 +147,23 @@ return {
             },
         },
     },
+    { "lukas-reineke/virt-column.nvim", lazy = false, opts = {} },
+    {
+        "m4xshen/smartcolumn.nvim",
+        lazy = false,
+        opts = {
+            disabled_filetypes = {
+                "netrw",
+                "NvimTree",
+                "Lazy",
+                "mason",
+                "help",
+                "text",
+                "markdown",
+                "tex",
+                "html",
+            },
+            scope = "window",
+        },
+    },
 }

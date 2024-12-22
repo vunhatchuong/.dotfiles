@@ -50,4 +50,5 @@ return {
     { "aliqyan-21/darkvoid.nvim" },
     { "blazkowolf/gruber-darker.nvim" },
     { "tek256/simple-dark" },
+    { "kvrohit/substrata.nvim" },
 }
