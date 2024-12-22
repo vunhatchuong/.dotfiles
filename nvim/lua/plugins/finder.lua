@@ -55,7 +55,7 @@ return {
         --                 cwd = path,
         --                 prompt_title = prompt_title,
         --             })
-        --         end
+        --         end,
         --     },
         --     {
         --         "<leader>ft",
@@ -66,7 +66,7 @@ return {
         --                 cwd = path,
         --                 prompt_title = prompt_title,
         --             })
-        --         end
+        --         end,
         --     },
         --     {
         --         "<leader>fs",
@@ -77,7 +77,7 @@ return {
         --                 cwd = path,
         --                 prompt_title = prompt_title,
         --             })
-        --         end
+        --         end,
         --     },
         -- },
         opts = function()
@@ -149,9 +149,9 @@ return {
                     local path, prompt_title = Util.get_folder_location()
                     require("fzf-lua").files({
                         cwd = path,
-                        winopts = { title = prompt_title }
+                        winopts = { title = prompt_title },
                     })
-                end
+                end,
             },
             {
                 "<leader>ft",
@@ -160,9 +160,9 @@ return {
                     local path, prompt_title = Util.get_folder_location()
                     require("fzf-lua").live_grep_native({
                         cwd = path,
-                        winopts = { title = prompt_title }
+                        winopts = { title = prompt_title },
                     })
-                end
+                end,
             },
             {
                 "<leader>fs",
@@ -171,9 +171,9 @@ return {
                     local path, prompt_title = Util.get_folder_location()
                     require("fzf-lua").grep_cword({
                         cwd = path,
-                        winopts = { title = prompt_title }
+                        winopts = { title = prompt_title },
                     })
-                end
+                end,
             },
         },
         init = function()

@@ -45,11 +45,11 @@ return {
         branch = "fix/nvim-v0.10.1-compatibility",
         keys = {
             { -- Doesn't work on Windows
-                "<C-CR>",
+                "<TAB>",
                 function()
                     require("in-and-out").in_and_out()
                 end,
-                mode = "i",
+                mode = "n",
                 desc = "In and out",
             },
         },
