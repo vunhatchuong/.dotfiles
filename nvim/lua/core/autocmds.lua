@@ -15,6 +15,7 @@ autocmd({ "FileType" }, {
         "undotree",
         "quicktest-output",
         "outputpanel",
+        "bmessages",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
@@ -32,6 +33,21 @@ autocmd({ "FileType" }, {
                 desc = "Quit buffer",
             })
         end)
+    end,
+})
+
+autocmd("BufEnter", {
+    desc = "Close nofile with q",
+    callback = function(event)
+        if vim.bo.buftype == "nofile" then
+            vim.keymap.set("n", "q", function()
+                vim.cmd("close")
+            end, {
+                buffer = event.buf,
+                silent = true,
+                desc = "Quit buffer",
+            })
+        end
     end,
 })
 

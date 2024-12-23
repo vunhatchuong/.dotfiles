@@ -43,13 +43,6 @@ return {
             desc = "Term (Root Dir)",
         },
         {
-            "<leader>ul",
-            function()
-                Snacks.toggle.line_number():toggle()
-            end,
-            desc = "Toggle line number",
-        },
-        {
             "<leader>wf",
             function()
                 Snacks.zen.zoom()
