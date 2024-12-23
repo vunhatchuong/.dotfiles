@@ -6,6 +6,7 @@ return {
         dependencies = {
             "mason.nvim",
             { "williamboman/mason-lspconfig.nvim", config = function() end },
+            require("plugins.lsp.mason"),
         },
         init = function()
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
@@ -84,6 +85,16 @@ return {
                         },
                     },
                 },
+
+                -- attach_server = {
+                --     lua_ls = function(client, event)
+                --         vim.api.nvim_buf_set_var(event.buf, "shiftwidth", 4)
+                --         vim.api.nvim_buf_set_var(event.buf, "tabstop", 4)
+                --         -- Disable hover
+                --         client.server_capabilities.hoverProvider = false
+                --     end,
+                -- },
+
                 -- you can do any additional lsp server setup here
                 -- return true if you don't want this server to be setup with lspconfig
                 ---@type table<string, fun(server:string, opts:lspconfig.Config):boolean?>
@@ -96,8 +107,8 @@ return {
                     -- Specify * to use this function as a fallback for any server
                     -- return true to only apply this opts
                     ["*"] = function(_, opts)
-                        opts.on_attach =
-                            require("plugins.lsp.keymaps").workspace_diagnostics
+                        -- opts.on_attach =
+                        --     require("plugins.lsp.handler").workspace_diagnostics
                         return false
                     end,
                 },
@@ -110,7 +121,8 @@ return {
 
             local servers = opts.servers
 
-            -- Auto complete
+            -- Merge capabilities from all servers
+            -- Setup auto complete
             local has_blink, blink = pcall(require, "blink.cmp")
             local capabilities = vim.tbl_deep_extend(
                 "force",
@@ -138,33 +150,41 @@ return {
                         return
                     end
                 end
+
+                opts.attach_server = opts.attach_server or {}
+
+                -- Custom attach_server field to configure the server after attach
+                -- https://github.com/XavierChanth/dotfiles/blob/trunk/dotfiles/dot-config/nvim/lua/editor/lsp.lua#L182
+                if opts.attach_server[server] then
+                    vim.api.nvim_create_autocmd("LspAttach", {
+                        callback = function(event)
+                            local client =
+                                vim.lsp.get_client_by_id(event.data.client_id)
+                            if client and client.name == server then
+                                if
+                                    opts.attach_server[server](
+                                        client,
+                                        event,
+                                        server_opts[server]
+                                    )
+                                then
+                                    return
+                                end
+                            end
+                        end,
+                    })
+                end
+
                 require("lspconfig")[server].setup(server_opts)
             end
 
             -- get all the servers that are available through mason-lspconfig
             local have_mason, mlsp = pcall(require, "mason-lspconfig")
-            local all_mslp_servers = {}
-            if have_mason then
-                all_mslp_servers = vim.tbl_keys(
-                    require("mason-lspconfig.mappings.server").lspconfig_to_package
-                )
-            end
 
             local ensure_installed = {} ---@type string[]
             for server, server_opts in pairs(servers) do
                 if server_opts then
-                    server_opts = server_opts == true and {} or server_opts
-                    if server_opts.enabled ~= false then
-                        -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-                        if
-                            server_opts.mason == false
-                            or not vim.tbl_contains(all_mslp_servers, server)
-                        then
-                            setup(server)
-                        else
-                            ensure_installed[#ensure_installed + 1] = server
-                        end
-                    end
+                    setup(server)
                 end
             end
 
@@ -182,48 +202,8 @@ return {
                     handlers = { setup },
                 })
             end
-        end,
-    },
-    {
-        "williamboman/mason.nvim",
-        cmd = "Mason",
-        build = ":MasonUpdate",
-        opts = {
-            ensure_installed = {
-                "stylua",
-                "shfmt",
 
-                "codespell",
-
-                "html-lsp",
-                "prettier",
-
-                "proselint",
-                "taplo",
-            },
-        },
-        ---@param opts MasonSettings | {ensure_installed: string[]}
-        config = function(_, opts)
-            require("mason").setup(opts)
-            local mr = require("mason-registry")
-            mr:on("package:install:success", function()
-                vim.defer_fn(function()
-                    -- trigger FileType event to possibly load this newly installed LSP server
-                    require("lazy.core.handler.event").trigger({
-                        event = "FileType",
-                        buf = vim.api.nvim_get_current_buf(),
-                    })
-                end, 100)
-            end)
-
-            mr.refresh(function()
-                for _, tool in ipairs(opts.ensure_installed) do
-                    local p = mr.get_package(tool)
-                    if not p:is_installed() then
-                        p:install()
-                    end
-                end
-            end)
+            require("plugins.lsp.diagnostics").setup()
         end,
     },
     {

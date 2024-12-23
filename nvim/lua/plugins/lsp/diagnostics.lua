@@ -6,6 +6,8 @@ local signs = {
     [vim.diagnostic.severity.INFO] = icons.diagnostics.BoldInformation,
 }
 
+local M = {}
+
 -- options for vim.diagnostic.config()
 --- @type vim.diagnostic.Opts
 local config = {
@@ -16,5 +18,9 @@ local config = {
     signs = { text = signs },
 }
 
-vim.diagnostic.config(vim.deepcopy(config))
-vim.lsp.diagnostics_config = config
+function M.setup()
+    vim.diagnostic.config(config)
+    vim.lsp.diagnostics_config = config
+end
+
+return M
