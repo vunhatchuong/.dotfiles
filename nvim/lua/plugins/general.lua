@@ -291,6 +291,17 @@ return {
         cmd = { "KeyAnalyzer" },
         opts = {},
     },
+    { -- Suggest keybinds based on description
+        "tris203/hawtkeys.nvim",
+        cmd = { "Hawtkeys", "HawtkeysAll", "HawtkeysDupes" },
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {
+            keyboardLayout = "qwerty", ---@type "qwerty"|"colemak-dh"
+        },
+    },
     {
         "philosofonusus/ecolog.nvim",
         lazy = false,
@@ -335,5 +346,13 @@ return {
         "nacro90/numb.nvim",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "psliwka/vim-dirtytalk",
+        lazy = false,
+        build = ":DirtytalkUpdate",
+        config = function()
+            vim.opt.spelllang:append("programming")
+        end,
     },
 }
