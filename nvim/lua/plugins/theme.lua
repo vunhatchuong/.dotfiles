@@ -51,4 +51,7 @@ return {
     { "blazkowolf/gruber-darker.nvim" },
     { "tek256/simple-dark" },
     { "kvrohit/substrata.nvim" },
+    { "mcauley-penney/ice-cave.nvim" },
+    { "aktersnurra/no-clown-fiesta.nvim" },
+    { "ramojus/mellifluous.nvim", branch = "v1" },
 }

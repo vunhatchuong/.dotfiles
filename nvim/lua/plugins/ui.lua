@@ -18,10 +18,45 @@ return {
             end
         end,
     },
+    { -- Color picker
+        "uga-rosa/ccc.nvim",
+        cmd = { "CccPick" },
+        config = function()
+            local ccc = require("ccc")
+            local mapping = ccc.mapping
+            ccc.setup({
+                -- nvim-colorizer is better
+                highlighter = {
+                    auto_enable = false,
+                },
+                mappings = {
+                    ["<Right>"] = mapping.increase1,
+                    ["<Left>"] = mapping.decrease1,
+                },
+            })
+        end,
+    },
     {
-        "brenoprata10/nvim-highlight-colors",
+        "catgoose/nvim-colorizer.lua",
         event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-        opts = {},
+        opts = {
+            user_default_options = {
+                rgb_fn = true,
+                hsl_fn = true,
+
+                css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+                tailwind = true, ---@type boolean|"normal"|"lsp"|"both" True is same as normal
+
+                mode = "virtualtext", ---@type "background"|"foreground"|"virtualtext" Highlighting mode
+                virtualtext = "",
+                virtualtext_inline = true,
+
+                -- update color values even if buffer is not focused
+                -- example use: cmp_menu, cmp_docs
+                always_update = false,
+            },
+        },
     },
     {
         "echasnovski/mini.indentscope",
