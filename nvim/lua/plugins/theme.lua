@@ -54,4 +54,13 @@ return {
     { "mcauley-penney/ice-cave.nvim" },
     { "aktersnurra/no-clown-fiesta.nvim" },
     { "ramojus/mellifluous.nvim", branch = "v1" },
+    {
+        "cvigilv/patana.nvim",
+        branch = "develop",
+        init = function()
+            vim.g.patana_high_contrast = true
+            vim.g.patana_colored_statusline = true
+            vim.g.patana_oob_filetypes = { "qf", "lazy", "mason", "help" }
+        end,
+    },
 }

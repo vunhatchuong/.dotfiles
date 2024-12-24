@@ -59,6 +59,22 @@ return {
         },
     },
     {
+        "echasnovski/mini.hipatterns",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+        config = function()
+            local hipatterns = require("mini.hipatterns")
+            hipatterns.setup({
+                -- stylua: ignore
+                highlighters = {
+                    fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+                    hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+                    todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+                    note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+                },
+            })
+        end,
+    },
+    {
         "echasnovski/mini.indentscope",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         init = function()
