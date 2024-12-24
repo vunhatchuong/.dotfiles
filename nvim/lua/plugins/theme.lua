@@ -21,7 +21,7 @@ return {
                 "darkvoid",
                 "simple-dark",
             },
-            window = { border = vim.g.bordor_style },
+            window = { border = vim.g.border_style },
         },
     },
     {

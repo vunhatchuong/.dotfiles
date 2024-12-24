@@ -11,7 +11,7 @@ M._keys = {
     -- { "gr", ":Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
     -- { "gi", require("telescope.builtin").lsp_implementations, desc = "[G]oto [I]mplementation" },
 
-    { "gt", require("telescope.builtin").lsp_type_definitions, desc = "Type [D]definition" },
+    -- { "gt", require("telescope.builtin").lsp_type_definitions, desc = "Type [D]definition" },
     { "gD", vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
 
     {

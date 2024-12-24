@@ -13,6 +13,7 @@ return {
     opts = {
         input = { enabled = true },
         notifier = {
+            timeout = 7000,
             enabled = true,
             sort = { "added" },
         },

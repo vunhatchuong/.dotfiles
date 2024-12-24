@@ -59,7 +59,7 @@ return {
                             { "source_name" },
                         },
                     },
-                    border = vim.g.bordor_style,
+                    border = vim.g.border_style,
                     winblend = vim.o.pumblend,
                     winhighlight = "Normal:None,FloatBorder:None,CursorLine:BlinkCmpMenuSelection,Search:None",
                 },
@@ -67,7 +67,7 @@ return {
                     auto_show = true,
                     auto_show_delay_ms = 200,
                     window = {
-                        border = vim.g.bordor_style,
+                        border = vim.g.border_style,
                         winblend = vim.o.pumblend,
                         winhighlight = "Normal:None,FloatBorder:None,CursorLine:BlinkCmpDocCursorLine,Search:None",
                     },
@@ -77,7 +77,7 @@ return {
             -- Disable floating win in ray-x/lsp_signature.nvim instead
             signature = {
                 enabled = true,
-                window = { border = vim.g.bordor_style },
+                window = { border = vim.g.border_style },
             },
             sources = {
                 default = { "lsp", "path", "snippets", "buffer" },

@@ -10,7 +10,8 @@ return {
     },
     {
         "fei6409/log-highlight.nvim",
-        ft = { "log" },
+        -- ft = { "log" },
+        event = "BufRead *.log",
         opts = {
             extension = "log",
             filename = {

@@ -1,4 +1,4 @@
-vim.g.bordor_style = "rounded" ---@type "single"|"double"|"rounded"
+vim.g.border_style = "rounded" ---@type "single"|"double"|"rounded"
 
 _G.Util = require("util")
 

@@ -11,15 +11,15 @@ return {
         init = function()
             vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
                 vim.lsp.handlers.hover,
-                { border = vim.g.bordor_style }
+                { border = vim.g.border_style }
             )
 
             vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
                 vim.lsp.handlers.signature_help,
-                { border = vim.g.bordor_style }
+                { border = vim.g.border_style }
             )
             require("lspconfig.ui.windows").default_options.border =
-                vim.g.bordor_style
+                vim.g.border_style
         end,
         opts = function()
             return {
