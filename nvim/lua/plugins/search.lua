@@ -8,15 +8,20 @@ return {
                 function()
                     require("grug-far").grug_far()
                 end,
+                mode = { "n", "v" },
                 desc = "Search and Replace",
             },
             {
                 "<leader>ss",
                 function()
                     require("grug-far").grug_far({
-                        prefills = { search = vim.fn.expand("<cword>") },
+                        prefills = {
+                            search = vim.fn.expand("<cword>"),
+                            paths = vim.fn.expand("%"),
+                        },
                     })
                 end,
+                mode = { "n", "v" },
                 desc = "Search current word",
             },
         },
@@ -28,6 +33,8 @@ return {
                 close = { n = "<localleader>q" },
                 historyAdd = false,
             },
+            reportDuration = false,
+            history = { autoSave = { enabled = false } },
         },
     },
     {
