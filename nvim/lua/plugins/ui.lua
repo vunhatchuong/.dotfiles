@@ -1,3 +1,4 @@
+local icons = require("core.icons")
 return {
     {
         "echasnovski/mini.icons",
@@ -11,11 +12,10 @@ return {
                 dotenv = { glyph = "", hl = "MiniIconsYellow" },
             },
         },
-        init = function()
-            package.preload["nvim-web-devicons"] = function()
-                require("mini.icons").mock_nvim_web_devicons()
-                return package.loaded["nvim-web-devicons"]
-            end
+        config = function(_, opts)
+            local mini_icons = require("mini.icons")
+            mini_icons.setup(opts)
+            mini_icons.mock_nvim_web_devicons()
         end,
     },
     { -- Color picker
@@ -180,6 +180,9 @@ return {
             auto_disable_zen = true,
             zen = {
                 diagnostics = true, -- disables diagnostics
+                opts = {
+                    colorcolumn = "",
+                },
             },
             plugins = {
                 -- gitsigns = { enabled = false }, -- disables git signs
@@ -196,7 +199,7 @@ return {
             --     end,
             -- })
             vim.api.nvim_create_autocmd("VimEnter", {
-                desc = "Enter Focus",
+                desc = "Enter Zen",
                 callback = function()
                     require("focus").toggle_zen({})
                 end,

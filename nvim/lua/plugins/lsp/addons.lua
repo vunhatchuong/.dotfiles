@@ -152,4 +152,39 @@ return {
         "artemave/workspace-diagnostics.nvim",
         opts = {},
     },
+    {
+        "Bekaboo/dropbar.nvim",
+        lazy = false,
+        ---@type dropbar_configs_t
+        opts = {
+            icons = {
+                kinds = {
+                    symbols = require("core.icons").kind,
+                },
+            },
+            bar = {
+                sources = function(buf, _)
+                    local sources = require("dropbar.sources")
+                    local utils = require("dropbar.utils")
+                    if vim.bo[buf].ft == "markdown" then
+                        return {
+                            sources.path,
+                            sources.markdown,
+                        }
+                    end
+                    if vim.bo[buf].buftype == "terminal" then
+                        return {
+                            sources.terminal,
+                        }
+                    end
+                    return {
+                        utils.source.fallback({
+                            sources.lsp,
+                            sources.treesitter,
+                        }),
+                    }
+                end,
+            },
+        },
+    },
 }
