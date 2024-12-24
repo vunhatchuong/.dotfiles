@@ -42,7 +42,12 @@ return {
                 },
             },
             completion = {
-                list = { selection = "manual" },
+                list = {
+                    selection = function(ctx)
+                        return ctx.mode == "cmdline" and "auto_insert"
+                            or "manual"
+                    end,
+                },
                 accept = { auto_brackets = { enabled = false } },
                 menu = {
                     -- auto_show = false,
