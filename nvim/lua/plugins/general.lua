@@ -55,7 +55,7 @@ return {
         opts = {
             init = function()
                 -- require("hover.providers.lsp")
-                require("plugins.lsp.ecolog-hover")
+                -- require("plugins.lsp.ecolog-hover")
                 require("plugins.lsp.lspsaga-hover")
                 require("hover.providers.fold_preview")
             end,

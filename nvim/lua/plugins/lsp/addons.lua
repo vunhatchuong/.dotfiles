@@ -78,6 +78,9 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
+
+            vim.g.matchup_matchparen_deferred = 1 -- keystrokes get laggy without these aggro settings
+            vim.g.matchup_matchparen_deferred_show_delay = 500
         end,
     },
     {
@@ -154,7 +157,11 @@ return {
     },
     {
         "Bekaboo/dropbar.nvim",
-        lazy = false,
+        event = "VeryLazy",
+        init = function()
+            -- Disable dropbar's own lazy loader
+            vim.g.loaded_dropbar = true
+        end,
         ---@type dropbar_configs_t
         opts = {
             icons = {

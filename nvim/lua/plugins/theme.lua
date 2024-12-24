@@ -63,4 +63,5 @@ return {
             vim.g.patana_oob_filetypes = { "qf", "lazy", "mason", "help" }
         end,
     },
+    { "dgox16/oldworld.nvim" },
 }
