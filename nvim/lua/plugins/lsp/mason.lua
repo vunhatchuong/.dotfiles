@@ -9,12 +9,12 @@ return {
                 "stylua",
                 "shfmt",
 
-                "codespell",
+                "typos-lsp", -- code spellchecker
+                -- "ltex-ls-plus", -- natural language linter
 
                 "html-lsp",
                 "prettier",
 
-                "proselint",
                 "taplo",
             },
         },

@@ -8,7 +8,7 @@ return {
             events = { "BufWritePost", "BufReadPost", "InsertLeave" },
             linters_by_ft = {
                 -- Use the "*" filetype to run linters on all filetypes.
-                ["*"] = { "codespell" },
+                -- ["*"] = { "codespell" },
                 -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
                 -- ['_'] = { 'fallback linter' },
                 sql = { "sqlfluff" },

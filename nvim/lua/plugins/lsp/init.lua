@@ -104,6 +104,11 @@ return {
                     --   require("typescript").setup({ server = opts })
                     --   return true
                     -- end,
+                    -- DOCS https://github.com/tekumara/typos-lsp/blob/main/docs/neovim-lsp-config.md
+                    typos_lsp = function(_, opts)
+                        opts.init_options = { diagnosticSeverity = "Hint" }
+                        return false
+                    end,
                     -- Specify * to use this function as a fallback for any server
                     -- return true to only apply this opts
                     ["*"] = function(_, opts)
