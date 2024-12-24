@@ -151,6 +151,16 @@ return {
                 -- gitsigns = true,
                 -- I can't implement minidiff for this :(
                 search = true, -- Requires hlslens
+                excluded_filetypes = {
+                    "dropbar_menu",
+                    "dropbar_menu_fzf",
+                    "DressingInput",
+                    "cmp_docs",
+                    "cmp_menu",
+                    "prompt",
+                    "TelescopePrompt",
+                    "blink-cmp-menu",
+                },
             },
         },
     },

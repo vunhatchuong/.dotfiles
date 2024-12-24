@@ -324,11 +324,13 @@ return {
             integrations = {
                 lspsaga = true,
                 blink_cmp = true,
-                nvim_cmp = false,
                 telescope = true,
             },
             shelter = {
-                configuration = { partial_mode = true },
+                configuration = {
+                    partial_mode = true,
+                    mask_char = "•",
+                },
                 modules = {
                     files = true,
                     peek = true,
