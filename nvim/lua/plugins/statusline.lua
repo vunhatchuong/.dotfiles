@@ -112,7 +112,7 @@ return {
                             path = 1,
                             color = "Comment",
                             symbols = { modified = "", readonly = "" },
-                            padding = {},
+                            padding = { right = 1 },
                         },
                         {
                             "grapple",

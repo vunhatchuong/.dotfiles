@@ -82,6 +82,12 @@ return {
                 callback = function()
                     vim.b.miniindentscope_disable = true
                 end,
+
+                vim.api.nvim_set_hl(
+                    0,
+                    "MiniIndentscopeSymbol",
+                    { link = "Special" }
+                ),
             })
         end,
         opts = {
@@ -95,10 +101,6 @@ return {
                 end,
             },
         },
-        config = function(_, opts)
-            require("mini.indentscope").setup(opts)
-            vim.cmd("hi! link MiniIndentscopeSymbol Special")
-        end,
     },
     { -- Bug closed as not planned: https://github.com/lewis6991/satellite.nvim/issues/81
         "lewis6991/satellite.nvim",
@@ -263,6 +265,33 @@ return {
             -- you can turn on or off bold characters for the line numbers
             bold_nr = true,
             extend_to_linenr = false,
+        },
+    },
+    { -- Ghosting bug
+        "joshuadanpeterson/typewriter",
+        -- lazy = false,
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
+        opts = {},
+    },
+    {
+        "arnamak/stay-centered.nvim",
+        -- enabled = false,
+        lazy = false,
+        opts = {
+            enabled = false,
+        },
+    },
+    {
+        "tris203/precognition.nvim",
+        event = "VeryLazy",
+        opts = {
+            startVisible = false,
+            showBlankVirtLine = false,
+            -- disabled_fts = {
+            --     "startify",
+            -- },
         },
     },
 }

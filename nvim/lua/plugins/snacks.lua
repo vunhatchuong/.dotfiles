@@ -3,11 +3,10 @@ return {
     priority = 1000,
     lazy = false,
     init = function()
-        local nontext_hl = vim.api.nvim_get_hl(0, { name = "NonText" }).fg
-        vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { fg = "#ffffff" })
-        vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { fg = nontext_hl })
-        vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { fg = nontext_hl })
-        vim.api.nvim_set_hl(0, "SnacksDashboardKey", { fg = nontext_hl })
+        vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { link = "Text" })
+        vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { link = "NonText" })
+        vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { link = "NonText" })
+        vim.api.nvim_set_hl(0, "SnacksDashboardKey", { link = "NonText" })
     end,
     ---@type snacks.Config
     --- @diagnostic disable: missing-fields
@@ -33,8 +32,8 @@ Neovim :: M Λ C R O - Editing made simple
             },
             sections = {
                 -- stylua: ignore start
-                { hidden = true, icon = " ", key = "t", desc = "Find [T]ext", action = ":lua Snacks.dashboard.pick('live_grep')" },
-                { hidden = true, icon = " ", key = "r", desc = "[R]ecent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+                { hidden = true, icon = " ", key = "t", desc = "Find [T]ext", action = ":FzfLua live_grep_native" },
+                { hidden = true, icon = " ", key = "r", desc = "[R]ecent Files", action = ":FzfLua oldfiles" },
                 { hidden = true, icon = "󰒲 ", key = "l", desc = "[L]azy", action = ":Lazy" },
                 -- stylua: ignore end
 
@@ -47,8 +46,6 @@ Neovim :: M Λ C R O - Editing made simple
                         { "Neovim :: M Λ C R O ", hl = "Normal" },
                         { "- Editing made simple", hl = "NonText" },
                     },
-                    action = ":lua Snacks.dashboard.pick('files')",
-                    key = "f",
                 },
 
                 -- Keys
@@ -58,7 +55,7 @@ Neovim :: M Λ C R O - Editing made simple
                         { "  Find [F]ile", width = 19, hl = "NonText" },
                         { "  Find [T]ext", hl = "NonText" },
                     },
-                    action = ":lua Snacks.dashboard.pick('files')",
+                    action = ":FzfLua files",
                     key = "f",
                 },
                 {

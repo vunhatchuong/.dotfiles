@@ -150,16 +150,17 @@ autocmd({ "BufWritePre" }, {
 -- })
 
 -- Modified default theme
--- https://github.com/glepnir/nvim/blob/main/lua/core/init.lua
-autocmd("ColorScheme", {
+autocmd("UIEnter", {
     group = augroup("ModifyDefaultTheme", {}),
-    pattern = "default",
     callback = function()
-        vim.cmd([[
-            hi link @property @variable
-            hi Type guifg=#eed49f ctermfg=11
-            hi link @type.builtin Type
-            hi link @type Type
-        ]])
+        local colors_path = vim.fs.joinpath(
+            vim.fn.stdpath("config") --[[@as string]],
+            "colors",
+            "default.lua"
+        )
+
+        if vim.uv.fs_stat(colors_path) then
+            dofile(colors_path)
+        end
     end,
 })
