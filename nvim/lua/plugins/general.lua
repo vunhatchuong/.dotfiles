@@ -355,4 +355,29 @@ return {
             vim.opt.spelllang:append("programming")
         end,
     },
+    { -- https://code.visualstudio.com/docs/editor/userdefinedsnippets#_variables
+
+        "chrisgrieser/nvim-scissors",
+        dependencies = "ibhagwan/fzf-lua",
+        keys = {
+            {
+                "<leader>nn",
+                function()
+                    require("scissors").editSnippet()
+                end,
+                desc = "󰩫 Edit",
+            },
+            {
+                "<leader>na",
+                function()
+                    require("scissors").addNewSnippet()
+                end,
+                mode = { "n", "x" },
+                desc = "󰩫 Add",
+            },
+        },
+        opts = {
+            jsonFormatter = "jq",
+        },
+    },
 }

@@ -45,7 +45,7 @@ return {
                     prepend_args = { "--indent-type", "Spaces" },
                 },
                 prettier = {
-                    prepend_args = { "--tab-width", "4" },
+                    -- prepend_args = { "--tab-width", "4" },
                 },
             },
         },
