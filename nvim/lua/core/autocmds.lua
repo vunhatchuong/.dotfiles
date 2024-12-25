@@ -10,44 +10,44 @@ autocmd({ "FileType" }, {
         "lspinfo",
         "lazy",
         "mason",
-        "oil",
         "grug-far",
         "undotree",
         "quicktest-output",
         "outputpanel",
         "bmessages",
+        "snacks_dashboard",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
         vim.schedule(function()
             vim.keymap.set("n", "q", function()
-                if vim.bo.filetype == "oil" and vim.fn.winnr("$") == 1 then
-                    vim.cmd("quit")
-                else
-                    vim.cmd("close")
-                    pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
-                end
+                vim.cmd("close")
+                pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+            end, {
+                buffer = event.buf,
+                silent = true,
+                desc = "Close buffer",
+            })
+        end)
+    end,
+})
+
+autocmd({ "FileType" }, {
+    desc = "Quit with q",
+    pattern = {
+        "oil",
+        "snacks_dashboard",
+    },
+    callback = function(event)
+        vim.schedule(function()
+            vim.keymap.set("n", "q", function()
+                vim.cmd("quit")
             end, {
                 buffer = event.buf,
                 silent = true,
                 desc = "Quit buffer",
             })
         end)
-    end,
-})
-
-autocmd("BufEnter", {
-    desc = "Close nofile with q",
-    callback = function(event)
-        if vim.bo.buftype == "nofile" then
-            vim.keymap.set("n", "q", function()
-                vim.cmd("close")
-            end, {
-                buffer = event.buf,
-                silent = true,
-                desc = "Quit buffer",
-            })
-        end
     end,
 })
 
@@ -149,18 +149,11 @@ autocmd({ "BufWritePre" }, {
 --     end,
 -- })
 
--- Modified default theme
-autocmd("UIEnter", {
-    group = augroup("ModifyDefaultTheme", {}),
+autocmd("ColorScheme", {
+    group = augroup("OverrideTheme", { clear = true }),
     callback = function()
-        local colors_path = vim.fs.joinpath(
-            vim.fn.stdpath("config") --[[@as string]],
-            "colors",
-            "default.lua"
-        )
-
-        if vim.uv.fs_stat(colors_path) then
-            dofile(colors_path)
-        end
+        -- https://github.com/neovim/nvim-lspconfig/wiki/UI-customization
+        -- https://github.com/catppuccin/nvim/blob/main/lua/catppuccin/groups/integrations/native_lsp.lua
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
 })

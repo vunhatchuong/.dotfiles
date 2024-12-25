@@ -2,6 +2,11 @@ return {
     {
         "wllfaria/scheming.nvim",
         lazy = false,
+        init = function()
+            -- Manually triggers ColorScheme event to run related autocmds
+            -- Since scheming.nvim doesn't run vim.cmd("colorscheme theme")
+            vim.cmd("doautocmd ColorScheme")
+        end,
         opts = {
             layout = "float",
             schemes = {

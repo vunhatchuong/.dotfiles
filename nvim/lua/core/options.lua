@@ -53,6 +53,7 @@ opt.grepprg = "rg --vimgrep"
 opt.showmode = false     -- Already has lualine
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.cursorline = true    -- highlight the current line
+opt.cursorlineopt = "number"
 opt.signcolumn = "yes"   -- always show the sign column otherwise it would shift the text each time
 -- opt.statuscolumn = "%s %3{v:relnum?v:relnum:v:lnum} %="
 opt.statuscolumn = [[%!v:lua.require'snacks.statuscolumn'.get()]]
