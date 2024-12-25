@@ -1,9 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, { "python", "toml" })
-        end,
+        opts = { ensure_installed = { "python", "toml" } },
     },
     {
         "neovim/nvim-lspconfig",
@@ -32,17 +30,16 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        opts = function(_, opts)
-            opts.ensure_installed = opts.ensure_installed or {}
-            vim.list_extend(opts.ensure_installed, {
+        opts = {
+            ensure_installed = {
                 "basedpyright",
                 -- Linter
                 "mypy",
                 "ruff", -- Also Formatter
                 -- Formatter
                 -- Code actions
-            })
-        end,
+            },
+        },
     },
     {
         "mfussenegger/nvim-lint",

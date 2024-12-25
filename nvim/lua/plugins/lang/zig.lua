@@ -1,11 +1,7 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, {
-                "zig",
-            })
-        end,
+        opts = { ensure_installed = { "zig" } },
     },
     {
         "neovim/nvim-lspconfig",
@@ -24,15 +20,6 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        opts = function(_, opts)
-            opts.ensure_installed = opts.ensure_installed or {}
-            vim.list_extend(opts.ensure_installed, {
-                "zls",
-                -- Linter
-                -- Formatter
-                -- Code actions
-                -- Extras
-            })
-        end,
+        opts = { ensure_installed = { "zls" } },
     },
 }

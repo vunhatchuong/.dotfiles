@@ -1,15 +1,9 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        opts = function(_, opts)
-            vim.list_extend(opts.ensure_installed, {
-                "go",
-                "gomod",
-                "gowork",
-                "gosum",
-                "templ",
-            })
-        end,
+        opts = {
+            ensure_installed = { "go", "gomod", "gowork", "gosum", "templ" },
+        },
     },
     {
         "neovim/nvim-lspconfig",
@@ -112,11 +106,7 @@ return {
         "nvimtools/none-ls.nvim",
         optional = true,
         ft = { "go", "gomod", "gowork", "gosum", "templ" },
-        dependencies = {
-            {
-                "williamboman/mason.nvim",
-            },
-        },
+        dependencies = { "williamboman/mason.nvim" },
         opts = function(_, opts)
             local nls = require("null-ls")
             local gotests = require("plugins.lang.gotests")
