@@ -49,6 +49,9 @@ return {
 
             return {
                 options = {
+                    disabled_filetypes = {
+                        statusline = { "snacks_dashboard" },
+                    },
                     -- stylua: ignore
                     theme = {
                         normal = {
@@ -136,9 +139,9 @@ return {
                             "diagnostics",
                             sources = { "nvim_diagnostic" },
                             symbols = {
-                                error = icons.diagnostics.BoldError,
-                                warn = icons.diagnostics.BoldWarning,
-                                info = icons.diagnostics.BoldInformation,
+                                error = icons.diagnostics.Error,
+                                warn = icons.diagnostics.Warning,
+                                info = icons.diagnostics.Information,
                                 hint = icons.diagnostics.Hint,
                             },
                         },
@@ -163,7 +166,13 @@ return {
                         { Util.statusline.mixed_indent },
                     },
                 },
-                extensions = { "nvim-dap-ui", "oil", "quickfix", "trouble", "fzf" },
+                extensions = {
+                    "nvim-dap-ui",
+                    "oil",
+                    "quickfix",
+                    "trouble",
+                    "fzf",
+                },
             }
         end,
     },

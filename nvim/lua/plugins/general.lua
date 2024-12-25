@@ -148,7 +148,7 @@ return {
     },
     {
         "rlychrisg/truncateline.nvim",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {
             -- Note: Make it less than sidescrolloff
             line_start_length = 15,

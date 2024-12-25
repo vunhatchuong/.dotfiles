@@ -157,7 +157,7 @@ return {
     },
     {
         "Bekaboo/dropbar.nvim",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         init = function()
             -- Disable dropbar's own lazy loader
             vim.g.loaded_dropbar = true

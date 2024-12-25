@@ -41,11 +41,8 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
         opts = {
             user_default_options = {
-                rgb_fn = true,
-                hsl_fn = true,
-
-                css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-                css_fn = false, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+                css = true,
+                css_fn = true,
                 tailwind = true, ---@type boolean|"normal"|"lsp"|"both" True is same as normal
 
                 mode = "virtualtext", ---@type "background"|"foreground"|"virtualtext" Highlighting mode
@@ -160,6 +157,7 @@ return {
                     "prompt",
                     "TelescopePrompt",
                     "blink-cmp-menu",
+                    "snacks_dashboard",
                 },
             },
         },
@@ -256,57 +254,10 @@ return {
     {
         "vunhatchuong/bmessages.nvim",
         branch = "feat/filetype",
-        event = "CmdlineEnter",
+        cmd = { "Bmessages" },
         opts = {
             split_type = "split",
             split_direction = "botright",
-        },
-    },
-    {
-        "svampkorg/moody.nvim",
-        event = { "ModeChanged", "BufWinEnter", "WinEnter" },
-        opts = {
-            -- you can set different blend values for your different modes.
-            -- Some colours might look better more dark, so set a higher value
-            -- will result in a darker shade.
-            blends = {
-                normal = 0.2,
-                insert = 0.2,
-                visual = 0.25,
-                command = 0.2,
-                operator = 0.2,
-            },
-            colors = {
-                normal = vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg,
-                insert = vim.api.nvim_get_hl(0, { name = "Function" }).fg,
-                visual = vim.api.nvim_get_hl(0, { name = "Function" }).fg,
-                command = vim.api.nvim_get_hl(0, { name = "String" }).fg,
-                operator = vim.api.nvim_get_hl(0, { name = "WarningMsg" }).fg,
-                -- terminal = "#4CD4BD",
-                -- terminal_n = "#00BBCC",
-            },
-            disabled_filetypes = { "TelescopePrompt", "fzf" },
-            -- disabled buftypes here
-            disabled_buftypes = {},
-            -- you can turn on or off bold characters for the line numbers
-            bold_nr = true,
-            extend_to_linenr = false,
-        },
-    },
-    { -- Ghosting bug
-        "joshuadanpeterson/typewriter",
-        -- lazy = false,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        opts = {},
-    },
-    {
-        "arnamak/stay-centered.nvim",
-        -- enabled = false,
-        lazy = false,
-        opts = {
-            enabled = false,
         },
     },
 }
