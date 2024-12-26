@@ -1,5 +1,13 @@
 local M = {}
 
+local diagnostic_goto = function(next, severity)
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+        go({ severity = severity })
+    end
+end
+
 -- stylua: ignore
 M._keys = {
     -- { "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame" },
@@ -9,9 +17,9 @@ M._keys = {
 
     -- { "gd", require("telescope.builtin").lsp_definitions, desc = "[G]oto [D]definition" },
     -- { "gr", ":Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
-    -- { "gi", require("telescope.builtin").lsp_implementations, desc = "[G]oto [I]mplementation" },
+    { "gi", require("telescope.builtin").lsp_implementations, desc = "[G]oto [I]mplementation" },
 
-    -- { "gt", require("telescope.builtin").lsp_type_definitions, desc = "Type [D]definition" },
+    { "gt", require("telescope.builtin").lsp_type_definitions, desc = "[T]ype Ddefinition" },
     { "gD", vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
 
     {
@@ -28,6 +36,13 @@ M._keys = {
 
     -- { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens" },
     -- { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens" },
+
+    { "]d", diagnostic_goto(true), desc = "Next Diagnostic" },
+    { "[d", diagnostic_goto(false), desc = "Prev Diagnostic" },
+    { "]e", diagnostic_goto(true, "ERROR"), desc = "Next Error" },
+    { "[e", diagnostic_goto(false, "ERROR"), desc = "Prev Error" },
+    { "]w", diagnostic_goto(true, "WARN"), desc = "Next Warning" },
+    { "[w", diagnostic_goto(false, "WARN"), desc = "Prev Warning" },
 }
 
 function M.on_attach(_, buffer)
