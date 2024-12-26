@@ -58,6 +58,8 @@ return {
                 -- require("plugins.lsp.ecolog-hover")
                 require("plugins.lsp.lspsaga-hover")
                 require("hover.providers.fold_preview")
+                require("hover.providers.man")
+                require("hover.providers.dictionary")
             end,
             preview_opts = { border = vim.g.border_style },
         },
@@ -304,7 +306,7 @@ return {
     },
     {
         "philosofonusus/ecolog.nvim",
-        lazy = false,
+        event = "BufRead",
         dependencies = {
             "nvim-telescope/telescope.nvim",
             "saghen/blink.cmp",

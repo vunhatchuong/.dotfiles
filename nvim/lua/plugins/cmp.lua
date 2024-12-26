@@ -1,4 +1,9 @@
 local icons = require("core.icons")
+
+local ext = { "lazydev", "ecolog", "supermaven" }
+local default_sources =
+    vim.list_extend({ "lsp", "path", "snippets", "buffer" }, ext)
+
 return {
     {
         "saghen/blink.compat",
@@ -80,7 +85,14 @@ return {
                 window = { border = vim.g.border_style },
             },
             sources = {
-                default = { "lsp", "path", "snippets", "buffer" },
+                default = function()
+                    if _G.LearnMode then
+                        return { "buffer" }
+                    end
+
+                    return default_sources
+                end,
+
                 -- Don't show completion if len(cmd) < 2 words
                 -- https://github.com/Saghen/blink.cmp/issues/585
                 min_keyword_length = function(ctx)
@@ -97,13 +109,13 @@ return {
                         name = "[LSP]",
                         score_offset = 4,
                     },
-                    snippets = {
-                        name = "[Snip]",
-                        score_offset = 3,
-                    },
                     path = {
                         name = "[Path]",
                         score_offset = 2,
+                    },
+                    snippets = {
+                        name = "[Snip]",
+                        score_offset = 3,
                     },
                     buffer = {
                         name = "[Buf]",
@@ -111,47 +123,17 @@ return {
                         min_keyword_length = 4,
                         score_offset = 1,
                     },
-                },
-            },
-            appearance = { kind_icons = icons.kind },
-        },
-    },
-    {
-        "saghen/blink.cmp",
-        opts = {
-            sources = {
-                default = { "lazydev" },
-                providers = {
+                    -- Extensions
                     lazydev = {
                         name = "[LazyDev]",
                         module = "lazydev.integrations.blink",
                         score_offset = 100, -- show at a higher priority than lsp
                     },
-                },
-            },
-        },
-    },
-    {
-        "saghen/blink.cmp",
-        opts = {
-            sources = {
-                default = { "ecolog" },
-                providers = {
                     ecolog = {
                         name = "[Env]",
                         module = "ecolog.integrations.cmp.blink_cmp",
                         score_offset = 101,
                     },
-                },
-            },
-        },
-    },
-    {
-        "saghen/blink.cmp",
-        opts = {
-            sources = {
-                default = { "supermaven" },
-                providers = {
                     supermaven = {
                         name = "supermaven",
                         module = "blink.compat.source",
@@ -160,6 +142,7 @@ return {
                     },
                 },
             },
+            appearance = { kind_icons = icons.kind },
         },
     },
 }

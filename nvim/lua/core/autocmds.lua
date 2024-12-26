@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
+local command = vim.api.nvim_create_user_command
 
 autocmd({ "FileType" }, {
     desc = "Close with q",
@@ -157,3 +158,11 @@ autocmd("ColorScheme", {
         vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
 })
+
+local function learn_mode()
+    _G.LearnMode = true
+end
+
+command("LearnMode", function()
+    learn_mode()
+end, {})
