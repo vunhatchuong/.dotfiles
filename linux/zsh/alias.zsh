@@ -13,6 +13,7 @@ alias tree="eza --tree --level=2 --group-directories-first"
 alias less="less -R"
 alias lg="lazygit"
 alias lzd="lazydocker"
+alias br="br -c :open_preview"
 
 alias cat="bat"
 alias vim="nvim"
