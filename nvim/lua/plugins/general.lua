@@ -211,6 +211,14 @@ return {
         },
     },
     {
+
+        "aliqyan-21/wit.nvim",
+        cmd = { "WitSearch", "WitSearchVisual", "WitSearchWiki" },
+        opts = {
+            engine = "duckduckgo",
+        },
+    },
+    {
         "AckslD/nvim-neoclip.lua",
         dependencies = { "ibhagwan/fzf-lua" },
         event = { "VeryLazy" },
