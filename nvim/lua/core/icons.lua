@@ -164,5 +164,7 @@ return {
         dots = "󰇘",
         github = "",
         panda = "󰏚 ",
+        status_hexagon = { "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
+        status_circle = { "󰄰", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" },
     },
 }
