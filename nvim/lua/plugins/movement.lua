@@ -32,7 +32,8 @@ return {
     },
     {
         "echasnovski/mini.move",
-        keys = { { "<M-j>" }, { "<M-h>" } },
+        enabled = false,
+        keys = { { "<A-j>" }, { "<A-h>" } },
         opts = {},
     },
     {
@@ -111,7 +112,6 @@ return {
     },
     {
         "folke/flash.nvim",
-        event = "VeryLazy",
         keys = {
             {
                 "<CR>",
@@ -171,7 +171,15 @@ return {
                     })
                 end,
             },
-            {
+            { -- Use a label, or ; and , to increase/decrease the selection
+                "R",
+                mode = { "n", "x" },
+                function()
+                    require("flash").treesitter()
+                end,
+                desc = "Flash Treesitter",
+            },
+            { -- Do things remotely: drf[label][motion]
                 "r",
                 mode = "o",
                 desc = "Remote Flash",
@@ -189,6 +197,9 @@ return {
                     multi_line = false,
                     search = { wrap = true },
                     jump = { autojump = true },
+                },
+                treesitter = {
+                    label = { before = true, after = true, style = "inline" },
                 },
             },
             remote_op = {
@@ -216,7 +227,7 @@ return {
                 function()
                     require("blink.chartoggle").toggle_char_eol(";")
                 end,
-                mode = { "n", "v" },
+                mode = { "n" },
                 desc = "Toggle ; at eol",
             },
             {
@@ -232,7 +243,7 @@ return {
                 function()
                     require("blink.chartoggle").toggle_char_eol(",")
                 end,
-                mode = { "n", "v" },
+                mode = { "n" },
                 desc = "Toggle , at eol",
             },
             {
@@ -249,6 +260,40 @@ return {
             select = {
                 enabled = true,
             },
+        },
+    },
+    {
+        "mizlan/iswap.nvim",
+        -- stylua: ignore
+        keys = {
+            { "<leader>ii", ":ISwap<CR>",          desc = "iswap" },
+            { "<leader>in", ":ISwapNode<CR>",      desc = "swap-nodes" },
+            { "<leader>iw", ":ISwapWith<CR>",      desc = "swap-with" },
+            { "<leader>il", ":ISwapWithLeft<CR>",  desc = "swap-with-left" },
+            { "<leader>ir", ":ISwapWithRight<CR>", desc = "swap-with-right" },
+
+            { "<A-S-h>", ":ISwapWithLeft<CR>",  desc = "swap-with-left" },
+            { "<A-S-l>", ":ISwapWithRight<CR>", desc = "swap-with-right" },
+        },
+        opts = {
+            flash_style = "simultaneous",
+            autoswap = true,
+        },
+    },
+    {
+        "aaronik/treewalker.nvim",
+        keys = {
+            { "<cmd>Treewalker Up<cr>", "<A-k>", mode = { "n", "v" } },
+            { "<cmd>Treewalker Down<cr>", "<A-j>", mode = { "n", "v" } },
+            { "<cmd>Treewalker Left<cr>", "<A-h>", mode = { "n", "v" } },
+            { "<cmd>Treewalker Right<cr>", "<A-l>", mode = { "n", "v" } },
+
+            { "<A-S-k>", "<cmd>Treewalker SwapUp<cr>" },
+            { "<A-S-j>", "<cmd>Treewalker SwapDown<cr>" },
+        },
+        opts = {
+            highlight_duration = 150,
+            highlight_group = "Visual",
         },
     },
 }
