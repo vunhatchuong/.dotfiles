@@ -109,10 +109,6 @@ return {
     {
         "echasnovski/mini.ai",
         event = "VeryLazy",
-        dependencies = {
-            -- Not actually a dependency
-            "David-Kunz/treesitter-unit",
-        },
         opts = function()
             local ai = require("mini.ai")
             return {
