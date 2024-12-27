@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# Doesn't work since haven't source shell yet
+
+yay -Syu
+conda self-update
+zap update all
