@@ -117,7 +117,7 @@ Neovim :: M Λ C R O - Editing made simple
             win = { position = "float", wo = { winbar = "" } },
         },
         styles = {
-            terminal = { keys = { q = false, gf = false, term_normal = false } },
+            -- terminal = { keys = { q = false, gf = false, term_normal = false } },
             input = {
                 backdrop = true,
                 row = math.ceil(vim.o.lines / 2) - 3,

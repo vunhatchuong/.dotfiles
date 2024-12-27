@@ -1,4 +1,5 @@
 export KEYTIMEOUT=1           # Reduce input lag
+bindkey -e                    # Disable vim-mode, breaks term in nvim
 
 autoload -Uz plug
 

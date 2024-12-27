@@ -255,13 +255,13 @@ return {
         opts = {
             get_cwd = function()
                 if vim.bo.filetype == "oil" then
-                    return require("oil").get_current_dir()
+                    return require("lua.plugins.filer").get_current_dir()
                 end
                 return vim.fn.getcwd()
             end,
             get_current_file_dir = function()
                 if vim.bo.filetype == "oil" then
-                    return require("oil").get_current_dir()
+                    return require("lua.plugins.filer").get_current_dir()
                 end
                 return vim.fn.expand("%:p")
             end,
@@ -378,7 +378,7 @@ return {
     },
     {
         "nacro90/numb.nvim",
-        event = "VeryLazy",
+        event = { "CmdlineEnter" },
         opts = {},
     },
     {

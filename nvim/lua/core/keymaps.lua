@@ -74,7 +74,7 @@ keymap("v", "p", '"_dP', opts)
 keymap("x", "<leader>p", [["_dP]], { desc = "Replace selected text with previously yanked text", noremap = true })
 
 keymap("t", "<C-\\>", "<CMD>close<CR>", { desc = "Hide Terminal" })
-keymap("t", "<Esc><Esc>", "<CMD>close<CR>", { desc = "Hide Terminal", noremap = true })
+-- keymap("t", "<Esc><Esc>", "<CMD>close<CR>", { desc = "Hide Terminal", noremap = true })
 
 -- Others --
 keymap("v", "<leader>s", [[:s///gI<Left><Left><Left><Left>]], { desc = "Replace in Visual" })
