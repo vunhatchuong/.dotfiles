@@ -157,16 +157,30 @@ return {
         },
     },
     {
-        "vunhatchuong/browse.nvim",
+        "lalitmee/browse.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
-        -- stylua: ignore
         keys = {
-            { "<leader>b",  ":Browse<CR>", desc = "Browse" },
-            { "<leader>bi", ":BrowseInputSearch<CR>", desc = "Browse: Input Search"  },
-            { "<leader>bb", ":BrowseBookmarks<CR>", desc = "Browse: Bookmarks"  },
-            { "<leader>bd", ":BrowseDevdocsSearch<CR>", desc = "Browse: Dev docs"  },
-            { "<leader>bf", ":BrowseDevdocsFiletypeSearch<CR>", desc = "Browse: Filetype"  },
-            { "<leader>bm", ":BrowseMdnSearch<CR>", desc = "Browse: MDN"  }
+            {
+                "<leader>b",
+                function()
+                    require("browse").open_bookmarks()
+                end,
+                desc = "Browse: Bookmarks",
+            },
+            {
+                "<leader>bd",
+                function()
+                    require("browse.devdocs").search()
+                end,
+                desc = "Browse: Dev docs",
+            },
+            {
+                "<leader>bf",
+                function()
+                    require("browse.devdocs").search_with_filetype()
+                end,
+                desc = "Browse: Search for current ft",
+            },
         },
         opts = {
             provider = "duckduckgo",
@@ -175,16 +189,12 @@ return {
                     ["github"] = "https://github.com/vunhatchuong",
                     ["dotfiles"] = "https://github.com/vunhatchuong/.dotfiles",
                 },
-                ["github"] = {
-                    ["repo_search"] = "https://github.com/%s",
-                    ["awesome-nvim"] = "https://github.com/rockerBOO/awesome-neovim",
-                },
                 ["docs"] = {
-                    ["learnxinyminutes"] = "https://learnxinyminutes.com/docs/%s",
-                    ["pkg.go.dev"] = "https://pkg.go.dev/search?q=%s",
                     ["zig:std"] = "https://ziglang.org/documentation/master/std/",
+                    ["RFC"] = "https://www.rfc-editor.org/search/rfc_search_detail.php",
                 },
                 ["entertainment"] = {
+                    ["awesome-nvim"] = "https://github.com/rockerBOO/awesome-neovim",
                     ["neovim_reddit"] = "https://www.reddit.com/r/neovim/",
                     ["unix-porn_reddit"] = "https://www.reddit.com/r/unixporn/",
                 },
@@ -198,7 +208,6 @@ return {
     },
     {
         "chrishrb/gx.nvim",
-        cmd = { "Browse" },
         keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
         init = function()
             vim.g.netrw_nogx = 1 -- disable netrw gx
@@ -210,12 +219,33 @@ return {
             handler_options = { search_engine = "duckduckgo" },
         },
     },
-    {
+    { -- Allow to search in visual
 
         "aliqyan-21/wit.nvim",
-        cmd = { "WitSearch", "WitSearchVisual", "WitSearchWiki" },
+        cmd = { "WitSearch", "WitSearchVisual" },
         opts = {
             engine = "duckduckgo",
+        },
+    },
+    {
+        "mei28/Weview.nvim",
+        cmd = { "Weview" },
+        opts = {
+            search_urls = {
+                DuckDuckGo = "https://duckduckgo.com/?q=",
+                GitHub = "https://github.com/search?q=%s",
+
+                -- Programming
+                XinY = "https://learnxinyminutes.com/docs/%s",
+                ["pkg.go.dev"] = "https://pkg.go.dev/search?q=%s",
+            },
+            aliases = {
+                s = "DuckDuckGo",
+                gh = "GitHub",
+                -- Programming
+                go = "pkg.go.dev",
+            },
+            command_name = "Weview",
         },
     },
     {
