@@ -251,13 +251,80 @@ return {
             scope = "line",
         },
     },
-    {
-        "vunhatchuong/bmessages.nvim",
-        branch = "feat/filetype",
-        cmd = { "Bmessages" },
+    { -- Replaces the UI for messages, cmdline and the popupmenu.
+        "folke/noice.nvim",
+        event = "VeryLazy",
         opts = {
-            split_type = "split",
-            split_direction = "botright",
+            presets = {
+                bottom_search = false,
+                command_palette = true,
+                long_message_to_split = true,
+                inc_rename = true,
+                lsp_doc_border = true,
+            },
+            notify = { enabled = false },
+            lsp = {
+                progress = { enabled = false }, -- using my own
+                signature = { enabled = false }, -- using lsp_signature.nvim
+                hover = { enabled = false }, -- using hover.nvim
+
+                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true,
+                },
+            },
+            -- stylua: ignore
+            routes = {
+                {
+                    filter = {
+                        event = "msg_show",
+                        any = {
+                            { find = "%d+L, %d+B" },
+                            { find = "; after #%d+" },
+                            { find = "; before #%d+" },
+                            { find = "%d+B written$" },
+                            { find = "%-%-No lines in buffer%-%-" },
+                            { find = "^E486: Pattern not found" },
+                            { find = "^%[nvim%-treesitter%]" },
+                            { find = "%d fewer lines" },
+                            { find = "%d more lines" },
+                            { find = "%d lines <ed %d time[s]?" },
+                            { find = "%d lines >ed %d time[s]?" },
+                            { find = "%d lines yanked" },
+                        },
+                    },
+                    view = "mini",
+                },
+
+                -- Skip search messages
+                { filter = { event = "msg_show", find = "^[/?]." }, skip = true },
+
+                -- FIX https://github.com/artempyanykh/marksman/issues/348
+                { filter = { event = "notify", find = "^Client marksman quit with" }, skip = true },
+
+                -- code actions
+                { filter = { event = "notify", find = "No code actions available" }, skip = true },
+            },
+            views = {
+                cmdline_popup = {
+                    position = { row = 20, col = "50%" },
+                    size = { width = 60, height = "auto" },
+                },
+                popupmenu = {
+                    relative = "editor",
+                    position = { row = 8, col = "50%" },
+                    size = { width = 60, height = 10 },
+                    border = { style = "rounded", padding = { 0, 1 } },
+                    win_options = {
+                        winhighlight = {
+                            Normal = "Normal",
+                            FloatBorder = "DiagnosticInfo",
+                        },
+                    },
+                },
+            },
         },
     },
 }

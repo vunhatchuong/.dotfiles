@@ -136,18 +136,17 @@ autocmd({ "BufWritePre" }, {
     end,
 })
 
--- blink.cmp v0.8.0 cmdline completion breaks this
--- autocmd({ "BufWinEnter" }, {
---     desc = "Clear the last used search pattern",
---     pattern = "*",
---     callback = function()
---         vim.api.nvim_feedkeys(
---             vim.api.nvim_replace_termcodes("<Cmd>noh<CR>", true, false, true),
---             "n",
---             false
---         )
---     end,
--- })
+autocmd({ "BufWinEnter" }, {
+    desc = "Clear the last used search pattern",
+    pattern = "*",
+    callback = function()
+        vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<Cmd>noh<CR>", true, false, true),
+            "n",
+            false
+        )
+    end,
+})
 
 autocmd("ColorScheme", {
     group = augroup("OverrideTheme", { clear = true }),
