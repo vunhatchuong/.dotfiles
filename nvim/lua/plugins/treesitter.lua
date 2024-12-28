@@ -102,8 +102,10 @@ return {
         end,
     },
     {
-        "windwp/nvim-ts-autotag",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        -- "windwp/nvim-ts-autotag",
+        "tronikelis/ts-autotag.nvim",
+        ft = { "html", "jsx", "xml", "templ" },
+        -- event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {},
     },
     {

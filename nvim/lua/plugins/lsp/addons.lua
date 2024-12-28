@@ -196,7 +196,7 @@ return {
     },
     { -- Stop lsp in inactive nvim instances
         "tronikelis/lsp-gc.nvim",
-        event = "VeryLazy",
+        event = "LspAttach",
         dependencies = { "neovim/nvim-lspconfig" },
         opts = {},
     },

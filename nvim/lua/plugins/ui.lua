@@ -3,6 +3,9 @@ return {
     {
         "echasnovski/mini.icons",
         lazy = true,
+        init = function()
+            require("mini.icons").mock_nvim_web_devicons()
+        end,
         opts = {
             file = {
                 [".keep"] = { glyph = "󰊢", hl = "MiniIconsGrey" },
@@ -12,11 +15,6 @@ return {
                 dotenv = { glyph = "", hl = "MiniIconsYellow" },
             },
         },
-        config = function(_, opts)
-            local mini_icons = require("mini.icons")
-            mini_icons.setup(opts)
-            mini_icons.mock_nvim_web_devicons()
-        end,
     },
     { -- Color picker
         "uga-rosa/ccc.nvim",
