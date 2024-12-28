@@ -60,7 +60,8 @@ return {
     },
     {
         "akinsho/git-conflict.nvim",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+        -- event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+        cmd = "GitConflictRefresh",
         opts = {
             -- Use :GitConflictChoose{WHO}
             default_mappings = {

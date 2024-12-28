@@ -1,7 +1,7 @@
 return {
     {
         "stevearc/oil.nvim",
-        -- lazy = false,
+        enabled = false,
         dependencies = { "echasnovski/mini.icons" },
         keys = {
             {
@@ -46,11 +46,7 @@ return {
             lsp_file_methods = { autosave_changes = true },
         },
     },
-    {
-        "FerretDetective/oil-git-signs.nvim",
-        ft = "oil",
-        opts = {},
-    },
+    { "FerretDetective/oil-git-signs.nvim", ft = "oil", opts = {} },
     {
         "echasnovski/mini.files",
         lazy = false,
@@ -67,9 +63,10 @@ return {
             },
         },
         opts = {
-            windows = { preview = true },
-            options = {
-                -- use_as_default_explorer = false,
+            windows = {
+                preview = true,
+                width_focus = 30,
+                width_preview = 50,
             },
             mappings = {
                 close = "q",
@@ -81,10 +78,7 @@ return {
                 mark_set = "",
                 reset = "<BS>",
                 reveal_cwd = "@",
-                show_help = "g?",
                 synchronize = "<enter>",
-                trim_left = "<",
-                trim_right = ">",
             },
         },
         config = function(_, opts)
@@ -117,6 +111,33 @@ return {
                         toggle_dotfiles,
                         { buffer = buf_id, desc = "Toggle hidden files" }
                     )
+                end,
+            })
+
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "MiniFilesWindowOpen",
+                callback = function(args)
+                    local win_id = args.data.win_id
+
+                    vim.wo[win_id].winblend = 10
+
+                    local config = vim.api.nvim_win_get_config(win_id)
+
+                    config.border = vim.g.border_style
+                    config.height = 45
+
+                    vim.api.nvim_win_set_config(win_id, config)
+                end,
+            })
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "MiniFilesWindowUpdate",
+                callback = function(args)
+                    local config = vim.api.nvim_win_get_config(args.data.win_id)
+
+                    config.border = vim.g.border_style
+                    config.height = 45
+
+                    vim.api.nvim_win_set_config(args.data.win_id, config)
                 end,
             })
 

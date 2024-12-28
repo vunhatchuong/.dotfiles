@@ -63,6 +63,7 @@ return {
             { "ramojus/mellifluous.nvim", branch = "v1" },
             { "dgox16/oldworld.nvim" },
             { "wnkz/monoglow.nvim" },
+            { "bettervim/yugen.nvim" },
         },
     },
 }
