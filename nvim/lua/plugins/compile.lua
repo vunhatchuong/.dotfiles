@@ -2,9 +2,7 @@ return {
     {
         "ej-shafran/compile-mode.nvim",
         cmd = { "Compile", "Recompile" },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-        },
+        dependencies = { "nvim-lua/plenary.nvim", "m00qek/baleia.nvim" },
         keys = {
             { "<leader>ox", ":Compile<CR>", desc = "Compile" },
             {
@@ -18,6 +16,11 @@ return {
         },
         config = function()
             vim.g.compile_mode = {
+                environment = {
+                    FORCE_COLOR = "1",
+                },
+                baleia_setup = true,
+
                 default_command = "",
                 time_format = "%H:%M:%S",
                 recompile_no_fail = true,

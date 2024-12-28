@@ -1,4 +1,5 @@
 require("core.autocmds")
+require("core.my_command")
 require("core.keymaps")
 require("core.options")
 require("core.lazy")

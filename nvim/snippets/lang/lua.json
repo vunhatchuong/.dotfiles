@@ -1,2 +1,14 @@
 {
+  "lazyvim (plugin)": {
+    "body": [
+      "{",
+      "    \"${1:plugin}\",",
+      "    event = \"\",",
+      "    cmd = \"\",",
+      "    keys = {},",
+      "    opts = {},",
+      "},"
+    ],
+    "prefix": "lazyvim (plugin)"
+  }
 }

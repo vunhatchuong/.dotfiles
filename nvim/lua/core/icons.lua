@@ -165,6 +165,7 @@ return {
         github = "",
         panda = "󰏚 ",
         status_hexagon = { "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
+        -- stylua: ignore
         status_circle = { "󰄰", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" },
     },
 }

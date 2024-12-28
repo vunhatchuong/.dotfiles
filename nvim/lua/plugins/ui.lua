@@ -1,5 +1,6 @@
 local icons = require("core.icons")
 return {
+    { "m00qek/baleia.nvim", opts = {} },
     {
         "echasnovski/mini.icons",
         lazy = true,
@@ -36,7 +37,8 @@ return {
     },
     {
         "catgoose/nvim-colorizer.lua",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+        cmd = { "ColorizerToggle" },
+        -- event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
         opts = {
             user_default_options = {
                 css = true,
@@ -149,12 +151,12 @@ return {
                 excluded_filetypes = {
                     "dropbar_menu",
                     "dropbar_menu_fzf",
-                    "DressingInput",
                     "cmp_docs",
                     "cmp_menu",
                     "prompt",
                     "TelescopePrompt",
                     "blink-cmp-menu",
+                    "blink-cmp-signature",
                     "snacks_dashboard",
                 },
             },

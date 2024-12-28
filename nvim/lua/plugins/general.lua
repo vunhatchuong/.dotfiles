@@ -8,7 +8,7 @@ return {
     },
     {
         "chrisgrieser/nvim-early-retirement",
-        event = "VeryLazy",
+        event = "BufAdd",
         opts = {
             -- retirementAgeMins = 20,
             notificationOnAutoClose = true,
@@ -251,8 +251,10 @@ return {
     {
         "AckslD/nvim-neoclip.lua",
         dependencies = { "ibhagwan/fzf-lua" },
-        event = { "VeryLazy" },
+        -- event = { "VeryLazy" },
         keys = {
+            "y",
+            "d",
             {
                 "<leader>y",
                 ":lua require('neoclip.fzf')()<CR>",
@@ -443,5 +445,15 @@ return {
         opts = {
             jsonFormatter = "jq",
         },
+    },
+    {
+        "tamton-aquib/stuff.nvim",
+        lazy = false,
+        cmd = { "Calc" },
+        -- ${func, A helper function}
+        config = function()
+            require("calc").setup()
+            -- require("rain").rain()
+        end,
     },
 }

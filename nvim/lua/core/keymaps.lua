@@ -1,4 +1,5 @@
 local keymap = vim.keymap.set
+local del = vim.keymap.del
 local opts = { noremap = true, silent = true }
 
 -- Modes
@@ -94,3 +95,10 @@ keymap("n", "dd", function()
         return "dd"
     end
 end, { noremap = true, expr = true })
+
+-- Disable default lsp mappings
+pcall(del, "n", "grn")
+pcall(del, "n", "gra")
+pcall(del, "n", "grr")
+pcall(del, "n", "gri")
+-- pcall(del, "n", "g0")
