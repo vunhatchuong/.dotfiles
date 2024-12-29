@@ -3,7 +3,7 @@ return {
         "mbbill/undotree",
         cmd = { "UndotreeToggle" },
         keys = {
-            { "<leader>u", ":UndotreeToggle<CR>", desc = "Undo Tree" },
+            { "<leader>u", "<CMD>UndotreeToggle<CR>", desc = "Undo Tree" },
         },
     },
     {
@@ -96,13 +96,13 @@ return {
                 "<leader>xs",
                 mode = { "n", "x" },
                 desc = "CodeSnap",
-                ":CodeSnap<CR>",
+                "<CMD>CodeSnap<CR>",
             },
             {
                 "<leader>xS",
                 mode = { "n", "x" },
                 desc = "CodeSnap: Save",
-                ":CodeSnapSave<CR>",
+                "<CMD>CodeSnapSave<CR>",
             },
         },
         opts = {
@@ -208,7 +208,7 @@ return {
     },
     {
         "chrishrb/gx.nvim",
-        keys = { { "gx", "<cmd>Browse<cr>", mode = { "n", "x" } } },
+        keys = { { "gx", "<CMD>Browse<CR>", mode = { "n", "x" } } },
         init = function()
             vim.g.netrw_nogx = 1 -- disable netrw gx
         end,
@@ -248,6 +248,14 @@ return {
             command_name = "Weview",
         },
     },
+    { -- Works in WSL and customize open_cmd
+        "KaitoMuraoka/websearcher.nvim",
+        cmd = { "Websearch" },
+        opts = {
+            open_cmd = "wsl-open",
+            search_engine = "DuckDuckGo",
+        },
+    },
     {
         "AckslD/nvim-neoclip.lua",
         dependencies = { "ibhagwan/fzf-lua" },
@@ -257,7 +265,7 @@ return {
             "d",
             {
                 "<leader>y",
-                ":lua require('neoclip.fzf')()<CR>",
+                "<CMD>lua require('neoclip.fzf')()<CR>",
                 desc = "Neoclip",
             },
         },
@@ -377,7 +385,7 @@ return {
         keys = {
             {
                 "<leader>fe",
-                ":Telescope ecolog env<CR>",
+                "<CMD>Telescope ecolog env<CR>",
                 desc = "Ecolog: [F]ind [E]nvironment",
             },
         },

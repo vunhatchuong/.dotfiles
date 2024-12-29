@@ -16,7 +16,7 @@ M._keys = {
     { "<C-k>", vim.diagnostic.open_float, desc = "Diagnostic Help" },
 
     -- { "gd", require("telescope.builtin").lsp_definitions, desc = "[G]oto [D]definition" },
-    -- { "gr", ":Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
+    -- { "gr", "<CMD>Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
     { "gi", require("fzf-lua").lsp_implementations, desc = "[G]oto [I]mplementation" },
 
     { "gt", require("fzf-lua").lsp_typedefs, desc = "[T]ype Ddefinition" },

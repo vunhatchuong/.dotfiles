@@ -38,7 +38,7 @@ return {
     },
     {
         "glepnir/flybuf.nvim",
-        keys = { { "<leader>j", ":FlyBuf<CR>", desc = "Open buffer menu" } },
+        keys = { { "<leader>j", "<CMD>FlyBuf<CR>", desc = "Open buffer menu" } },
         opts = { border = vim.g.border_style },
     },
     { -- Move in and out of brackets
@@ -79,7 +79,7 @@ return {
         "vunhatchuong/telescope-jumps.nvim",
         enabled = false,
         dependencies = { { "nvim-telescope/telescope.nvim" } },
-        keys = { { "<C-o>", ":Telescope jumps jumpbuff<CR>" } },
+        keys = { { "<C-o>", "<CMD>Telescope jumps jumpbuff<CR>" } },
         opts = {
             extensions = {
                 jumps = {
@@ -266,14 +266,14 @@ return {
         "mizlan/iswap.nvim",
         -- stylua: ignore
         keys = {
-            { "<leader>ii", ":ISwap<CR>",          desc = "iswap" },
-            { "<leader>in", ":ISwapNode<CR>",      desc = "swap-nodes" },
-            { "<leader>iw", ":ISwapWith<CR>",      desc = "swap-with" },
-            { "<leader>il", ":ISwapWithLeft<CR>",  desc = "swap-with-left" },
-            { "<leader>ir", ":ISwapWithRight<CR>", desc = "swap-with-right" },
+            { "<leader>ii", "<CMD>ISwap<CR>",          desc = "iswap" },
+            { "<leader>in", "<CMD>ISwapNode<CR>",      desc = "swap-nodes" },
+            { "<leader>iw", "<CMD>ISwapWith<CR>",      desc = "swap-with" },
+            { "<leader>il", "<CMD>ISwapWithLeft<CR>",  desc = "swap-with-left" },
+            { "<leader>ir", "<CMD>ISwapWithRight<CR>", desc = "swap-with-right" },
 
-            { "<A-S-h>", ":ISwapWithLeft<CR>",  desc = "swap-with-left" },
-            { "<A-S-l>", ":ISwapWithRight<CR>", desc = "swap-with-right" },
+            { "<A-S-h>", "<CMD>ISwapWithLeft<CR>",  desc = "swap-with-left" },
+            { "<A-S-l>", "<CMD>ISwapWithRight<CR>", desc = "swap-with-right" },
         },
         opts = {
             flash_style = "simultaneous",

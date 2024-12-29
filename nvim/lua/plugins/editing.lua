@@ -25,7 +25,7 @@ return {
             { "ga", desc = "Change word case" },
             {
                 "ga.",
-                ":TextCaseOpenTelescope<CR>",
+                "<CMD>TextCaseOpenTelescope<CR>",
                 mode = { "n", "x" },
                 desc = "Change word case",
             },

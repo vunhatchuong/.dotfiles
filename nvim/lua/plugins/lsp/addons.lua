@@ -5,17 +5,17 @@ return {
         keys = {
             {
                 "<leader>dd",
-                ":Trouble diagnostics toggle filter.buf=0<CR>",
+                "<CMD>Trouble diagnostics toggle filter.buf=0<CR>",
                 desc = "Trouble: Buffer Diagnostics",
             },
             {
                 "<leader>wd",
-                ":Trouble diagnostics toggle<CR>",
+                "<CMD>Trouble diagnostics toggle<CR>",
                 desc = "Trouble: Workspace Diagnostics",
             },
             {
                 "<leader>o",
-                ":Trouble symbols toggle<CR>",
+                "<CMD>Trouble symbols toggle<CR>",
                 desc = "Trouble: Buffer Symbols",
             },
         },
@@ -88,11 +88,11 @@ return {
         event = "LspAttach",
         -- stylua: ignore
         keys = {
-            { "gd",         ":Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
-            { "gr",         ":Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
-            { "<leader>ca", ":Lspsaga code_action<CR>",          desc = "[C]ode [A]ction" },
-            { "]d",         ":Lspsaga diagnostic_jump_next<CR>", desc = "Diagnostic jump next" },
-            { "[d",         ":Lspsaga diagnostic_jump_prev<CR>", desc = "Diagnostic jump prev" },
+            { "gd",         "<CMD>Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
+            { "gr",         "<CMD>Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
+            { "<leader>ca", "<CMD>Lspsaga code_action<CR>",          desc = "[C]ode [A]ction" },
+            { "]d",         "<CMD>Lspsaga diagnostic_jump_next<CR>", desc = "Diagnostic jump next" },
+            { "[d",         "<CMD>Lspsaga diagnostic_jump_prev<CR>", desc = "Diagnostic jump prev" },
         },
         opts = function()
             local icons = require("core.icons")

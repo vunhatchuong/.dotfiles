@@ -49,7 +49,7 @@ return {
         keys = {
             {
                 "<leader>jf",
-                ":Telescope jsonfly<CR>",
+                "<CMD>Telescope jsonfly<CR>",
                 desc = "Open json(fly)",
                 ft = { "json", "xml", "yaml" },
             },

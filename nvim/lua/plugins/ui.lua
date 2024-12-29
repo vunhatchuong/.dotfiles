@@ -195,8 +195,8 @@ return {
         event = "BufWinEnter",
         cmd = { "Focus", "Zen", "Narrow" },
         keys = {
-            { "<leader>zz", ":Focus<CR>", desc = "Toggle Zen" },
-            { "<leader>zm", ":Zen<CR>", desc = "Toggle Minimal" },
+            { "<leader>zz", "<CMD>Focus<CR>", desc = "Toggle Zen" },
+            { "<leader>zm", "<CMD>Zen<CR>", desc = "Toggle Minimal" },
         },
         opts = {
             window = {
@@ -253,6 +253,7 @@ return {
     },
     { -- Replaces the UI for messages, cmdline and the popupmenu.
         "folke/noice.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
         event = "VeryLazy",
         opts = {
             presets = {
@@ -311,18 +312,6 @@ return {
                 cmdline_popup = {
                     position = { row = 20, col = "50%" },
                     size = { width = 60, height = "auto" },
-                },
-                popupmenu = {
-                    relative = "editor",
-                    position = { row = 8, col = "50%" },
-                    size = { width = 60, height = 10 },
-                    border = { style = "rounded", padding = { 0, 1 } },
-                    win_options = {
-                        winhighlight = {
-                            Normal = "Normal",
-                            FloatBorder = "DiagnosticInfo",
-                        },
-                    },
                 },
             },
         },

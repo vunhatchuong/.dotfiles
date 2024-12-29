@@ -171,7 +171,7 @@ return {
     },
     { -- split-join lines
         "Wansmer/treesj",
-        keys = { { "J", ":TSJToggle<CR>", desc = "Join Toggle" } },
+        keys = { { "J", "<CMD>TSJToggle<CR>", desc = "Join Toggle" } },
         opts = { use_default_keymaps = false, max_join_length = 150 },
     },
     {

@@ -22,8 +22,8 @@ keymap("n", "<leader>e", vim.cmd.Ex)
 
 -- Normal --
 keymap({ "i", "n" }, "<Esc>", "<CMD>noh<CR><Esc>", { desc = "Escape and Clear hlsearch" })
-keymap("n", "<leader>w", ":w<cr>", { desc = "Save", noremap = true, silent = true })
-keymap("n", "<leader>q", ":q<cr>", { desc = "Quit", noremap = true, silent = true })
+keymap("n", "<leader>w", "<CMD>w<cr>", { desc = "Save", noremap = true, silent = true })
+keymap("n", "<leader>q", "<CMD>q<cr>", { desc = "Quit", noremap = true, silent = true })
 keymap("n", "c", '"_c', opts)
 keymap("n", "C", '"_C', opts)
 keymap("n", "x", '"_x', opts)

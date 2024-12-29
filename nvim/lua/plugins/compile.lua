@@ -4,7 +4,7 @@ return {
         cmd = { "Compile", "Recompile" },
         dependencies = { "nvim-lua/plenary.nvim", "m00qek/baleia.nvim" },
         keys = {
-            { "<leader>ox", ":Compile<CR>", desc = "Compile" },
+            { "<leader>ox", "<CMD>Compile<CR>", desc = "Compile" },
             {
                 "<leader>or",
                 function()
@@ -33,22 +33,22 @@ return {
         keys = {
             {
                 "<leader>tl",
-                ":CompileTestLine<CR>",
+                "<CMD>CompileTestLine<CR>",
                 desc = "[T]est Run [L]line",
             },
             {
                 "<leader>tf",
-                ":CompileTestFile<CR>",
+                "<CMD>CompileTestFile<CR>",
                 desc = "[T]est Run [F]ile",
             },
             {
                 "<leader>td",
-                ":CompileTestDir<CR>",
+                "<CMD>CompileTestDir<CR>",
                 desc = "[T]est Run [D]ir",
             },
             {
                 "<leader>ta",
-                ":CompileTestAll<CR>",
+                "<CMD>CompileTestAll<CR>",
                 desc = "[T]est Run [A]ll",
             },
         },
