@@ -8,7 +8,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
             return
         end
 
-        local icons = require("core.icons").misc.status_circle
+        local icons = require("core.icons").misc.snipper_circle
 
         local idx = math.floor(#icons / 2)
         if progress.percentage == 0 then

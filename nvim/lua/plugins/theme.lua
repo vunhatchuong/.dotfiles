@@ -1,4 +1,22 @@
 return {
+    { -- Highlight args, defs and usages using Treesitter.
+        "m-demare/hlargs.nvim",
+        event = "VeryLazy",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            paint_arg_declarations = true,
+            paint_arg_usages = true,
+            paint_catch_blocks = {
+                declarations = false,
+                usages = false,
+            },
+            extras = {
+                named_parameters = false,
+                unused_args = false,
+            },
+            highlight = { italic = true, cterm = { italic = true } },
+        },
+    },
     {
         "lmantw/themify.nvim",
         lazy = false,
@@ -14,42 +32,9 @@ return {
             },
             "Hiroya-W/sequoia-moonlight.nvim",
             { "slugbyte/lackluster.nvim" },
-            { "kyazdani42/blue-moon" },
-            { "rockerBOO/boo-colorscheme-nvim" },
-            { "AlexvZyl/nordic.nvim" },
-            { "eldritch-theme/eldritch.nvim" },
-            { "wadackel/vim-dogrun" },
-            { "anAcc22/sakura.nvim" },
-            { "aliqyan-21/darkvoid.nvim" },
-            { "blazkowolf/gruber-darker.nvim" },
             { "tek256/simple-dark" },
-            { "kvrohit/substrata.nvim" },
-            { "mcauley-penney/ice-cave.nvim" },
             { "aktersnurra/no-clown-fiesta.nvim" },
-            {
-                "0xstepit/flow.nvim",
-                before = function()
-                    local ok, flow = pcall(require, "flow")
-                    if ok then
-                        flow.setup({
-                            theme = {
-                                style = "dark", --  "dark" | "light"
-                                contrast = "default", -- "default" | "high"
-                                transparent = false, -- true | false
-                            },
-                            colors = {
-                                mode = "default", -- "default" | "dark" | "light"
-                                fluo = "pink", -- "pink" | "cyan" | "yellow" | "orange" | "green"
-                            },
-                            ui = {
-                                borders = "inverse", -- "theme" | "inverse" | "fluo" | "none"
-                                aggressive_spell = false, -- true | false
-                            },
-                        })
-                    end
-                end,
-            },
-
+            { "aliqyan-21/darkvoid.nvim" },
             {
                 "cvigilv/patana.nvim",
                 branch = "develop",
@@ -60,10 +45,41 @@ return {
                         { "qf", "lazy", "mason", "help" }
                 end,
             },
-            { "ramojus/mellifluous.nvim", branch = "v1" },
-            { "dgox16/oldworld.nvim" },
             { "wnkz/monoglow.nvim" },
             { "bettervim/yugen.nvim" },
+            { "kyazdani42/blue-moon" },
+            { "rockerBOO/boo-colorscheme-nvim" },
+            { "eldritch-theme/eldritch.nvim" },
+            { "wadackel/vim-dogrun" },
+            -- { "anAcc22/sakura.nvim" }, -- Missing lush
+            { "blazkowolf/gruber-darker.nvim" },
+            { "kvrohit/substrata.nvim" },
+            { "mcauley-penney/ice-cave.nvim" },
+            {
+                "0xstepit/flow.nvim",
+                before = function()
+                    local ok, flow = pcall(require, "flow")
+                    if ok then
+                        flow.setup({
+                            theme = {
+                                style = "dark",
+                                contrast = "high", -- "default" | "high"
+                                transparent = false, -- true | false
+                            },
+                            colors = {
+                                mode = "light",
+                                fluo = "pink", -- "pink" | "cyan"
+                            },
+                            ui = {
+                                borders = "inverse", -- "theme" | "inverse" | "fluo" | "none"
+                                aggressive_spell = false, -- true | false
+                            },
+                        })
+                    end
+                end,
+            },
+            { "ramojus/mellifluous.nvim", branch = "v1" },
+            { "dgox16/oldworld.nvim" },
         },
     },
 }

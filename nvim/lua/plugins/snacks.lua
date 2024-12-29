@@ -33,6 +33,7 @@ return {
                 notification = {
                     border = vim.g.border_style,
                     wo = { wrap = true },
+                    focusable = false,
                 },
             },
         },

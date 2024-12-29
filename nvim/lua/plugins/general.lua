@@ -156,6 +156,40 @@ return {
         },
     },
     {
+        "chrishrb/gx.nvim",
+        keys = { { "gx", "<CMD>Browse<CR>", mode = { "n", "x" } } },
+        init = function()
+            vim.g.netrw_nogx = 1 -- disable netrw gx
+        end,
+        opts = {
+            handlers = {
+                brewfile = false,
+            },
+            handler_options = { search_engine = "duckduckgo" },
+        },
+    },
+    {
+        "mei28/Weview.nvim",
+        cmd = { "Weview" },
+        opts = {
+            search_urls = {
+                DuckDuckGo = "https://duckduckgo.com/?q=",
+                GitHub = "https://github.com/search?q=%s",
+
+                -- Programming
+                XinY = "https://learnxinyminutes.com/docs/%s",
+                ["pkg.go.dev"] = "https://pkg.go.dev/search?q=%s",
+            },
+            aliases = {
+                s = "DuckDuckGo",
+                gh = "GitHub",
+                -- Programming
+                go = "pkg.go.dev",
+            },
+            command_name = "Weview",
+        },
+    },
+    {
         "lalitmee/browse.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
         keys = {
@@ -203,56 +237,6 @@ return {
                 bookmark_alias = " ",
                 grouped_bookmarks = "|",
             },
-        },
-    },
-    {
-        "chrishrb/gx.nvim",
-        keys = { { "gx", "<CMD>Browse<CR>", mode = { "n", "x" } } },
-        init = function()
-            vim.g.netrw_nogx = 1 -- disable netrw gx
-        end,
-        opts = {
-            handlers = {
-                brewfile = false,
-            },
-            handler_options = { search_engine = "duckduckgo" },
-        },
-    },
-    { -- Allow to search in visual
-
-        "aliqyan-21/wit.nvim",
-        cmd = { "WitSearch", "WitSearchVisual" },
-        opts = {
-            engine = "duckduckgo",
-        },
-    },
-    {
-        "mei28/Weview.nvim",
-        cmd = { "Weview" },
-        opts = {
-            search_urls = {
-                DuckDuckGo = "https://duckduckgo.com/?q=",
-                GitHub = "https://github.com/search?q=%s",
-
-                -- Programming
-                XinY = "https://learnxinyminutes.com/docs/%s",
-                ["pkg.go.dev"] = "https://pkg.go.dev/search?q=%s",
-            },
-            aliases = {
-                s = "DuckDuckGo",
-                gh = "GitHub",
-                -- Programming
-                go = "pkg.go.dev",
-            },
-            command_name = "Weview",
-        },
-    },
-    { -- Works in WSL and customize open_cmd
-        "KaitoMuraoka/websearcher.nvim",
-        cmd = { "Websearch" },
-        opts = {
-            open_cmd = "wsl-open",
-            search_engine = "DuckDuckGo",
         },
     },
     {

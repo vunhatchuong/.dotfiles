@@ -113,6 +113,7 @@ return {
     {
         "folke/flash.nvim",
         keys = {
+            { "f", "t" },
             {
                 "<CR>",
                 mode = { "n", "x", "o" },
@@ -197,6 +198,7 @@ return {
                     multi_line = false,
                     search = { wrap = true },
                     jump = { autojump = true },
+                    keys = { "f", "t" },
                 },
                 treesitter = {
                     label = { before = true, after = true, style = "inline" },
@@ -214,8 +216,6 @@ return {
                 https://github.com/folke/flash.nvim/discussions/263 ]]
             vim.api.nvim_del_keymap("o", "t")
             vim.api.nvim_del_keymap("o", "f")
-            vim.api.nvim_del_keymap("o", "T")
-            vim.api.nvim_del_keymap("o", "F")
         end,
     },
     {

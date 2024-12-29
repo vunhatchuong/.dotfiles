@@ -164,8 +164,9 @@ return {
         dots = "󰇘",
         github = "",
         panda = "󰏚 ",
-        status_hexagon = { "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
+        snipper_hexagon = { "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
         -- stylua: ignore
-        status_circle = { "󰄰", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" },
+        snipper_circle = { "󰄰", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" },
+        spinner_dot = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
     },
 }
