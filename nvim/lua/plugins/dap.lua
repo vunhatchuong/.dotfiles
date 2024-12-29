@@ -1,5 +1,5 @@
 return {
-    {
+    { -- For clickable Breakpoints: https://github.com/luukvbaal/statuscol.nvim
         "mfussenegger/nvim-dap",
         dependencies = {
             { "rcarriga/nvim-dap-ui" },

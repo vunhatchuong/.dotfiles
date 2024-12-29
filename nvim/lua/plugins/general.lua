@@ -55,7 +55,6 @@ return {
         opts = {
             init = function()
                 -- require("hover.providers.lsp")
-                -- require("plugins.lsp.ecolog-hover")
                 require("plugins.lsp.lspsaga-hover")
                 require("hover.providers.fold_preview")
                 require("hover.providers.man")
@@ -259,7 +258,6 @@ return {
     {
         "AckslD/nvim-neoclip.lua",
         dependencies = { "ibhagwan/fzf-lua" },
-        -- event = { "VeryLazy" },
         keys = {
             "y",
             "d",
@@ -270,6 +268,7 @@ return {
             },
         },
         opts = {
+            history = 10,
             enable_macro_history = false,
             filter = function(data)
                 local function is_whitespace(line)
@@ -287,75 +286,6 @@ return {
                 return not all(data.event.regcontents, is_whitespace)
             end,
             default_register = { '"', "+" },
-        },
-    },
-    {
-        "Tronikelis/xylene.nvim",
-        cmd = { "Xylene" },
-        opts = {
-            get_cwd = function()
-                if vim.bo.filetype == "oil" then
-                    return require("lua.plugins.filer").get_current_dir()
-                end
-                return vim.fn.getcwd()
-            end,
-            get_current_file_dir = function()
-                if vim.bo.filetype == "oil" then
-                    return require("lua.plugins.filer").get_current_dir()
-                end
-                return vim.fn.expand("%:p")
-            end,
-            on_attach = function(renderer)
-                vim.keymap.set("n", "<cr>", function()
-                    renderer:toggle(vim.api.nvim_win_get_cursor(0)[1])
-                end, { buffer = renderer.buf })
-
-                vim.keymap.set("n", "!", function()
-                    renderer:toggle_all(vim.api.nvim_win_get_cursor(0)[1])
-                end, { buffer = renderer.buf })
-            end,
-        },
-    },
-    { -- Breaks numb.nvim and blink.nvim
-        "smilhey/ed-cmd.nvim",
-        enabled = false,
-        event = { "CmdlineEnter" },
-        init = function()
-            local saved_sidescrolloff
-            vim.api.nvim_create_autocmd("CmdlineEnter", {
-                desc = "Temporarily set sidescrolloff to 0 in command-line mode",
-                callback = function()
-                    saved_sidescrolloff = vim.opt.sidescrolloff
-                    vim.opt.sidescrolloff = 0
-                end,
-            })
-
-            vim.api.nvim_create_autocmd("CmdlineLeave", {
-                desc = "Restore sidescrolloff after leaving command-line mode",
-                callback = function()
-                    if saved_sidescrolloff then
-                        vim.opt.sidescrolloff = saved_sidescrolloff
-                    end
-                end,
-            })
-        end,
-        opts = {
-            cmdline = {
-                keymaps = { close = "<ESC>" },
-                -- blink.cmp v0.8.0 cmdline completion breaks this
-                -- win_config = function()
-                --     return {
-                --         relative = "editor",
-                --         width = math.ceil(vim.o.columns / 3),
-                --         row = math.floor(vim.o.lines * 0.2),
-                --         col = math.floor(vim.o.columns / 3),
-                --         height = 1,
-                --         style = "minimal",
-                --         border = "single",
-                --         zindex = 200,
-                --     }
-                -- end,
-            },
         },
     },
     {
@@ -435,19 +365,19 @@ return {
         dependencies = "ibhagwan/fzf-lua",
         keys = {
             {
-                "<leader>nn",
-                function()
-                    require("scissors").editSnippet()
-                end,
-                desc = "󰩫 Edit",
-            },
-            {
                 "<leader>na",
                 function()
                     require("scissors").addNewSnippet()
                 end,
                 mode = { "n", "x" },
                 desc = "󰩫 Add",
+            },
+            {
+                "<leader>nn",
+                function()
+                    require("scissors").editSnippet()
+                end,
+                desc = "󰩫 Edit",
             },
         },
         opts = {
@@ -458,7 +388,6 @@ return {
         "tamton-aquib/stuff.nvim",
         lazy = false,
         cmd = { "Calc" },
-        -- ${func, A helper function}
         config = function()
             require("calc").setup()
             -- require("rain").rain()
