@@ -20,7 +20,7 @@ return {
     {
         "lmantw/themify.nvim",
         lazy = false,
-        config = {
+        opts = {
             "default",
             {
                 "mcchrish/zenbones.nvim",
@@ -81,5 +81,9 @@ return {
             { "ramojus/mellifluous.nvim", branch = "v1" },
             { "dgox16/oldworld.nvim" },
         },
+        config = function(_, opts)
+            require("themify").setup(opts)
+            require("personal.theme").setup()
+        end,
     },
 }

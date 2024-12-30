@@ -71,7 +71,7 @@ return {
                             { find = "%d lines <ed %d time[s]?" },
                             { find = "%d lines >ed %d time[s]?" },
                             { find = "%d lines yanked" },
-                            { find = "^E36: not enough room" },
+                            { find = "^E36: Not enough room" },
                         },
                     },
                     skip = true,
