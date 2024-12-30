@@ -311,6 +311,7 @@ return {
                 lspsaga = true,
                 blink_cmp = true,
                 telescope = true,
+                fzf = true,
             },
             shelter = {
                 configuration = {
@@ -322,6 +323,7 @@ return {
                     peek = true,
                     telescope = true,
                     cmp = true,
+                    fzf = true,
                 },
             },
         },

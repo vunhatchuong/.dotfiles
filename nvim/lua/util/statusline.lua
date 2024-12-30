@@ -79,6 +79,36 @@ function M.get_lsp_names()
     return language_servers
 end
 
+-- Credits to https://github.com/chrisgrieser/.config/blob/main/nvim/lua/plugins/lualine.lua#L4
+local progress_text = ""
+function M.lsp_progress()
+    vim.api.nvim_create_autocmd("LspProgress", {
+        callback = function(ctx)
+            ---@type {percentage: number, title?: string, kind: string, message?: string}
+            local progress = ctx.data.params.value
+            if not (progress and progress.title) then
+                return
+            end
+
+            local icons = require("core.icons").misc.snipper_circle
+
+            local idx = math.floor(#icons / 2)
+            if progress.percentage == 0 then
+                idx = 1
+            end
+
+            if progress.percentage and progress.percentage > 0 then
+                idx = math.ceil(progress.percentage / 100 * #icons)
+            end
+            local firstWord = vim.split(progress.title, " ")[1]:lower()
+
+            local lsp_names = table.concat({ icons[idx], firstWord }, " ")
+            progress_text = progress.kind == "end" and "" or lsp_names
+        end,
+    })
+    return progress_text
+end
+
 --- Returns a custom name of the mode
 --- https://github.com/sschleemilch/slimline.nvim/blob/main/lua/slimline/utils.lua
 ---

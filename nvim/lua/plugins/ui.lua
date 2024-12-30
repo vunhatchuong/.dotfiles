@@ -71,6 +71,7 @@ return {
                             { find = "%d lines <ed %d time[s]?" },
                             { find = "%d lines >ed %d time[s]?" },
                             { find = "%d lines yanked" },
+                            { find = "^E36: not enough room" },
                         },
                     },
                     skip = true,
@@ -220,23 +221,24 @@ return {
         opts = {
             show_in_active_only = true,
             hide_if_all_visible = true,
+            throttle_ms = 250,
+            excluded_filetypes = {
+                "dropbar_menu",
+                "dropbar_menu_fzf",
+                "DressingInput",
+                "noice",
+                "prompt",
+                "TelescopePrompt",
+                "snacks_dashboard",
+                "blink-cmp-menu",
+                "blink-cmp-signature",
+                "blink-cmp-documentation",
+            },
             handlers = {
                 cursor = false,
                 diagnostic = true,
-                -- gitsigns = true,
-                -- I can't implement minidiff for this :(
+                -- gitsigns = false, -- Requires gitsigns
                 search = true, -- Requires hlslens
-                excluded_filetypes = {
-                    "dropbar_menu",
-                    "dropbar_menu_fzf",
-                    "cmp_docs",
-                    "cmp_menu",
-                    "prompt",
-                    "TelescopePrompt",
-                    "blink-cmp-menu",
-                    "blink-cmp-signature",
-                    "snacks_dashboard",
-                },
             },
         },
     },

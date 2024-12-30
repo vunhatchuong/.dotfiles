@@ -1,29 +1,3 @@
--- Credits to https://github.com/chrisgrieser/.config/blob/main/nvim/lua/plugins/lualine.lua#L4
-local progressText = ""
-
-vim.api.nvim_create_autocmd("LspProgress", {
-    callback = function(ctx)
-        local progress = ctx.data.params.value ---@type {percentage: number, title?: string, kind: string, message?: string}
-        if not (progress and progress.title) then
-            return
-        end
-
-        local icons = require("core.icons").misc.snipper_circle
-
-        local idx = math.floor(#icons / 2)
-        if progress.percentage == 0 then
-            idx = 1
-        end
-        if progress.percentage and progress.percentage > 0 then
-            idx = math.ceil(progress.percentage / 100 * #icons)
-        end
-        local firstWord = vim.split(progress.title, " ")[1]:lower()
-
-        local text = table.concat({ icons[idx], firstWord }, " ")
-        progressText = progress.kind == "end" and "" or text
-    end,
-})
-
 return {
     {
         -- Show amount of lines in a file?
@@ -148,7 +122,7 @@ return {
                         },
                         {
                             function()
-                                return progressText
+                                return Util.statusline.lsp_progress()
                             end,
                         },
                         {
