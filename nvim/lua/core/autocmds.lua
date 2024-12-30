@@ -148,6 +148,20 @@ autocmd({ "BufWritePre" }, {
 --     end,
 -- })
 
+autocmd("InsertEnter", {
+    desc = "Remove hl search when enter Insert",
+    callback = function()
+        if vim.v.hlsearch == 0 then
+            return
+        end
+        vim.api.nvim_feedkeys(
+            vim.api.nvim_replace_termcodes("<Cmd>nohl<CR>", true, false, true),
+            "n",
+            false
+        )
+    end,
+})
+
 autocmd("ColorScheme", {
     group = augroup("OverrideTheme", { clear = true }),
     callback = function()
