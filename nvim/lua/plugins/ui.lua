@@ -194,34 +194,13 @@ return {
             },
         },
     },
-    { -- Bug closed as not planned: https://github.com/lewis6991/satellite.nvim/issues/81
-        "lewis6991/satellite.nvim",
-        enabled = false,
-        dependencies = { { "echasnovski/mini.diff" } },
-        event = "VeryLazy",
-        opts = {
-            current_only = true,
-            handlers = {
-                cursor = { enable = false },
-                gitsigns = { enable = false },
-                -- require diff.lua
-                minidiff = { enable = true },
-                marks = { enable = false },
-                quickfix = { enable = false },
-            },
-        },
-        config = function(_, opts)
-            require("plugins.lsp.mini-diff-satellite")
-            require("satellite").setup(opts)
-        end,
-    },
     {
         "petertriho/nvim-scrollbar",
         event = "VeryLazy",
         opts = {
             show_in_active_only = true,
             hide_if_all_visible = true,
-            throttle_ms = 250,
+            throttle_ms = 500,
             excluded_filetypes = {
                 "dropbar_menu",
                 "dropbar_menu_fzf",
@@ -238,26 +217,7 @@ return {
                 cursor = false,
                 diagnostic = true,
                 -- gitsigns = false, -- Requires gitsigns
-                search = true, -- Requires hlslens
             },
-        },
-    },
-    { -- when searching, search count is shown next to the cursor
-        "kevinhwang91/nvim-hlslens",
-        keys = {
-            {
-                "n",
-                "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>",
-                desc = "Increment",
-            },
-            {
-                "N",
-                "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>",
-                desc = "Decrement",
-            },
-        },
-        opts = {
-            nearest_only = true,
         },
     },
     {

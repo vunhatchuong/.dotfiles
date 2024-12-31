@@ -113,7 +113,7 @@ vim.g.netrw_alto = 0
 opt.wildmode = "longest:full,full"       -- Command-line completion mode
 -- opt.wildoptions = { "pum", "fuzzy" }
 opt.wildignorecase = true                   -- Ignore case when completing file names and directories
-opt.shortmess:append("tToOWIcsSF")          -- don't show redundant messages from ins-completion-menu
+opt.shortmess:append("tToOWIcsF")          -- don't show redundant messages from ins-completion-menu
 opt.fillchars = vim.opt.fillchars + "eob: "
 opt.fillchars:append({
     foldopen = "",

@@ -170,7 +170,7 @@ return {
                 },
             },
             bar = {
-                update_debounce = 200,
+                update_debounce = 3000,
                 sources = function(buf, _)
                     local sources = require("dropbar.sources")
                     local utils = require("dropbar.utils")

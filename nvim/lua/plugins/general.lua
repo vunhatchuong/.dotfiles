@@ -70,14 +70,6 @@ return {
         opts = { auto_normal = true, auto_visual = true },
     },
     {
-        "rlychrisg/truncateline.nvim",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        opts = {
-            -- Note: Make it less than sidescrolloff
-            line_start_length = 15,
-        },
-    },
-    {
         "AckslD/nvim-neoclip.lua",
         dependencies = { "ibhagwan/fzf-lua" },
         keys = {
@@ -116,7 +108,7 @@ return {
         keys = {
             {
                 "<leader>fe",
-                "<CMD>Telescope ecolog env<CR>",
+                "<CMD>EcologFzf<CR>",
                 desc = "Ecolog: [F]ind [E]nvironment",
             },
         },
@@ -143,11 +135,6 @@ return {
                 },
             },
         },
-    },
-    {
-        "nacro90/numb.nvim",
-        event = { "CmdlineEnter" },
-        opts = {},
     },
     {
         "psliwka/vim-dirtytalk",

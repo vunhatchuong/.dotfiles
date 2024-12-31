@@ -17,9 +17,9 @@ M._keys = {
 
     -- { "gd", require("telescope.builtin").lsp_definitions, desc = "[G]oto [D]definition" },
     -- { "gr", "<CMD>Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
-    { "gi", require("fzf-lua").lsp_implementations, desc = "[G]oto [I]mplementation" },
+    { "gi", "<CMD>FzfLua lsp_implementations", desc = "[G]oto [I]mplementation" },
 
-    { "gt", require("fzf-lua").lsp_typedefs, desc = "[T]ype Ddefinition" },
+    { "gt", "<CMD>FzfLua lsp_typedefs", desc = "[T]ype Ddefinition" },
     { "gD", vim.lsp.buf.declaration, desc = "[G]oto [D]eclaration" },
 
     {
