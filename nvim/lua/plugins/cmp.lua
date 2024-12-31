@@ -1,6 +1,10 @@
 local icons = require("core.icons")
 
-local ext = { "lazydev", "ecolog", "supermaven" }
+local ext = {
+    "lazydev",
+    -- "ecolog",
+    "supermaven",
+}
 local default_sources =
     vim.list_extend({ "lsp", "path", "snippets", "buffer" }, ext)
 
