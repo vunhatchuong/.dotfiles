@@ -113,11 +113,6 @@ return {
     {
         "philosofonusus/ecolog.nvim",
         event = "BufRead",
-        dependencies = {
-            "nvim-telescope/telescope.nvim",
-            "saghen/blink.cmp",
-            "nvimdev/lspsaga.nvim",
-        },
         keys = {
             {
                 "<leader>fe",
@@ -132,7 +127,6 @@ return {
             integrations = {
                 lspsaga = true,
                 blink_cmp = true,
-                telescope = true,
                 fzf = true,
             },
             shelter = {
@@ -149,10 +143,6 @@ return {
                 },
             },
         },
-        config = function(_, opts)
-            require("ecolog").setup(opts)
-            require("telescope").load_extension("ecolog")
-        end,
     },
     {
         "nacro90/numb.nvim",

@@ -76,6 +76,7 @@ _actually() {
     fi
 
     if [[ -d $destination ]]; then
+        clear
         cd "$destination" || return $last_status
     else
         return $last_status
