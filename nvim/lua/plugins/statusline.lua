@@ -81,6 +81,14 @@ return {
                     },
                     lualine_c = {
                         {
+                            "grapple",
+                            -- icon = "",
+                            inactive = "%s",
+                            -- padding = { left = 1, right = 5 },
+                        },
+                        -- Mid align
+                        "%=",
+                        {
                             "filetype",
                             icon_only = true,
                             padding = { left = 1 },
@@ -91,11 +99,6 @@ return {
                             color = "Comment",
                             symbols = { modified = "", readonly = "" },
                             padding = { right = 1 },
-                        },
-                        {
-                            "grapple",
-                            inactive = "%s",
-                            padding = { left = 1, right = 5 },
                         },
                         -- {
                         --     function()
@@ -132,21 +135,20 @@ return {
                         },
                     },
                     lualine_z = {
-                        {
-                            "progress",
-                            icon = icons.ui.Text,
-                            padding = { left = 3, right = 0 },
-                        },
-                        { "location", icon = "/" },
+                        { "location", icon = "", padding = { left = 2 } },
+                        { "progress", icon = "/" },
                         { Util.statusline.mixed_indent },
                     },
                 },
                 extensions = {
+                    "lazy",
                     "nvim-dap-ui",
                     "oil",
                     "quickfix",
                     "trouble",
                     "fzf",
+                    "man",
+                    "mason",
                 },
             }
         end,

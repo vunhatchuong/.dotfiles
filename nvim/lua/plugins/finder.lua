@@ -52,7 +52,10 @@ return {
     {
         "ibhagwan/fzf-lua",
         cmd = "FzfLua",
-        -- stylua: ignore
+        init = function()
+            require("lazy").load({ plugins = { "fzf-lua" } })
+            require("fzf-lua").register_ui_select()
+        end,
         keys = {
             {
                 "<leader><space>",
@@ -88,10 +91,6 @@ return {
                 end,
             },
         },
-        init = function()
-            require("lazy").load({ plugins = { "fzf-lua" } })
-            require("fzf-lua").register_ui_select()
-        end,
         opts = {
             "default-title",
             fzf_colors = true,
