@@ -25,8 +25,11 @@ function M.randomize_theme()
         local theme_id = Manager.colorschemes[math.random(number_of_themes)]
 
         if theme_id ~= current_theme_id then
-            local theme = Themify.Manager.get(theme_id)
-            Themify.set_current(theme_id, theme.themes[1])
+            local theme = Themify.Manager.get(theme_id).themes
+            local theme_name = theme[math.random(#theme)]
+
+            Themify.set_current(theme_id, theme_name)
+            vim.notify("Switched to " .. theme_name)
             return
         end
     end
