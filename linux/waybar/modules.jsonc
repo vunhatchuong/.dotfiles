@@ -69,7 +69,7 @@
         "tooltip-format-disconnected": "󰌙 Disconnected",
         "max-length": 30,
         "format-icons": [ "󰤯", "󰤟", "󰤢", "󰤥", "󰤨" ],
-        "on-click-right": "foot nmtui"
+        "on-click-right": "ghostty nmtui"
     },
     "bluetooth": {
         "format": "",

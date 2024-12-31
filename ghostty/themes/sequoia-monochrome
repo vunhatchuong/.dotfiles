@@ -1,0 +1,26 @@
+# https://sequoiatheme.com/sequoia-color-palette
+# Thanks https://github.com/Hiroya-W/wezterm-sequoia-theme
+
+palette = 0=#131317
+palette = 1=#999EB2
+palette = 2=#626983
+palette = 3=#D3D5DE
+palette = 4=#7C829D
+palette = 5=#E2E4ED
+palette = 6=#B6BAC8
+palette = 7=#868690
+palette = 8=#3A3A3E
+palette = 9=#ADB1C1
+palette = 10=#7F859B
+palette = 11=#DCDDE5
+palette = 12=#959AB0
+palette = 13=#E8E9F1
+palette = 14=#C4C7D3
+palette = 15=#9D9DA5
+
+foreground = 868690
+background = 0F1014
+cursor-color = 7C829D
+
+selection-foreground = 93939c
+selection-background = 22222a

@@ -5,6 +5,7 @@ default_target_type = "symbolic"
 [general.files]
 alacritty = { target = "~/.config/alacritty", type = "template" }
 bat = "~/.config/bat"
+ghostty = "~/.config/ghostty"
 lazygit = "~/.config/lazygit"
 nvim = "~/.config/nvim"
 wezterm = "~/.config/wezterm"

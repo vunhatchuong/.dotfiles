@@ -283,13 +283,13 @@ return {
     {
         "aaronik/treewalker.nvim",
         keys = {
-            { "<cmd>Treewalker Up<cr>", "<A-k>", mode = { "n", "v" } },
-            { "<cmd>Treewalker Down<cr>", "<A-j>", mode = { "n", "v" } },
-            { "<cmd>Treewalker Left<cr>", "<A-h>", mode = { "n", "v" } },
-            { "<cmd>Treewalker Right<cr>", "<A-l>", mode = { "n", "v" } },
+            { "<A-k>", "<CMD>Treewalker Up<CR>zz", mode = { "n", "v" } },
+            { "<A-j>", "<CMD>Treewalker Down<CR>zz", mode = { "n", "v" } },
+            { "<A-h>", "<CMD>Treewalker Left<CR>zz", mode = { "n", "v" } },
+            { "<A-l>", "<CMD>Treewalker Right<CR>zz", mode = { "n", "v" } },
 
-            { "<A-S-k>", "<cmd>Treewalker SwapUp<cr>" },
-            { "<A-S-j>", "<cmd>Treewalker SwapDown<cr>" },
+            { "<A-S-k>", "<CMD>Treewalker SwapUp<CR>" },
+            { "<A-S-j>", "<CMD>Treewalker SwapDown<CR>" },
         },
         opts = {
             highlight_duration = 150,
