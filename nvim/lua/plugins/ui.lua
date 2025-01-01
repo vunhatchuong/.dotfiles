@@ -23,13 +23,12 @@ return {
         event = "VeryLazy",
         opts = {
             presets = {
-                bottom_search = false,
                 command_palette = true,
                 long_message_to_split = true,
                 inc_rename = true,
                 lsp_doc_border = true,
             },
-            notify = { enabled = false },
+            notify = { enabled = false }, -- using snacks.nvim
             lsp = {
                 progress = { enabled = false }, -- using my own
                 signature = { enabled = false }, -- using lsp_signature.nvim
@@ -134,18 +133,15 @@ return {
     {
         "echasnovski/mini.hipatterns",
         event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-        config = function()
-            local hipatterns = require("mini.hipatterns")
-            hipatterns.setup({
-                -- stylua: ignore
-                highlighters = {
-                    fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
-                    hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
-                    todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
-                    note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
-                },
-            })
-        end,
+        opts = {
+            -- stylua: ignore
+            highlighters = {
+                fixme = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+                hack = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+                todo = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+                note = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
+            },
+        },
     },
     {
         "echasnovski/mini.indentscope",
