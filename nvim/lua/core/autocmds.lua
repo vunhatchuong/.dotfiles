@@ -148,18 +148,11 @@ autocmd({ "BufWritePre" }, {
 --     end,
 -- })
 
-autocmd("InsertEnter", {
+autocmd({"InsertEnter", "CmdlineEnter"}, {
     desc = "Remove hl search when enter Insert",
-    callback = function()
-        if vim.v.hlsearch == 0 then
-            return
-        end
-        vim.api.nvim_feedkeys(
-            vim.api.nvim_replace_termcodes("<Cmd>nohl<CR>", true, false, true),
-            "n",
-            false
-        )
-    end,
+    callback = vim.schedule_wrap(function()
+        vim.cmd.nohlsearch()
+    end),
 })
 
 autocmd("ColorScheme", {

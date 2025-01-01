@@ -57,7 +57,6 @@ require("lazy").setup({
                 "compiler",
                 "bugreport",
                 "remote_plugins",
-                "node_provider",
                 "man",
                 "rplugin",
             },
