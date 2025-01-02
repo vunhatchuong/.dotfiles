@@ -2,7 +2,7 @@ local icons = require("core.icons")
 
 local ext = {
     "lazydev",
-    -- "ecolog",
+    "ecolog",
     "supermaven",
 }
 local default_sources =
