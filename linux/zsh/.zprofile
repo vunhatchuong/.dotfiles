@@ -14,3 +14,4 @@ export PATH="$HOME/bin:$PATH"
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+export BROWSER="zen-browser"

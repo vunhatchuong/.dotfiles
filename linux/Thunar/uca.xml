@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+        <icon>utilities-terminal</icon>
+        <name>Open Terminal Here</name>
+        <submenu/>
+        <unique-id>1</unique-id>
+        <command>foot -D %f</command>
+        <description>Open Terminal Here</description>
+        <range/>
+        <patterns>*</patterns>
+        <startup-notify/>
+        <directories/>
+</action>
+</actions>
