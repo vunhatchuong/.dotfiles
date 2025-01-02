@@ -226,8 +226,7 @@ return {
         },
     },
     {
-        "vunhatchuong/focus.nvim",
-        branch = "feat/auto-disable",
+        "cdmill/focus.nvim",
         event = "BufWinEnter",
         cmd = { "Focus", "Zen", "Narrow" },
         keys = {
@@ -239,7 +238,6 @@ return {
                 backdrop = 0.8,
             },
             auto_zen = true,
-            auto_disable_zen = true,
             zen = {
                 diagnostics = true, -- disables diagnostics
                 opts = {
