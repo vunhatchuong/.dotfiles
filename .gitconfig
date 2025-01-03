@@ -1,3 +1,4 @@
+# https://git-scm.com/docs/git-config
 [user]
     name = Vu Nhat Chuong
     email = ronnyvu321@gmail.com
@@ -19,6 +20,7 @@
 
 [remote]
     pushDefault = origin
+    autosetupremote = true
 
 [branch]
     autosetuprebase = always
@@ -38,12 +40,16 @@
     colorMoved = default # Moved lines in a diff are colored differently
     # renames = copies # Detect copies as well as renames.
 
+[worktree]
+    guessRemote = true
+
 [merge]
-    conflictstyle = diff3
+    conflictstyle = zdiff3
     tool = nvim
 
 [mergetool]
     prompt = false
+    keepBackup = false
 
 [mergetool "nvim"]
     cmd = nvim -c "DiffviewOpen"
@@ -60,6 +66,12 @@
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = yellow ul
+
+[alias]
+    blamefull = blame -w -C -C -C
+    diffw = diff --color-words
+    # shows local branches which got their remote branch deleted
+    branchgone = "!git fetch &>/dev/null && git branch -vv | cut -c 3- | grep gone] | awk '{print $1}'"
 
 [credential]
     helper = /sbin/git-credential-manager
