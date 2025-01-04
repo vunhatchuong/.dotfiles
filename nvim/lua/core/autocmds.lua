@@ -136,6 +136,15 @@ autocmd({ "BufWritePre" }, {
     end,
 })
 
+-- Fix conceallevel for json files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+    group = augroup("json_conceal", { clear = true }),
+    pattern = { "json", "jsonc", "json5" },
+    callback = function()
+        vim.opt_local.conceallevel = 0
+    end,
+})
+
 -- autocmd({ "BufWinEnter" }, {
 --     desc = "Clear the last used search pattern",
 --     pattern = "*",
@@ -148,7 +157,7 @@ autocmd({ "BufWritePre" }, {
 --     end,
 -- })
 
-autocmd({"InsertEnter", "CmdlineEnter"}, {
+autocmd({ "InsertEnter", "CmdlineEnter" }, {
     desc = "Remove hl search when enter Insert",
     callback = vim.schedule_wrap(function()
         vim.cmd.nohlsearch()
