@@ -238,6 +238,7 @@ return {
                 backdrop = 0.8,
             },
             auto_zen = true,
+            maintain_zen = true,
             zen = {
                 diagnostics = true, -- disables diagnostics
                 opts = {
@@ -287,14 +288,11 @@ return {
     },
     {
         "ryanfkeepers/conceal.nvim",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-            local conceal = require("conceal")
-            conceal.setup({})
-
-            conceal.generate_conceals()
-        end,
+        -- generate the scm queries
+        -- only need to be run when the Configuration changes
+        -- lua require("conceal").generate_conceals()
+        opts = {},
     },
     {
         "xzbdmw/colorful-menu.nvim",

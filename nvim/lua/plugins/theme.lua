@@ -49,7 +49,6 @@ return {
             { "bettervim/yugen.nvim" },
             { "kyazdani42/blue-moon" },
             { "rockerBOO/boo-colorscheme-nvim" },
-            { "eldritch-theme/eldritch.nvim" },
             { "wadackel/vim-dogrun" },
             -- { "anAcc22/sakura.nvim" }, -- Missing lush
             { "blazkowolf/gruber-darker.nvim" },
@@ -82,6 +81,7 @@ return {
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
             { "yorickpeterse/nvim-grey" },
+            { "datsfilipe/vesper.nvim" },
         },
         config = function(_, opts)
             require("themify").setup(opts)

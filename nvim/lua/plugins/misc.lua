@@ -17,6 +17,7 @@ return {
         "mistricky/codesnap.nvim",
         -- Doesn't support Windows yet
         enabled = vim.fn.has("Linux") == 1,
+        version = "*",
         build = "make",
         -- stylua: ignore
         cmd = { "CodeSnap", "CodeSnapSave", "CodeSnapASCII", "CodeSnapHighlight" },
