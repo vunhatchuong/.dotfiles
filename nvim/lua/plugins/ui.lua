@@ -285,4 +285,15 @@ return {
             scope = "line",
         },
     },
+    {
+        "ryanfkeepers/conceal.nvim",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function()
+            local conceal = require("conceal")
+            conceal.setup({})
+
+            conceal.generate_conceals()
+        end,
+    },
 }
