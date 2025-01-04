@@ -67,6 +67,42 @@ return {
                             { "label", "label_description", gap = 1 },
                             { "source_name" },
                         },
+                        -- colorful_menu.nvim
+                        -- stylua: ignore
+                        components = {
+                            label = {
+                                width = { fill = true, max = 60 },
+                                text = function(ctx)
+                                    local highlights_info =
+                                        require("colorful-menu").highlights(ctx.item, vim.bo.filetype)
+                                    if highlights_info ~= nil then return highlights_info.text else
+                                        return ctx.label
+                                    end
+                                end,
+                                highlight = function(ctx)
+                                    local highlights_info =
+                                        require("colorful-menu").highlights(ctx.item, vim.bo.filetype)
+                                    local highlights = {}
+                                    if highlights_info ~= nil then
+                                        for _, info in
+                                            ipairs(highlights_info.highlights)
+                                        do
+                                            table.insert(highlights, {
+                                                info.range[1],
+                                                info.range[2],
+                                                group = ctx.deprecated and "BlinkCmpLabelDeprecated" or info[1],
+                                            })
+                                        end
+                                    end
+                                    for _, idx in
+                                        ipairs(ctx.label_matched_indices)
+                                    do
+                                        table.insert(highlights, { idx, idx + 1, group = "BlinkCmpLabelMatch" })
+                                    end
+                                    return highlights
+                                end,
+                            },
+                        },
                     },
                     border = vim.g.border_style,
                     winblend = vim.o.pumblend,

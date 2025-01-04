@@ -296,4 +296,9 @@ return {
             conceal.generate_conceals()
         end,
     },
+    {
+        "xzbdmw/colorful-menu.nvim",
+        lazy = false,
+        opts = {},
+    },
 }
