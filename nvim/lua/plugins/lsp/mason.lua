@@ -4,21 +4,6 @@ return {
         build = ":MasonUpdate",
         cmd = "Mason",
         opts_extend = { "ensure_installed" },
-        opts = {
-            ensure_installed = {
-                "lua-language-server",
-                "stylua",
-                "shfmt",
-
-                "typos-lsp", -- code spellchecker
-                -- "ltex-ls-plus", -- natural language linter
-
-                "html-lsp",
-                "prettier",
-
-                "taplo",
-            },
-        },
         ---@param opts MasonSettings | {ensure_installed: string[]}
         config = function(_, opts)
             require("mason").setup(opts)

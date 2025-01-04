@@ -3,12 +3,12 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         version = false, -- last release is way too old and doesn't work on Windows
+        build = ":TSUpdate",
         lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
         event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
-        build = ":TSUpdate",
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         init = function(plugin)
-            -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
+            -- PERF: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
             require("lazy.core.loader").add_to_rtp(plugin)
             require("nvim-treesitter.query_predicates")
         end,
@@ -16,86 +16,54 @@ return {
             {
                 "nvim-treesitter/nvim-treesitter-textobjects",
                 init = function(plugin)
-                    -- disable rtp plugin, as we only need its queries for mini.ai
-                    -- In case other textobject modules are enabled, we will load them
-                    -- once nvim-treesitter is loaded
                     require("lazy.core.loader").disable_rtp_plugin(plugin)
                     LOAD_TEXTOBJECTS = true
                 end,
             },
         },
+        opts_extend = { "ensure_installed" },
         opts = {
-            -- Set to false if you don't have `tree-sitter` CLI installed locally
             auto_install = true,
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
             },
             indent = { enable = true },
-            -- vim-matchup
-            matchup = {
-                enable = true,
-            },
-            ensure_installed = {
-                "lua",
-                "luadoc",
-                "luap",
-                "bash",
-                "vimdoc",
-                "diff",
-                "html",
-                "http",
-                "gitignore",
-                "markdown",
-                "markdown_inline",
-                "query",
-                "json",
-                "jsonc",
-                "yaml",
-                "toml",
-                "xml",
-                "regex",
-            },
+            matchup = { enable = true }, -- vim-matchup
         },
-        config = function(_, opts)
-            -- WINDOWS USES Zig:
-            if vim.fn.executable("zig") == 1 then
-                require("nvim-treesitter.install").compilers = { "zig" }
+    },
+    {
+        "nvim-treesitter/nvim-treesitter-textobjects",
+        event = "VeryLazy",
+        enabled = true,
+        config = function()
+            -- If treesitter is already loaded, we need to run config again for textobjects
+            if Util.lazy.is_loaded("nvim-treesitter") then
+                local opts = Util.lazy.opts("nvim-treesitter")
+                ---@diagnostic disable-next-line: missing-fields
+                require("nvim-treesitter.configs").setup({
+                    textobjects = opts.textobjects,
+                })
             end
 
-            if type(opts.ensure_installed) == "table" then
-                ---@type table<string, boolean>
-                local added = {}
-                opts.ensure_installed = vim.tbl_filter(function(lang)
-                    if added[lang] then
-                        return false
-                    end
-                    added[lang] = true
-                    return true
-                end, opts.ensure_installed)
-            end
-            require("nvim-treesitter.configs").setup(opts)
-            if LOAD_TEXTOBJECTS then
-                -- PERF: no need to load the plugin, if we only need its queries for mini.ai
-                if opts.textobjects then
-                    for _, mod in ipairs({
-                        "move",
-                        "select",
-                        "swap",
-                        "lsp_interop",
-                    }) do
-                        if
-                            opts.textobjects[mod]
-                            and opts.textobjects[mod].enable
-                        then
-                            require("lazy.core.loader").disabled_rtp_plugins["nvim-treesitter-textobjects"] =
-                                nil
-                            require("lazy.core.loader").source_runtime(
-                                require("lazy.core.config").plugins["nvim-treesitter-textobjects"].dir,
-                                "plugin"
-                            )
-                            break
+            -- When in diff mode, we want to use the default
+            -- vim text objects c & C instead of the treesitter ones.
+            local move = require("nvim-treesitter.textobjects.move") ---@type table<string,fun(...)>
+            local configs = require("nvim-treesitter.configs")
+            for name, fn in pairs(move) do
+                if name:find("goto") == 1 then
+                    move[name] = function(q, ...)
+                        if vim.wo.diff then
+                            local config =
+                                configs.get_module("textobjects.move")[name] ---@type table<string,string>
+                            for key, query in pairs(config or {}) do
+                                if q == query and key:find("[%]%[][cC]") then
+                                    vim.cmd("normal! " .. key)
+                                    return
+                                end
+                            end
                         end
+                        return fn(q, ...)
                     end
                 end
             end

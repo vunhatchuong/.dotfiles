@@ -1,6 +1,8 @@
 ---@class util
 ---@field finder util.finder
+---@field lazy util.lazy
 ---@field statusline util.statusline
+---@field tool_installer util.tool_installer
 ---@field worktree util.worktree
 local M = {}
 

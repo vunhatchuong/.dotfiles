@@ -1,10 +1,25 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = { "go", "gomod", "gowork", "gosum", "templ" },
+    Util.tool_installer.ensure_installed({
+        treesitter = { "go", "gomod", "gowork", "gosum", "templ" },
+        mason = {
+            "gopls",
+            "golangci-lint-langserver",
+            -- Linter
+            "golangci-lint",
+            -- Formatter
+            "gofumpt",
+            "goimports",
+            "goimports-reviser",
+            "golines",
+            -- Code actions
+            "impl",
+            "gotests",
+            "gomodifytags",
+            "iferr",
+            -- Extras
+            "templ",
         },
-    },
+    }),
     {
         "neovim/nvim-lspconfig",
         opts = {
@@ -79,26 +94,7 @@ return {
     },
     {
         "williamboman/mason.nvim",
-        opts = function(_, opts)
-            opts.ensure_installed = opts.ensure_installed or {}
-            vim.list_extend(opts.ensure_installed, {
-                "gopls",
-                "golangci-lint-langserver",
-                -- Linter
-                "golangci-lint",
-                -- Formatter
-                "gofumpt",
-                "goimports",
-                "goimports-reviser",
-                "golines",
-                -- Code actions
-                "impl",
-                "gotests",
-                "gomodifytags",
-                "iferr",
-                -- Extras
-                "templ",
-            })
+        opts = function()
             vim.filetype.add({ extension = { templ = "templ" } })
         end,
     },

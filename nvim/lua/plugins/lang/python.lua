@@ -1,8 +1,8 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = { ensure_installed = { "python", "toml" } },
-    },
+    Util.tool_installer.ensure_installed({
+        treesitter = { "python", "toml" },
+        mason = { "ruff", "basedpyright", "mypy" },
+    }),
     {
         "neovim/nvim-lspconfig",
         opts = {
@@ -25,19 +25,6 @@ return {
                     -- Disable hover in favor of Pyright
                     client.server_capabilities.hoverProvider = false
                 end,
-            },
-        },
-    },
-    {
-        "williamboman/mason.nvim",
-        opts = {
-            ensure_installed = {
-                "basedpyright",
-                -- Linter
-                "mypy",
-                "ruff", -- Also Formatter
-                -- Formatter
-                -- Code actions
             },
         },
     },

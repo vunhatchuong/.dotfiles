@@ -1,10 +1,8 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = { "json", "json5", "jsonc" },
-        },
-    },
+    Util.tool_installer.ensure_installed({
+        treesitter = { "json", "json5", "jsonc" },
+        mason = {},
+    }),
     {
         "b0o/SchemaStore.nvim",
         lazy = true,

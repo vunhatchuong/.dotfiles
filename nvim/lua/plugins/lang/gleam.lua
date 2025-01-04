@@ -1,8 +1,8 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = { ensure_installed = { "gleam" } },
-    },
+    Util.tool_installer.ensure_installed({
+        treesitter = { "gleam" },
+        mason = {},
+    }),
 
     {
         "neovim/nvim-lspconfig",

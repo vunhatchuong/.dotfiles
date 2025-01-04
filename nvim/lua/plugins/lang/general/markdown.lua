@@ -1,20 +1,8 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = { "markdown", "markdown_inline" },
-        },
-    },
-    {
-        "williamboman/mason.nvim",
-        opts = function(_, opts)
-            opts.ensure_installed = opts.ensure_installed or {}
-            vim.list_extend(
-                opts.ensure_installed,
-                { "markdownlint-cli2", "marksman" }
-            )
-        end,
-    },
+    Util.tool_installer.ensure_installed({
+        treesitter = { "markdown", "markdown_inline" },
+        mason = { "markdownlint-cli2", "marksman" },
+    }),
     {
         "neovim/nvim-lspconfig",
         opts = {

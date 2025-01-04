@@ -1,8 +1,8 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = { ensure_installed = { "zig" } },
-    },
+    Util.tool_installer.ensure_installed({
+        treesitter = { "zig" },
+        mason = { "zls" },
+    }),
     {
         "neovim/nvim-lspconfig",
         opts = {
@@ -17,9 +17,5 @@ return {
                 },
             },
         },
-    },
-    {
-        "williamboman/mason.nvim",
-        opts = { ensure_installed = { "zls" } },
     },
 }

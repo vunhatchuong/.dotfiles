@@ -1,10 +1,8 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        opts = {
-            ensure_installed = { "yaml" },
-        },
-    },
+    Util.tool_installer.ensure_installed({
+        treesitter = { "yaml" },
+        mason = {},
+    }),
     {
         "b0o/SchemaStore.nvim",
         lazy = true,
