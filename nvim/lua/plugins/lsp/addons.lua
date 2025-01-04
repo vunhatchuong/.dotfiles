@@ -114,17 +114,6 @@ return {
         end,
     },
     {
-        "mhanberg/output-panel.nvim",
-        event = "VeryLazy",
-        cmd = { "OutputPanel" },
-        opts = {},
-    },
-    {
-        "kyallanum/ndi.nvim",
-        cmd = { "GetLSPClientInfo", "GetPluginInfo" },
-        opts = {},
-    },
-    {
         "smjonas/inc-rename.nvim",
         keys = { { "<leader>rn", desc = "Inc rename" } },
         opts = {
