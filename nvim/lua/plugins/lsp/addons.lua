@@ -192,4 +192,11 @@ return {
         dependencies = { "neovim/nvim-lspconfig" },
         opts = {},
     },
+    { -- Deferring of all diagnostics
+        "yorickpeterse/nvim-dd",
+        event = "LspAttach",
+        opts = {
+            timeout = 1000, -- Time before displaying new diagnostics.
+        },
+    },
 }
