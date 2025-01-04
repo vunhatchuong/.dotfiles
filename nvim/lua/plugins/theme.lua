@@ -81,6 +81,7 @@ return {
             { "ramojus/mellifluous.nvim", branch = "v1" },
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
+            { "yorickpeterse/nvim-grey" },
         },
         config = function(_, opts)
             require("themify").setup(opts)

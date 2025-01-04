@@ -37,6 +37,7 @@
     verbose = true
 
 [diff]
+    prompt = false
     colorMoved = default # Moved lines in a diff are colored differently
     # renames = copies # Detect copies as well as renames.
 
@@ -50,6 +51,7 @@
 [mergetool]
     prompt = false
     keepBackup = false
+    hideResolved = true
 
 [mergetool "nvim"]
     cmd = nvim -c "DiffviewOpen"
