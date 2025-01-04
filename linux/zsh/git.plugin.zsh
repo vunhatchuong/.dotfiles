@@ -99,10 +99,10 @@ alias gdc='git diff --cached'
 alias gp='git push'
 alias gpd='git push --dry-run'
 
-alias glo='git log --oneline --decorate'
+# alias glo='git log --oneline --decorate'
 alias glog='git log --oneline --decorate --graph'
 # Can add any additional flags like `glp --all`
-alias glp="pretty_git_log"
+alias glo="pretty_git_log"
 
 alias gwt="git worktree"
 alias gwtls="git worktree list"

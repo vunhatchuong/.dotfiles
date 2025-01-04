@@ -33,6 +33,11 @@
 [rebase]
     autoStash = true
 
+[status]
+    short = true
+    branch = true
+    relativePaths = false
+
 [commit]
     verbose = true
 
