@@ -41,11 +41,9 @@ keymap("n", "]q", "<CMD>cnext<CR>", { desc = "Next qf item" })
 
 -- n always search forward and N backward
 keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
-keymap("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-keymap("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+keymap({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
 keymap("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
-keymap("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
-keymap("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+keymap({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
 keymap({ "n", "x", "o" }, "<C-_>", "<C-/>", { remap = true })
 keymap({ "n", "x", "o" }, "<C-/>", "gcc", { remap = true })
