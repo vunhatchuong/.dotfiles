@@ -110,6 +110,7 @@ return {
                     keys = { toggle_or_open = "<CR>" },
                 },
                 lightbulb = { sign = false },
+                code_action = { show_server_name = true },
             }
         end,
     },

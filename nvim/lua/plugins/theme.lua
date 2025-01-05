@@ -77,7 +77,7 @@ return {
                     end
                 end,
             },
-            { "ramojus/mellifluous.nvim", branch = "v1" },
+            { "ramojus/mellifluous.nvim" },
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
             { "yorickpeterse/nvim-grey" },

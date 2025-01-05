@@ -45,7 +45,7 @@ return {
         "vunhatchuong/in-and-out.nvim",
         branch = "fix/nvim-v0.10.1-compatibility",
         keys = {
-            { -- Doesn't work on Windows
+            {
                 "<TAB>",
                 function()
                     require("in-and-out").in_and_out()
@@ -66,11 +66,32 @@ return {
                 enabled = true,
                 semicolon = { -- Put semicolon(;) at the right place
                     enabled = true,
-                    ft = { "zig" },
+                    ft = { "zig", "c", "cpp", "java" },
                 },
-                escape = { -- Insert char like + at the right place
+                escape = { -- Insert char at the right place
                     enabled = true,
-                    triggers = {}, ---@type table<string, ntab.trigger>
+                    ---@type table<string, ntab.trigger>
+                    triggers = {
+                        ["+"] = {
+                            pairs = { { open = '"', close = '"' } },
+                            -- string.format(format, typed_char)
+                            format = " %s ", -- " + "
+                            -- ft = { "java" },
+                        },
+                        [","] = {
+                            pairs = {
+                                { open = "'", close = "'" },
+                                { open = '"', close = '"' },
+                            },
+                            format = "%s ", -- ", "
+                        },
+                        ["="] = {
+                            pairs = { { open = "(", close = ")" } },
+                            format = " %s> ", -- ` => `
+                            -- string.match(text_between_pairs, cond)
+                            cond = "^$", -- match only pairs with empty content
+                        },
+                    },
                 },
             },
         },
@@ -264,6 +285,7 @@ return {
     },
     {
         "mizlan/iswap.nvim",
+        cmd = { "ISwapWithLeft", "ISwapWithRight" },
         -- stylua: ignore
         keys = {
             { "<leader>ii", "<CMD>ISwap<CR>",          desc = "iswap" },
@@ -282,6 +304,7 @@ return {
     },
     {
         "aaronik/treewalker.nvim",
+        cmd = "Treewalker",
         keys = {
             { "<A-k>", "<CMD>Treewalker Up<CR>zz", mode = { "n", "v" } },
             { "<A-j>", "<CMD>Treewalker Down<CR>zz", mode = { "n", "v" } },
@@ -290,8 +313,11 @@ return {
 
             { "<A-S-k>", "<CMD>Treewalker SwapUp<CR>" },
             { "<A-S-j>", "<CMD>Treewalker SwapDown<CR>" },
+            -- { "<A-S-h>", "<CMD>Treewalker SwapLeft<CR>" },
+            -- { "<A-S-l>", "<CMD>Treewalker SwapRight<CR>" },
         },
         opts = {
+            highlight = false, -- Highlight breaks Hydra
             highlight_duration = 150,
             highlight_group = "Visual",
         },
@@ -304,7 +330,7 @@ return {
                 function()
                     require("quick-switch").start_switch()
                 end,
-                "quick-switch",
+                desc = "Buffer quick switch",
             },
         },
         opts = {},
