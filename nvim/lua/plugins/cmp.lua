@@ -64,7 +64,8 @@ return {
                         treesitter = { "lsp" },
                         columns = {
                             { "kind_icon", "kind", gap = 1 },
-                            { "label", "label_description", gap = 1 },
+                            -- { "label", "label_description", gap = 1 },
+                            { "label", gap = 1 }, -- colorful-menu.nvim combines both labels
                             { "source_name" },
                         },
                         -- colorful_menu.nvim
@@ -73,26 +74,20 @@ return {
                             label = {
                                 width = { fill = true, max = 60 },
                                 text = function(ctx)
-                                    local highlights_info =
-                                        require("colorful-menu").highlights(ctx.item, vim.bo.filetype)
-                                    if highlights_info ~= nil then return highlights_info.text else
+                                    local highlights_info = require("colorful-menu").blink_highlights(ctx)
+                                    if highlights_info ~= nil then
+                                        return highlights_info.label
+                                    else
                                         return ctx.label
                                     end
                                 end,
                                 highlight = function(ctx)
-                                    local highlights_info =
-                                        require("colorful-menu").highlights(ctx.item, vim.bo.filetype)
                                     local highlights = {}
+                                    local highlights_info = require(
+                                        "colorful-menu"
+                                    ).blink_highlights(ctx)
                                     if highlights_info ~= nil then
-                                        for _, info in
-                                            ipairs(highlights_info.highlights)
-                                        do
-                                            table.insert(highlights, {
-                                                info.range[1],
-                                                info.range[2],
-                                                group = ctx.deprecated and "BlinkCmpLabelDeprecated" or info[1],
-                                            })
-                                        end
+                                        highlights = highlights_info.highlights
                                     end
                                     for _, idx in
                                         ipairs(ctx.label_matched_indices)

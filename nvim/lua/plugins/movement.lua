@@ -57,46 +57,6 @@ return {
         opts = { additional_targets = { "<", ">" } },
     },
     {
-        "kawre/neotab.nvim",
-        event = "InsertEnter",
-        --- @module "neotab"
-        --- @diagnostic disable: missing-fields
-        opts = {
-            smart_punctuators = {
-                enabled = true,
-                semicolon = { -- Put semicolon(;) at the right place
-                    enabled = true,
-                    ft = { "zig", "c", "cpp", "java" },
-                },
-                escape = { -- Insert char at the right place
-                    enabled = true,
-                    ---@type table<string, ntab.trigger>
-                    triggers = {
-                        ["+"] = {
-                            pairs = { { open = '"', close = '"' } },
-                            -- string.format(format, typed_char)
-                            format = " %s ", -- " + "
-                            -- ft = { "java" },
-                        },
-                        [","] = {
-                            pairs = {
-                                { open = "'", close = "'" },
-                                { open = '"', close = '"' },
-                            },
-                            format = "%s ", -- ", "
-                        },
-                        ["="] = {
-                            pairs = { { open = "(", close = ")" } },
-                            format = " %s> ", -- ` => `
-                            -- string.match(text_between_pairs, cond)
-                            cond = "^$", -- match only pairs with empty content
-                        },
-                    },
-                },
-            },
-        },
-    },
-    {
         "vunhatchuong/telescope-jumps.nvim",
         enabled = false,
         dependencies = { { "nvim-telescope/telescope.nvim" } },
