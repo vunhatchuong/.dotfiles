@@ -3,19 +3,20 @@ $wingetDeps = @(
 )
 
 $scoopGeneral = @(
+    "nerd-fonts/JetBrainsMono-NF-Mono"
+    "extras/alacritty"
     "main/git"
     "main/curlie"
-    "nerd-fonts/JetBrainsMono-NF"
-    "extras/firefox"
-    "extras/googlechrome"
-    "extras/discord"
-    "extras/alacritty"
-    "extras/notepadplusplus"
-    "extras/winrar"
-    "extras/flameshot"
-    "games/steam"
     "main/starship"
     "main/eza"
+    "extras/winrar"
+    "extras/firefox"
+    "extras/googlechrome"
+    "extras/obsidian"
+    "extras/discord"
+    "extras/notepadplusplus"
+    "extras/flameshot"
+    "games/steam"
 )
 
 $scoopLang = @(
@@ -35,6 +36,7 @@ $scoopUtils = @(
     "extras/vlc"
     "extras/psfzf"
     "extra/wiztree"
+    "extras/revouninstaller"
 )
 
 $scoopNvim = @(
