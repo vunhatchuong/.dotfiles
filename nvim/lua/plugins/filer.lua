@@ -119,7 +119,7 @@ return {
                 callback = function(args)
                     local win_id = args.data.win_id
 
-                    vim.wo[win_id].winblend = 10
+                    vim.wo[win_id].winblend = 0
 
                     local config = vim.api.nvim_win_get_config(win_id)
 

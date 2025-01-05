@@ -209,6 +209,7 @@ return {
                 "blink-cmp-menu",
                 "blink-cmp-signature",
                 "blink-cmp-documentation",
+                "minifiles",
             },
             marks = {
                 GitAdd = { text = "│" },
@@ -218,7 +219,7 @@ return {
             handlers = {
                 cursor = false,
                 diagnostic = true,
-                gitsigns = true, -- Requires gitsigns
+                gitsigns = true,
             },
         },
     },

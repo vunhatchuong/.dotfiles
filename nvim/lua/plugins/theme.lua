@@ -51,37 +51,21 @@ return {
             { "rockerBOO/boo-colorscheme-nvim" },
             { "wadackel/vim-dogrun" },
             -- { "anAcc22/sakura.nvim" }, -- Missing lush
+            { "Yazeed1s/oh-lucy.nvim" },
+            { "Shadorain/shadotheme" },
             { "blazkowolf/gruber-darker.nvim" },
             { "kvrohit/substrata.nvim" },
             { "mcauley-penney/ice-cave.nvim" },
-            {
-                "0xstepit/flow.nvim",
-                before = function()
-                    local ok, flow = pcall(require, "flow")
-                    if ok then
-                        flow.setup({
-                            theme = {
-                                style = "dark",
-                                contrast = "high", -- "default" | "high"
-                                transparent = false, -- true | false
-                            },
-                            colors = {
-                                mode = "light",
-                                fluo = "pink", -- "pink" | "cyan"
-                            },
-                            ui = {
-                                borders = "inverse", -- "theme" | "inverse" | "fluo" | "none"
-                                aggressive_spell = false, -- true | false
-                            },
-                        })
-                    end
-                end,
-            },
+            { "ronisbr/nano-theme.nvim" },
             { "ramojus/mellifluous.nvim" },
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
             { "yorickpeterse/nvim-grey" },
             { "datsfilipe/vesper.nvim" },
+            { "FrenzyExists/aquarium-vim" },
+            -- { "rithikasilva/monoplus.nvim" },
+            { "rithikasilva/sequoia-monochrome.nvim" },
+            { "kdheepak/monochrome.nvim" },
         },
         config = function(_, opts)
             require("themify").setup(opts)
