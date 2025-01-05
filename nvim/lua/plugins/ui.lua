@@ -210,10 +210,15 @@ return {
                 "blink-cmp-signature",
                 "blink-cmp-documentation",
             },
+            marks = {
+                GitAdd = { text = "│" },
+                GitChange = { text = "│" },
+                GitDelete = { text = "-" },
+            },
             handlers = {
                 cursor = false,
                 diagnostic = true,
-                -- gitsigns = false, -- Requires gitsigns
+                gitsigns = true, -- Requires gitsigns
             },
         },
     },
@@ -247,19 +252,13 @@ return {
                 },
             },
             plugins = {
-                -- gitsigns = { enabled = false }, -- disables git signs
+                gitsigns = { enabled = true },
                 -- todo = { enabled = false }, -- if set to "true", todo-comments.nvim highlights will be disabled
             },
         },
         config = function(_, opts)
             require("focus").setup(opts)
 
-            -- vim.api.nvim_create_autocmd("VimEnter", {
-            --     desc = "Enter Focus",
-            --     callback = function()
-            --         require("focus").toggle({})
-            --     end,
-            -- })
             vim.api.nvim_create_autocmd("VimEnter", {
                 desc = "Enter Zen",
                 callback = function()

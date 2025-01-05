@@ -16,6 +16,7 @@ autocmd({ "FileType" }, {
         "outputpanel",
         "bmessages",
         "snacks_dashboard",
+        "gitsigns-blame",
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false

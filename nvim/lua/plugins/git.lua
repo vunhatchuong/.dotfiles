@@ -1,35 +1,53 @@
 return {
     {
-        "echasnovski/mini.diff",
-        event = "VeryLazy",
-        config = function()
-            local icons = require("core.icons")
-            local mini_diff = require("mini.diff")
-            mini_diff.setup({
-                view = {
-                    style = "sign",
-                    signs = {
-                        add = icons.ui.BoldLineMiddle,
-                        change = icons.ui.BoldLineMiddle,
-                        delete = icons.ui.TriangleShortArrowRight,
-                    },
-                },
-                mappings = {
-                    apply = "",
-                    reset = "",
-                    textobject = "",
+        "lewis6991/gitsigns.nvim",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        opts = {
+            update_debounce = 3000,
+            on_attach = function(buffer)
+                local gs = package.loaded.gitsigns
 
-                    goto_first = "",
-                    goto_prev = "",
-                    goto_next = "",
-                    goto_last = "",
-                },
-            })
+                local function map(mode, l, r, desc)
+                    vim.keymap.set(mode, l, r, { buffer = buffer, desc = desc })
+                end
 
-            vim.keymap.set("n", "<leader>hh", function()
-                mini_diff.toggle_overlay(0)
-            end, { desc = "MiniDiff: Toggle overlay" })
-        end,
+                -- stylua: ignore start
+                map("n", "<leader>hh", gs.preview_hunk, "Preview Hunk Inline")
+
+                map("n", "]h", function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "]c", bang = true })
+                    else
+                        gs.nav_hunk("next", { wrap = true, navigation_message = false })
+                    end
+                end, "Next Hunk")
+                map("n", "[h", function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "[c", bang = true })
+                    else
+                        gs.nav_hunk("prev", { wrap = true, navigation_message = false })
+                    end
+                end, "Prev Hunk")
+
+                map("n", "<leader>hn", function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "]c", bang = true })
+                    else
+                        gs.nav_hunk("next", { wrap = true, navigation_message = false })
+                    end
+                end, "Next Hunk")
+                map("n", "<leader>hp", function()
+                    if vim.wo.diff then
+                        vim.cmd.normal({ "[c", bang = true })
+                    else
+                        gs.nav_hunk("prev", { wrap = true, navigation_message = false })
+                    end
+                end, "Prev Hunk")
+
+                map("n", "<leader>hb", function() gs.blame_line() end, "Blame Line")
+                map("n", "<leader>hB", function() gs.blame() end, "Blame Buffer")
+            end,
+        },
     },
     {
         "akinsho/git-conflict.nvim",
