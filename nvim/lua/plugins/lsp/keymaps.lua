@@ -32,11 +32,6 @@ M._keys = {
         desc = "[W]orkspace [S]symbols",
     },
 
-    -- { "<leader>sd", require("telescope.builtin").diagnostics, desc = "[S]earch [D]iagnostics" },
-
-    -- { "<leader>cc", vim.lsp.codelens.run, desc = "Run Codelens" },
-    -- { "<leader>cC", vim.lsp.codelens.refresh, desc = "Refresh & Display Codelens" },
-
     { "]d", diagnostic_goto(true), desc = "Next Diagnostic" },
     { "[d", diagnostic_goto(false), desc = "Prev Diagnostic" },
     { "]e", diagnostic_goto(true, "ERROR"), desc = "Next Error" },

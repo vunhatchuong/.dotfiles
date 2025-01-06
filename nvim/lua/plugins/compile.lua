@@ -4,9 +4,9 @@ return {
         cmd = { "Compile", "Recompile" },
         dependencies = { "nvim-lua/plenary.nvim", "m00qek/baleia.nvim" },
         keys = {
-            { "<leader>ox", "<CMD>Compile<CR>", desc = "Compile" },
+            { "<leader>cc", "<CMD>Compile<CR>", desc = "Compile" },
             {
-                "<leader>or",
+                "<leader>cr",
                 function()
                     vim.cmd("Recompile")
                     vim.cmd("wincmd k")

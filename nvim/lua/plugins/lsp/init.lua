@@ -25,9 +25,7 @@ return {
             return {
                 inlay_hints = {
                     enabled = false,
-                    exclude = {}, -- filetypes for which you don't want to enable inlay hints
                 },
-                -- https://github.com/neovim/neovim/issues/29156
                 codelens = {
                     enabled = false,
                 },
