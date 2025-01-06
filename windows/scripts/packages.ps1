@@ -3,7 +3,7 @@ $wingetDeps = @(
 )
 
 $scoopGeneral = @(
-    "nerd-fonts/JetBrainsMono-NF-Mono"
+    "nerd-fonts/JetBrainsMono-NF"
     "extras/alacritty"
     "main/git"
     "main/curlie"

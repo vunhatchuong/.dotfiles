@@ -148,4 +148,9 @@ return {
         event = "VeryLazy",
         opts = {},
     },
+    { -- Sort every child node of X type
+        "maxbol/treesorter.nvim",
+        cmd = "TSort",
+        opts = {},
+    },
 }

@@ -66,6 +66,7 @@ return {
             -- { "rithikasilva/monoplus.nvim" },
             { "rithikasilva/sequoia-monochrome.nvim" },
             { "kdheepak/monochrome.nvim" },
+            { "kvrohit/rasmus.nvim" },
         },
         config = function(_, opts)
             require("themify").setup(opts)
