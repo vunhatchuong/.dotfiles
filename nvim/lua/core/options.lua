@@ -25,7 +25,7 @@ opt.guifont = "JetBrainsMono Nerd Font:h17" -- the font used in graphical neovim
 opt.autowrite = true                        -- save when kinda change buffer?
 opt.fileformat = "unix"
 opt.confirm = true                          -- Confirm to save changes before exiting modified buffer
-opt.spell = true
+-- opt.spell = true
 opt.spelllang = { "en" }
 opt.spelloptions:append({ "camel", "noplainbuffer" })
 opt.smoothscroll = true
