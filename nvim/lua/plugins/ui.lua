@@ -295,9 +295,4 @@ return {
         -- lua require("conceal").generate_conceals()
         opts = {},
     },
-    {
-        "xzbdmw/colorful-menu.nvim",
-        lazy = false,
-        opts = {},
-    },
 }

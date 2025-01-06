@@ -14,4 +14,4 @@ unsetopt CASE_MATCH           # Disable case sensitivity in pattern matching
 
 setopt correct                # Use CORRECT_IGNORE to ignore words
 # setopt correctall
-SPROMPT="Correct %B%F{red}%U%R%b%f%u to %F{green}%r%f? [%By|%Bn|%Be|%Ba]: "
+SPROMPT="Correct %B%F{red}%U%R%b%f%u to %F{green}%r%f? [%By/%Bn/%Be/%Ba]: "
