@@ -37,6 +37,8 @@
     short = true
     branch = true
     relativePaths = false
+    showStash = true
+    showUntrackedFiles = all
 
 [commit]
     verbose = true
@@ -77,7 +79,7 @@
 [alias]
     blamefull = blame -w -C -C -C
     diffw = diff --color-words
-    # shows local branches which got their remote branch deleted
+    # Shows local branches which got their remote branch deleted
     branchgone = "!git fetch &>/dev/null && git branch -vv | cut -c 3- | grep gone] | awk '{print $1}'"
 
 [credential]
