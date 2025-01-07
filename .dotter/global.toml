@@ -36,7 +36,6 @@ depends = ["general"]
 "./linux/fuzzel" = "~/.config/fuzzel"
 "./linux/hypr" = "~/.config/hypr"
 "./linux/i3" = "~/.config/i3"
-"./linux/i3status" = "~/.config/i3status"
 "./linux/Kvantum" = "~/.config/Kvantum"
 "./linux/qt5ct" = "~/.config/qt5ct"
 "./linux/qt6ct" = "~/.config/qt6ct"
