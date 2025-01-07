@@ -26,9 +26,13 @@ return {
                 "mcchrish/zenbones.nvim",
                 before = function()
                     vim.g.bones_compat = 1
+                    vim.g.lightness = "dim"
+                    vim.g.darkness = "stark"
+                    vim.g.solid_float_border = true
+                    vim.g.colorize_diagnostic_underline_text = true
                 end,
                 -- whitelist = { "tokyonight-night", "tokyonight-day" },
-                blacklist = { "randombones" },
+                blacklist = { "randombones", "forestbones", "seoulbones" },
             },
             "Hiroya-W/sequoia-moonlight.nvim",
             { "slugbyte/lackluster.nvim" },
@@ -60,13 +64,15 @@ return {
             { "ramojus/mellifluous.nvim" },
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
-            { "yorickpeterse/nvim-grey" },
             { "datsfilipe/vesper.nvim" },
             { "FrenzyExists/aquarium-vim" },
             -- { "rithikasilva/monoplus.nvim" },
             { "rithikasilva/sequoia-monochrome.nvim" },
             { "kdheepak/monochrome.nvim" },
             { "kvrohit/rasmus.nvim" },
+            -- Light Theme
+            { "yorickpeterse/nvim-grey" },
+            { "yorickpeterse/vim-paper" },
         },
         config = function(_, opts)
             require("themify").setup(opts)
