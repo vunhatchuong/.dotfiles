@@ -137,8 +137,17 @@ autocmd({ "BufWritePre" }, {
     end,
 })
 
--- Fix conceallevel for json files
+autocmd("FileType", {
+    desc = "Wrap and check for spelling",
+    pattern = { "gitcommit", "markdown" },
+    callback = function()
+        vim.opt_local.wrap = true
+        vim.opt_local.spell = true
+    end,
+})
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
+    desc = "Fix conceallevel for json files",
     group = augroup("json_conceal", { clear = true }),
     pattern = { "json", "jsonc", "json5" },
     callback = function()

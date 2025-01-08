@@ -1,5 +1,5 @@
 # vi:ft=ini
-theme = dark:sequoia-monochrome,light:NvimLight
+theme = sequoia-monochrome
 
 window-decoration = false
 window-padding-x = 8

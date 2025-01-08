@@ -53,10 +53,12 @@ return {
             },
             completion = {
                 list = {
-                    selection = function(ctx)
-                        return ctx.mode == "cmdline" and "auto_insert"
-                            or "manual"
-                    end,
+                    selection = {
+                        preselect = false,
+                        auto_insert = function(ctx)
+                            return ctx.mode == "cmdline" and true or false
+                        end,
+                    },
                 },
                 accept = { auto_brackets = { enabled = false } },
                 menu = {
