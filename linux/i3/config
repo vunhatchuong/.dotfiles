@@ -20,10 +20,13 @@ font pango:JetBrainsMono Nerd Font 10
 
 # Seems like this is required for VMWare Tools
 exec --no-startup-id dex --autostart --environment i3
-
-exec xrandr --output Virtual1 --auto
-exec xset r rate 150 50
 exec_always --no-startup-id autotiling
+
+# A hack to make --auto works
+exec --no-startup-id xrandr
+exec --no-startup-id xrandr --output Virtual1 --auto
+
+exec xset r rate 150 50
 
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
