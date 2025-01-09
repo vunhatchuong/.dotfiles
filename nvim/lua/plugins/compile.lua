@@ -60,4 +60,8 @@ return {
             })
         end,
     },
+    {
+        "joalon/easyexec.nvim",
+        cmd = "Easyexec",
+    },
 }

@@ -169,4 +169,9 @@ return {
             jsonFormatter = "jq",
         },
     },
+    {
+        "NTBBloodbath/exemplum.nvim",
+        cmd = "Exemplum",
+        dependencies = { "NTBBloodbath/logging.nvim" },
+    },
 }
