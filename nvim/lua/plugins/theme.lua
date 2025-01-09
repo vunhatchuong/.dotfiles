@@ -76,7 +76,17 @@ return {
         },
         config = function(_, opts)
             require("themify").setup(opts)
-            require("personal.theme").setup()
         end,
+    },
+    {
+        "vunhatchuong/themify-extras.nvim",
+        dependencies = { "lmantw/themify.nvim" },
+        lazy = false,
+        opts = {
+            randomize = {
+                enable = true,
+                daily = true,
+            },
+        },
     },
 }
