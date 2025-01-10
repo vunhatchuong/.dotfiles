@@ -1,3 +1,6 @@
+[include]
+  path = "~/.gitconfig.local"
+
 # https://git-scm.com/docs/git-config
 [user]
     name = Vu Nhat Chuong
@@ -17,7 +20,7 @@
     autocrlf = input
     eol = lf
     # Force terminal ask pass
-    askPass =
+    askPass = ""
     # excludesfile = ~/.gitignore
 
 [remote]
@@ -87,5 +90,6 @@
 [credential]
     helper = /sbin/git-credential-manager
     credentialStore = secretservice
-[credential "https://dev.azure.com"]
-    useHttpPath = true
+
+[credential]
+    helper = "store"
