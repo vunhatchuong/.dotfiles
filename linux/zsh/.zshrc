@@ -48,5 +48,3 @@ plug "$ZDOTDIR/function.zsh"
 
 # Must be at the end of the file
 plug "zsh-users/zsh-syntax-highlighting"
-
-source ~/.config/broot/launcher/bash/br

@@ -123,4 +123,10 @@ return {
         },
         opts = {},
     },
+    {
+        "samerickson/markdown-title-fetch.nvim",
+        ft = { "markdown" },
+        cmd = "MarkdownLinkPaste",
+        opts = {},
+    },
 }
