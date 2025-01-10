@@ -112,18 +112,6 @@ return {
 
                     return default_sources
                 end,
-
-                -- Don't show completion if len(cmd) < 2 words
-                -- https://github.com/Saghen/blink.cmp/issues/585
-                min_keyword_length = function(ctx)
-                    if
-                        ctx.mode == "cmdline"
-                        and string.find(ctx.line, " ") == nil
-                    then
-                        return 2
-                    end
-                    return 0
-                end,
                 providers = {
                     lsp = {
                         name = "[LSP]",
@@ -143,6 +131,7 @@ return {
                         min_keyword_length = 4,
                         score_offset = 1,
                     },
+                    cmdline = { min_keyword_length = 2 },
                     -- Extensions
                     lazydev = {
                         name = "[LazyDev]",
