@@ -32,6 +32,10 @@ export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 # Remove FZF delay when press ESC
 export ESCDELAY="0"
 
+# Use `bat` to read `man`
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 eval "$(vfox activate zsh)"
