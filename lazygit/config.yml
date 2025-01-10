@@ -1,29 +1,43 @@
+# https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+disableStartupPopups: true
 notARepository: "skip"
 gui:
-    scrollPastBottom: false
-    nerdFontsVersion: "3"
-    theme:
-        activeBorderColor:
-            - "#89b4fa"
-            - bold
-        inactiveBorderColor:
-            - "#a6adc8"
-        optionsTextColor:
-            - "#89b4fa"
-        selectedLineBgColor:
-            - "#313244"
-        cherryPickedCommitBgColor:
-            - "#45475a"
-        cherryPickedCommitFgColor:
-            - "#89b4fa"
-        unstagedChangesColor:
-            - "#f38ba8"
-        defaultFgColor:
-            - "#cdd6f4"
-        searchingActiveBorderColor:
-            - "#f9e2af"
+  expandFocusedSidePanel: true
+  scrollPastBottom: false
+  showBottomLine: false
+  showPanelJumps: false
+  nerdFontsVersion: "3"
+  statusPanelView: allBranchesLog
+  theme:
+    activeBorderColor:
+      - "#89b4fa"
+      - bold
+    inactiveBorderColor:
+      - "#a6adc8"
+    optionsTextColor:
+      - "#89b4fa"
+    selectedLineBgColor:
+      - "#313244"
+    cherryPickedCommitBgColor:
+      - "#45475a"
+    cherryPickedCommitFgColor:
+      - "#89b4fa"
+    unstagedChangesColor:
+      - "#f38ba8"
+    defaultFgColor:
+      - "#cdd6f4"
+    searchingActiveBorderColor:
+      - "#f9e2af"
 
-    authorColors:
-        "*": "#b4befe"
+  authorColors:
+    "*": "#b4befe"
 git:
-    parseEmoji: true
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
+    useConfig: false
+  parseEmoji: true
+update:
+  method: never
+os:
+  editPreset: "nvim-remote" # Uses an existing nvim instance
