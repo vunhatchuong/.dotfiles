@@ -70,6 +70,7 @@ return {
             { "rithikasilva/sequoia-monochrome.nvim" },
             { "kdheepak/monochrome.nvim" },
             { "kvrohit/rasmus.nvim" },
+            -- { "Wansmer/serenity.nvim" },
             -- Light Theme
             { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },

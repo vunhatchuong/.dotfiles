@@ -25,13 +25,7 @@ return {
                     enabled = true,
                     ---@type table<string, ntab.trigger>
                     triggers = {
-                        ["+"] = { pairs = all_pairs, format = " %s " },
-                        ["-"] = { pairs = all_pairs, format = " %s " },
-                        ["*"] = { pairs = all_pairs, format = " %s " },
-                        -- ["/"] = { pairs = all_pairs, format = " %s " },
-
-                        -- [","] = { pairs = all_pairs, format = "%s " },
-                        [";"] = { pairs = all_pairs, format = "%s" },
+                        -- [";"] = { pairs = all_pairs, format = "%s" },
                         ["="] = {
                             pairs = { { open = "(", close = ")" } },
                             format = " %s> ", -- ` => `
