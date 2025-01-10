@@ -61,7 +61,18 @@ return {
         end,
     },
     {
-        "joalon/easyexec.nvim",
-        cmd = "Easyexec",
+        "dchae/canter.nvim",
+        keys = {
+            {
+                "<leader><CR><CR>",
+                "<CMD>CanterRun<CR>",
+                desc = "Canter Run",
+            },
+        },
+        opts = {
+            runners = {
+                ["py"] = "python",
+            },
+        },
     },
 }
