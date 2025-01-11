@@ -40,6 +40,7 @@ depends = ["general"]
 "./linux/qt5ct" = "~/.config/qt5ct"
 "./linux/qt6ct" = "~/.config/qt6ct"
 "./linux/ripgrep" = "~/.config/ripgrep"
+"./linux/rofi" = "~/.config/rofi"
 "./linux/Thunar" = "~/.config/Thunar"
 "./linux/tmux" = "~/.config/tmux"
 "./linux/tmuxp" = "~/.config/tmuxp"

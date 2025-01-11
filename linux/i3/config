@@ -6,7 +6,7 @@
 
 set $term ghostty
 set $file thunar
-set $menu dmenu_run
+set $menu rofi
 set $browser zen-browser
 set $code code
 
