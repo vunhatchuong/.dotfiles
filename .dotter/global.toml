@@ -30,6 +30,7 @@ depends = ["general"]
 [linux.files]
 "./linux/bin" = { target = "~/bin", type = "template" }
 "./linux/broot" = "~/.config/broot"
+"./linux/direnv" = "~/.config/direnv"
 "./linux/dunst" = "~/.config/dunst"
 "./linux/fcitx5" = "~/.config/fcitx5"
 "./linux/foot" = "~/.config/foot"

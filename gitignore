@@ -1,3 +1,8 @@
 .idea
 
-.env
+# nix-direnv
+.direnv
+
+#.env
+
+# vim: filetype=gitignore

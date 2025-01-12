@@ -86,3 +86,13 @@ _actually() {
 # Attach Zsh hook
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd _actually
+
+flakify() {
+  if [ ! -e flake.nix ]; then
+    nix flake new -t github:vunhatchuong/.dotfiles .
+  elif [ ! -e .envrc ]; then
+    echo "use flake" > .envrc
+  fi
+  direnv allow
+  ${EDITOR:-nvim} flake.nix
+}
