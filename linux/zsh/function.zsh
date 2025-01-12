@@ -89,7 +89,7 @@ add-zsh-hook precmd _actually
 
 flakify() {
   if [ ! -e flake.nix ]; then
-    nix flake new -t github:vunhatchuong/.dotfiles .
+    nix flake new -t "$HOME/.dotfiles" .
   elif [ ! -e .envrc ]; then
     echo "use flake" > .envrc
   fi
