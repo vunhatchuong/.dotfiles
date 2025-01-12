@@ -146,9 +146,9 @@ autocmd("FileType", {
     end,
 })
 
-vim.api.nvim_create_autocmd({ "FileType" }, {
-    desc = "Fix conceallevel for files",
-    pattern = { "json", "jsonc", "json5", "md" },
+autocmd("FileType", {
+    desc = "Set conceallevel for certain file types",
+    pattern = { "json", "jsonc", "json5", "markdown" },
     callback = function()
         vim.opt_local.conceallevel = 0
     end,
