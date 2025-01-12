@@ -17,7 +17,7 @@ configuration{
     match: #B6BAC8FF;
     selection: #999EB2FF;
     selection-text: #E2E4EDFF;
-    selection-match: #2b2e39;
+    selection-match: #2B2E39;
     border: #1F1F24FF;
     red: #ADB1C1;
 
