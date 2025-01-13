@@ -1,10 +1,5 @@
 [ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
 
-if [[ -n $WSLENV ]]; then
-    # Turn off blink cursor if WSL: https://github.com/microsoft/terminal/issues/1379
-    printf '\e[?12l'
-fi
-
 # Load colors so we can access $fg and more.
 autoload -U colors && colors
 
@@ -46,3 +41,10 @@ plug "$ZDOTDIR/function.zsh"
 
 # Must be at the end of the file
 plug "zsh-users/zsh-syntax-highlighting"
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+
+if command -v vfox >/dev/null; then
+    eval "$(vfox activate zsh)"
+fi

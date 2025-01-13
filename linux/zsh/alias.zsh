@@ -1,7 +1,5 @@
-#!/bin/bash
-# Aliases
 # For a full list of active aliases, run `alias`.
-#
+
 alias cl="clear"
 
 alias eza="eza --color=always --icons --time-style=long-iso"
