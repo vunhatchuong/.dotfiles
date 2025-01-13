@@ -14,6 +14,8 @@ keymap("", "<Space>", "<Nop>", opts)
 keymap("n", "Q", "<nop>", opts)
 keymap("n", "<C-c>", "<nop>", opts)
 keymap("x", "m", "<nop>", opts)
+keymap("n", "<C-i>", "<Tab>")
+keymap("i", "<C-n>", "<nop>", { desc = "Disable default cmp menu" })
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
@@ -45,8 +47,12 @@ keymap({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next S
 keymap("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
 keymap({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
 
-keymap({ "n", "x", "o" }, "<C-_>", "<C-/>", { remap = true })
-keymap({ "n", "x", "o" }, "<C-/>", "gcc", { remap = true })
+keymap({ "n", "x", "i" }, "<C-_>", "<C-/>", { remap = true })
+keymap("n", "<C-/>", "gcc", { remap = true })
+keymap("x", "<C-/>", "gc", { remap = true })
+keymap("i", "<C-/>", function ()
+    vim.cmd.normal("gcc")
+end, { remap = true })
 
 -- Move to first, last line
 keymap({ "n", "o", "x" }, "$", "^", opts)
@@ -70,6 +76,8 @@ keymap("n", "<leader>ww", "<C-W>w", { desc = "Switch to the next window", remap 
 keymap("n", "<leader>wq", "<C-W>c", { desc = "Close the current window", remap = true })
 keymap("n", "<leader>-", "<C-W>s", { desc = "Split window horizontally", remap = true })
 keymap("n", "<leader>|", "<C-W>v", { desc = "Split window vertically", remap = true })
+
+keymap("i", "<C-p>", "<C-r>+", { desc = "Paste in insert mode" })
 
 keymap("n", "dd", function()
     if vim.api.nvim_get_current_line():match("^%s*$") then
