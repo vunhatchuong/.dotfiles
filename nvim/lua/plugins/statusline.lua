@@ -63,7 +63,8 @@ return {
                     -- stylua: ignore
                     lualine_a = {
                         { -- mode
-                            function() return string.sub(Util.statusline.get_mode(), 1, 1) end,
+                            -- function() return string.sub(Util.statusline.get_mode(), 1, 1) end,
+                            function() return Util.statusline.get_mode() end,
                             padding = 2,
                         },
                     },

@@ -114,48 +114,54 @@ end
 ---
 ---@return string name The custom name
 function M.get_mode()
-    -- Note that: \19 = ^S and \22 = ^V.
     local mode_map = {
-        ["n"] = "NORMAL",
-        ["no"] = "OP-PENDING",
-        ["nov"] = "OP-PENDING",
-        ["noV"] = "OP-PENDING",
-        ["no\22"] = "OP-PENDING",
-        ["niI"] = "NORMAL",
-        ["niR"] = "NORMAL",
-        ["niV"] = "NORMAL",
-        ["nt"] = "NORMAL",
-        ["ntT"] = "NORMAL",
-        ["v"] = "VISUAL",
-        ["vs"] = "VISUAL",
-        ["V"] = "VISUAL",
-        ["Vs"] = "VISUAL",
-        ["\22"] = "VISUAL",
-        ["\22s"] = "VISUAL",
-        ["s"] = "SELECT",
-        ["S"] = "SELECT",
-        ["\19"] = "SELECT",
-        ["i"] = "INSERT",
-        ["ic"] = "INSERT",
-        ["ix"] = "INSERT",
-        ["R"] = "REPLACE",
-        ["Rc"] = "REPLACE",
-        ["Rx"] = "REPLACE",
-        ["Rv"] = "VIRT REPLACE",
-        ["Rvc"] = "VIRT REPLACE",
-        ["Rvx"] = "VIRT REPLACE",
-        ["c"] = "COMMAND",
-        ["cv"] = "VIM EX",
-        ["ce"] = "EX",
-        ["r"] = "PROMPT",
-        ["rm"] = "MORE",
+        n = "NORMAL",
+        i = "INSERT",
+        v = "VISUAL",
+        [""] = "VISUAL",
+        V = "VISUAL",
+        no = "OP-PENDING",
+        s = "SELECT",
+        S = "SELECT",
+        [""] = "SELECT",
+        ic = "INSERT",
+        R = "REPLACE",
+        Rv = "VIRT REPLACE",
+        c = "COMMAND",
+        cv = "VIM EX",
+        ce = "EX",
+        r = "PROMPT",
+        rm = "MORE",
         ["r?"] = "CONFIRM",
         ["!"] = "SHELL",
-        ["t"] = "TERMINAL",
+        t = "TERMINAL",
+    }
+    -- https://github.com/rachartier/dotfiles/blob/main/.config/nvim/lua/plugins/ui/lualine.lua
+    local kirby_default = "(>*-*)>"
+    local mode_kirby = {
+        n = "<(•ᴗ•)>",
+        i = "<(•o•)>",
+        v = "(v•-•)v",
+        [""] = "(v•-•)>",
+        V = "(>•-•)>",
+        no = "<(•ᴗ•)>",
+        s = kirby_default,
+        S = kirby_default,
+        [""] = kirby_default,
+        ic = kirby_default,
+        R = kirby_default,
+        Rv = kirby_default,
+        c = kirby_default,
+        cv = "<(•ᴗ•)>",
+        ce = "<(•ᴗ•)>",
+        r = kirby_default,
+        rm = kirby_default,
+        ["r?"] = kirby_default,
+        ["!"] = "<(•ᴗ•)>",
+        t = "<(•ᴗ•)>",
     }
 
-    local mode = mode_map[vim.api.nvim_get_mode().mode] or "UNKNOWN"
-    return mode
+    return mode_kirby[vim.fn.mode()] or vim.api.nvim_get_mode().mode
 end
 
 --- Takes in a :highlight group name and return the foreground value
