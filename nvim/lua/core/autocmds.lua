@@ -1,3 +1,5 @@
+local OPTIONS = require("core.options")
+
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 
@@ -49,6 +51,16 @@ autocmd({ "FileType" }, {
                 desc = "Quit buffer",
             })
         end)
+    end,
+})
+
+-- specify different tab widths on certain files
+autocmd("FileType", {
+    pattern = OPTIONS.two_space_indents,
+    callback = function()
+        local setlocal = vim.opt_local
+        setlocal.shiftwidth = 2
+        setlocal.softtabstop = 2
     end,
 })
 

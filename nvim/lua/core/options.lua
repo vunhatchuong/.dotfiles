@@ -136,3 +136,25 @@ vim.g.loaded_ruby_provider = 0
 
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
+
+local M = {
+    two_space_indents = {
+        "html",
+        "xhtml",
+        "xml",
+        "css",
+        "scss",
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+
+        "query",
+        "json",
+        "yaml",
+        "nix",
+        "gleam",
+    },
+}
+
+return M
