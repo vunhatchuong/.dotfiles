@@ -20,12 +20,6 @@ You can also setup [Arch in WSL2](https://github.com/yuk7/ArchWSL).
 
 - Font: JetBrainsMono Nerd Font
 
-### Core
-
-| name             | Description            | Notes                     |
-| ---------------- | ---------------------- | ------------------------- |
-| Pacstall         | AUR for Ubuntu         |                           |
-
 ### Extras
 
 - Install MySQL + WorkBench [guide](https://gist.github.com/vunhatchuong/fb5a408f0931b754f494cdefb89f15e4)
