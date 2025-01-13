@@ -34,7 +34,7 @@ opt.startofline = true
 
 opt.mouse = "a"                             -- allow the mouse to be used in neovim
 vim.schedule(function()                     -- includes system call responsible for 40% startuptime!
-    opt.clipboard = vim.env.SSH_TTY and "" or "unnamedplus"
+    opt.clipboard = vim.env.SSH_TTY and "" or { "unnamed", "unnamedplus" }
 end)
 
 -- opt.guicursor = ""
