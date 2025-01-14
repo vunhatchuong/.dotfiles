@@ -32,7 +32,8 @@ keymap("n", "zo", "za", opts)
 keymap("v", "p", '"_dP', opts)
 
 keymap("n", "U", "<C-r>")  -- Redo with U
-keymap("i", "<C-v>", "<C-r>+") -- Paste with C-v from Insert
+keymap("i", "<C-p>", "<C-r>+", { desc = "Paste in insert mode" })
+keymap("i", "<C-v>", "<C-r>+")
 
 -- buffers
 keymap("n", "[b", "<CMD>bprev<CR>", { desc = "Prev buffer" })
@@ -76,8 +77,6 @@ keymap("n", "<leader>ww", "<C-W>w", { desc = "Switch to the next window", remap 
 keymap("n", "<leader>wq", "<C-W>c", { desc = "Close the current window", remap = true })
 keymap("n", "<leader>-", "<C-W>s", { desc = "Split window horizontally", remap = true })
 keymap("n", "<leader>|", "<C-W>v", { desc = "Split window vertically", remap = true })
-
-keymap("i", "<C-p>", "<C-r>+", { desc = "Paste in insert mode" })
 
 keymap("n", "dd", function()
     if vim.api.nvim_get_current_line():match("^%s*$") then
