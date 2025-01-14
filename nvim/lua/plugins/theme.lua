@@ -88,6 +88,9 @@ return {
                 enable = true,
                 daily = true,
             },
+            daylight = {
+                enable = true,
+            },
         },
     },
 }
