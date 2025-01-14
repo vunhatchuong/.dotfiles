@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-# https://github.com/ThePrimeagen/.dotfiles
 
 _find() {
     find ~/.config/tmuxp -name "*.yaml" -printf 'Tmuxp: %f\n'
@@ -8,31 +7,37 @@ _find() {
         -mindepth 1 -maxdepth 1 -type d
 }
 
-# if provided a single arg, use it as the selected workspace.
+# if provides a single arg, use it as the selected workspace.
 if [[ $# -eq 1 ]]; then
     selected="$1"
 else
-    selected=$(_find | fzf)
+    selected=$(_find | fzf --preview '[[ -d {} ]] && eza -1 --color=always {} || echo "Not a directory"' --print-query | tail -n1)
 fi
 
-# Exit if no selection was made.
-if [[ -z $selected ]]; then
-    exit 0
-fi
+[[ -z $selected ]] && exit 0
+[[ $selected == $(pwd) ]] && exit 0
 
-# If the selected item is a tmuxp configuration file, load it.
 if [[ $selected == *.yaml ]]; then
-    selected_file=$(echo "$selected" | sed 's/^Tmuxp: //')
-    selected=$(find ~/.config/tmuxp -type l -name "$selected_file")
-    tmuxp load "$selected" -y
+    tmuxp load "$(find ~/.config/tmuxp -type l -name "${selected#Tmuxp: }")" -y
     exit 0
+fi
+
+# Create the directory if it doesn't exist.
+if [[ ! -d $selected ]]; then
+    chosen_workspace=$(echo "{{ workspaces }}" | tr ' ' '\n' | fzf --prompt="Select a workspace to create '$selected' in: ")
+    if [[ -z $chosen_workspace ]]; then
+        echo "No workspace selected. Aborting."
+        exit 1
+    fi
+
+    selected="$chosen_workspace/$selected"
+    mkdir -p "$selected"
 fi
 
 selected_name=$(basename "$selected" | tr '.' '-')
-tmux_running=$(pgrep tmux)
 
 # Start a new tmux session if none is running.
-if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
     tmux new-session -s "$selected_name" -c "$selected"
     exit 0
 fi
