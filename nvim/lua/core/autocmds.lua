@@ -71,13 +71,13 @@ autocmd({ "BufWinEnter" }, {
     end,
 })
 
-autocmd("TextYankPost", {
-    desc = "Highlight when yank text",
-    pattern = "*",
-    callback = function()
-        (vim.hl or vim.highlight).on_yank({ timeout = 40 })
-    end,
-})
+-- autocmd("TextYankPost", {
+--     desc = "Highlight when yank text",
+--     pattern = "*",
+--     callback = function()
+--         (vim.hl or vim.highlight).on_yank({ timeout = 40 })
+--     end,
+-- })
 
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     desc = "Check if we need to reload the file when it changed",

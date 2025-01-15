@@ -57,7 +57,7 @@ return {
         Diff = " ",
         Repo = " ",
         Octoface = " ",
-        Branch = "",
+        Branch = "",
     },
     ui = {
         ArrowCircleDown = " ",
@@ -164,9 +164,9 @@ return {
         dots = "󰇘",
         github = "",
         panda = "󰏚 ",
-        snipper_hexagon = { "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
+        spinner_hexagon = { "󰫃", "󰫄", "󰫅", "󰫆", "󰫇", "󰫈" },
         -- stylua: ignore
-        snipper_circle = { "󰄰", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" },
+        spinner_circle = { "󰄰", "󰪞", "󰪟", "󰪠", "󰪢", "󰪣", "󰪤", "󰪥" },
         spinner_dot = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
     },
 }

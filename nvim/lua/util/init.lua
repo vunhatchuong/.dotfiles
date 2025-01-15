@@ -33,7 +33,7 @@ function M.get_folder_location()
 
     if #clients > 0 then
         for _, client in pairs(clients) do
-            if client.name ~= "null-ls" then
+            if client.name ~= "typos_lsp" and client.name ~= "null-ls" then
                 path = client.config.root_dir and client.config.root_dir or path
                 prompt_title = client.name
                 break

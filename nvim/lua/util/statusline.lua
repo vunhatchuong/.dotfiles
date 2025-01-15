@@ -90,7 +90,7 @@ function M.lsp_progress()
                 return
             end
 
-            local icons = require("core.icons").misc.snipper_circle
+            local icons = require("core.icons").misc.spinner_circle
 
             local idx = math.floor(#icons / 2)
             if progress.percentage == 0 then
@@ -178,6 +178,10 @@ function M.get_hl_color(group)
     local fg = hl.fg and string.format("#%06x", hl.fg) or "none"
 
     return fg
+end
+
+function M.get_total_line()
+    return vim.api.nvim_buf_line_count(0)
 end
 
 return M

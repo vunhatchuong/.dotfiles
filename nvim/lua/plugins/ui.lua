@@ -227,8 +227,8 @@ return {
         "tzachar/local-highlight.nvim",
         event = "BufRead",
         opts = {
-            hlgroup = "LspReferenceText",
-            cw_hlgroup = "LspReferenceText",
+            -- hlgroup = "LspReferenceText",
+            -- cw_hlgroup = "LspReferenceText",
             highlight_single_match = false,
         },
     },
@@ -241,9 +241,7 @@ return {
             { "<leader>zm", "<CMD>Zen<CR>", desc = "Toggle Minimal" },
         },
         opts = {
-            window = {
-                backdrop = 0.8,
-            },
+            window = { backdrop = 1 },
             auto_zen = true,
             maintain_zen = true,
             zen = {
@@ -294,5 +292,39 @@ return {
         -- only need to be run when the Configuration changes
         -- lua require("conceal").generate_conceals()
         opts = {},
+    },
+    {
+        "rachartier/tiny-glimmer.nvim",
+        event = "TextYankPost",
+        opts = {
+            default_animation = "fade",
+            overwrite = {
+                paste = { enabled = true, default_animation = "fade" },
+            },
+            animations = {
+                fade = {
+                    max_duration = 40,
+                    min_duration = 40,
+                    from_color = "IncSearch",
+                    to_color = "IncSearch",
+                },
+
+                pulse = {
+                    max_duration = 400,
+                    min_duration = 400,
+                },
+            },
+        },
+
+        keys = {
+            {
+                "p",
+                function()
+                    print("paste")
+                    require("tiny-glimmer").paste()
+                end,
+                { noremap = true, silent = true },
+            },
+        },
     },
 }

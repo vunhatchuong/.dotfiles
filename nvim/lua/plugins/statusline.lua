@@ -65,11 +65,11 @@ return {
                         { -- mode
                             -- function() return string.sub(Util.statusline.get_mode(), 1, 1) end,
                             function() return Util.statusline.get_mode() end,
-                            padding = 2,
+                            padding = { left = 2, right = 1 },
                         },
                     },
                     lualine_b = {
-                        { "branch", icon = icons.git.Branch },
+                        { "branch", icon = "" },
                         {
                             "diff",
                             diff_color = {
@@ -77,7 +77,7 @@ return {
                                 modified = "Comment",
                                 removed = "Comment",
                             },
-                            padding = { right = 2 },
+                            padding = { right = 1 },
                             source = function()
                                 local gitsigns = vim.b.gitsigns_status_dict
                                 if gitsigns then
@@ -126,12 +126,20 @@ return {
                     lualine_y = {
                         {
                             "diagnostics",
-                            sources = { "nvim_diagnostic" },
+                            always_visible = true,
+                            -- sections = { "error", "warn", "info", "hint" },
+                            sections = { "error", "warn", "info" },
+                            -- symbols = {
+                            --     error = icons.diagnostics.Error,
+                            --     warn = icons.diagnostics.Warning,
+                            --     info = icons.diagnostics.Information,
+                            --     hint = icons.diagnostics.Hint,
+                            -- },
                             symbols = {
-                                error = icons.diagnostics.Error,
-                                warn = icons.diagnostics.Warning,
-                                info = icons.diagnostics.Information,
-                                hint = icons.diagnostics.Hint,
+                                error = "",
+                                warn = "",
+                                info = "",
+                                hint = "",
                             },
                         },
                         {
@@ -141,16 +149,39 @@ return {
                         },
                         {
                             Util.statusline.get_lsp_names,
-                            icon = icons.git.Octoface,
+                            icon = "",
                             color = "Comment",
                         },
                     },
                     lualine_z = {
-                        { "location", icon = "", padding = { left = 2 } },
+                        -- {
+                        --     Util.statusline.get_total_line,
+                        --     cond = function()
+                        --         return vim.bo.buftype == ""
+                        --     end,
+                        -- },
+                        { "location", icon = "", padding = { left = 1 } },
                         { "progress", icon = "/" },
                         { Util.statusline.mixed_indent },
                     },
                 },
+                -- tabline = {
+                --     lualine_a = {
+                --         "%=",
+                --         {
+                --             "filetype",
+                --             icon_only = true,
+                --             padding = { left = 1 },
+                --         },
+                --         {
+                --             "filename",
+                --             path = 1,
+                --             color = "Comment",
+                --             symbols = { modified = "", readonly = "" },
+                --             padding = { right = 1 },
+                --         },
+                --     },
+                -- },
                 extensions = {
                     "lazy",
                     "nvim-dap-ui",
