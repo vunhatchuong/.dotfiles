@@ -3,65 +3,30 @@ return {
         "nvim-telescope/telescope.nvim",
         cmd = "Telescope",
         dependencies = { "nvim-lua/plenary.nvim" },
-        opts = function()
-            local icons = require("core.icons")
-
-            return {
-                defaults = {
-                    prompt_prefix = " " .. icons.ui.Telescope .. " ",
-                    selection_caret = " " .. icons.ui.Forward,
-                    results_title = false,
-                    entry_prefix = "   ",
-                    path_display = { "smart" },
-                    sorting_strategy = "ascending",
-                    layout_config = { horizontal = { prompt_position = "top" } },
-                    mappings = {
-                        n = { ["q"] = "close" },
-                        i = { ["<ESC>"] = "close" },
-                    },
+        opts = {
+            defaults = {
+                results_title = false,
+                entry_prefix = "   ",
+                sorting_strategy = "ascending",
+                layout_config = { horizontal = { prompt_position = "top" } },
+                mappings = {
+                    n = { ["q"] = "close" },
+                    i = { ["<ESC>"] = "close" },
                 },
-                pickers = {
-                    highlights = {
-                        -- stylua: ignore
-                        mappings = {
-                            i = { -- copy highlight values
-                                ["<CR>"] = function(promptBufnr)
-                                    local hlName = require("telescope.actions.state").get_selected_entry().value
-
-                                    require("telescope.actions").close(promptBufnr)
-
-                                    local hlValue = vim.api.nvim_get_hl(0, { name = hlName })
-                                    local out = vim.iter(hlValue):fold({}, function(acc, key, val)
-                                        if key == "link" then acc.link = val end
-                                        if key == "fg" then acc.fg = ("#%06x"):format(val) end
-                                        if key == "bg" then acc.bg = ("#%06x"):format(val) end
-                                        return acc
-                                    end)
-                                    if vim.tbl_isempty(out) then return end
-
-                                    local values = table.concat(vim.tbl_values(out), "\n")
-                                    vim.fn.setreg("+", values)
-                                end,
-                            },
-                        },
-                    },
-                },
-            }
-        end,
+            },
+        },
     },
     {
         "ibhagwan/fzf-lua",
         cmd = "FzfLua",
+        --stylua: ignore
         keys = {
             {
                 "<leader><space>",
                 desc = "Find Files",
                 function()
                     local path, prompt_title = Util.get_folder_location()
-                    require("fzf-lua").files({
-                        cwd = path,
-                        winopts = { title = prompt_title },
-                    })
+                    require("fzf-lua").files({ cwd = path, winopts = { title = prompt_title } })
                 end,
             },
             {
@@ -69,10 +34,7 @@ return {
                 desc = "[F]ind [T]ext",
                 function()
                     local path, prompt_title = Util.get_folder_location()
-                    require("fzf-lua").live_grep_native({
-                        cwd = path,
-                        winopts = { title = prompt_title },
-                    })
+                    require("fzf-lua").live_grep_native({ cwd = path, winopts = { title = prompt_title } })
                 end,
             },
             {
@@ -80,26 +42,30 @@ return {
                 desc = "[F]ind [S]tring",
                 function()
                     local path, prompt_title = Util.get_folder_location()
-                    require("fzf-lua").grep_cword({
-                        cwd = path,
-                        winopts = { title = prompt_title },
-                    })
+                    require("fzf-lua").grep_cword({ cwd = path, winopts = { title = prompt_title } })
                 end,
             },
         },
         opts = {
-            "default-title",
+            "border-fused",
             fzf_colors = true,
             defaults = {
-                -- formatter = "path.filename_first",
                 formatter = "path.dirname_first",
+                -- git_icons = false, -- display git status
+                file_icons = false,
             },
             winopts = {
                 preview = {
+                    default = "bat",
                     scrollbar = false,
                     delay = 10,
-                    winopts = { number = false },
+                    winopts = { -- builtin previewer window options
+                        number = false,
+                    },
                 },
+                on_create = function()
+                    vim.b.miniindentscope_disable = true
+                end,
             },
             previewers = {
                 builtin = {
@@ -116,24 +82,22 @@ return {
             },
             files = {
                 previewer = false,
-                winopts = {
-                    width = 0.6,
-                    height = 0.8,
-                },
+                winopts = { width = 0.6, height = 0.8 },
+            },
+            grep = {
+                fzf_opts = { ["--ansi"] = false },
+                grep_opts = "--color=never --binary-files=without-match --line-number --recursive --perl-regexp -e",
+                rg_opts = " --color=never --column --line-number --no-heading --smart-case --max-columns=4096 -e",
             },
             lsp = {
                 async = true,
                 jump_to_single_result = true,
                 -- ignore_current_line = true,
                 code_actions = {
-                    previewer = vim.fn.executable("delta") == 1
-                            and "codeaction_native"
-                        or nil,
+                    previewer = "codeaction_native",
                 },
             },
-            oldfiles = {
-                include_current_session = true,
-            },
+            oldfiles = { include_current_session = true },
             keymap = {
                 builtin = {
                     true,
@@ -147,25 +111,5 @@ return {
                 },
             },
         },
-        config = function(_, opts)
-            if opts[1] == "default-title" then
-                local function fix(t)
-                    t.prompt = t.prompt ~= nil and " " or nil
-                    for _, v in pairs(t) do
-                        if type(v) == "table" then
-                            fix(v)
-                        end
-                    end
-                    return t
-                end
-                opts = vim.tbl_deep_extend(
-                    "force",
-                    fix(require("fzf-lua.profiles.default-title")),
-                    opts
-                )
-                opts[1] = nil
-            end
-            require("fzf-lua").setup(opts)
-        end,
     },
 }

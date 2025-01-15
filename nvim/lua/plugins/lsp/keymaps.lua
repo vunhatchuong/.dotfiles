@@ -10,13 +10,8 @@ end
 
 -- stylua: ignore
 M._keys = {
-    -- { "<leader>rn", vim.lsp.buf.rename, desc = "[R]e[n]ame" },
-
-    -- { "K", vim.lsp.buf.hover, desc = "Hover Doc" },
     { "<C-k>", vim.diagnostic.open_float, desc = "Diagnostic Help" },
 
-    -- { "gd", require("telescope.builtin").lsp_definitions, desc = "[G]oto [D]definition" },
-    -- { "gr", "<CMD>Lspsaga finder<CR>", desc = "[G]oto [R]eferences" },
     { "gi", "<CMD>FzfLua lsp_implementations", desc = "[G]oto [I]mplementation" },
 
     { "gt", "<CMD>FzfLua lsp_typedefs", desc = "[T]ype Ddefinition" },
