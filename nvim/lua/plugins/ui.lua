@@ -299,7 +299,10 @@ return {
         opts = {
             default_animation = "fade",
             overwrite = {
-                paste = { default_animation = "fade" },
+                paste = {
+                    enabled = false,
+                    default_animation = "fade",
+                },
             },
             animations = {
                 fade = {
