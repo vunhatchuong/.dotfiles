@@ -228,7 +228,7 @@ return {
         event = "BufRead",
         opts = {
             -- hlgroup = "LspReferenceText",
-            -- cw_hlgroup = "LspReferenceText",
+            cw_hlgroup = "LocalHighlight",
             highlight_single_match = false,
         },
     },
@@ -299,7 +299,7 @@ return {
         opts = {
             default_animation = "fade",
             overwrite = {
-                paste = { enabled = true, default_animation = "fade" },
+                paste = { default_animation = "fade" },
             },
             animations = {
                 fade = {
@@ -313,17 +313,6 @@ return {
                     max_duration = 400,
                     min_duration = 400,
                 },
-            },
-        },
-
-        keys = {
-            {
-                "p",
-                function()
-                    print("paste")
-                    require("tiny-glimmer").paste()
-                end,
-                { noremap = true, silent = true },
             },
         },
     },
