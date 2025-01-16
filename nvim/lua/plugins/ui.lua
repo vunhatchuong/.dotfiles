@@ -293,30 +293,4 @@ return {
         -- lua require("conceal").generate_conceals()
         opts = {},
     },
-    {
-        "rachartier/tiny-glimmer.nvim",
-        event = "TextYankPost",
-        opts = {
-            default_animation = "fade",
-            overwrite = {
-                paste = {
-                    enabled = false,
-                    default_animation = "fade",
-                },
-            },
-            animations = {
-                fade = {
-                    max_duration = 40,
-                    min_duration = 40,
-                    from_color = "IncSearch",
-                    to_color = "IncSearch",
-                },
-
-                pulse = {
-                    max_duration = 400,
-                    min_duration = 400,
-                },
-            },
-        },
-    },
 }
