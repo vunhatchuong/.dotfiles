@@ -98,19 +98,19 @@ return {
                             -- padding = { left = 1, right = 5 },
                         },
                         -- Mid align
-                        "%=",
-                        {
-                            "filetype",
-                            icon_only = true,
-                            padding = { left = 1 },
-                        },
-                        {
-                            "filename",
-                            path = 1,
-                            color = "Comment",
-                            symbols = { modified = "", readonly = "" },
-                            padding = { right = 1 },
-                        },
+                        -- "%=",
+                        -- {
+                        --     "filetype",
+                        --     icon_only = true,
+                        --     padding = { left = 1 },
+                        -- },
+                        -- {
+                        --     "filename",
+                        --     path = 1,
+                        --     color = "Comment",
+                        --     symbols = { modified = "", readonly = "" },
+                        --     padding = { right = 1 },
+                        -- },
                         -- {
                         --     function()
                         --         return require("grapple").name_or_index()
@@ -165,23 +165,23 @@ return {
                         { Util.statusline.mixed_indent },
                     },
                 },
-                -- tabline = {
-                --     lualine_a = {
-                --         "%=",
-                --         {
-                --             "filetype",
-                --             icon_only = true,
-                --             padding = { left = 1 },
-                --         },
-                --         {
-                --             "filename",
-                --             path = 1,
-                --             color = "Comment",
-                --             symbols = { modified = "", readonly = "" },
-                --             padding = { right = 1 },
-                --         },
-                --     },
-                -- },
+                tabline = {
+                    lualine_a = {
+                        "%=",
+                        {
+                            "filetype",
+                            icon_only = true,
+                            padding = { left = 1 },
+                        },
+                        {
+                            "filename",
+                            path = 1,
+                            color = "Comment",
+                            symbols = { modified = "", readonly = "" },
+                            padding = { right = 1 },
+                        },
+                    },
+                },
                 extensions = {
                     "lazy",
                     "nvim-dap-ui",

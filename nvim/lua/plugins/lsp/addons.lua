@@ -147,6 +147,7 @@ return {
     },
     {
         "Bekaboo/dropbar.nvim",
+        enabled = false,
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         init = function()
             -- Disable dropbar's own lazy loader
