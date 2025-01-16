@@ -14,9 +14,7 @@ configuration{
 * {
     bg: #0F1014FF;
     text: #868690FF;
-    match: #B6BAC8FF;
     selection: #999EB2FF;
-    selection-text: #E2E4EDFF;
     selection-match: #2B2E39;
     border: #1F1F24FF;
     red: #ADB1C1;
