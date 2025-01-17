@@ -54,8 +54,8 @@ autocmd({ "FileType" }, {
     end,
 })
 
--- specify different tab widths on certain files
 autocmd("FileType", {
+    desc = "Set indent to 2 on certain files",
     pattern = OPTIONS.two_space_indents,
     callback = function()
         local setlocal = vim.opt_local

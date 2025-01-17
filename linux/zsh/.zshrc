@@ -41,6 +41,10 @@ plug "$ZDOTDIR/function.zsh"
 # Must be at the end of the file
 plug "zsh-users/zsh-syntax-highlighting"
 
+if [[ -t 1 ]]; then
+    export GPG_TTY=$(tty)
+fi
+
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 
