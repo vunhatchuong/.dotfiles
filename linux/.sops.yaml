@@ -1,0 +1,14 @@
+stores:
+  json:
+    indent: 2
+  json_binary:
+    indent: 2
+  yaml:
+    indent: 2
+
+creation_rules:
+  - pgp: >-
+      <fingerprint>
+  # upon creation of a file that matches the pattern *.secret.yaml,
+  - path_regex: \.secret\.yaml$
+    pgp: "<fingerprint>"

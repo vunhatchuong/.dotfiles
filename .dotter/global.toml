@@ -49,6 +49,7 @@ depends = ["general"]
 "./linux/waybar" = "~/.config/waybar"
 "./linux/wlogout" = "~/.config/wlogout"
 "./linux/zsh" = "~/.config/zsh"
+"./linux/.sops.yaml" = "~/.sops.yaml"
 "./linux/.vimrc" = "~/.vimrc"
 "./linux/.zshenv" = "~/.zshenv"
 
