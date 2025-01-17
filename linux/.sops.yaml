@@ -8,7 +8,7 @@ stores:
 
 creation_rules:
   - pgp: >-
-      <fingerprint>
+      E92DE78B88A2C7A7ACE19458B396606FE1B7B6FA
   # upon creation of a file that matches the pattern *.secret.yaml,
   - path_regex: \.secret\.yaml$
-    pgp: "<fingerprint>"
+    pgp: "E92DE78B88A2C7A7ACE19458B396606FE1B7B6FA"

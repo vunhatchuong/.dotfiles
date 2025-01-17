@@ -28,7 +28,7 @@ depends = ["general"]
 depends = ["general"]
 
 [linux.files]
-"./linux/.gnupg" = "~/.gnupg"
+#"./linux/.gnupg" = "~/.gnupg"
 "./linux/bin" = { target = "~/bin", type = "template" }
 "./linux/broot" = "~/.config/broot"
 "./linux/direnv" = "~/.config/direnv"
