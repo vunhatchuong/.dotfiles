@@ -179,7 +179,7 @@ autocmd("FileType", {
 -- })
 
 autocmd({ "InsertEnter", "CmdlineEnter" }, {
-    desc = "Remove hl search when enter Insert",
+    desc = "Remove search hl when enter Insert",
     callback = vim.schedule_wrap(function()
         vim.cmd.nohlsearch()
     end),
