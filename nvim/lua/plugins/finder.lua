@@ -52,7 +52,7 @@ return {
             },
         },
         opts = {
-            "border-fused",
+            { "border-fused", "hide" },
             fzf_colors = true,
             defaults = {
                 formatter = "path.dirname_first",
