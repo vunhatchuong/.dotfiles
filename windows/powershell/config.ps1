@@ -28,5 +28,5 @@ Set-PSFzfOption -PSReadLineChordProvider 'Ctrl+f' -PSReadLineChordReverseHistory
 . "$PSScriptRoot/alias.ps1"
 . "$PSScriptRoot/function.ps1"
 . "$PSScriptRoot/git.ps1"
-. "$PSScriptRoot/conda.ps1"
-. "$PSScriptRoot/export.ps1"
+#. "$PSScriptRoot/conda.ps1"
+#. "$PSScriptRoot/export.ps1"

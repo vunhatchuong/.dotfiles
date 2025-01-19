@@ -51,6 +51,16 @@ bashAlias gdc "git diff --cached @args"
 bashAlias gp "git push @args"
 bashAlias gpd "git push --dry-run @args"
 
-bashAlias glo "git log --oneline --decorate"
+#bashAlias glo "git log --oneline --decorate"
 bashAlias glog "git log --oneline --decorate --graph"
-bashAlias "glp" "pretty-git-log"
+bashAlias glo "pretty-git-log"
+
+bashAlias gwt "git worktree @args"
+bashAlias gwtls "git worktree list @args"
+bashAlias gwta "git worktree add @args"
+bashAlias gwtrm "git worktree remove @args"
+bashAlias gwtmv "git worktree move @args"
+
+bashAlias gstl "git stash list @args"
+bashAlias gstp "git stash pop @args"
+bashAlias gstd "git stash drop @args"
