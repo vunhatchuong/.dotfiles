@@ -57,34 +57,10 @@ return {
         opts = { additional_targets = { "<", ">" } },
     },
     {
-        "vunhatchuong/telescope-jumps.nvim",
-        enabled = false,
-        dependencies = { { "nvim-telescope/telescope.nvim" } },
-        keys = { { "<C-o>", "<CMD>Telescope jumps jumpbuff<CR>" } },
-        opts = {
-            extensions = {
-                jumps = {
-                    -- max_results = 5,
-                    line_distance = 3,
-                },
-            },
-        },
-        config = function(_, opts)
-            require("telescope").setup(opts)
-            require("telescope").load_extension("jumps")
-        end,
-    },
-    {
         "vunhatchuong/fzf-lua-jumplist.nvim",
+        enabled = true,
         dependencies = { "ibhagwan/fzf-lua" },
-        keys = {
-            {
-                "<C-o>",
-                function()
-                    require("fzf-lua-jumplist").jumplist()
-                end,
-            },
-        },
+        keys = { { "<C-o>", "<CMD>FzfLuaJumplist<CR>" } },
         opts = {
             start_of_line = false,
             -- max_result = 5,

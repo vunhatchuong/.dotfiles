@@ -163,6 +163,7 @@ return {
                 "blink-cmp-signature",
                 "blink-cmp-documentation",
                 "minifiles",
+                "fzf",
             },
             marks = {
                 GitAdd = { text = "│" },
