@@ -10,12 +10,7 @@ return {
             "html",
             "http",
             "gitignore",
-            "markdown",
-            "markdown_inline",
             "query",
-            "json",
-            "jsonc",
-            "yaml",
             "toml",
             "xml",
             "regex",
@@ -26,7 +21,6 @@ return {
             "shfmt",
 
             "typos-lsp", -- code spellchecker
-            -- "ltex-ls-plus", -- natural language linter
 
             "html-lsp",
             "prettier",

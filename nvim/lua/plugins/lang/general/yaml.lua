@@ -1,7 +1,7 @@
 return {
     Util.tool_installer.ensure_installed({
         treesitter = { "yaml" },
-        mason = {},
+        mason = { "yamlls" },
     }),
     {
         "b0o/SchemaStore.nvim",

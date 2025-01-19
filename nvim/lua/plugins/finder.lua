@@ -34,7 +34,7 @@ return {
                 desc = "[F]ind [T]ext",
                 function()
                     local path, prompt_title = Util.get_folder_location()
-                    require("fzf-lua").live_grep_native({ cwd = path, winopts = { title = prompt_title } })
+                    require("fzf-lua").live_grep_glob({ cwd = path, winopts = { title = prompt_title } })
                 end,
             },
             {
@@ -45,13 +45,18 @@ return {
                     require("fzf-lua").grep_cword({ cwd = path, winopts = { title = prompt_title } })
                 end,
             },
+            {
+                "<leader>,",
+                desc = "FzfLua: Buffers",
+                function() require("fzf-lua").buffers() end,
+            },
         },
         opts = {
             "border-fused",
             fzf_colors = true,
             defaults = {
                 formatter = "path.dirname_first",
-                -- git_icons = false, -- display git status
+                git_icons = true, -- display git status
                 file_icons = false,
             },
             winopts = {
@@ -82,10 +87,14 @@ return {
             },
             files = {
                 previewer = false,
-                winopts = { width = 0.6, height = 0.8 },
+                winopts = { width = 0.5, height = 0.8 },
+            },
+            buffers = {
+                previewer = false,
+                winopts = { width = 0.5, height = 0.8 },
             },
             grep = {
-                fzf_opts = { ["--ansi"] = false },
+                -- fzf_opts = { ["--ansi"] = false },
                 grep_opts = "--color=never --binary-files=without-match --line-number --recursive --perl-regexp -e",
                 rg_opts = " --color=never --column --line-number --no-heading --smart-case --max-columns=4096 -e",
             },
@@ -112,4 +121,24 @@ return {
             },
         },
     },
+    -- {
+    --     "snacks.nvim",
+    --     opts = {
+    --         ---@type snacks.picker.Config
+    --         picker = {
+    --             sources = {
+    --                 files = {
+    --                     -- cwd = "",
+    --                     layout = {
+    --                         -- layout = {
+    --                         --     title = "hello",
+    --                         -- },
+    --                         preview = false,
+    --                         preset = "vertical",
+    --                     },
+    --                 },
+    --             },
+    --         },
+    --     },
+    -- },
 }
