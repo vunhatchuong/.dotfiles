@@ -68,9 +68,6 @@ return {
                         number = false,
                     },
                 },
-                on_create = function()
-                    vim.b.miniindentscope_disable = true
-                end,
             },
             previewers = {
                 builtin = {

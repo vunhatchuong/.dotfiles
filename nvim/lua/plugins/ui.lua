@@ -144,53 +144,6 @@ return {
         },
     },
     {
-        "echasnovski/mini.indentscope",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        init = function()
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = {
-                    "netrw",
-                    "help",
-                    "lspinfo",
-                    "lazy",
-                    "mason",
-                    "oil",
-                    "trouble",
-                    "TelescopePrompt",
-                    "fzf",
-                    "undotree",
-                    "grapple",
-                    "notify",
-                    "snacks_dashboard",
-                    "snacks_notif",
-                    "snacks_terminal",
-                    "snacks_win",
-                    "toggleterm",
-                },
-                callback = function()
-                    vim.b.miniindentscope_disable = true
-                end,
-
-                vim.api.nvim_set_hl(
-                    0,
-                    "MiniIndentscopeSymbol",
-                    { link = "Special" }
-                ),
-            })
-        end,
-        opts = {
-            -- symbol = "╷",
-            -- symbol = "┃",
-            symbol = "│",
-            options = { indent_at_cursor = true, try_as_border = true },
-            draw = {
-                animation = function()
-                    return 0
-                end,
-            },
-        },
-    },
-    {
         "petertriho/nvim-scrollbar",
         event = "VeryLazy",
         opts = {
