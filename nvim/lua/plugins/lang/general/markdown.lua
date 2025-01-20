@@ -48,6 +48,35 @@ return {
         },
     },
     {
+        "mfussenegger/nvim-lint",
+        optional = true,
+        opts = {
+            linters_by_ft = {
+                markdown = { "markdownlint-cli2" },
+            },
+        },
+    },
+    {
+        "stevearc/conform.nvim",
+        optional = true,
+        opts = {
+            formatters = {
+                ["markdownlint-cli2"] = {
+                    condition = function(_, ctx)
+                        local diag = vim.tbl_filter(function(d)
+                            return d.source == "markdownlint"
+                        end, vim.diagnostic.get(ctx.buf))
+                        return #diag > 0
+                    end,
+                },
+            },
+            formatters_by_ft = {
+                ["markdown"] = { "prettier", "markdownlint-cli2" },
+                ["markdown.mdx"] = { "prettier", "markdownlint-cli2" },
+            },
+        },
+    },
+    {
         "iamcco/markdown-preview.nvim",
         ft = { "markdown" },
         cmd = {
@@ -70,6 +99,7 @@ return {
             vim.g.mkdp_auto_close = 0
         end,
     },
+    ----- Additional plugins -----
     {
         "MeanderingProgrammer/render-markdown.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter" },

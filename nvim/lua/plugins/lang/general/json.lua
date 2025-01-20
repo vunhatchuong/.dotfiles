@@ -35,6 +35,16 @@ return {
         },
     },
     {
+        "stevearc/conform.nvim",
+        optional = true,
+        opts = {
+            formatters_by_ft = {
+                json = { "prettier" },
+            },
+        },
+    },
+    ----- Additional plugins -----
+    {
         "Myzel394/jsonfly.nvim",
         dependencies = {
             "nvim-telescope/telescope.nvim",

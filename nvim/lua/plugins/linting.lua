@@ -12,7 +12,6 @@ return {
                 -- Use the "_" filetype to run linters on filetypes that don't have other linters configured.
                 -- ['_'] = { 'fallback linter' },
                 sql = { "sqlfluff" },
-                -- lua = { "selene" },
             },
             -- LazyVim extension to easily override linter options
             -- or add custom linters.
@@ -28,6 +27,7 @@ return {
                 -- },
             },
         },
+        -- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/linting.lua
         config = function(_, opts)
             local M = {}
 
@@ -39,6 +39,13 @@ return {
                 then
                     lint.linters[name] =
                         vim.tbl_deep_extend("force", lint.linters[name], linter)
+                    if type(linter.prepend_args) == "table" then
+                        lint.linters[name].args = lint.linters[name].args or {}
+                        vim.list_extend(
+                            lint.linters[name].args,
+                            linter.prepend_args
+                        )
+                    end
                 else
                     lint.linters[name] = linter
                 end
@@ -46,7 +53,7 @@ return {
             lint.linters_by_ft = opts.linters_by_ft
 
             function M.debounce(ms, fn)
-                local timer = vim.loop.new_timer()
+                local timer = vim.uv.new_timer()
                 return function(...)
                     local argv = { ... }
                     timer:start(ms, 0, function()
@@ -55,13 +62,15 @@ return {
                     end)
                 end
             end
-
             function M.lint()
                 -- Use nvim-lint's logic first:
                 -- * checks if linters exist for the full filetype first
                 -- * otherwise will split filetype by "." and add all those linters
                 -- * this differs from conform.nvim which only uses the first filetype that has a formatter
                 local names = lint._resolve_linter_by_ft(vim.bo.filetype)
+
+                -- Create a copy of the names table to avoid modifying the original.
+                names = vim.list_extend({}, names)
 
                 -- Add fallback linters.
                 if #names == 0 then
@@ -77,7 +86,10 @@ return {
                 names = vim.tbl_filter(function(name)
                     local linter = lint.linters[name]
                     if not linter then
-                        vim.notify("Linter not found: " .. name)
+                        vim.notify(
+                            "Linter not found: " .. name,
+                            vim.log.levels.WARN
+                        )
                     end
                     return linter
                         and not (
@@ -92,6 +104,7 @@ return {
                     lint.try_lint(names)
                 end
             end
+
             vim.api.nvim_create_autocmd(opts.events, {
                 group = vim.api.nvim_create_augroup(
                     "nvim-lint",
@@ -99,15 +112,6 @@ return {
                 ),
                 callback = M.debounce(100, M.lint),
             })
-            local lint_progress = function()
-                local linters = require("lint").get_running()
-                if #linters == 0 then
-                    vim.notify("󰦕")
-                    return
-                end
-                vim.notify("󱉶 " .. table.concat(linters, ", "))
-            end
-            vim.keymap.set("n", "<leader>tt", lint_progress)
         end,
     },
 }
