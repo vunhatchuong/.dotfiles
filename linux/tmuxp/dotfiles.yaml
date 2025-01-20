@@ -6,3 +6,7 @@ windows:
       start_directory: linux
     - window_name: nvim
       start_directory: nvim
+    - window_name: nixos-hyprland
+      start_directory: ../nixos-hyprland
+    - window_name: arch-hyprland
+      start_directory: ../arch-hyprland

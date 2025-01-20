@@ -1,5 +1,0 @@
-aptPkgs = ["curl", "tmux", "zsh", "xclip", "tree", "fzf", "fd", "ripgrep"]
-PacstallPkgs = ["lazygit", "zoxide", "go", "starship", "btop", "bottom", "bat", "eza", "neovim"]
-curlPkgs = [dotter", "zap", "micromamba"]
-PacstallGuiPkgs = ["alacritty"]
-

@@ -8,6 +8,7 @@ function port() {
     # Check if the first argument is a valid state
     if [[ $# -gt 0 && "$1" =~ ^(LISTEN|ESTABLISHED|CLOSE_WAIT|SYN_SENT|TIME_WAIT)$ ]]; then
         state=$1
+        echo -e "󰄢 \033[1;34mFiltered by state:\033[0m $state"
         shift  # Remove the state argument
     fi
 
@@ -16,6 +17,7 @@ function port() {
     # Build the port filter if ports are specified
     if [[ ${#ports[@]} -gt 0 ]]; then
         port_filter=":${ports[*]}"
+        echo -e "󰇮 \033[1;34mFiltered by port(s):\033[0m ${ports[*]}"
     fi
 
     if [[ -z $state ]]; then
@@ -26,7 +28,6 @@ function port() {
         lsof -nP -iTCP"$port_filter" -sTCP:$state
     fi
 }
-
 
 # https://github.com/mong8se/actually.fish
 _actually() {
