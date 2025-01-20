@@ -129,4 +129,11 @@ return {
         cmd = "MarkdownLinkPaste",
         opts = {},
     },
+    {
+        "wurli/contextindent.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        ft = { "markdown" },
+        -- which ft this plugin will affect (see :help autocommand-pattern).
+        opts = { pattern = "*" },
+    },
 }
