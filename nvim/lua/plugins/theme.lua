@@ -31,7 +31,6 @@ return {
                     vim.g.solid_float_border = true
                     vim.g.colorize_diagnostic_underline_text = true
                 end,
-                -- whitelist = { "tokyonight-night", "tokyonight-day" },
                 blacklist = { "randombones", "forestbones", "seoulbones" },
             },
             "Hiroya-W/sequoia-moonlight.nvim",
@@ -90,6 +89,8 @@ return {
             },
             daylight = {
                 enable = true,
+                day_start = 8,
+                night_start = 13,
             },
         },
     },
