@@ -2,11 +2,8 @@ return {
     { -- For clickable Breakpoints: https://github.com/luukvbaal/statuscol.nvim
         "mfussenegger/nvim-dap",
         dependencies = {
-            { "rcarriga/nvim-dap-ui" },
-            {
-                "theHamsta/nvim-dap-virtual-text",
-                opts = {},
-            },
+            { "igorlfs/nvim-dap-view", opts = {} },
+            { "theHamsta/nvim-dap-virtual-text", opts = {} },
         },
         -- stylua: ignore
         keys = {
@@ -45,29 +42,6 @@ return {
     },
 
     {
-        "rcarriga/nvim-dap-ui",
-        dependencies = { "nvim-neotest/nvim-nio" },
-        -- stylua: ignore
-        keys = {
-            { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
-            { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
-        },
-        opts = {},
-        config = function(_, opts)
-            local dap, dapui = require("dap"), require("dapui")
-            dapui.setup(opts)
-            dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open({})
-            end
-            dap.listeners.before.event_terminated["dapui_config"] = function()
-                dapui.close({})
-            end
-            dap.listeners.before.event_exited["dapui_config"] = function()
-                dapui.close({})
-            end
-        end,
-    },
-    {
         "jay-babu/mason-nvim-dap.nvim",
         dependencies = "mason.nvim",
         cmd = { "DapInstall", "DapUninstall" },
@@ -79,5 +53,34 @@ return {
         },
         -- mason-nvim-dap is loaded when nvim-dap loads
         config = function() end,
+    },
+    {
+        "igorlfs/nvim-dap-view",
+        -- stylua: ignore
+        keys = {
+            { "<leader>du", function() require("dap-view").toggle() end, desc = "Dap View" },
+            -- { "<leader>de", function() require("dapui").eval() end,     desc = "Eval",  mode = { "n", "v" } },
+        },
+        opts = {},
+        config = function(_, opts)
+            local dap, dapview = require("dap"), require("dap-view")
+            dapview.setup(opts)
+            dap.listeners.after.event_initialized["dapview-config"] = function()
+                dapview.open()
+                vim.keymap.set(
+                    "n",
+                    "<leader><leader>",
+                    "<cmd>lua require('dap').step_over()<cr>",
+                    { noremap = true, silent = true }
+                )
+            end
+            dap.listeners.before.event_terminated["dapview-config"] = function()
+                dapview.close()
+                vim.keymap.del("n", "<leader><leader>")
+            end
+            dap.listeners.before.event_exited["dapview-config"] = function()
+                dapview.close()
+            end
+        end,
     },
 }
