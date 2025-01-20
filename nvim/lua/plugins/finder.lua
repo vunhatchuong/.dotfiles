@@ -84,6 +84,7 @@ return {
             },
             files = {
                 previewer = false,
+                file_icons = true,
                 winopts = { width = 0.5, height = 0.8 },
             },
             buffers = {
@@ -118,24 +119,32 @@ return {
             },
         },
     },
-    -- {
-    --     "snacks.nvim",
-    --     opts = {
-    --         ---@type snacks.picker.Config
-    --         picker = {
-    --             sources = {
-    --                 files = {
-    --                     -- cwd = "",
-    --                     layout = {
-    --                         -- layout = {
-    --                         --     title = "hello",
-    --                         -- },
-    --                         preview = false,
-    --                         preset = "vertical",
-    --                     },
-    --                 },
-    --             },
-    --         },
-    --     },
-    -- },
+    {
+        "snacks.nvim",
+        opts = {
+            ---@type snacks.picker.Config
+            picker = {
+                sources = {
+                    files = {
+                        -- cwd = "",
+                        layout = {
+                            -- layout = {
+                            --     title = "hello",
+                            -- },
+                            preview = false,
+                            preset = "vertical",
+                        },
+                    },
+                },
+                win = {
+                    input = {
+                        keys = {
+                            ["<C-c>"] = { "close", mode = "i" },
+                            ["<Esc>"] = { "close", mode = { "n", "i" } },
+                        },
+                    },
+                },
+            },
+        },
+    },
 }
