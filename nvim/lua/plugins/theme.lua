@@ -31,11 +31,24 @@ return {
                     vim.g.solid_float_border = true
                     vim.g.colorize_diagnostic_underline_text = true
                 end,
-                blacklist = { "randombones", "forestbones", "seoulbones" },
+                blacklist = {
+                    "randombones",
+                    "zenbones",
+                    "forestbones",
+                    "seoulbones",
+                    "nordbones",
+                    "zenburned",
+                },
             },
             "Hiroya-W/sequoia-moonlight.nvim",
-            { "slugbyte/lackluster.nvim" },
-            { "tek256/simple-dark" },
+            {
+                "slugbyte/lackluster.nvim",
+                blacklist = { "lackluster" },
+            },
+            {
+                "tek256/simple-dark",
+                blacklist = { "simple-dark-transparent" },
+            },
             { "aktersnurra/no-clown-fiesta.nvim" },
             { "aliqyan-21/darkvoid.nvim" },
             {
@@ -48,23 +61,27 @@ return {
                         { "qf", "lazy", "mason", "help" }
                 end,
             },
-            { "wnkz/monoglow.nvim" },
+            {
+                "wnkz/monoglow.nvim",
+                blacklist = { "monoglow" },
+            },
             { "bettervim/yugen.nvim" },
             { "kyazdani42/blue-moon" },
             { "rockerBOO/boo-colorscheme-nvim" },
             { "wadackel/vim-dogrun" },
             -- { "anAcc22/sakura.nvim" }, -- Missing lush
             { "Yazeed1s/oh-lucy.nvim" },
-            { "Shadorain/shadotheme" },
+            {
+                "Shadorain/shadotheme",
+                blacklist = { "shado-legacy" },
+            },
             { "blazkowolf/gruber-darker.nvim" },
             { "kvrohit/substrata.nvim" },
             { "mcauley-penney/ice-cave.nvim" },
-            { "ronisbr/nano-theme.nvim" },
             { "ramojus/mellifluous.nvim" },
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
             { "datsfilipe/vesper.nvim" },
-            { "FrenzyExists/aquarium-vim" },
             -- { "rithikasilva/monoplus.nvim" },
             { "rithikasilva/sequoia-monochrome.nvim" },
             { "kdheepak/monochrome.nvim" },
@@ -74,9 +91,6 @@ return {
             { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
         },
-        config = function(_, opts)
-            require("themify").setup(opts)
-        end,
     },
     {
         "vunhatchuong/themify-extras.nvim",
