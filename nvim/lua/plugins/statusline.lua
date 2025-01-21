@@ -3,6 +3,9 @@ return {
         -- Show amount of lines in a file?
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
+        dependencies = {
+            "niilohlin/pure_branch.nvim",
+        },
         init = function()
             vim.g.lualine_laststatus = vim.o.laststatus
             if vim.fn.argc(-1) > 0 then
@@ -27,35 +30,8 @@ return {
                     disabled_filetypes = {
                         statusline = { "snacks_dashboard" },
                     },
-                    -- stylua: ignore
-                    theme = {
-                        normal = {
-                            a = { fg = Util.statusline.get_hl_color("WarningMsg"), bg = "bg" },
-                            b = { fg = "fg", bg = "bg" },
-                            c = { fg = "fg", bg = "bg" },
-                        },
-                        insert = {
-                            a = { fg = Util.statusline.get_hl_color("Function"), bg = "bg" },
-                            b = { fg = "fg", bg = "bg" },
-                            c = { fg = "fg", bg = "bg" },
-                        },
-                        visual = {
-                            a = { fg = Util.statusline.get_hl_color("Keyword"), bg = "bg" },
-                            b = { fg = "fg", bg = "bg" },
-                            c = { fg = "fg", bg = "bg" },
-                        },
-                        replace = {
-                            a = { fg = Util.statusline.get_hl_color("Boolean"), bg = "bg" },
-                            b = { fg = "fg", bg = "bg" },
-                            c = { fg = "fg", bg = "bg" },
-                        },
-                        command = {
-                            a = { fg = Util.statusline.get_hl_color("String"), bg = "bg" },
-                            b = { fg = "fg", bg = "bg" },
-                            c = { fg = "fg", bg = "bg" },
-                        },
-                    },
                     globalstatus = vim.o.laststatus == 3,
+                    theme = Util.statusline.theme,
                     component_separators = "",
                     section_separators = "",
                 },
@@ -69,7 +45,8 @@ return {
                         },
                     },
                     lualine_b = {
-                        { "branch", icon = "" },
+                        -- { "branch", icon = "" }
+                        { require("pure_branch").pure_branch },
                         {
                             "diff",
                             diff_color = {
@@ -91,12 +68,7 @@ return {
                         },
                     },
                     lualine_c = {
-                        {
-                            "grapple",
-                            -- icon = "",
-                            inactive = "%s",
-                            -- padding = { left = 1, right = 5 },
-                        },
+                        -- { "grapple", inactive = "%s" },
                         -- Mid align
                         -- "%=",
                         -- {
@@ -110,15 +82,6 @@ return {
                         --     color = "Comment",
                         --     symbols = { modified = "", readonly = "" },
                         --     padding = { right = 1 },
-                        -- },
-                        -- {
-                        --     function()
-                        --         return require("grapple").name_or_index()
-                        --     end,
-                        --     cond = function()
-                        --         return package.loaded["grapple"]
-                        --             and require("grapple").exists()
-                        --     end,
                         -- },
                     },
                     -- Right
@@ -149,7 +112,6 @@ return {
                         },
                         {
                             Util.statusline.get_lsp_names,
-                            icon = "",
                             color = "Comment",
                         },
                     },
@@ -180,6 +142,7 @@ return {
                             symbols = { modified = "", readonly = "" },
                             padding = { right = 1 },
                         },
+                        { "grapple", inactive = "%s" },
                     },
                 },
                 extensions = {

@@ -128,13 +128,15 @@ autocmd("FileType", {
 })
 
 autocmd({ "BufWritePre" }, {
-    desc = "Remove things when save",
+    desc = "Remove things when save, retain cursor position",
     pattern = "*",
     callback = function()
+        local save_cursor = vim.fn.getpos(".")
         -- Remove Ctrl+M (^M)
         vim.cmd([[ %s/]] .. string.char(13) .. [[//ge ]])
         -- Remove trailing whitespaces
         vim.cmd([[ %s/\s\+$//e ]])
+        vim.fn.setpos(".", save_cursor)
     end,
 })
 

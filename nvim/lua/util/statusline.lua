@@ -3,6 +3,16 @@ local opt = vim.opt
 ---@class util.statusline
 local M = {}
 
+function M.theme()
+    return {
+        normal = { a = { fg = M.get_hl_color("WarningMsg"), gui = "bold" } },
+        insert = { a = { fg = M.get_hl_color("Function"), gui = "bold" } },
+        visual = { a = { fg = M.get_hl_color("Keyword"), gui = "bold" } },
+        replace = { a = { fg = M.get_hl_color("Boolean"), gui = "bold" } },
+        command = { a = { fg = M.get_hl_color("String"), gui = "bold" } },
+    }
+end
+
 function M.indent_status()
     if not opt.expandtab:get() then
         return "Tab:" .. opt.tabstop:get() .. " "
@@ -50,33 +60,37 @@ function M.mixed_indent()
     return "Mix:" .. space_indent
 end
 
+local ignored_lsp = {
+    "typos_lsp",
+    "null-ls",
+}
 -- https://github.com/dgox16/dotfiles/blob/main/.config/nvim/lua/configs/lualine.lua#L92
 function M.get_lsp_names()
     local bufnr = vim.api.nvim_get_current_buf()
     local buf_clients = vim.lsp.get_clients({ bufnr = bufnr })
-    if next(buf_clients) == nil then
-        return "No servers"
+
+    if vim.tbl_isempty(buf_clients) then
+        return "%#Removed#󰶐%#Normal# No servers"
     end
 
-    local buf_client_names = {}
-    for _, client in pairs(buf_clients) do
-        if client.name ~= "typos_lsp" and client.name ~= "null-ls" then
-            table.insert(buf_client_names, client.name)
+    local seen = {}
+    local lsp_names = {}
+
+    for _, client in ipairs(buf_clients) do
+        if
+            not vim.tbl_contains(ignored_lsp, client.name)
+            and not seen[client.name]
+        then
+            table.insert(lsp_names, client.name)
+            seen[client.name] = true
         end
     end
 
-    local hash = {}
-    local unique_client_names = {}
-
-    for _, v in ipairs(buf_client_names) do
-        if not hash[v] then
-            unique_client_names[#unique_client_names + 1] = v
-            hash[v] = true
-        end
+    if vim.tbl_isempty(lsp_names) then
+        return "%#Removed#󰶐%#Normal# No servers"
     end
-    local language_servers = table.concat(unique_client_names, ", ")
 
-    return language_servers
+    return "%#Added#󰍹%#Normal# " .. table.concat(lsp_names, ", ")
 end
 
 -- Credits to https://github.com/chrisgrieser/.config/blob/main/nvim/lua/plugins/lualine.lua#L4
