@@ -138,13 +138,19 @@ return {
                 },
                 win = {
                     input = {
+                        --stylua: ignore
                         keys = {
-                            ["<C-c>"] = { "close", mode = "i" },
                             ["<Esc>"] = { "close", mode = { "n", "i" } },
+                            ["<c-u>"] = { "preview_scroll_up", mode = { "i", "n" } },
+                            ["<c-d>"] = { "preview_scroll_down", mode = { "i", "n" } },
                         },
                     },
                 },
             },
+        },
+        --stylua: ignore
+        keys = {
+            { "<leader>u", function() Snacks.picker.undo() end, desc = "Undo Tree" },
         },
     },
 }

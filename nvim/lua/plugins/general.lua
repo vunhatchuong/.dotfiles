@@ -1,12 +1,5 @@
 return {
     {
-        "mbbill/undotree",
-        cmd = { "UndotreeToggle" },
-        keys = {
-            { "<leader>u", "<CMD>UndotreeToggle<CR>", desc = "Undo Tree" },
-        },
-    },
-    {
         "chrisgrieser/nvim-early-retirement",
         event = "BufAdd",
         opts = {
