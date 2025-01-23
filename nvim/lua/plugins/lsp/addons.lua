@@ -91,8 +91,6 @@ return {
             { "gd",         "<CMD>Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
             { "gr",         "<CMD>Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
             { "<leader>ca", "<CMD>Lspsaga code_action<CR>",          desc = "[C]ode [A]ction" },
-            { "]d",         "<CMD>Lspsaga diagnostic_jump_next<CR>", desc = "Diagnostic jump next" },
-            { "[d",         "<CMD>Lspsaga diagnostic_jump_prev<CR>", desc = "Diagnostic jump prev" },
         },
         opts = function()
             local icons = require("core.icons")

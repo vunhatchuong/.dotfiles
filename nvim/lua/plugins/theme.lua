@@ -88,7 +88,7 @@ return {
             { "kvrohit/rasmus.nvim" },
             -- { "Wansmer/serenity.nvim" },
             -- Light Theme
-            { "yorickpeterse/nvim-grey" },
+            -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
         },
     },

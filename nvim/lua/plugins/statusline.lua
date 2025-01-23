@@ -21,8 +21,6 @@ return {
             local lualine_require = require("lualine_require")
             lualine_require.require = require
 
-            local icons = require("core.icons")
-
             vim.o.laststatus = vim.g.lualine_laststatus
 
             return {
@@ -90,14 +88,7 @@ return {
                         {
                             "diagnostics",
                             always_visible = true,
-                            -- sections = { "error", "warn", "info", "hint" },
                             sections = { "error", "warn", "info" },
-                            -- symbols = {
-                            --     error = icons.diagnostics.Error,
-                            --     warn = icons.diagnostics.Warning,
-                            --     info = icons.diagnostics.Information,
-                            --     hint = icons.diagnostics.Hint,
-                            -- },
                             symbols = {
                                 error = "",
                                 warn = "",
