@@ -51,73 +51,84 @@ return {
                 function() require("fzf-lua").buffers() end,
             },
         },
-        opts = {
-            { "border-fused", "hide" },
-            fzf_colors = true,
-            defaults = {
-                formatter = "path.dirname_first",
-                git_icons = true, -- display git status
-                file_icons = false,
-            },
-            winopts = {
-                preview = {
-                    default = "bat",
-                    scrollbar = false,
-                    delay = 10,
-                    winopts = { -- builtin previewer window options
-                        number = false,
+        opts = function()
+            local fzf = require("fzf-lua")
+            local actions = fzf.actions
+
+            return {
+                { "border-fused", "hide" },
+                fzf_colors = true,
+                defaults = {
+                    formatter = "path.dirname_first",
+                    git_icons = true, -- display git status
+                    file_icons = false,
+                },
+                winopts = {
+                    preview = {
+                        default = "bat",
+                        scrollbar = false,
+                        delay = 10,
+                        winopts = { -- builtin previewer window options
+                            number = false,
+                        },
                     },
                 },
-            },
-            previewers = {
-                builtin = {
-                    extensions = {
-                        ["png"] = Util.finder.image_previewer(),
-                        ["jpg"] = Util.finder.image_previewer(),
-                        ["jpeg"] = Util.finder.image_previewer(),
-                        ["svg"] = { "chafa" },
-                        ["gif"] = Util.finder.image_previewer(),
-                        ["webp"] = Util.finder.image_previewer(),
+                previewers = {
+                    builtin = {
+                        extensions = {
+                            ["png"] = Util.finder.image_previewer(),
+                            ["jpg"] = Util.finder.image_previewer(),
+                            ["jpeg"] = Util.finder.image_previewer(),
+                            ["svg"] = { "chafa" },
+                            ["gif"] = Util.finder.image_previewer(),
+                            ["webp"] = Util.finder.image_previewer(),
+                        },
+                        ueberzug_scaler = "fit_contain",
                     },
-                    ueberzug_scaler = "fit_contain",
                 },
-            },
-            files = {
-                previewer = false,
-                file_icons = true,
-                winopts = { width = 0.5, height = 0.8 },
-            },
-            buffers = {
-                previewer = false,
-                winopts = { width = 0.5, height = 0.8 },
-            },
-            grep = {
-                -- fzf_opts = { ["--ansi"] = false },
-                grep_opts = "--color=never --binary-files=without-match --line-number --recursive --perl-regexp -e",
-                rg_opts = " --color=never --column --line-number --no-heading --smart-case --max-columns=4096 -e",
-            },
-            lsp = {
-                async = true,
-                jump_to_single_result = true,
-                -- ignore_current_line = true,
-                code_actions = {
-                    previewer = "codeaction_native",
+                actions = {
+                    files = {
+                        ["enter"] = actions.file_edit,
+                        ["ctrl-h"] = actions.toggle_hidden,
+                    },
                 },
-            },
-            oldfiles = { include_current_session = true },
-            keymap = {
-                builtin = {
-                    true,
-                    ["<C-d>"] = "preview-page-down",
-                    ["<C-u>"] = "preview-page-up",
+                files = {
+                    previewer = false,
+                    file_icons = true,
+                    winopts = { width = 0.5, height = 0.8 },
                 },
-                fzf = {
-                    true,
-                    ["ctrl-d"] = "preview-page-down",
-                    ["ctrl-u"] = "preview-page-up",
+                buffers = {
+                    previewer = false,
+                    winopts = { width = 0.5, height = 0.8 },
                 },
-            },
-        },
+                grep = {
+                    -- fzf_opts = { ["--ansi"] = false },
+                    grep_opts = "--color=never --binary-files=without-match --line-number --recursive --perl-regexp -e",
+                    rg_opts = " --color=never --column --line-number --no-heading --smart-case --max-columns=4096 -e",
+                },
+                lsp = {
+                    async = true,
+                    jump_to_single_result = true,
+                    -- ignore_current_line = true,
+                    code_actions = {
+                        previewer = "codeaction_native",
+                    },
+                },
+                oldfiles = { include_current_session = true },
+                keymap = {
+                    builtin = {
+                        true,
+                        ["<C-d>"] = "preview-page-down",
+                        ["<C-u>"] = "preview-page-up",
+                    },
+                    fzf = {
+                        true,
+                        ["ctrl-d"] = "preview-page-down",
+                        ["ctrl-u"] = "preview-page-up",
+                    },
+                },
+            }
+        end,
     },
     {
         "snacks.nvim",
