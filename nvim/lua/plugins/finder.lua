@@ -34,7 +34,7 @@ return {
                 desc = "[F]ind [T]ext",
                 function()
                     local path, prompt_title = Util.get_folder_location()
-                    require("fzf-lua").live_grep_glob({ cwd = path, winopts = { title = prompt_title } })
+                    require("fzf-lua").live_grep_native({ cwd = path, winopts = { title = prompt_title } })
                 end,
             },
             {
