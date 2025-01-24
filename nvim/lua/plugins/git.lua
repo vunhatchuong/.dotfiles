@@ -1,6 +1,28 @@
 return {
     {
+        "echasnovski/mini.diff",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+        keys = {
+            {
+                "<leader>hh",
+                function()
+                    require("mini.diff").toggle_overlay(0)
+                end,
+            },
+        },
+        opts = {
+            mappings = {
+                apply = "",
+                reset = "",
+                textobject = "",
+            },
+            delay = { text_change = math.huge },
+            options = { wrap_goto = true },
+        },
+    },
+    {
         "lewis6991/gitsigns.nvim",
+        enabled = false,
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         opts = {
             update_debounce = 3000,

@@ -173,7 +173,7 @@ return {
             handlers = {
                 cursor = false,
                 diagnostic = true,
-                gitsigns = true,
+                -- gitsigns = true,
             },
         },
     },
