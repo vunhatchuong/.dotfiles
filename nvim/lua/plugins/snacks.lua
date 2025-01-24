@@ -73,6 +73,42 @@ return {
                 end,
                 desc = "Maximize window",
             },
+            {
+                "o",
+                mode = "o",
+                desc = "Delete outer scope",
+                -- stylua: ignore
+                function()
+                    local operator = vim.v.operator
+                    if operator == "d" then
+                        local scope = require("snacks").scope.get()
+                        if scope == nil then return "o" end
+
+                        local top = scope.from
+                        local bottom = scope.to
+
+                        local ns = vim.api.nvim_create_namespace("border")
+
+                        vim.api.nvim_buf_set_extmark(0, ns, top - 1, 0, {
+                            hl_mode = "combine",
+                            line_hl_group = "Substitute",
+                        })
+                        vim.api.nvim_buf_set_extmark(0, ns, bottom - 1, 0, {
+                            hl_mode = "combine",
+                            line_hl_group = "Substitute",
+                        })
+
+                        vim.defer_fn(function()
+                            vim.api.nvim_command("undojoin")
+                            vim.api.nvim_buf_set_text(0, top - 1, 0, top - 1, -1, {})
+                            vim.api.nvim_buf_set_text(0, bottom - 1, 0, bottom - 1, -1, {})
+                            vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+                        end, 10)
+                    else
+                        return "o"
+                    end
+                end,
+            },
         },
     },
 }
