@@ -24,7 +24,7 @@ $scoopGeneral = @(
     "extras/lazygit"
     "extras/psfzf"
 
-    "main/gsudo"
+    "main/gsudo" # Can be replaced with builtin sudo: https://github.com/scottmckendry/Windots/commit/cf3af128e06334011fb1840dff682b63a497eaf7
     "extras/vlc"
     "extra/wiztree"
     "extras/revouninstaller"
