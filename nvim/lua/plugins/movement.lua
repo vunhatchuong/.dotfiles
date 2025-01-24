@@ -57,12 +57,11 @@ return {
         opts = { additional_targets = { "<", ">" } },
     },
     {
-        "vunhatchuong/fzf-lua-jumplist.nvim",
-        enabled = true,
-        dependencies = { "ibhagwan/fzf-lua" },
-        keys = { { "<C-o>", "<CMD>FzfLuaJumplist<CR>" } },
+        "vunhatchuong/buffer-jumplist.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
+        lazy = false,
+        keys = { { "<C-o>", "<CMD>BufferJumplist<CR>" } },
         opts = {
-            start_of_line = false,
             -- max_result = 5,
             line_distance_threshold = 3,
         },
