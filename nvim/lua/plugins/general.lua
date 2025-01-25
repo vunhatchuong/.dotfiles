@@ -13,13 +13,56 @@ return {
         event = "VeryLazy",
         -- stylua: ignore
         keys = {
-            { "<Left>",  function() require("origami").h() end },
             { "<Right>", function() require("origami").l() end },
+            { "l", function() require("origami").l() end },
         },
         opts = {
             -- This breaks fileline.nvim and actually.nvim
             keepFoldsAcrossSessions = false,
+            setupFoldKeymaps = false,
         },
+        config = function(_, opts)
+            require("origami").setup(opts)
+
+            -- Modified version of
+            -- https://github.com/chrisgrieser/nvim-origami/blob/main/lua/origami/fold-keymaps.lua
+            local function normal(cmdStr)
+                vim.cmd.normal({ cmdStr, bang = true })
+            end
+
+            local function h()
+                local config = require("origami.config").config
+                local count = vim.v.count1 -- count needs to be saved due to `normal` affecting it
+                for _ = 1, count, 1 do
+                    local scope = Snacks.scope.get()
+                    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+
+                    local onIndentOrFirstNonBlank = vim.api
+                        .nvim_get_current_line()
+                        :sub(1, col)
+                        :match("^%s*$")
+
+                    if
+                        onIndentOrFirstNonBlank
+                        and (row == scope.from or row == scope.to)
+                    then
+                        local wasFolded = pcall(normal, "zc")
+                        if not wasFolded then
+                            normal("h")
+                        end
+                    else
+                        normal("h")
+                    end
+                end
+            end
+
+            vim.keymap.set("n", "h", function()
+                h()
+            end, { desc = "Origami h" })
+            vim.keymap.set("n", "<Left>", function()
+                h()
+            end, { desc = "Origami left" })
+        end,
     },
     { -- Turn off features when file > ? MB
         "pteroctopus/faster.nvim",

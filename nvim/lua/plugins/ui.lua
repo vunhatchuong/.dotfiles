@@ -59,8 +59,6 @@ return {
                     view = "mini",
                 },
 
-                -- Skip search messages
-                { filter = { event = "msg_show", find = "^[/?]." }, skip = true },
                 {
                     filter = {
                         event = "msg_show",
@@ -71,16 +69,22 @@ return {
                             { find = "%d lines >ed %d time[s]?" },
                             { find = "%d lines yanked" },
                             { find = "^E36: Not enough room" },
+                            { find = "^[/?]."  }, -- Skip search messages
                         },
                     },
                     skip = true,
                 },
-
-                -- FIX https://github.com/artempyanykh/marksman/issues/348
-                { filter = { event = "notify", find = "^Client marksman quit with" }, skip = true },
-
-                -- code actions
-                { filter = { event = "notify", find = "No code actions available" }, skip = true },
+                {
+                    filter = {
+                        event = "notify",
+                        any = {
+                            { find = "^Client marksman quit with" }, -- FIX https://github.com/artempyanykh/marksman/issues/348
+                            { find = "No code actions available" },
+                            { find = "No information available" },
+                        },
+                    },
+                    skip = true,
+                },
             },
             views = {
                 cmdline_popup = {
