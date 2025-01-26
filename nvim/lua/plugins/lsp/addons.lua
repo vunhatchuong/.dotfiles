@@ -55,25 +55,6 @@ return {
         },
     },
     {
-        "ray-x/lsp_signature.nvim",
-        event = "BufReadPre", -- This event type is required
-        keys = {
-            {
-                "<leader>k",
-                function()
-                    vim.lsp.buf.signature_help()
-                end,
-                desc = "Toggle signature help",
-            },
-        },
-        opts = {
-            floating_window = false,
-            hint_enable = false,
-            hint_prefix = "󰏪 ",
-            hint_scheme = "@variable.parameter",
-        },
-    },
-    {
         "andymass/vim-matchup",
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function()
@@ -129,7 +110,7 @@ return {
                 local cur_word = vim.fn.expand("<cword>")
                 if
                     vim.tbl_isempty(vim.lsp.get_clients({
-                        bufnr = vim.api.nvim_get_current_buf(),
+                        bufnr = vim.api.nvim_get_cuurrent_buf(),
                     }))
                 then
                     return ":%s/" .. cur_word .. "//gc" .. ("<left>"):rep(3)

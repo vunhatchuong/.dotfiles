@@ -102,7 +102,10 @@ return {
             -- Disable floating win in ray-x/lsp_signature.nvim instead
             signature = {
                 enabled = true,
-                window = { border = vim.g.border_style },
+                window = {
+                    border = vim.g.border_style,
+                    show_documentation = true,
+                },
             },
             sources = {
                 default = function()
