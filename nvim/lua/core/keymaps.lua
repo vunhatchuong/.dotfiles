@@ -31,7 +31,7 @@ keymap("n", "x", '"_x', opts)
 keymap("n", "zo", "za", opts)
 keymap("v", "p", '"_dP', opts)
 
-keymap("n", "U", "<C-r>")  -- Redo with U
+keymap("n", "U", "<C-r>")
 keymap("i", "<C-p>", "<C-r>+", { desc = "Paste in insert mode" })
 keymap("i", "<C-v>", "<C-r>+")
 
@@ -114,4 +114,3 @@ pcall(del, "n", "grn")
 pcall(del, "n", "gra")
 pcall(del, "n", "grr")
 pcall(del, "n", "gri")
-
