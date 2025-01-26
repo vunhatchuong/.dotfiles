@@ -62,8 +62,13 @@ return {
                     formatter = "path.dirname_first",
                     git_icons = true, -- display git status
                     file_icons = false,
+                    no_header = true,
+                },
+                fzf_opts = {
+                    ["--no-scrollbar"] = true,
                 },
                 winopts = {
+                    backdrop = 100,
                     preview = {
                         default = "bat",
                         scrollbar = false,
