@@ -88,19 +88,9 @@ end, { noremap = true, expr = true })
 
 keymap("x", "<leader>ym", function()
     local filetype = vim.fn.expand("%:e")
+    local selection = Util.get_visual_selection()
 
-    -- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua#L192
-    local saved_reg = vim.fn.getreg("v")
-    vim.cmd [[noautocmd sil norm "vy]]
-    local selection = vim.fn.getreg("v")
-    vim.fn.setreg("v", saved_reg)
-
-    if selection == "" then
-        vim.notify("Nothing selected!")
-        return
-    end
-
-    local markdown = string.format("```%s\n%s\n```", filetype, selection)
+    local markdown = string.format("```%s\n%s```", filetype, selection)
     vim.fn.setreg("+", markdown)
 end, { desc = "Yank selection as markdown code block" })
 

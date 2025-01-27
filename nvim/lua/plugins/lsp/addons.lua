@@ -110,7 +110,7 @@ return {
                 local cur_word = vim.fn.expand("<cword>")
                 if
                     vim.tbl_isempty(vim.lsp.get_clients({
-                        bufnr = vim.api.nvim_get_cuurrent_buf(),
+                        bufnr = vim.api.nvim_get_current_buf(),
                     }))
                 then
                     return ":%s/" .. cur_word .. "//gc" .. ("<left>"):rep(3)

@@ -48,4 +48,23 @@ function M.get_folder_location()
     return path, prompt_title
 end
 
+-- https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua#L192
+-- https://github.com/Wansmer/nvim-config/blob/main/lua/utils.lua#L92
+--- Get the visual selection
+---
+--- @return string? selection The string from visual selection
+function M.get_visual_selection()
+    local saved_reg = vim.fn.getreg("v") -- Change to '"' register if doesn't work
+    vim.cmd([[noautocmd sil norm "vy]])
+    local selection = vim.fn.getreg("v")
+    vim.fn.setreg("v", saved_reg)
+
+    if selection == "" then
+        vim.notify("Nothing selected!")
+        return
+    end
+
+    return selection
+end
+
 return M
