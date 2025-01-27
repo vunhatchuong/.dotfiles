@@ -95,6 +95,7 @@ return {
                     files = {
                         ["enter"] = actions.file_edit,
                         ["ctrl-h"] = actions.toggle_hidden,
+                        ["ctrl-g"] = actions.toggle_ignore,
                     },
                 },
                 files = {
