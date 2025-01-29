@@ -203,7 +203,7 @@ return {
             auto_zen = true,
             maintain_zen = true,
             zen = {
-                diagnostics = true, -- disables diagnostics
+                diagnostics = true,
                 opts = {
                     colorcolumn = "",
                 },

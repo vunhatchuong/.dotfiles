@@ -44,7 +44,7 @@ return {
                     },
                     lualine_b = {
                         -- { "branch", icon = "" }
-                        { require("pure_branch").pure_branch },
+                        { require("pure_branch") },
                         {
                             "diff",
                             diff_color = {

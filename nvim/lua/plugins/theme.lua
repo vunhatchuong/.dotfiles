@@ -22,6 +22,7 @@ return {
         lazy = false,
         opts = {
             "default",
+            "macro",
             {
                 "mcchrish/zenbones.nvim",
                 before = function()
@@ -41,6 +42,7 @@ return {
                 },
             },
             "Hiroya-W/sequoia-moonlight.nvim",
+            { "rithikasilva/sequoia-monochrome.nvim" },
             {
                 "slugbyte/lackluster.nvim",
                 blacklist = { "lackluster" },
@@ -81,11 +83,17 @@ return {
             { "ramojus/mellifluous.nvim" },
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
+            { "drewxs/ash.nvim" },
             { "datsfilipe/vesper.nvim" },
             -- { "rithikasilva/monoplus.nvim" },
-            { "rithikasilva/sequoia-monochrome.nvim" },
             { "kdheepak/monochrome.nvim" },
             { "kvrohit/rasmus.nvim" },
+            { "masar3141/mono-jade" },
+            { "p00f/alabaster.nvim" },
+            { "gmr458/cold.nvim" },
+            { "water-sucks/darkrose.nvim" },
+            -- { "metalelf0/jellybeans-nvim" }, -- Required lush.nvim
+            { "idr4n/github-monochrome.nvim" },
             -- { "Wansmer/serenity.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
