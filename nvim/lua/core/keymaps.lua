@@ -23,7 +23,17 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>e", vim.cmd.Ex)
 keymap({ "i", "n" }, "<Esc>", "<CMD>noh<CR><Esc>", { desc = "Escape and Clear hlsearch" })
 keymap("n", "<leader>w", "<CMD>w<CR>", { desc = "Save", noremap = true, silent = true })
-keymap("n", "<leader>q", "<CMD>q<CR>", { desc = "Quit", noremap = true, silent = true })
+keymap("n", "<leader>q", function()
+    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.bo[buf].filetype == "focus-bg" then
+            local ok, focus = pcall(require, "focus")
+            if ok and focus then
+                focus.toggle({})
+            end
+        end
+    end
+    vim.cmd("q")
+end, { desc = "Quit", noremap = true, silent = true })
 
 keymap("n", "c", '"_c', opts)
 keymap("n", "C", '"_C', opts)

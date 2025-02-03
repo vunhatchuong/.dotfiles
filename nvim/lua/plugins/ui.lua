@@ -210,7 +210,7 @@ return {
             },
             plugins = {
                 gitsigns = { enabled = true },
-                -- todo = { enabled = false }, -- if set to "true", todo-comments.nvim highlights will be disabled
+                tmux = { enabled = true },
             },
         },
         config = function(_, opts)
@@ -220,6 +220,7 @@ return {
                 desc = "Enter Zen",
                 callback = function()
                     require("focus").toggle_zen({})
+                    require("focus").toggle({})
                 end,
             })
         end,
