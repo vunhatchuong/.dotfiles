@@ -94,6 +94,7 @@ return {
             { "water-sucks/darkrose.nvim" },
             -- { "metalelf0/jellybeans-nvim" }, -- Required lush.nvim
             { "idr4n/github-monochrome.nvim" },
+            { "oonamo/ef-themes.nvim" },
             -- { "Wansmer/serenity.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
