@@ -13,7 +13,7 @@ packages = ["windows"]
 
 ### Alacritty
 
-For WSL
+Setup so Alacritty launch `WSL`
 
 ```toml
 [terminal]
@@ -26,4 +26,6 @@ Create a `local.toml` file in the `.dotter` directory with the following content
 
 ```toml
 packages = ["linux"]
+[variables]
+workspaces = "/mnt/HDD ~/workspace"
 ```
