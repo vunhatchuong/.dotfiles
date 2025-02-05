@@ -20,8 +20,6 @@ return {
     keys = {
         { "<C-a>", function() return M.dial(true) end, expr = true, desc = "Increment", mode = {"n", "v"} },
         { "<C-x>", function() return M.dial(false) end, expr = true, desc = "Decrement", mode = {"n", "v"} },
-        { "g<C-a>", function() return M.dial(true, true) end, expr = true, desc = "Increment", mode = {"n", "v"} },
-        { "g<C-x>", function() return M.dial(false, true) end, expr = true, desc = "Decrement", mode = {"n", "v"} },
     },
     opts = function()
         local augend = require("dial.augend")
@@ -29,12 +27,9 @@ return {
         local logical_alias = augend.constant.new({
             elements = { "&&", "||" },
             word = false,
-            cyclic = true,
         })
 
         local ordinal_numbers = augend.constant.new({
-            -- elements through which we cycle. When we increment, we go down
-            -- On decrement we go up
             elements = {
                 "first",
                 "second",
@@ -47,11 +42,7 @@ return {
                 "ninth",
                 "tenth",
             },
-            -- if true, it only matches strings with word boundary. firstDate wouldn't work for example
-            word = false,
-            -- do we cycle back and forth (tenth to first on increment, first to tenth on decrement).
-            -- Otherwise nothing will happen when there are no further values
-            cyclic = true,
+            word = false, -- Makes 'firstDate' work
         })
 
         local weekdays = augend.constant.new({
@@ -64,8 +55,6 @@ return {
                 "Saturday",
                 "Sunday",
             },
-            word = true,
-            cyclic = true,
         })
 
         local months = augend.constant.new({
@@ -83,61 +72,44 @@ return {
                 "November",
                 "December",
             },
-            word = true,
-            cyclic = true,
-        })
-
-        local capitalized_boolean = augend.constant.new({
-            elements = {
-                "True",
-                "False",
-            },
-            word = true,
-            cyclic = true,
         })
 
         return {
             dials_by_ft = {
-                css = "css",
-                vue = "vue",
-                javascript = "typescript",
-                typescript = "typescript",
-                typescriptreact = "typescript",
-                javascriptreact = "typescript",
-                json = "json",
                 lua = "lua",
                 markdown = "markdown",
+                json = "json",
+                python = "python",
+                css = "css",
                 sass = "css",
                 scss = "css",
-                python = "python",
+                javascript = "typescript",
+                typescript = "typescript",
+                javascriptreact = "typescript",
+                typescriptreact = "typescript",
+                vue = "vue",
             },
             groups = {
                 default = {
                     augend.integer.alias.decimal, -- nonnegative decimal number (0, 1, 2, 3, ...)
-                    augend.integer.alias.decimal_int, -- nonnegative and negative decimal number
-                    augend.integer.alias.hex, -- nonnegative hex number  (0x01, 0x1a1f, etc.)
-                    augend.date.alias["%Y/%m/%d"], -- date (2022/02/19, etc.)
+                    augend.integer.alias.decimal_int, -- non(negative) decimal number
+                    augend.date.alias["%Y/%m/%d"],
+                    augend.date.alias["%Y-%m-%d"],
+                    augend.date.alias["%m/%d"],
+                    augend.date.alias["%H:%M"],
+                    augend.constant.alias.bool,
+                    augend.constant.new({ elements = { "True", "False" } }),
+                    augend.constant.new({ elements = { "on", "off" } }),
                     ordinal_numbers,
                     weekdays,
                     months,
-                    capitalized_boolean,
-                    augend.constant.alias.bool, -- boolean value (true <-> false)
                     logical_alias,
                 },
-                vue = {
-                    augend.constant.new({ elements = { "let", "const" } }),
-                    augend.hexcolor.new({ case = "lower" }),
-                    augend.hexcolor.new({ case = "upper" }),
-                },
-                typescript = {
-                    augend.constant.new({ elements = { "let", "const" } }),
-                },
-                css = {
-                    augend.hexcolor.new({
-                        case = "lower",
-                    }),
-                    augend.hexcolor.new({
-                        case = "upper",
+                lua = {
+                    augend.constant.new({
+                        elements = { "and", "or" },
+                        word = true, -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
+                        cyclic = true, -- "or" is incremented into "and".
                     }),
                 },
                 markdown = {
@@ -151,17 +123,26 @@ return {
                 json = {
                     augend.semver.alias.semver, -- versioning (v1.1.2)
                 },
-                lua = {
-                    augend.constant.new({
-                        elements = { "and", "or" },
-                        word = true, -- if false, "sand" is incremented into "sor", "doctor" into "doctand", etc.
-                        cyclic = true, -- "or" is incremented into "and".
-                    }),
-                },
                 python = {
                     augend.constant.new({
                         elements = { "and", "or" },
                     }),
+                },
+                css = {
+                    augend.hexcolor.new({
+                        case = "lower",
+                    }),
+                    augend.hexcolor.new({
+                        case = "upper",
+                    }),
+                },
+                typescript = {
+                    augend.constant.new({ elements = { "let", "const" } }),
+                },
+                vue = {
+                    augend.constant.new({ elements = { "let", "const" } }),
+                    augend.hexcolor.new({ case = "lower" }),
+                    augend.hexcolor.new({ case = "upper" }),
                 },
             },
         }

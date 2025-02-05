@@ -68,6 +68,8 @@ end, { remap = true })
 -- Move to first, last line
 keymap({ "n", "o", "x" }, "$", "^", opts)
 keymap({ "n", "o", "x" }, "0", "g_", opts)
+keymap({ "n", "o", "x" }, "H", "^", opts)
+keymap({ "n", "o", "x" }, "L", "$", opts)
 
 -- Centers cursor
 keymap("n", "<C-d>", "<C-d>zz", opts)
@@ -81,12 +83,6 @@ keymap("v", ">", ">gv", opts)
 
 keymap("t", "<C-\\>", "<CMD>close<CR>", { desc = "Hide Terminal" })
 -- keymap("t", "<Esc><Esc>", "<CMD>close<CR>", { desc = "Hide Terminal", noremap = true })
-
--- windows
-keymap("n", "<leader>ww", "<C-W>w", { desc = "Switch to the next window", remap = true })
-keymap("n", "<leader>wq", "<C-W>c", { desc = "Close the current window", remap = true })
-keymap("n", "<leader>-", "<C-W>s", { desc = "Split window horizontally", remap = true })
-keymap("n", "<leader>|", "<C-W>v", { desc = "Split window vertically", remap = true })
 
 keymap("n", "dd", function()
     if vim.api.nvim_get_current_line():match("^%s*$") then
