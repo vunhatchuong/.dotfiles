@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+current_cmd=$(tmux display-message -p "#{pane_current_command}")
+status=$(tmux show-option -wqv status)
+
+# LOG_FILE=~/tmux_debug.log
+# log_entry="$(date) $current_pane $status $current_cmd"
+# echo "$log_entry" >>"$LOG_FILE"
+
+if echo "$current_cmd" | grep -qE '^(n?vim)$'; then
+    if [[ "$status" == "on" ]]; then
+        tmux set-option -w status off
+    fi
+else
+    if [[ "$status" == "off" ]]; then
+        tmux set-option -w status on
+    fi
+fi
