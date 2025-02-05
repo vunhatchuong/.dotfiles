@@ -149,6 +149,7 @@ return {
     },
     {
         "petertriho/nvim-scrollbar",
+        enabled = false,
         event = "VeryLazy",
         opts = {
             show_in_active_only = true,

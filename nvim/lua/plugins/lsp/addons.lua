@@ -180,4 +180,9 @@ return {
             timeout = 1000, -- Time before displaying new diagnostics.
         },
     },
+    {
+        "v1nh1shungry/error-lens.nvim",
+        event = "LspAttach",
+        opts = { standalone = true },
+    },
 }
