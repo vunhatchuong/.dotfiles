@@ -31,12 +31,6 @@ return {
         opts = {},
     },
     {
-        "echasnovski/mini.move",
-        enabled = false,
-        keys = { { "<A-j>" }, { "<A-h>" } },
-        opts = {},
-    },
-    {
         "glepnir/flybuf.nvim",
         keys = { { "<leader>j", "<CMD>FlyBuf<CR>", desc = "Open buffer menu" } },
         opts = { border = vim.g.border_style },

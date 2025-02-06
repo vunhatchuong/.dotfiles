@@ -148,41 +148,6 @@ return {
         },
     },
     {
-        "petertriho/nvim-scrollbar",
-        enabled = false,
-        event = "VeryLazy",
-        opts = {
-            show_in_active_only = true,
-            hide_if_all_visible = true,
-            throttle_ms = 500,
-            excluded_filetypes = {
-                "lazy",
-                "noice",
-                "prompt",
-                "dropbar_menu",
-                "dropbar_menu_fzf",
-                "DressingInput",
-                "TelescopePrompt",
-                "snacks_dashboard",
-                "blink-cmp-menu",
-                "blink-cmp-signature",
-                "blink-cmp-documentation",
-                "minifiles",
-                "fzf",
-            },
-            marks = {
-                GitAdd = { text = "│" },
-                GitChange = { text = "│" },
-                GitDelete = { text = "-" },
-            },
-            handlers = {
-                cursor = false,
-                diagnostic = true,
-                -- gitsigns = true,
-            },
-        },
-    },
-    {
         "tzachar/local-highlight.nvim",
         event = "BufRead",
         opts = {

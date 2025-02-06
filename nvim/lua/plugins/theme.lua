@@ -93,7 +93,10 @@ return {
             { "gmr458/cold.nvim" },
             { "water-sucks/darkrose.nvim" },
             -- { "metalelf0/jellybeans-nvim" }, -- Required lush.nvim
-            { "idr4n/github-monochrome.nvim" },
+            {
+                "idr4n/github-monochrome.nvim",
+                blacklist = { "github-monochrome" },
+            },
             { "oonamo/ef-themes.nvim" },
             -- { "Wansmer/serenity.nvim" },
             -- Light Theme
