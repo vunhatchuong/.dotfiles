@@ -21,8 +21,13 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 keymap("n", "<leader>e", vim.cmd.Ex)
-keymap({ "i", "n" }, "<Esc>", "<CMD>noh<CR><Esc>", { desc = "Escape and Clear hlsearch" })
-keymap("n", "<leader>w", "<CMD>w<CR>", { desc = "Save", noremap = true, silent = true })
+keymap({ "i", "n" }, "<Esc>", "<CMD>noh<CR><Esc>")
+keymap(
+    "n",
+    "<leader>w",
+    "<CMD>w<CR>",
+    { desc = "Save", noremap = true, silent = true }
+)
 keymap("n", "<leader>q", function()
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.bo[buf].filetype == "focus-bg" then
@@ -53,15 +58,15 @@ keymap("n", "[q", "<CMD>cprev<CR>", { desc = "Prev qf item" })
 keymap("n", "]q", "<CMD>cnext<CR>", { desc = "Next qf item" })
 
 -- n always search forward and N backward
-keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
-keymap({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
-keymap("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
-keymap({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true })
+keymap({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true })
+keymap("n", "N", "'nN'[v:searchforward].'zv'", { expr = true })
+keymap({ "x", "o" }, "N", "'nN'[v:searchforward]", { expr = true })
 
 keymap({ "n", "x", "i" }, "<C-_>", "<C-/>", { remap = true })
 keymap("n", "<C-/>", "gcc", { remap = true })
 keymap("x", "<C-/>", "gc", { remap = true })
-keymap("i", "<C-/>", function ()
+keymap("i", "<C-/>", function()
     vim.cmd.normal("gcc")
 end, { remap = true })
 
@@ -93,17 +98,17 @@ keymap("n", "dd", function()
 end, { noremap = true, expr = true })
 
 keymap("x", "<leader>ym", function()
-    local filetype = vim.fn.expand("%:e")
-    local selection = Util.get_visual_selection()
+    local ft = vim.bo.filetype or ""
+    local selection = Util.get_visual_selection_text()
 
-    local markdown = string.format("```%s\n%s```", filetype, selection)
+    local markdown = string.format("```%s\n%s```", ft, selection)
     vim.fn.setreg("+", markdown)
 end, { desc = "Yank selection as markdown code block" })
 
 -- Others --
 -- keymap("v", "<leader>s", [[:s///gI<Left><Left><Left><Left>]], { desc = "Replace in Visual" })
 -- Tmux sessionizer
-keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Tmux sessionizer" })
+keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- Disable default LSP mappings
 pcall(del, "n", "grn")

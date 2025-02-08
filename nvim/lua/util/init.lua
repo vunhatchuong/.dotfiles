@@ -53,18 +53,9 @@ end
 --- Get the visual selection
 ---
 --- @return string? selection The string from visual selection
-function M.get_visual_selection()
-    local saved_reg = vim.fn.getreg("v") -- Change to '"' register if doesn't work
-    vim.cmd([[noautocmd sil norm "vy]])
-    local selection = vim.fn.getreg("v")
-    vim.fn.setreg("v", saved_reg)
-
-    if selection == "" then
-        vim.notify("Nothing selected!")
-        return
-    end
-
-    return selection
+function M.get_visual_selection_text()
+    vim.cmd([[noautocmd silent normal! "vy]]) -- Yank into "v" register
+    return vim.fn.getreg("v")
 end
 
 return M
