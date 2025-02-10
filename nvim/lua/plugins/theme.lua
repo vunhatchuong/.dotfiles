@@ -1,7 +1,7 @@
 return {
     { -- Highlight args, defs and usages using Treesitter.
         "m-demare/hlargs.nvim",
-        event = "VeryLazy",
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             paint_arg_declarations = true,
