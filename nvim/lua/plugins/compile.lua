@@ -75,4 +75,22 @@ return {
             },
         },
     },
+    {
+        "msaher/bufix.nvim",
+        event = "TermOpen",
+        opts = {},
+        config = function(_, opts)
+            local bufix = require("bufix")
+            bufix.setup(opts)
+
+            local group =
+                vim.api.nvim_create_augroup("BufixTerm", { clear = true })
+            vim.api.nvim_create_autocmd("TermOpen", {
+                group = group,
+                callback = function(event)
+                    require("bufix.api").register_buf(event.buf)
+                end,
+            })
+        end,
+    },
 }
