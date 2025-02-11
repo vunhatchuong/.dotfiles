@@ -134,7 +134,29 @@ return {
                         min_keyword_length = 4,
                         score_offset = 1,
                     },
-                    cmdline = { min_keyword_length = 2 },
+                    cmdline = {
+                        min_keyword_length = 2,
+                        -- Ignores cmdline cmp when executing certain shell commands
+                        -- This avoid lags, mainly in Win/WSL
+                        enabled = function()
+                            local cmd_type = vim.fn.getcmdtype()
+                            local cmd_line = vim.fn.getcmdline()
+
+                            if cmd_type == ":" then
+                                if cmd_line:match("^[%%0-9,'<>%-]*!") then
+                                    return false
+                                end
+                                if
+                                    cmd_line:match("^%s*Compile")
+                                    or cmd_line:match("^%s*term")
+                                then
+                                    return false
+                                end
+                            end
+
+                            return true
+                        end,
+                    },
                     -- Extensions
                     lazydev = {
                         name = "[LazyDev]",

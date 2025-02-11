@@ -100,14 +100,14 @@ return {
             },
             {
                 "<leader>hf",
-                [[:'<'>DiffviewFileHistory<CR>]],
-                mode = "v",
+                "<Cmd>DiffviewFileHistory<CR>",
+                mode = "n",
                 desc = "diffview: File history",
             },
             {
                 "<leader>hf",
-                "<Cmd>DiffviewFileHistory<CR>",
-                mode = "n",
+                [[:'<'>DiffviewFileHistory<CR>]],
+                mode = "v",
                 desc = "diffview: File history",
             },
         },
