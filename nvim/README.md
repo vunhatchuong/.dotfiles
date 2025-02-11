@@ -13,4 +13,4 @@ return {
     { import = "plugins.lang.python" },
 }
 ```
-Some [languages](./lua/plugins/mason.lua) are included by default like `http`,`lua`.
+Some [languages](./lua/plugins/lang/general/default.lua) are included by default like `http`,`lua`.

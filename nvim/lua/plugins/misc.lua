@@ -202,7 +202,6 @@ return {
     },
     {
         "tamton-aquib/stuff.nvim",
-        lazy = false,
         cmd = { "Calc" },
         config = function()
             require("calc").setup()

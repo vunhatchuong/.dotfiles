@@ -3,7 +3,6 @@ return {
     { "m00qek/baleia.nvim", opts = {} },
     {
         "echasnovski/mini.icons",
-        lazy = true,
         init = function()
             require("mini.icons").mock_nvim_web_devicons()
         end,
@@ -191,7 +190,7 @@ return {
             })
         end,
     },
-    { "lukas-reineke/virt-column.nvim", lazy = false, opts = {} },
+    { "lukas-reineke/virt-column.nvim", event = "VimEnter", opts = {} },
     {
         "hankertrix/nerd_column.nvim",
         event = { "BufEnter" },

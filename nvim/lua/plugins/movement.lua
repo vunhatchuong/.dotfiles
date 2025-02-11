@@ -53,7 +53,6 @@ return {
     {
         "vunhatchuong/buffer-jumplist.nvim",
         dependencies = { "MunifTanjim/nui.nvim" },
-        lazy = false,
         keys = { { "<C-o>", "<CMD>BufferJumplist<CR>" } },
         opts = {
             -- max_result = 5,
