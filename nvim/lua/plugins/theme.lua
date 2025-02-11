@@ -99,6 +99,7 @@ return {
             },
             { "oonamo/ef-themes.nvim" },
             -- { "Wansmer/serenity.nvim" },
+            { "rjshkhr/shadow.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
@@ -116,7 +117,7 @@ return {
             daylight = {
                 enable = true,
                 day_start = 8,
-                night_start = 13,
+                night_start = 11,
             },
         },
     },
