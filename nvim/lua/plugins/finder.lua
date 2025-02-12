@@ -114,7 +114,7 @@ return {
                 },
                 lsp = {
                     async = true,
-                    jump_to_single_result = true,
+                    jump1 = true,
                     -- ignore_current_line = true,
                     code_actions = {
                         previewer = "codeaction_native",
