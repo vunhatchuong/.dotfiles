@@ -4,12 +4,6 @@ return {
         "folke/snacks.nvim",
         priority = 1000,
         lazy = false,
-        init = function()
-            vim.api.nvim_set_hl(0, "SnacksDashboardHeader", { link = "Text" })
-            vim.api.nvim_set_hl(0, "SnacksDashboardDesc", { link = "NonText" })
-            vim.api.nvim_set_hl(0, "SnacksDashboardIcon", { link = "NonText" })
-            vim.api.nvim_set_hl(0, "SnacksDashboardKey", { link = "NonText" })
-        end,
         ---@type snacks.Config
         --- @diagnostic disable: missing-fields
         opts = {
