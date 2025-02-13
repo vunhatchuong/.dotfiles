@@ -5,32 +5,46 @@ $wingetDeps = @(
 $scoopGeneral = @(
     "main/git"
 
-    "nerd-fonts/JetBrainsMono-NF"
     "extras/winrar"
+    "main/7zip"
 
-    "extras/firefox"
-    "extras/googlechrome"
+    "nerd-fonts/JetBrainsMono-NF"
+    "nerd-fonts/Maple-Mono-NF"
 
-    "extras/obsidian"
-    "extras/discord"
-    "extras/notepadplusplus"
-    "extras/flameshot"
-
-    "games/steam"
-    "games/epic-games-launcher"
-
+    # --------------------------------------------------- // CLI
+    "main/gsudo" # Can be replaced with builtin sudo: https://github.com/scottmckendry/Windots/commit/cf3af128e06334011fb1840dff682b63a497eaf7
     "main/neovim"
     "smain/win32yank" # For nvim wsl
     "extras/lazygit"
     "extras/psfzf"
 
-    "main/gsudo" # Can be replaced with builtin sudo: https://github.com/scottmckendry/Windots/commit/cf3af128e06334011fb1840dff682b63a497eaf7
+    # --------------------------------------------------- // Applications
+    # ------------------------- // Windows specific
+    "extras/everything-lite"
     "extras/vlc"
     "extra/wiztree"
     "extras/revouninstaller"
+    "extras/firefox"
+    "extras/googlechrome"
+    "extras/gimp"
+    "extras/notepadplusplus"
+    # -------------------------
+
+    "extras/flameshot"
+    "extras/discord"
     "extras/bleachbit"
-    "extras/transmission"
-    "extras/everything-lite"
+    "extras/transmission" # Bittorrent client
+    "extras/obsidian"
+    "extras/sioyek" # PDF reader
+
+    # --------------------------------------------------- // Devs
+    #"extras/vscode"
+    #"extras/idea"
+    #"extras/yaak" Not available yet
+
+    # --------------------------------------------------- // Entertainment
+    "games/steam"
+    "games/epic-games-launcher"
 )
 
 $psModules = @(
