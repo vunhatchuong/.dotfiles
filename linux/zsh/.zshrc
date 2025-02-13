@@ -15,7 +15,7 @@ plug "zap-zsh/fzf"
 plug "zap-zsh/exa"
 plug "esc/conda-zsh-completion"
 plug "Bhupesh-V/ugit"
-plug "zap-zsh/sudo"
+# plug "zap-zsh/sudo"
 
 # This seems to bug out `Ctrl+` keymaps
 # plug "jeffreytse/zsh-vi-mode"

@@ -100,6 +100,7 @@ return {
             { "oonamo/ef-themes.nvim" },
             -- { "Wansmer/serenity.nvim" },
             { "rjshkhr/shadow.nvim" },
+            { "Skardyy/makurai-nvim" },
             { "vunhatchuong/gleam-theme.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
