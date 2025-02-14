@@ -175,7 +175,7 @@ return {
             },
             plugins = {
                 gitsigns = { enabled = true },
-                tmux = { enabled = false },
+                -- tmux = { enabled = false },
             },
         },
         config = function(_, opts)
