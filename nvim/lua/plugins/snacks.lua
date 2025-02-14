@@ -15,8 +15,8 @@ return {
             },
             input = { enabled = true },
             notifier = {
-                timeout = 7000,
                 enabled = true,
+                timeout = 5000,
                 sort = { "added" },
             },
             quickfile = { enabled = true },

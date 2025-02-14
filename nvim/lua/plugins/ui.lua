@@ -206,4 +206,77 @@ return {
         -- lua require("conceal").generate_conceals()
         opts = {},
     },
+    {
+        "kevinhwang91/nvim-ufo",
+        dependencies = { "kevinhwang91/promise-async" },
+        event = "UIEnter",
+        init = function()
+            -- recommended by nvim-ufo: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+            vim.o.foldlevel = 99
+            vim.o.foldlevelstart = 99
+        end,
+        opts = {
+            open_fold_hl_timeout = 150,
+            --- @diagnostic disable: unused-local
+            provider_selector = function(_bufnr, ft, _buftype)
+                -- ufo accepts only two kinds as priority, see https://github.com/kevinhwang91/nvim-ufo/issues/256
+                local lspWithOutFolding =
+                    { "markdown", "zsh", "bash", "css", "python", "json" }
+
+                if vim.tbl_contains(lspWithOutFolding, ft) then
+                    return { "treesitter", "indent" }
+                end
+                return { "lsp", "indent" }
+            end,
+            -- Use `:UfoInspect` to get see available fold kinds
+            close_fold_kinds_for_ft = {
+                default = { "imports", "comment" },
+                json = { "array" },
+                markdown = {}, -- avoid everything becoming folded
+                toml = {},
+                python = { "import_from_statement" },
+            },
+            fold_virt_text_handler = function(
+                virtText,
+                lnum,
+                endLnum,
+                width,
+                truncate
+            )
+                local hlgroup = "MoreMsg"
+                local icon = ""
+
+                local newVirtText = {}
+                local suffix = (" %s %d"):format(icon, endLnum - lnum)
+                local sufWidth = vim.fn.strdisplaywidth(suffix)
+                local targetWidth = width - sufWidth
+                local curWidth = 0
+
+                for _, chunk in ipairs(virtText) do
+                    local chunkText = chunk[1]
+                    local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                    if targetWidth > curWidth + chunkWidth then
+                        table.insert(newVirtText, chunk)
+                    else
+                        chunkText = truncate(chunkText, targetWidth - curWidth)
+                        local hlGroup = chunk[2]
+                        table.insert(newVirtText, { chunkText, hlGroup })
+                        chunkWidth = vim.fn.strdisplaywidth(chunkText)
+                        -- str width returned from truncate() may less than 2nd argument, need padding
+                        if curWidth + chunkWidth < targetWidth then
+                            suffix = suffix
+                                .. (" "):rep(
+                                    targetWidth - curWidth - chunkWidth
+                                )
+                        end
+                        break
+                    end
+                    curWidth = curWidth + chunkWidth
+                end
+
+                table.insert(newVirtText, { suffix, hlgroup })
+                return newVirtText
+            end,
+        },
+    },
 }

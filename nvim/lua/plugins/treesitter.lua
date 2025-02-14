@@ -81,10 +81,12 @@ return {
         event = "VeryLazy",
         opts = function()
             local ai = require("mini.ai")
+            local spec_ts = ai.gen_spec.treesitter
+
             return {
                 n_lines = 500,
                 custom_textobjects = {
-                    o = ai.gen_spec.treesitter({ -- code block
+                    o = spec_ts({ -- code block
                         a = {
                             "@block.outer",
                             "@conditional.outer",
@@ -96,11 +98,11 @@ return {
                             "@loop.inner",
                         },
                     }),
-                    f = ai.gen_spec.treesitter({ -- function
+                    f = spec_ts({ -- function
                         a = "@function.outer",
                         i = "@function.inner",
                     }),
-                    c = ai.gen_spec.treesitter({ -- class
+                    c = spec_ts({ -- class
                         a = "@class.outer",
                         i = "@class.inner",
                     }),
@@ -108,8 +110,8 @@ return {
                         "<([%p%w]-)%f[^<%w][^<>]->.-</%1>",
                         "^<.->().*()</[^/]->$",
                     },
-                    -- u = ai.gen_spec.function_call(), -- u for "Usage"
-                    -- U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
+                    -- u = spec_ts(), -- u for "Usage"
+                    -- U = spec_ts({ name_pattern = "[%w_]" }), -- without dot in function name
                 },
             }
         end,

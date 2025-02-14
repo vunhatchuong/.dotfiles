@@ -98,10 +98,10 @@ opt.expandtab = true -- convert tabs to spaces
 opt.shiftround = true -- Round indent
 opt.shiftwidth = 4 -- the number of spaces inserted for each indentation
 opt.tabstop = 4 -- insert 2 spaces for a tab
-opt.foldmethod = "expr" -- folding set to "manual" for if no treesitter
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-opt.foldlevel = 99
-opt.foldlevelstart = 99
+-- opt.foldmethod = "expr" -- folding set to "manual" for if no treesitter
+-- opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+-- opt.foldlevel = 99
+-- opt.foldlevelstart = 99
 
 ---  NETRW  ---
 ---vim.g.netrw_banner = 0

@@ -175,7 +175,7 @@ function M.get_mode()
         t = "<(•ᴗ•)>",
     }
 
-    return mode_kirby[vim.fn.mode()] or vim.api.nvim_get_mode().mode
+    return mode_kirby[vim.api.nvim_get_mode().mode] or "UNKNOWN"
 end
 
 --- Takes in a :highlight group name and return the foreground value

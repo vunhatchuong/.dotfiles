@@ -76,6 +76,7 @@ return {
             },
         },
     },
+    ----- Additional plugins -----
     {
         "iamcco/markdown-preview.nvim",
         ft = { "markdown" },
@@ -99,7 +100,6 @@ return {
             vim.g.mkdp_auto_close = 0
         end,
     },
-    ----- Additional plugins -----
     {
         "MeanderingProgrammer/render-markdown.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -107,12 +107,11 @@ return {
         opts = {
             heading = {
                 sign = false,
-                position = "inline",
-                width = "block",
-                left_margin = 0.5,
-                left_pad = 0.2,
-                right_pad = 0.2,
                 icons = {},
+                -- width = "block",
+                -- left_margin = 0.5,
+                -- left_pad = 0.2,
+                -- right_pad = 0.2,
             },
             code = {
                 sign = false,
