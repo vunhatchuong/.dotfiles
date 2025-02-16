@@ -1,3 +1,5 @@
+-- References: https://github.com/catgoose/nvim/blob/main/lua/plugins/dap.lua
+-- https://github.com/dmtrKovalenko/my-nvim-config/blob/main/lua/plugins/dap.lua
 return {
     { -- For clickable Breakpoints: https://github.com/luukvbaal/statuscol.nvim
         "mfussenegger/nvim-dap",
