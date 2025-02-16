@@ -13,11 +13,11 @@ return {
                 "<CMD>Trouble diagnostics toggle<CR>",
                 desc = "Trouble: Workspace Diagnostics",
             },
-            {
-                "<leader>o",
-                "<CMD>Trouble symbols toggle<CR>",
-                desc = "Trouble: Buffer Symbols",
-            },
+            -- {
+            --     "<leader>o",
+            --     "<CMD>Trouble symbols toggle<CR>",
+            --     desc = "Trouble: Buffer Symbols",
+            -- },
         },
         opts = {
             focus = true,

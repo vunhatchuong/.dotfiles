@@ -210,7 +210,7 @@ return {
         cmd = "Exemplum",
         dependencies = { "NTBBloodbath/logging.nvim" },
     },
-    {
+    { -- https://github.com/nikolaeu/numi/wiki
         "josephburgess/nvumi",
         -- dependencies = { "folke/snacks.nvim" },
         cmd = "Nvumi",

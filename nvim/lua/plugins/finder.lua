@@ -170,4 +170,28 @@ return {
             { "<leader>u", function() Snacks.picker.undo() end, desc = "Undo Tree" },
         },
     },
+    { -- https://github.com/bassamsdata/namu.nvim/blob/main/docs/Namu_config.md
+        "bassamsdata/namu.nvim",
+        lazy = false,
+        keys = {
+            {
+                "<leader>o",
+                "<CMD>Namu symbols<CR>",
+                desc = "Namu: Buffer Symbols",
+            },
+        },
+        opts = {
+            namu_symbols = {
+                enable = true,
+                options = {
+                    auto_select = false,
+                    multiselect = { enabled = false },
+                    display = { mode = "icon", padding = 1 },
+                    preview = { highlight_mode = "always" },
+                },
+            },
+            colorscheme = { enable = false },
+            ui_select = { enable = false },
+        },
+    },
 }
