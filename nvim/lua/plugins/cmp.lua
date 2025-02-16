@@ -37,8 +37,9 @@ return {
                 ["<Down>"] = { "select_next", "fallback" },
 
                 ["<CR>"] = { "accept", "fallback" },
-
-                cmdline = {
+            },
+            cmdline = {
+                keymap = {
                     preset = "none",
                     ["<C-space>"] = { "show", "hide" },
 
@@ -47,7 +48,7 @@ return {
                     ["<Up>"] = { "select_prev", "fallback" },
                     ["<Down>"] = { "select_next", "fallback" },
 
-                    ["<CR>"] = { "accept", "fallback" },
+                    ["<CR>"] = { "accept_and_enter", "fallback" },
                 },
             },
             completion = {
