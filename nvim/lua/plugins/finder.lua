@@ -188,6 +188,8 @@ return {
                     multiselect = { enabled = false },
                     display = { mode = "icon", padding = 1 },
                     preview = { highlight_mode = "always" },
+                    icon = ">",
+                    window = { min_width = 25 },
                 },
             },
             colorscheme = { enable = false },
