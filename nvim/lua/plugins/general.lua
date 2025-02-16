@@ -210,4 +210,16 @@ return {
         cmd = "Exemplum",
         dependencies = { "NTBBloodbath/logging.nvim" },
     },
+    {
+        "josephburgess/nvumi",
+        -- dependencies = { "folke/snacks.nvim" },
+        cmd = "Nvumi",
+        opts = {
+            virtual_text = "inline",
+            keys = {
+                run = "<CR>",
+                reset = "R",
+            },
+        },
+    },
 }
