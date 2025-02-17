@@ -66,9 +66,9 @@ return {
                     draw = {
                         treesitter = { "lsp" },
                         columns = {
-                            { "kind_icon", "kind", gap = 1 },
                             -- { "label", "label_description", gap = 1 },
-                            { "label", gap = 1 }, -- colorful-menu.nvim combines both labels
+                            { "kind_icon", "label", gap = 1 }, -- colorful-menu.nvim combines both labels,
+                            { "kind", gap = 1 },
                             { "source_name" },
                         },
                         -- colorful_menu.nvim

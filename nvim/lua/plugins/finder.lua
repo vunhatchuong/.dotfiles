@@ -172,7 +172,6 @@ return {
     },
     { -- https://github.com/bassamsdata/namu.nvim/blob/main/docs/Namu_config.md
         "bassamsdata/namu.nvim",
-        lazy = false,
         keys = {
             {
                 "<leader>o",
