@@ -14,9 +14,11 @@ else
     selected=$(_find | fzf --preview '[[ -d {} ]] && eza -1 --color=always {} || echo "Not a directory"' --print-query | tail -n1)
 fi
 
+# Exit if no selection was made.
 [[ -z $selected ]] && exit 0
 [[ $selected == $(pwd) ]] && exit 0
 
+# If it's a Tmuxp session, load it.
 if [[ $selected == *.yaml ]]; then
     tmuxp load "$(find ~/.config/tmuxp -type l -name "${selected#Tmuxp: }")" -y
     exit 0
@@ -30,7 +32,20 @@ if [[ ! -d $selected ]]; then
         exit 1
     fi
 
-    selected="$chosen_workspace/$selected"
+    # Clone if it's a Git URL
+    if [[ "$selected" =~ ^(https?|git):// ]]; then
+        git_url="$selected"
+        if ! git ls-remote "$git_url" &>/dev/null; then
+            echo "[ERROR] Unable to access '$selected'"
+            exit 1
+        fi
+
+        selected="$chosen_workspace/$(basename "$git_url" .git)"
+        git clone "$git_url" "$selected"
+    else
+        selected="$chosen_workspace/$selected"
+    fi
+
     mkdir -p "$selected"
 fi
 
