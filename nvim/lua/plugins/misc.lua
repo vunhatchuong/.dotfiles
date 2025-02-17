@@ -170,6 +170,8 @@ return {
                 ["docs"] = {
                     ["zig:std"] = "https://ziglang.org/documentation/master/std/",
                     ["RFC"] = "https://www.rfc-editor.org/search/rfc_search_detail.php",
+                    ["gleam:tour"] = "https://tour.gleam.run/everything/",
+                    ["gleam:std"] = "https://hexdocs.pm/gleam_stdlib/",
                 },
                 ["entertainment"] = {
                     ["awesome-nvim"] = "https://github.com/rockerBOO/awesome-neovim",

@@ -72,6 +72,7 @@ return {
         opts = {
             runners = {
                 ["py"] = "python",
+                ["gleam"] = "gleam run",
             },
         },
     },
