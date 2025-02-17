@@ -3,7 +3,6 @@
 ## **Table of Contents**
 
 - [Overview](#overview)
-- [Packages](#packages)
 - [Resources](#resources)
 
 ## Overview
@@ -13,12 +12,9 @@ My dotfiles managed by [Dotter](https://github.com/SuperCuber/dotter/).
 Install script:
 
 - EndeavourOS: [arch-hyprland](https://github.com/vunhatchuong/arch-hyprland).
+- NixOS: [nixos-hyprland](https://github.com/vunhatchuong/nixos-hyprland).
 
-You can also setup [Arch in WSL2](https://github.com/yuk7/ArchWSL).
-
-## Packages
-
-- Font: JetBrainsMono Nerd Font
+You can setup WSL2 to use [Arch](https://github.com/yuk7/ArchWSL) or [NixOS](https://github.com/vunhatchuong/nixos-hyprland?tab=readme-ov-file#wsl).
 
 ### Extras
 
