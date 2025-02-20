@@ -5,7 +5,7 @@ return {
         version = false, -- last release is way too old and doesn't work on Windows
         build = ":TSUpdate",
         lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-        event = { "BufReadPost", "BufNewFile", "BufWritePre", "VeryLazy" },
+        event = { "BufReadPost", "BufNewFile", "BufReadPre", "VeryLazy" },
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         init = function(plugin)
             -- PERF: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
@@ -24,13 +24,13 @@ return {
         opts_extend = { "ensure_installed" },
         opts = {
             auto_install = true,
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
+            highlight = { enable = true },
             indent = { enable = true },
             matchup = { enable = true }, -- vim-matchup
         },
+        config = function(_, opts)
+            require("nvim-treesitter.configs").setup(opts)
+        end,
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
