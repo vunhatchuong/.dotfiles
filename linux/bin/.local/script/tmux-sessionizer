@@ -34,7 +34,6 @@ if [[ ! -d $selected ]]; then
         exit 1
     fi
 
-    selected="$chosen_workspace/$selected"
     # Clone if it's a Git URL
     if [[ "$selected" =~ ^(https?|git):// ]]; then
         git_url="$selected"
@@ -45,6 +44,8 @@ if [[ ! -d $selected ]]; then
 
         selected="$chosen_workspace/$(basename "$git_url" .git)"
         git clone "$git_url" "$selected"
+    else
+        selected="$chosen_workspace/$selected"
     fi
 
     mkdir -p "$selected"
