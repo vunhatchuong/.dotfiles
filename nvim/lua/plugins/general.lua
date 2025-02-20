@@ -222,4 +222,9 @@ return {
             },
         },
     },
+    {
+        "OXY2DEV/patterns.nvim",
+        cmd = "Patterns",
+        opts = {},
+    },
 }
