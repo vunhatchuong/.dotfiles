@@ -157,6 +157,7 @@ return {
     },
     {
         "cdmill/focus.nvim",
+        enabled = false,
         event = "BufWinEnter",
         cmd = { "Focus", "Zen", "Narrow" },
         keys = {
@@ -182,7 +183,7 @@ return {
             require("focus").setup(opts)
 
             vim.api.nvim_create_autocmd("VimEnter", {
-                desc = "Enter Zen",
+                desc = "Focus.nvim: Enter Zen",
                 callback = function()
                     require("focus").toggle_zen({})
                     require("focus").toggle({})

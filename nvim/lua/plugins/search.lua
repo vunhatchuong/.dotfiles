@@ -1,12 +1,25 @@
 return {
     {
+        "chrisgrieser/nvim-rip-substitute",
+        keys = {
+            {
+                "<leader>s",
+                function()
+                    require("rip-substitute").sub()
+                end,
+                mode = { "n", "x" },
+                desc = "Rip Substitute",
+            },
+        },
+    },
+    {
         "MagicDuck/grug-far.nvim",
         cmd = "GrugFar",
         keys = {
             {
                 "<leader>st",
                 function()
-                    require("grug-far").grug_far()
+                    require("grug-far").open()
                 end,
                 mode = { "n", "v" },
                 desc = "Search and Replace",
@@ -14,7 +27,7 @@ return {
             {
                 "<leader>ss",
                 function()
-                    require("grug-far").grug_far({
+                    require("grug-far").open({
                         prefills = {
                             search = vim.fn.expand("<cword>"),
                             paths = vim.fn.expand("%"),
@@ -49,18 +62,5 @@ return {
             },
         },
         opts = {},
-    },
-    {
-        "chrisgrieser/nvim-rip-substitute",
-        keys = {
-            {
-                "<leader>s",
-                function()
-                    require("rip-substitute").sub()
-                end,
-                mode = { "n", "x" },
-                desc = "Rip Substitute",
-            },
-        },
     },
 }

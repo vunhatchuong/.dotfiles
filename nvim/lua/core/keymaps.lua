@@ -29,14 +29,21 @@ keymap(
     { desc = "Save", noremap = true, silent = true }
 )
 keymap("n", "<leader>q", function()
+    if Snacks.zen.win then
+        Snacks.zen()
+        vim.cmd("q")
+        return
+    end
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
         if vim.bo[buf].filetype == "focus-bg" then
             local ok, focus = pcall(require, "focus")
             if ok and focus then
                 focus.toggle({})
+                break
             end
         end
     end
+
     vim.cmd("q")
 end, { desc = "Quit", noremap = true, silent = true })
 

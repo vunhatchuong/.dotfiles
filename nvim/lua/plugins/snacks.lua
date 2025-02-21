@@ -25,6 +25,16 @@ return {
             terminal = {
                 win = { position = "float", wo = { winbar = "" } },
             },
+            zen = {
+                toggles = {
+                    dim = false,
+                    git_signs = true,
+                    mini_diff_signs = true,
+                    diagnostics = true,
+                    inlay_hints = true,
+                },
+                show = { statusline = false, tabline = false },
+            },
             styles = {
                 -- terminal = { keys = { q = false, gf = false, term_normal = false } },
                 input = {
@@ -35,6 +45,17 @@ return {
                     border = vim.g.border_style,
                     wo = { wrap = true },
                     focusable = false,
+                },
+                zen = {
+                    backdrop = 1,
+                    -- https://github.com/cdmill/focus.nvim/blob/main/lua/focus/config.lua#L44
+                    wo = {
+                        number = false,
+                        relativenumber = false,
+                        cursorline = false,
+                        foldcolumn = "0",
+                        signcolumn = "no",
+                    },
                 },
             },
         },
@@ -59,6 +80,13 @@ return {
                     Snacks.terminal.toggle(nil, { cwd = Snacks.git.get_root() })
                 end,
                 desc = "Term (Root Dir)",
+            },
+            {
+                "<leader>zz",
+                function()
+                    Snacks.zen()
+                end,
+                desc = "Toggle Zen",
             },
             {
                 "<leader>wf",
@@ -104,5 +132,15 @@ return {
                 end,
             },
         },
+        config = function(_, opts)
+            require("snacks").setup(opts)
+
+            vim.api.nvim_create_autocmd("VimEnter", {
+                desc = "Snacks: Enter Zen",
+                callback = function()
+                    Snacks.zen()
+                end,
+            })
+        end,
     },
 }
