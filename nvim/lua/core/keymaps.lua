@@ -11,11 +11,11 @@ local opts = { noremap = true, silent = true }
 --   command_mode = "c",
 
 keymap("", "<Space>", "<Nop>", opts)
-keymap("n", "Q", "<nop>", opts)
-keymap("n", "<C-c>", "<nop>", opts)
-keymap("x", "m", "<nop>", opts)
+keymap("n", "Q", "<Nop>", opts)
+keymap("n", "<C-c>", "<Nop>", opts)
+keymap("x", "m", "<Nop>", opts)
 keymap("n", "<C-i>", "<Tab>")
-keymap("i", "<C-n>", "<nop>", { desc = "Disable default cmp menu" })
+keymap("i", "<C-n>", "<Nop>", { desc = "Disable default cmp menu" })
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

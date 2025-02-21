@@ -1,0 +1,112 @@
+# vi:ft=vim
+" haven't test
+" References: https://github.com/dmmulroy/kickstart.nix/blob/main/config/jetbrains/.ideavimrc
+" https://gist.github.com/AlexPl292/50a3ff4cef1badcbb23436b22cbd3cf4
+" https://github.com/stevearc/dotfiles/blob/master/.ideavimrc
+
+let mapleader=" "
+
+" -- Options --
+" https://github.com/JetBrains/ideavim/wiki/set-commands
+
+" ---  SYSTEM   ---
+set timeoutlen=250
+set fileformat=unix
+set startofline
+
+set clipboard+=unnamed
+
+set guicursor=n-v-c-i-ci-ve:block
+set guicursor+=r-cr:hor20
+set guicursor+=o:hor50
+
+set ignorecase
+set smartcase
+
+" ---  APPEARANCE  ---
+set number
+set relativenumber
+set noshowmode
+set cursorline
+set colorcolumn=80
+set scrolloff=8
+set sidescrolloff=20
+set noshowcmd
+
+" ---  INDENT  ---
+set list
+set virtualedit=block
+
+set breakindent
+
+" ---  TABS  ---
+set nowrap
+
+set incsearch
+set hlsearch
+
+
+" -- Plugins --
+" https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+set surround
+set argtextobj
+set highlightedyank
+set matchit
+set mini-ai
+
+" -- Mapping --
+" ---  Normal  ---
+" Disable Space bar since it'll be used as the leader key
+map <Space> <Nop>
+nmap Q <Nop>
+xmap m <Nop>
+
+nnoremap <Esc> :noh<CR><Esc>
+inoremap <Esc> <C-O>:noh<CR><Esc>
+nmap <leader>w :w<CR>
+nmap <leader>q :q<CR>
+
+nnoremap c "_c
+nnoremap C "_C
+nnoremap x "_x
+nnoremap zo za
+vnoremap p "_dP
+
+nnoremap U <C-r>
+inoremap <C-p> <C-r>+
+inoremap <C-v> <C-r>+
+
+" n always search forward and N backward
+nnoremap n :execute "normal! " . ('Nn'[v:searchforward]) . "zv"<CR>
+xnoremap n :execute "normal! " . ('Nn'[v:searchforward])<CR>
+onoremap n :execute "normal! " . ('Nn'[v:searchforward])<CR>
+nnoremap N :execute "normal! " . ('nN'[v:searchforward]) . "zv"<CR>
+xnoremap N :execute "normal! " . ('nN'[v:searchforward])<CR>
+onoremap N :execute "normal! " . ('nN'[v:searchforward])<CR>
+
+" Move to first, last line
+nnoremap $ ^
+onoremap $ ^
+xnoremap $ ^
+nnoremap 0 g_
+onoremap 0 g_
+xnoremap 0 g_
+nnoremap H ^
+onoremap H ^
+xnoremap H ^
+nnoremap L $
+onoremap L $
+xnoremap L $
+
+" Centers cursor
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+" Stay in indent mode
+vnoremap < <gv
+vnoremap > >gv
+
+" ---  Others  ---
+map <leader>ff <Action>(ReformatCode)
