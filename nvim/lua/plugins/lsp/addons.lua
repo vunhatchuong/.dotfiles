@@ -71,7 +71,6 @@ return {
         keys = {
             { "gd",         "<CMD>Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
             { "gr",         "<CMD>Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
-            { "<leader>ca", "<CMD>Lspsaga code_action<CR>",          desc = "[C]ode [A]ction" },
         },
         opts = function()
             local icons = require("core.icons")
@@ -92,6 +91,31 @@ return {
                 code_action = { show_server_name = true },
             }
         end,
+    },
+    {
+        "rachartier/tiny-code-action.nvim",
+        dependencies = {
+            { "nvim-lua/plenary.nvim" },
+            { "nvim-telescope/telescope.nvim" },
+        },
+        keys = {
+            {
+                "<leader>ca",
+                function()
+                    require("tiny-code-action").code_action()
+                end,
+                mode = { "n", "x" },
+                desc = "LspSaga: [C]ode [A]ction",
+            },
+        },
+        opts = {
+            backend = "delta",
+            backend_opts = {
+                delta = {
+                    header_lines_to_remove = 5,
+                },
+            },
+        },
     },
     {
         "smjonas/inc-rename.nvim",

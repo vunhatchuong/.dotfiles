@@ -37,10 +37,6 @@ return {
             },
             styles = {
                 -- terminal = { keys = { q = false, gf = false, term_normal = false } },
-                input = {
-                    backdrop = true,
-                    row = math.ceil(vim.o.lines / 2) - 3,
-                },
                 notification = {
                     border = vim.g.border_style,
                     wo = { wrap = true },

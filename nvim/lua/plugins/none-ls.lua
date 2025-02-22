@@ -3,15 +3,7 @@ return {
     {
         "nvimtools/none-ls.nvim",
         -- Needs none-ls for spell checking lint/format
-        -- event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        keys = {
-            {
-                "<leader>ca",
-                vim.lsp.buf.code_action,
-                mode = { "n", "v" },
-                desc = "[C]ode [A]ction",
-            },
-        },
+        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         cmd = { "NullLsInfo" },
         dependencies = { "mason.nvim", "nvim-lua/plenary.nvim" },
         opts = function(_, opts)
