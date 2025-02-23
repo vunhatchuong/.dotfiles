@@ -31,14 +31,21 @@ return {
             end
 
             local function h()
+                local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+                local onIndentOrFirstNonBlank =
+                    vim.api.nvim_get_current_line():sub(1, col):match("^%s*$")
+
+                -- HACK: After async Snacks.scope changes this will call twice
+                -- So use var to prevents this.
+                local executed = false
+
                 local count = vim.v.count1 -- count needs to be saved due to `normal` affecting it
                 for _ = 1, count, 1 do
                     Snacks.scope.get(function(scope)
-                        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-                        local onIndentOrFirstNonBlank = vim.api
-                            .nvim_get_current_line()
-                            :sub(1, col)
-                            :match("^%s*$")
+                        if executed then
+                            return
+                        end
+                        executed = true
 
                         if
                             onIndentOrFirstNonBlank
