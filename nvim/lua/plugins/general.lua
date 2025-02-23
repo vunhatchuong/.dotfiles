@@ -31,28 +31,27 @@ return {
             end
 
             local function h()
-                local config = require("origami.config").config
                 local count = vim.v.count1 -- count needs to be saved due to `normal` affecting it
                 for _ = 1, count, 1 do
-                    local scope = Snacks.scope.get()
-                    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+                    Snacks.scope.get(function(scope)
+                        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+                        local onIndentOrFirstNonBlank = vim.api
+                            .nvim_get_current_line()
+                            :sub(1, col)
+                            :match("^%s*$")
 
-                    local onIndentOrFirstNonBlank = vim.api
-                        .nvim_get_current_line()
-                        :sub(1, col)
-                        :match("^%s*$")
-
-                    if
-                        onIndentOrFirstNonBlank
-                        and (row == scope.from or row == scope.to)
-                    then
-                        local wasFolded = pcall(normal, "zc")
-                        if not wasFolded then
+                        if
+                            onIndentOrFirstNonBlank
+                            and (row == scope.from or row == scope.to)
+                        then
+                            local wasFolded = pcall(normal, "zc")
+                            if not wasFolded then
+                                normal("h")
+                            end
+                        else
                             normal("h")
                         end
-                    else
-                        normal("h")
-                    end
+                    end)
                 end
             end
 
