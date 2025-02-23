@@ -14,4 +14,51 @@ return {
             },
         },
     },
+    { -- Fast wrap pairs
+        "xzbdmw/clasp.nvim",
+        keys = {
+            {
+                "<C-l>",
+                mode = { "n", "i" },
+                desc = "Clasp",
+            },
+        },
+        opts = {
+            pairs = {
+                ["{"] = "}",
+                ['"'] = '"',
+                ["'"] = "'",
+                ["("] = ")",
+                ["["] = "]",
+            },
+        },
+        config = function(_, opts)
+            require("clasp").setup(opts)
+
+            -- jumping from smallest region to largest region
+            vim.keymap.set({ "n", "i" }, "<C-l>", function()
+                require("clasp").wrap("next")
+            end)
+            -- jumping from largest region to smallest region
+            vim.keymap.set({ "n", "i" }, "<C-l>", function()
+                require("clasp").wrap("prev")
+            end)
+
+            -- Exclude nodes whose end row is not current row
+            vim.keymap.set({ "n", "i" }, "<c-l>", function()
+                require("clasp").wrap("next", function(nodes)
+                    local n = {}
+                    for _, node in ipairs(nodes) do
+                        if
+                            node.end_row
+                            == vim.api.nvim_win_get_cursor(0)[1] - 1
+                        then
+                            table.insert(n, node)
+                        end
+                    end
+                    return n
+                end)
+            end)
+        end,
+    },
 }
