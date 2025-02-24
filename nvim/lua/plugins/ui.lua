@@ -148,6 +148,7 @@ return {
     },
     {
         "tzachar/local-highlight.nvim",
+        commit = "a22f7077a2978c8e7017c4d7e6526b75c56b8c92",
         event = "BufRead",
         opts = {
             -- hlgroup = "LspReferenceText",
