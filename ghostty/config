@@ -11,7 +11,8 @@ cursor-style = block
 cursor-style-blink = false
 
 font-size = 15
-font-family = JetBrainsMono NF SemiBold
+#font-family = JetBrainsMono NF SemiBold
+font-family = Maple Mono SemiBold
 
 mouse-hide-while-typing = true
 resize-overlay = never
