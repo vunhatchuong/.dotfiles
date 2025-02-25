@@ -250,17 +250,4 @@ return {
             highlight_group = "Visual",
         },
     },
-    {
-        "mschlumpp/quick-switch.nvim",
-        keys = {
-            {
-                "<leader>.",
-                function()
-                    require("quick-switch").start_switch()
-                end,
-                desc = "Buffer quick switch",
-            },
-        },
-        opts = {},
-    },
 }

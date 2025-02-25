@@ -97,7 +97,15 @@ return {
                 "idr4n/github-monochrome.nvim",
                 blacklist = { "github-monochrome" },
             },
-            { "oonamo/ef-themes.nvim" },
+            {
+                "oonamo/ef-themes.nvim",
+                blacklist = {
+                    "ef-theme",
+                    "ef-frost",
+                    "ef-deuteranopia-light",
+                    "ef-duo-light",
+                },
+            },
             -- { "Wansmer/serenity.nvim" },
             { "rjshkhr/shadow.nvim" },
             { "Skardyy/makurai-nvim" },
