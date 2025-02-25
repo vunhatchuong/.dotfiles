@@ -147,14 +147,13 @@ return {
         },
     },
     {
-        "tzachar/local-highlight.nvim",
-        commit = "a22f7077a2978c8e7017c4d7e6526b75c56b8c92",
+        "echasnovski/mini.cursorword",
         event = "BufRead",
-        opts = {
-            -- hlgroup = "LspReferenceText",
-            cw_hlgroup = "LocalHighlight",
-            highlight_single_match = false,
-        },
+        opts = { delay = 200 },
+        config = function(_, opts)
+            require("mini.cursorword").setup(opts)
+            vim.api.nvim_set_hl(0, "MiniCursorword", { link = "Visual" })
+        end,
     },
     {
         "cdmill/focus.nvim",
