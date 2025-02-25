@@ -149,7 +149,7 @@ return {
     {
         "echasnovski/mini.cursorword",
         event = "BufRead",
-        opts = { delay = 200 },
+        opts = { delay = 350 },
         config = function(_, opts)
             require("mini.cursorword").setup(opts)
             vim.api.nvim_set_hl(0, "MiniCursorword", { link = "Visual" })

@@ -1,11 +1,11 @@
 return {
     {
         "echasnovski/mini.diff",
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         keys = {
             {
                 "<leader>hh",
                 function()
+                    require("mini.diff").enable(0)
                     require("mini.diff").toggle_overlay(0)
                 end,
             },
@@ -16,7 +16,6 @@ return {
                 reset = "",
                 textobject = "",
             },
-            delay = { text_change = math.huge },
             options = { wrap_goto = true },
         },
     },

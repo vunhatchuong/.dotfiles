@@ -78,7 +78,6 @@ return {
                 blacklist = { "shado-legacy" },
             },
             { "blazkowolf/gruber-darker.nvim" },
-            { "kvrohit/substrata.nvim" },
             { "mcauley-penney/ice-cave.nvim" },
             { "ramojus/mellifluous.nvim" },
             { "dgox16/oldworld.nvim" },
@@ -87,6 +86,7 @@ return {
             { "datsfilipe/vesper.nvim" },
             -- { "rithikasilva/monoplus.nvim" },
             { "kdheepak/monochrome.nvim" },
+            { "kvrohit/substrata.nvim" },
             { "kvrohit/rasmus.nvim" },
             { "masar3141/mono-jade" },
             { "p00f/alabaster.nvim" },
@@ -109,6 +109,7 @@ return {
             -- { "Wansmer/serenity.nvim" },
             { "rjshkhr/shadow.nvim" },
             { "Skardyy/makurai-nvim" },
+            { "wheat-thin-wiens/rei.nvim" },
             { "vunhatchuong/gleam-theme.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },

@@ -93,7 +93,10 @@ return {
     {
         "lewis6991/hover.nvim",
         -- stylua: ignore
-        keys = { { "K", function() require("hover").hover() end } },
+        keys = {
+            { "K", function() require("hover").hover() end },
+            { "gK", function() require("hover").hover_select() end },
+        },
         opts = {
             init = function()
                 -- require("hover.providers.lsp")
