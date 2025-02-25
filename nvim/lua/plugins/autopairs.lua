@@ -23,15 +23,7 @@ return {
                 desc = "Clasp",
             },
         },
-        opts = {
-            pairs = {
-                ["{"] = "}",
-                ['"'] = '"',
-                ["'"] = "'",
-                ["("] = ")",
-                ["["] = "]",
-            },
-        },
+        opts = {},
         config = function(_, opts)
             require("clasp").setup(opts)
 

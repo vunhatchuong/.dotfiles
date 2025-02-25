@@ -105,6 +105,7 @@ return {
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
+            { "alexxGmZ/e-ink.nvim" },
         },
     },
     {
