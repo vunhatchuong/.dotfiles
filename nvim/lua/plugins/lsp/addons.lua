@@ -70,7 +70,7 @@ return {
         -- stylua: ignore
         keys = {
             { "gd",         "<CMD>Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
-            { "gr",         "<CMD>Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
+            -- { "gr",         "<CMD>Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
         },
         opts = function()
             local icons = require("core.icons")

@@ -50,6 +50,18 @@ return {
                 desc = "FzfLua: Buffers",
                 function() require("fzf-lua").buffers() end,
             },
+            {
+                "gr",
+                desc = "[G]oto [R]eferences",
+                function()
+                    local cursor = vim.api.nvim_win_get_cursor(0)
+
+                    require("fzf-lua").lsp_references({regex_filter=function(item)
+                    if item.lnum == cursor[1] then return false end
+
+                    return true
+                end}) end,
+            },
         },
         opts = function()
             local fzf = require("fzf-lua")
@@ -114,8 +126,6 @@ return {
                 },
                 lsp = {
                     async = true,
-                    jump1 = true,
-                    -- ignore_current_line = true,
                     code_actions = {
                         previewer = "codeaction_native",
                     },

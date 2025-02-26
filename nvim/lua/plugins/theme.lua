@@ -92,6 +92,8 @@ return {
             { "p00f/alabaster.nvim" },
             { "gmr458/cold.nvim" },
             { "water-sucks/darkrose.nvim" },
+            { "ilof2/posterpole.nvim" },
+            { "armannikoyan/rusty" },
             -- { "metalelf0/jellybeans-nvim" }, -- Required lush.nvim
             {
                 "idr4n/github-monochrome.nvim",
