@@ -50,17 +50,19 @@ return {
 
                     ["<CR>"] = { "accept_and_enter", "fallback" },
                 },
+                completion = {
+                    list = {
+                        selection = { preselect = false, auto_insert = true },
+                    },
+                    menu = { auto_show = true },
+                    ghost_text = { enabled = false },
+                },
             },
             completion = {
-                list = {
-                    selection = {
-                        preselect = false,
-                        auto_insert = function(ctx)
-                            return ctx.mode == "cmdline" and true or false
-                        end,
-                    },
-                },
                 accept = { auto_brackets = { enabled = false } },
+                list = {
+                    selection = { preselect = false, auto_insert = false },
+                },
                 menu = {
                     -- auto_show = false,
                     draw = {
