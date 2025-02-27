@@ -99,8 +99,8 @@ return {
         },
         opts = {
             init = function()
-                -- require("hover.providers.lsp")
-                require("plugins.lsp.lspsaga-hover")
+                -- require("plugins.lsp.lspsaga-hover")
+                require("plugins.lsp.pretty-hover")
                 require("hover.providers.fold_preview")
                 require("hover.providers.man")
                 require("hover.providers.dictionary")
@@ -162,7 +162,7 @@ return {
             -- preferred_environment = "local",
             types = true,
             integrations = {
-                lspsaga = true,
+                lspsaga = false,
                 blink_cmp = true,
                 fzf = true,
             },

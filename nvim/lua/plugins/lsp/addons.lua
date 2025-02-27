@@ -13,11 +13,6 @@ return {
                 "<CMD>Trouble diagnostics toggle<CR>",
                 desc = "Trouble: Workspace Diagnostics",
             },
-            -- {
-            --     "<leader>o",
-            --     "<CMD>Trouble symbols toggle<CR>",
-            --     desc = "Trouble: Buffer Symbols",
-            -- },
         },
         opts = {
             focus = true,
@@ -59,38 +54,13 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         config = function()
             vim.g.matchup_matchparen_offscreen = { method = "popup" }
-
             vim.g.matchup_matchparen_deferred = 1 -- keystrokes get laggy without these aggro settings
             vim.g.matchup_matchparen_deferred_show_delay = 350
         end,
     },
-    {
-        "nvimdev/lspsaga.nvim",
-        event = "LspAttach",
-        -- stylua: ignore
-        keys = {
-            { "gd",         "<CMD>Lspsaga goto_definition<CR>",      desc = "[G]oto [D]definition" },
-            -- { "gr",         "<CMD>Lspsaga finder<CR>",               desc = "[G]oto [R]eferences" },
-        },
-        opts = function()
-            local icons = require("core.icons")
-            return {
-                ui = {
-                    expand = icons.kind.Expanded,
-                    collapse = icons.kind.Collapsed,
-                    code_action = icons.ui.Lightbulb,
-                },
-                symbol_in_winbar = { enable = false },
-                diagnostic = {
-                    show_code_action = false,
-                },
-                finder = {
-                    keys = { toggle_or_open = "<CR>" },
-                },
-                lightbulb = { sign = false },
-                code_action = { show_server_name = true },
-            }
-        end,
+    { -- Loaded by hover.nvim
+        "Fildo7525/pretty_hover",
+        opts = {},
     },
     {
         "rachartier/tiny-code-action.nvim",
@@ -105,7 +75,7 @@ return {
                     require("tiny-code-action").code_action()
                 end,
                 mode = { "n", "x" },
-                desc = "LspSaga: [C]ode [A]ction",
+                desc = "TinyCodeAction: [C]ode [A]ction",
             },
         },
         opts = {

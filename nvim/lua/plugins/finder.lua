@@ -62,6 +62,11 @@ return {
                     return true
                 end}) end,
             },
+            {
+                "gd",
+                desc = "[G]oto [D]definition",
+                function() require("fzf-lua").lsp_definitions() end,
+            },
         },
         opts = function()
             local fzf = require("fzf-lua")
@@ -125,7 +130,8 @@ return {
                     rg_opts = " --color=never --column --line-number --no-heading --smart-case --max-columns=4096 -e",
                 },
                 lsp = {
-                    async = true,
+                    async = false, -- True will make jump1 shows UI
+                    jump1 = true,
                     code_actions = {
                         previewer = "codeaction_native",
                     },
@@ -148,8 +154,13 @@ return {
     },
     {
         "snacks.nvim",
+        --stylua: ignore
+        keys = {
+            { "<leader>u", function() Snacks.picker.undo() end, desc = "Undo Tree" },
+        },
         opts = {
             ---@type snacks.picker.Config
+            --- @diagnostic disable: missing-fields
             picker = {
                 sources = {
                     files = {
@@ -174,10 +185,6 @@ return {
                     },
                 },
             },
-        },
-        --stylua: ignore
-        keys = {
-            { "<leader>u", function() Snacks.picker.undo() end, desc = "Undo Tree" },
         },
     },
     { -- https://github.com/bassamsdata/namu.nvim/blob/main/docs/Namu_config.md

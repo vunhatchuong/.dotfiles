@@ -1,11 +1,11 @@
 local get_clients = vim.lsp.get_active_clients
 
 require("hover").register({
-    name = "LSPSaga Hover Doc",
+    name = "Pretty Hover Doc",
     priority = 1000,
     enabled = function(bufnr)
-        local has_lspsaga, _ = pcall(require, "lspsaga")
-        if not has_lspsaga then
+        local has_hover, _ = pcall(require, "pretty_hover")
+        if not has_hover then
             return false
         end
 
@@ -19,6 +19,6 @@ require("hover").register({
         return false
     end,
     execute = function()
-        vim.cmd("Lspsaga hover_doc")
+        require("pretty_hover").hover()
     end,
 })
