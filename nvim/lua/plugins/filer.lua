@@ -46,7 +46,6 @@ return {
             lsp_file_methods = { autosave_changes = true },
         },
     },
-    { "FerretDetective/oil-git-signs.nvim", ft = "oil", opts = {} },
     {
         "echasnovski/mini.files",
         lazy = false,
