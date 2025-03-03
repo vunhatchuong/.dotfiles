@@ -73,9 +73,19 @@ return {
                             { "kind", gap = 1 },
                             { "source_name" },
                         },
-                        -- colorful_menu.nvim
-                        -- stylua: ignore
                         components = {
+                            kind_icon = {
+                                highlight = function(ctx)
+                                    return "None"
+                                end,
+                            },
+                            kind = {
+                                highlight = function(ctx)
+                                    return "None"
+                                end,
+                            },
+                            -- colorful_menu.nvim
+                            -- stylua: ignore
                             label = {
                                 text = function(ctx)
                                     return require("colorful-menu").blink_components_text(ctx)
@@ -84,6 +94,7 @@ return {
                                     return require("colorful-menu").blink_components_highlight(ctx)
                                 end,
                             },
+                            source_name = { highlight = "None" },
                         },
                     },
                     border = vim.g.border_style,
