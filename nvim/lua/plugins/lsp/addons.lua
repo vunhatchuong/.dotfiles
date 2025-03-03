@@ -179,4 +179,9 @@ return {
     --     event = "LspAttach",
     --     opts = { standalone = true },
     -- },
+    {
+        "lafarr/hierarchy.nvim",
+        cmd = "FunctionReferences",
+        opts = {},
+    },
 }
