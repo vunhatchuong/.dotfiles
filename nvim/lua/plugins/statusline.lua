@@ -4,7 +4,7 @@ return {
         "nvim-lualine/lualine.nvim",
         event = "VeryLazy",
         dependencies = {
-            "vunhatchuong/pure_branch.nvim",
+            -- "vunhatchuong/pure_branch.nvim",
         },
         init = function()
             vim.g.lualine_laststatus = vim.o.laststatus
@@ -43,8 +43,8 @@ return {
                         },
                     },
                     lualine_b = {
-                        -- { "branch", icon = "" },
-                        { require("pure_branch") },
+                        { "branch", icon = "" },
+                        -- { require("pure_branch") },
                         {
                             "diff",
                             diff_color = {
