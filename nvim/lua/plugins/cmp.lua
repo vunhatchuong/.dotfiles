@@ -192,7 +192,7 @@ return {
                         score_offset = 101,
                     },
                     supermaven = {
-                        name = "supermaven",
+                        name = "[SuperMaven]",
                         module = "blink.compat.source",
                         score_offset = 100,
                         async = true,

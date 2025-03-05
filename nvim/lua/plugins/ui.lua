@@ -200,14 +200,6 @@ return {
         },
     },
     {
-        "ryanfkeepers/conceal.nvim",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        -- generate the scm queries
-        -- only need to be run when the Configuration changes
-        -- lua require("conceal").generate_conceals()
-        opts = {},
-    },
-    {
         "kevinhwang91/nvim-ufo",
         dependencies = { "kevinhwang91/promise-async" },
         event = "UIEnter",

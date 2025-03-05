@@ -114,59 +114,6 @@ return {
             end, { expr = true, desc = "Start IncRename" })
         end,
     },
-    { -- Auto launch when lsp.keymap.workspace_diagnostics run
-        "artemave/workspace-diagnostics.nvim",
-        opts = {},
-    },
-    {
-        "Bekaboo/dropbar.nvim",
-        enabled = false,
-        event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-        init = function()
-            -- Disable dropbar's own lazy loader
-            vim.g.loaded_dropbar = true
-        end,
-        ---@type dropbar_configs_t
-        opts = {
-            icons = {
-                kinds = {
-                    symbols = require("core.icons").kind,
-                },
-            },
-            bar = {
-                update_debounce = 3000,
-                sources = function(buf, _)
-                    local sources = require("dropbar.sources")
-                    local utils = require("dropbar.utils")
-                    if vim.bo[buf].ft == "markdown" then
-                        return {
-                            sources.path,
-                            sources.markdown,
-                        }
-                    end
-                    if vim.bo[buf].buftype == "terminal" then
-                        return {
-                            sources.terminal,
-                        }
-                    end
-                    return {
-                        utils.source.fallback({
-                            sources.lsp,
-                            sources.treesitter,
-                        }),
-                    }
-                end,
-            },
-        },
-    },
-    { -- Stop lsp in inactive nvim instances
-        -- Doesn't work for all lsp
-        "tronikelis/lsp-gc.nvim",
-        enabled = false,
-        event = "LspAttach",
-        dependencies = { "neovim/nvim-lspconfig" },
-        opts = {},
-    },
     { -- Deferring of all diagnostics
         "yorickpeterse/nvim-dd",
         event = "LspAttach",

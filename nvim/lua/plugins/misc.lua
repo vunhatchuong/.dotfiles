@@ -203,14 +203,6 @@ return {
         },
     },
     {
-        "tamton-aquib/stuff.nvim",
-        cmd = { "Calc" },
-        config = function()
-            require("calc").setup()
-            -- require("rain").rain()
-        end,
-    },
-    {
         "ZWindL/orphans.nvim",
         cmd = "Orphans",
         opts = {},
