@@ -250,4 +250,17 @@ return {
             highlight_group = "Visual",
         },
     },
+    {
+        "tkmpypy/chowcho.nvim",
+        keys = {
+            {
+                "<C-w>d",
+                function()
+                    require("chowcho").run()
+                end,
+                mode = { "n", "v" },
+            },
+        },
+        opts = {},
+    },
 }

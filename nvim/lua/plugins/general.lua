@@ -1,5 +1,10 @@
 return {
     {
+        "one-d-wide/lazy-patcher.nvim",
+        ft = "lazy",
+        opts = {},
+    },
+    {
         "chrisgrieser/nvim-early-retirement",
         event = "BufAdd",
         opts = {
