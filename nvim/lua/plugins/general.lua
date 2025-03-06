@@ -1,8 +1,23 @@
 return {
+    -- open file given a line, Ex in terminal: nvim general.lua:20
+    { "lewis6991/fileline.nvim", event = "BufNewFile" },
+    -- Ask when try to open a disambiguate file: nvim gener
     {
-        "one-d-wide/lazy-patcher.nvim",
-        ft = "lazy",
-        opts = {},
+        "vunhatchuong/actually.nvim",
+        branch = "fix/nested-autocmd",
+        event = "BufNewFile",
+    },
+    { -- Turn off features when file > ? MB
+        "pteroctopus/faster.nvim",
+        lazy = false,
+        opts = {
+            behaviours = {
+                bigfile = {
+                    on = true,
+                    filesize = 2,
+                },
+            },
+        },
     },
     {
         "chrisgrieser/nvim-early-retirement",
@@ -74,26 +89,6 @@ return {
                 h()
             end, { desc = "Origami left" })
         end,
-    },
-    { -- Turn off features when file > ? MB
-        "pteroctopus/faster.nvim",
-        lazy = false,
-        opts = {
-            behaviours = {
-                bigfile = {
-                    on = true,
-                    filesize = 2,
-                },
-            },
-        },
-    },
-    -- open file given a line, Ex in terminal: nvim general.lua:20
-    { "lewis6991/fileline.nvim", event = "BufNewFile" },
-    -- Ask when try to open a disambiguate file: nvim gener
-    {
-        "vunhatchuong/actually.nvim",
-        branch = "fix/nested-autocmd",
-        event = "BufNewFile",
     },
     {
         "lewis6991/hover.nvim",
@@ -226,7 +221,7 @@ return {
     },
     { -- https://github.com/nikolaeu/numi/wiki
         "josephburgess/nvumi",
-        -- dependencies = { "folke/snacks.nvim" },
+        dependencies = { "folke/snacks.nvim" },
         cmd = "Nvumi",
         opts = {
             virtual_text = "inline",
