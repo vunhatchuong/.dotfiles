@@ -36,6 +36,9 @@ return {
                 ["<Up>"] = { "select_prev", "fallback" },
                 ["<Down>"] = { "select_next", "fallback" },
 
+                ["<C-u>"] = { "scroll_documentation_up", "fallback" },
+                ["<C-d>"] = { "scroll_documentation_down", "fallback" },
+
                 ["<CR>"] = { "accept", "fallback" },
             },
             cmdline = {
@@ -74,9 +77,11 @@ return {
                             { "source_name" },
                         },
                         components = {
+                            -- stylua: ignore
                             kind_icon = {
                                 highlight = function(ctx)
-                                    return "None"
+                                    local _, hl, _ = require("mini.icons").get("lsp", ctx.kind)
+                                    return hl
                                 end,
                             },
                             kind = {
@@ -94,7 +99,11 @@ return {
                                     return require("colorful-menu").blink_components_highlight(ctx)
                                 end,
                             },
-                            source_name = { highlight = "None" },
+                            source_name = {
+                                text = function(ctx)
+                                    return "[" .. ctx.source_name .. "]"
+                                end,
+                            },
                         },
                     },
                     border = vim.g.border_style,
@@ -140,21 +149,20 @@ return {
                 end,
                 providers = {
                     lsp = {
-                        name = "[LSP]",
                         score_offset = 4,
                     },
                     path = {
-                        name = "[Path]",
+                        name = "Path",
                         score_offset = 2,
                     },
                     snippets = {
-                        name = "[Snip]",
+                        name = "Snip",
                         score_offset = 3,
                     },
                     buffer = {
-                        name = "[Buf]",
-                        max_items = 4,
-                        min_keyword_length = 4,
+                        name = "Buf",
+                        max_items = 5,
+                        -- min_keyword_length = 4,
                         score_offset = 1,
                     },
                     cmdline = {
@@ -182,24 +190,27 @@ return {
                     },
                     -- Extensions
                     lazydev = {
-                        name = "[LazyDev]",
+                        name = "LazyDev",
                         module = "lazydev.integrations.blink",
                         score_offset = 100, -- show at a higher priority than lsp
                     },
                     ecolog = {
-                        name = "[Env]",
+                        name = "Env",
                         module = "ecolog.integrations.cmp.blink_cmp",
                         score_offset = 101,
                     },
                     supermaven = {
-                        name = "[SuperMaven]",
+                        name = "SuperMaven",
                         module = "blink.compat.source",
                         score_offset = 100,
                         async = true,
                     },
                 },
             },
-            appearance = { kind_icons = icons.kind },
+            appearance = {
+                use_nvim_cmp_as_default = true,
+                kind_icons = icons.kind,
+            },
         },
     },
 }
