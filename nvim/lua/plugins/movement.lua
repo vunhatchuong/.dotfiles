@@ -250,7 +250,7 @@ return {
             highlight_group = "Visual",
         },
     },
-    {
+    { -- window selector
         "tkmpypy/chowcho.nvim",
         keys = {
             {

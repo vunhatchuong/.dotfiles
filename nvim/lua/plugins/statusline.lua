@@ -23,6 +23,8 @@ return {
 
             vim.o.laststatus = vim.g.lualine_laststatus
 
+            Util.statusline.lsp_progress()
+
             return {
                 options = {
                     disabled_filetypes = {
@@ -96,15 +98,7 @@ return {
                                 hint = "",
                             },
                         },
-                        {
-                            function()
-                                return Util.statusline.lsp_progress()
-                            end,
-                        },
-                        {
-                            Util.statusline.get_lsp_names,
-                            color = "Comment",
-                        },
+                        { Util.statusline.get_lsp_status },
                     },
                     lualine_z = {
                         -- {

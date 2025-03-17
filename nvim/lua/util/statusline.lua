@@ -64,63 +64,80 @@ local ignored_lsp = {
     "typos_lsp",
     "null-ls",
 }
--- https://github.com/dgox16/dotfiles/blob/main/.config/nvim/lua/configs/lualine.lua#L92
-function M.get_lsp_names()
-    local bufnr = vim.api.nvim_get_current_buf()
-    local buf_clients = vim.lsp.get_clients({ bufnr = bufnr })
 
-    if vim.tbl_isempty(buf_clients) then
-        return "%#Removed#󰶐%#Normal# No servers"
-    end
+local lsp_work_by_client_id = {}
+local spinner_index = 0
+local symbols = {
+    spinner = require("core.icons").misc.spinner_dot,
+}
 
-    local seen = {}
-    local lsp_names = {}
+local function advance_spinner()
+    spinner_index = math.floor(vim.uv.hrtime() / (1e6 * 80)) % #symbols.spinner
 
-    for _, client in ipairs(buf_clients) do
-        if
-            not vim.tbl_contains(ignored_lsp, client.name)
-            and not seen[client.name]
-        then
-            table.insert(lsp_names, client.name)
-            seen[client.name] = true
-        end
-    end
-
-    if vim.tbl_isempty(lsp_names) then
-        return "%#Removed#󰶐%#Normal# No servers"
-    end
-
-    return "%#Added#󰍹%#Normal# " .. table.concat(lsp_names, ", ")
+    return symbols.spinner[spinner_index + 1]
 end
 
 -- Credits to https://github.com/chrisgrieser/.config/blob/main/nvim/lua/plugins/lualine.lua#L4
-local progress_text = ""
 function M.lsp_progress()
     vim.api.nvim_create_autocmd("LspProgress", {
-        callback = function(ctx)
+        callback = function(event)
             ---@type {percentage: number, title?: string, kind: string, message?: string}
-            local progress = ctx.data.params.value
+            local progress = event.data.params.value
             if not (progress and progress.title) then
                 return
             end
 
-            local icons = require("core.icons").misc.spinner_circle
+            local client_id = event.data.client_id
+            local work = lsp_work_by_client_id[client_id] or 0
 
-            local idx = math.floor(#icons / 2)
-            if progress.percentage == 0 then
-                idx = 1
+            local work_change = progress.kind == "begin" and 1
+                or (progress.kind == "end" and -1 or 0)
+
+            lsp_work_by_client_id[client_id] = math.max(work + work_change, 0)
+
+            if
+                (work == 0 and work_change > 0)
+                or (work == 1 and work_change < 0)
+            then
+                require("lualine").refresh()
             end
-
-            if progress.percentage and progress.percentage > 0 then
-                idx = math.ceil(progress.percentage / 100 * #icons)
-            end
-            local firstWord = vim.split(progress.title, " ")[1]:lower()
-
-            local lsp_names = table.concat({ icons[idx], firstWord }, " ")
-            progress_text = progress.kind == "end" and "" or lsp_names
         end,
     })
-    return progress_text
+end
+
+-- https://github.com/nvim-lualine/lualine.nvim/blob/master/lua/lualine/components/lsp_status.lua
+function M.get_lsp_status()
+    local bufnr = vim.api.nvim_get_current_buf()
+    local buf_clients = vim.lsp.get_clients({ bufnr = bufnr })
+    if vim.tbl_isempty(buf_clients) then
+        return "%#Removed#󰶐 %#Normal#"
+    end
+
+    local result = {}
+    local spinner_symbol = advance_spinner()
+
+    for _, client in ipairs(buf_clients) do
+        local status
+        local work = lsp_work_by_client_id[client.id]
+        if work and work > 0 then
+            status = spinner_symbol
+        elseif work and work == 0 then
+            status = symbols.done
+        end
+
+        if not vim.tbl_contains(ignored_lsp, client.name) then
+            table.insert(
+                result,
+                client.name .. (status and " " .. status or "")
+            )
+        end
+    end
+
+    if vim.tbl_isempty(result) then
+        return "%#Removed#󰶐 %#Normal#"
+    end
+
+    return "%#Added#󰍹%#Normal# " .. table.concat(result, ", ")
 end
 
 --- Returns a custom name of the mode
