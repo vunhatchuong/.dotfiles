@@ -46,28 +46,6 @@ return {
         },
     },
     {
-        "3rd/image.nvim",
-        ft = { "markdown", "vimwiki" },
-        build = false,
-        opts = {
-            backend = "kitty",
-            processor = "magick_cli",
-            integrations = {
-                markdown = {
-                    clear_in_insert_mode = true,
-                    download_remote_images = true,
-                    only_render_image_at_cursor = true,
-                },
-                neorg = { enabled = false },
-                typst = { enabled = false },
-                html = { enabled = false },
-                css = { enabled = false },
-            },
-            editor_only_render_when_focused = false,
-            tmux_show_only_in_active_window = true, -- auto show/hide images in the correct Tmux window (needs visual-activity off)
-        },
-    },
-    {
         "HakonHarnes/img-clip.nvim",
         cmd = { "PasteImage" },
         keys = {

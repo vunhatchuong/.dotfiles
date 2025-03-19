@@ -7,6 +7,10 @@ return {
         ---@type snacks.Config
         --- @diagnostic disable: missing-fields
         opts = {
+            image = {
+                enabled = true,
+                doc = { inline = false },
+            },
             indent = {
                 enabled = true,
                 indent = { enabled = false },
@@ -42,6 +46,7 @@ return {
                     wo = { wrap = true },
                     focusable = false,
                 },
+                snacks_image = { border = "none" },
                 zen = {
                     backdrop = {
                         transparent = false,
