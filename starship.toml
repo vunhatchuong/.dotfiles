@@ -13,8 +13,11 @@ $python\
 $conda\
 $golang\
 $package\
+$gleam\
 $line_break\
 $character"""
+
+command_timeout = 100
 
 [character]
 success_symbol = "[󰘧](mauve)" # ❯
@@ -75,6 +78,9 @@ style = "green"
 format = "[$symbol$version]($style) "
 symbol = " "
 style = "sapphire"
+
+[gleam]
+symbol = "⭐ "
 
 [aws]
 symbol = "  "
@@ -146,6 +152,7 @@ symbol = " "
 
 [ocaml]
 symbol = " "
+
 [perl]
 symbol = " "
 
