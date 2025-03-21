@@ -105,6 +105,7 @@ return {
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         ft = { "markdown", "norg", "rmd", "org" },
         opts = {
+            completions = { lsp = { enabled = true } },
             heading = {
                 sign = false,
                 icons = {},
