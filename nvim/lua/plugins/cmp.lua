@@ -197,6 +197,10 @@ return {
                         module = "blink.compat.source",
                         score_offset = 100,
                         async = true,
+                        opts = {
+                            cmp_name = "supermaven",
+                            impersonate_nvim_cmp = true,
+                        },
                     },
                 },
             },
