@@ -1,8 +1,7 @@
 return {
     -- open file given a line, Ex in terminal: nvim general.lua:20
     { "lewis6991/fileline.nvim", event = "BufNewFile" },
-    -- Ask when try to open a disambiguate file: nvim gener
-    {
+    { -- Ask when try to open a disambiguate file: nvim gener
         "vunhatchuong/actually.nvim",
         branch = "fix/nested-autocmd",
         event = "BufNewFile",

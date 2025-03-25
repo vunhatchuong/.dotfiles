@@ -43,14 +43,7 @@ return {
             },
             cmdline = {
                 keymap = {
-                    preset = "none",
-                    ["<C-space>"] = { "show", "hide" },
-
-                    ["<Tab>"] = { "select_next", "fallback" },
-                    ["<S-Tab>"] = { "select_prev", "fallback" },
-                    ["<Up>"] = { "select_prev", "fallback" },
-                    ["<Down>"] = { "select_next", "fallback" },
-
+                    preset = "inherit",
                     ["<CR>"] = { "accept_and_enter", "fallback" },
                 },
                 completion = {

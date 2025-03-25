@@ -84,6 +84,7 @@ return {
             { "ficcdaf/ashen.nvim" },
             { "drewxs/ash.nvim" },
             { "datsfilipe/vesper.nvim" },
+            { "sponkurtus2/angelic.nvim" },
             -- { "rithikasilva/monoplus.nvim" },
             { "kdheepak/monochrome.nvim" },
             { "kvrohit/substrata.nvim" },
