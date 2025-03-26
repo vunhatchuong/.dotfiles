@@ -18,6 +18,16 @@ return {
                 },
                 basedpyright = {
                     enabled = true,
+                    settings = {
+                        basedpyright = {
+                            analysis = {
+                                inlayHints = {
+                                    variableTypes = false,
+                                    callArgumentNames = false,
+                                },
+                            },
+                        },
+                    },
                 },
             },
             attach_server = {

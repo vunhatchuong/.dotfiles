@@ -118,6 +118,7 @@ return {
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
             { "alexxGmZ/e-ink.nvim" },
+            { "rxils/triplebaka.nvim" },
         },
     },
     {
