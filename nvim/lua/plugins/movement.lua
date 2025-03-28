@@ -36,8 +36,7 @@ return {
         opts = { border = vim.g.border_style },
     },
     { -- Move in and out of brackets
-        "vunhatchuong/in-and-out.nvim",
-        branch = "fix/nvim-v0.10.1-compatibility",
+        "ysmb-wtsg/in-and-out.nvim",
         keys = {
             {
                 "<TAB>",

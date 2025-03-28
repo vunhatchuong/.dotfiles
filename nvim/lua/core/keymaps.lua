@@ -57,13 +57,6 @@ keymap("n", "U", "<C-r>")
 keymap("i", "<C-p>", "<C-r>+", { desc = "Paste in insert mode" })
 keymap("i", "<C-v>", "<C-r>+")
 
--- buffers
-keymap("n", "[b", "<CMD>bprev<CR>", { desc = "Prev buffer" })
-keymap("n", "]b", "<CMD>bnext<CR>", { desc = "Next buffer" })
--- quickfix
-keymap("n", "[q", "<CMD>cprev<CR>", { desc = "Prev qf item" })
-keymap("n", "]q", "<CMD>cnext<CR>", { desc = "Next qf item" })
-
 -- n always search forward and N backward
 keymap("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true })
 keymap({ "x", "o" }, "n", "'Nn'[v:searchforward]", { expr = true })
@@ -117,8 +110,9 @@ end, { desc = "Yank selection as markdown code block" })
 -- Tmux sessionizer
 keymap("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
--- Disable default LSP mappings
+-- Disable default mappings
 pcall(del, "n", "grn")
-pcall(del, "n", "gra")
 pcall(del, "n", "grr")
 pcall(del, "n", "gri")
+pcall(del, { "n", "v" }, "gra")
+pcall(del, "n", "<C-S>")

@@ -58,7 +58,7 @@ return {
             vim.g.matchup_matchparen_deferred_show_delay = 350
         end,
     },
-    { -- Loaded by hover.nvim
+    { -- Loaded by hover.nvim (Might not need in 0.11)
         "Fildo7525/pretty_hover",
         opts = {},
     },

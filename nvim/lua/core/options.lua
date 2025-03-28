@@ -46,7 +46,7 @@ opt.guicursor = {
     -- "a:blinkwait700-blinkoff400-blinkon250", -- All modes: blinking settings
     -- "sm:block-blinkwait175-blinkoff150-blinkon175", -- Showmatch: block cursor with specific blinking settings
 }
-opt.completeopt = "menu,menuone,preview,noselect,noinsert"
+opt.completeopt = "menu,menuone,preview,noselect,noinsert,fuzzy"
 -- opt.completeopt = "menu,menuone,noselect"
 
 opt.splitbelow = false
@@ -113,7 +113,7 @@ vim.g.netrw_alto = 0
 opt.wildmode = "longest:full,full" -- Command-line completion mode
 -- opt.wildoptions = { "pum", "fuzzy" }
 opt.wildignorecase = true -- Ignore case when completing file names and directories
-opt.shortmess:append("tToOWIcsF") -- don't show redundant messages from ins-completion-menu
+opt.shortmess = "aoOstTWIcF" -- don't show redundant messages from ins-completion-menu
 opt.fillchars = vim.opt.fillchars + "eob: "
 opt.fillchars:append({
     foldopen = "",
