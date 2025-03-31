@@ -99,7 +99,6 @@ return {
                             },
                         },
                     },
-                    border = vim.g.border_style,
                     winblend = vim.o.pumblend,
                     winhighlight = "Normal:None,FloatBorder:None,CursorLine:BlinkCmpMenuSelection,Search:None",
                 },
@@ -107,7 +106,6 @@ return {
                     auto_show = true,
                     auto_show_delay_ms = 200,
                     window = {
-                        border = vim.g.border_style,
                         winblend = vim.o.pumblend,
                         winhighlight = "Normal:None,FloatBorder:None,CursorLine:BlinkCmpDocCursorLine,Search:None",
                     },
@@ -128,7 +126,6 @@ return {
             signature = {
                 enabled = true,
                 window = {
-                    border = vim.g.border_style,
                     show_documentation = true,
                 },
             },

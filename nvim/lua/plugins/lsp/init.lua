@@ -8,10 +8,6 @@ return {
             { "williamboman/mason-lspconfig.nvim", config = function() end },
             require("plugins.lsp.mason"),
         },
-        init = function()
-            require("lspconfig.ui.windows").default_options.border =
-                vim.g.border_style
-        end,
         opts = function()
             return {
                 inlay_hints = {

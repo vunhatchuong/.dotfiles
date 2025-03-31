@@ -23,7 +23,6 @@ require("lazy").setup({
     },
     install = { colorscheme = { "default" } },
     checker = { enabled = true },
-    ui = { border = vim.g.border_style },
     change_detection = {
         enabled = false,
         notify = false,

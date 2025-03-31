@@ -42,7 +42,6 @@ return {
             styles = {
                 -- terminal = { keys = { q = false, gf = false, term_normal = false } },
                 notification = {
-                    border = vim.g.border_style,
                     wo = { wrap = true },
                     focusable = false,
                 },

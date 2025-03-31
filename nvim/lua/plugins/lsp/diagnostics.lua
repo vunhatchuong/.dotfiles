@@ -14,7 +14,7 @@ local config = {
     update_in_insert = false,
     virtual_text = false,
     severity_sort = true,
-    float = { border = vim.g.border_style },
+    float = {},
     signs = { text = signs },
 }
 

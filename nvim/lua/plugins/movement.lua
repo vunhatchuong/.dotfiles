@@ -33,7 +33,7 @@ return {
     {
         "glepnir/flybuf.nvim",
         keys = { { "<leader>j", "<CMD>FlyBuf<CR>", desc = "Open buffer menu" } },
-        opts = { border = vim.g.border_style },
+        opts = {},
     },
     { -- Move in and out of brackets
         "ysmb-wtsg/in-and-out.nvim",

@@ -59,6 +59,7 @@ opt.grepformat = "%f:%l:%c:%m"
 opt.grepprg = "rg --vimgrep"
 
 ---  APPEARANCE  ---
+vim.o.winborder = "rounded" ---@type "single"|"double"|"rounded"
 opt.termguicolors = true -- set term gui colors (most terminals support this)
 opt.number = true -- set numbered lines
 opt.relativenumber = true -- set relative numbered lines

@@ -104,7 +104,6 @@ return {
                 require("hover.providers.man")
                 require("hover.providers.dictionary")
             end,
-            preview_opts = { border = vim.g.border_style },
         },
     },
     { "psjay/buffer-closer.nvim", keys = { "q" }, opts = {} },

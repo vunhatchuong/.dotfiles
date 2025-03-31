@@ -122,7 +122,6 @@ return {
 
                     local config = vim.api.nvim_win_get_config(win_id)
 
-                    config.border = vim.g.border_style
                     config.height = 45
 
                     vim.api.nvim_win_set_config(win_id, config)
@@ -133,7 +132,6 @@ return {
                 callback = function(args)
                     local config = vim.api.nvim_win_get_config(args.data.win_id)
 
-                    config.border = vim.g.border_style
                     config.height = 45
 
                     vim.api.nvim_win_set_config(args.data.win_id, config)
