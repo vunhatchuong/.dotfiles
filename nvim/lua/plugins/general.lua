@@ -38,7 +38,7 @@ return {
         opts = {
             -- This breaks fileline.nvim and actually.nvim
             keepFoldsAcrossSessions = false,
-            setupFoldKeymaps = false,
+            foldKeymaps = { setup = false },
         },
         config = function(_, opts)
             require("origami").setup(opts)

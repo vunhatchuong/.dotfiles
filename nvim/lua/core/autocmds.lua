@@ -75,7 +75,7 @@ autocmd("TextYankPost", {
     desc = "Highlight when yank text",
     pattern = "*",
     callback = function()
-        (vim.hl or vim.highlight).on_yank({ timeout = 40 })
+        vim.hl.on_yank({ timeout = 40 })
     end,
 })
 
