@@ -69,7 +69,11 @@ return {
             {
                 "<leader>n",
                 function()
-                    Snacks.scratch()
+                    Snacks.scratch({
+                        icon = " ",
+                        name = "Todo",
+                        ft = "markdown",
+                    })
                 end,
                 desc = "Toggle Scratch Buffer",
             },
