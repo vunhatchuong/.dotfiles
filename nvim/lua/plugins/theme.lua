@@ -114,6 +114,9 @@ return {
             { "Skardyy/makurai-nvim" },
             { "wheat-thin-wiens/rei.nvim" },
             { "vunhatchuong/gleam-theme.nvim" },
+            { "vague2k/vague.nvim" },
+            { "embark-theme/vim" },
+            { "ptdewey/darkearth-nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
