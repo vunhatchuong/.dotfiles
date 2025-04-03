@@ -20,6 +20,7 @@ return {
                     FORCE_COLOR = "1",
                 },
                 baleia_setup = true,
+                hidden_buffer = true,
 
                 default_command = "",
                 time_format = "%H:%M:%S",
