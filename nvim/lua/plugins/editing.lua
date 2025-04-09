@@ -120,4 +120,5 @@ return {
         cmd = { "GuessIndent" },
         opts = { auto_cmd = false },
     },
+    { "AndrewRadev/linediff.vim", cmd = "Linediff" },
 }

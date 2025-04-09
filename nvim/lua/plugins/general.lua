@@ -234,4 +234,19 @@ return {
         cmd = "Patterns",
         opts = {},
     },
+    {
+        "AckslD/nvim-anywise-reg.lua",
+        event = { "CursorMoved", "CursorHold" },
+        opts = {
+            operators = { "y", "d", "c" },
+            textobjects = {
+                { "i", "a" },
+                { "w", "W" },
+            },
+            paste_keys = {
+                ["p"] = "p",
+                ["P"] = "P",
+            },
+        },
+    },
 }

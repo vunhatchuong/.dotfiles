@@ -79,6 +79,7 @@ return {
             },
             { "blazkowolf/gruber-darker.nvim" },
             { "mcauley-penney/ice-cave.nvim" },
+            { "cocopon/iceberg.vim" },
             { "ramojus/mellifluous.nvim" },
             { "dgox16/oldworld.nvim" },
             { "ficcdaf/ashen.nvim" },
@@ -117,6 +118,9 @@ return {
             { "vague2k/vague.nvim" },
             { "embark-theme/vim" },
             { "ptdewey/darkearth-nvim" },
+            { "monaqa/colorimetry.nvim" },
+            { "matsuuu/pinkmare" },
+            { "4513ECHO/vim-colors-hatsunemiku" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
