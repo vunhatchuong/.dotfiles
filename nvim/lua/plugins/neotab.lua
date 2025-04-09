@@ -19,14 +19,23 @@ return {
                 enabled = true,
                 semicolon = { -- Put semicolon(;) at the right place
                     enabled = true,
-                    ft = { "zig", "c", "cpp", "java" },
+                    ft = {
+                        "zig",
+                        "c",
+                        "cpp",
+                        "java",
+                        "javascript",
+                        "typescript",
+                        "javascriptreact",
+                        "typescriptreact",
+                    },
                 },
                 escape = { -- Insert char at the right place
                     enabled = true,
                     ---@type table<string, ntab.trigger>
                     triggers = {
                         -- [";"] = { pairs = all_pairs, format = "%s" },
-                        ["="] = {
+                        ["="] = { -- for `() =>`
                             pairs = { { open = "(", close = ")" } },
                             format = " %s> ", -- ` => `
                             -- string.match(text_between_pairs, cond)
