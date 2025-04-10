@@ -48,6 +48,7 @@ set hlsearch
 
 " -- Plugins --
 " https://github.com/JetBrains/ideavim/wiki/IdeaVim-Plugins
+set commentary
 set surround
 set argtextobj
 set highlightedyank
@@ -71,6 +72,7 @@ nnoremap C "_C
 nnoremap x "_x
 nnoremap zo za
 vnoremap p "_dP
+map Y y$
 
 nnoremap U <C-r>
 inoremap <C-p> <C-r>+
@@ -109,4 +111,5 @@ vnoremap < <gv
 vnoremap > >gv
 
 " ---  Others  ---
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 map <leader>ff <Action>(ReformatCode)
