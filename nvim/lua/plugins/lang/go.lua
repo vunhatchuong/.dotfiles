@@ -50,7 +50,6 @@ return {
                                 rangeVariableTypes = true,
                             },
                             analyses = {
-                                fieldalignment = true,
                                 nilness = true,
                                 useany = true,
                             },
@@ -63,7 +62,7 @@ return {
                             },
                             usePlaceholders = true,
                             staticcheck = true,
-                            semanticTokens = true,
+                            semanticTokens = false, -- Bugged and go.nvim said treesiter is better
                         },
                     },
                 },
