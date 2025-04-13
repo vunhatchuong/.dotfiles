@@ -38,6 +38,7 @@ return {
                     inlay_hints = true,
                 },
                 show = { statusline = false, tabline = false },
+                win = { backdrop = { transparent = false, blend = 99 } },
             },
             styles = {
                 -- terminal = { keys = { q = false, gf = false, term_normal = false } },
@@ -47,13 +48,6 @@ return {
                 },
                 snacks_image = { border = "none" },
                 zen = {
-                    backdrop = {
-                        transparent = false,
-                        bg = string.format(
-                            "#%06x",
-                            vim.api.nvim_get_hl(0, { name = "Normal" }).bg
-                        ),
-                    },
                     -- https://github.com/cdmill/focus.nvim/blob/main/lua/focus/config.lua#L44
                     wo = {
                         number = false,
