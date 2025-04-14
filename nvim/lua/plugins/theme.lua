@@ -97,6 +97,7 @@ return {
             { "ilof2/posterpole.nvim" },
             { "armannikoyan/rusty" },
             -- { "metalelf0/jellybeans-nvim" }, -- Required lush.nvim
+            { "wtfox/jellybeans.nvim" },
             {
                 "idr4n/github-monochrome.nvim",
                 blacklist = { "github-monochrome" },
@@ -121,6 +122,7 @@ return {
             { "monaqa/colorimetry.nvim" },
             { "matsuuu/pinkmare" },
             { "4513ECHO/vim-colors-hatsunemiku" },
+            { "srt0/everblush.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },

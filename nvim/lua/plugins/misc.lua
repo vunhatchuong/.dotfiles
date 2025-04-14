@@ -195,4 +195,11 @@ return {
             require("telescope").load_extension("rfc")
         end,
     },
+    { -- loremX, ploremX cmd
+        "maarutan/lorem.nvim",
+        opts = {},
+    },
+    { -- blink.nvim source
+        "dnnr1/lorem-ipsum.nvim",
+    },
 }

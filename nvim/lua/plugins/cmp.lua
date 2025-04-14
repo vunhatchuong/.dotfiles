@@ -4,6 +4,7 @@ local ext = {
     "lazydev",
     "ecolog",
     "supermaven",
+    "lorem_ipsum",
 }
 local default_sources =
     vim.list_extend({ "lsp", "path", "snippets", "buffer" }, ext)
@@ -21,6 +22,7 @@ return {
         opts_extend = { "sources.compat", "sources.default" },
         dependencies = {
             { "supermaven-nvim" },
+            { "lorem-ipsum.nvim" },
             "xzbdmw/colorful-menu.nvim",
         },
         --- @module "blink.cmp"
@@ -196,6 +198,15 @@ return {
                         async = true,
                         opts = {
                             cmp_name = "supermaven",
+                            impersonate_nvim_cmp = true,
+                        },
+                    },
+                    lorem_ipsum = {
+                        name = "lorem",
+                        module = "blink.compat.source",
+                        score_offset = 100,
+                        opts = {
+                            cmp_name = "lorem_ipsum",
                             impersonate_nvim_cmp = true,
                         },
                     },
