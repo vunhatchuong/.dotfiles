@@ -2,7 +2,7 @@
 
 alias cl="clear"
 
-alias eza="eza --color=always --icons --time-style=long-iso"
+alias eza="eza --group-directories-first -s type --hyperlink --color=always --icons --time-style=long-iso"
 alias ls="eza"
 alias ll="ls -la --header"
 alias la="ls -a"
