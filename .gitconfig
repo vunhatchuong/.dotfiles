@@ -35,8 +35,13 @@
 [pull]
     rebase = true
 
+[push]
+    autoSetupRemote = true
+
 [rebase]
     autoStash = true
+    autoSquash = true
+    updateRefs = true
 
 [status]
     short = true
@@ -49,9 +54,12 @@
     verbose = true
 
 [diff]
-    prompt = false
+    algorithm  = histogram
     colorMoved = default # Moved lines in a diff are colored differently
     # renames = copies # Detect copies as well as renames.
+
+[difftool]
+    prompt = false
 
 [worktree]
     guessRemote = true
@@ -86,6 +94,7 @@
     diffw = diff --color-words
     # Shows local branches which got their remote branch deleted
     branchgone = "!git fetch &>/dev/null && git branch -vv | cut -c 3- | grep gone] | awk '{print $1}'"
+    recent = "!git branch --sort=-committerdate --format='%(committerdate:relative)%09%(refname:short)' | head -10"
 
 [credential]
     helper = /sbin/git-credential-manager

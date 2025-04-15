@@ -8,7 +8,6 @@ alias ll="ls -la --header"
 alias la="ls -a"
 alias tree="eza --tree --level=2 --group-directories-first"
 
-alias less="less -R"
 alias lg="lazygit"
 alias lzd="lazydocker"
 alias br="br -c :open_preview"

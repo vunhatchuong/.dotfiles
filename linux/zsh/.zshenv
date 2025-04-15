@@ -14,6 +14,10 @@ export FZF_DEFAULT_OPTS=" \
 
 export RIPGREP_CONFIG_PATH="$HOME/.config/ripgrep/config"
 
-# Use `bat` to read `man`
+export LESSOPEN="| bat --paging=always --decorations=always %s"
+export LESS="-R"
+export PAGER="bat"
+export BAT_PAGER="less -R"
+
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
