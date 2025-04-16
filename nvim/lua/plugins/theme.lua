@@ -123,6 +123,7 @@ return {
             { "matsuuu/pinkmare" },
             { "4513ECHO/vim-colors-hatsunemiku" },
             { "srt0/everblush.nvim" },
+            { "comfysage/cuddlefish.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
