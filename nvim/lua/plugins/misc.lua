@@ -102,12 +102,14 @@ return {
                 -- Programming
                 XinY = "https://learnxinyminutes.com/docs/%s",
                 ["pkg.go.dev"] = "https://pkg.go.dev/search?q=%s",
+                ["doc.rust-lang"] = "https://doc.rust-lang.org/std/index.html?search=%s",
             },
             aliases = {
                 s = "DuckDuckGo",
                 gh = "GitHub",
                 -- Programming
                 go = "pkg.go.dev",
+                rust = "doc.rust-lang",
             },
             command_name = "Weview",
         },
@@ -150,6 +152,7 @@ return {
                     ["RFC"] = "https://www.rfc-editor.org/search/rfc_search_detail.php",
                     ["gleam:tour"] = "https://tour.gleam.run/everything/",
                     ["gleam:std"] = "https://hexdocs.pm/gleam_stdlib/",
+                    ["rust:std"] = "https://doc.rust-lang.org/std/index.html"
                 },
                 ["entertainment"] = {
                     ["awesome-nvim"] = "https://github.com/rockerBOO/awesome-neovim",

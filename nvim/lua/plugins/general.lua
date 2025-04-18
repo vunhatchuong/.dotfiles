@@ -214,8 +214,8 @@ return {
     },
     {
         "NTBBloodbath/exemplum.nvim",
-        cmd = "Exemplum",
         dependencies = { "NTBBloodbath/logging.nvim" },
+        cmd = "Exemplum",
     },
     { -- https://github.com/nikolaeu/numi/wiki
         "josephburgess/nvumi",
