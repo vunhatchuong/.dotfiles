@@ -124,6 +124,7 @@ return {
             { "4513ECHO/vim-colors-hatsunemiku" },
             { "srt0/everblush.nvim" },
             { "comfysage/cuddlefish.nvim" },
+            { "cdmill/neomodern.nvim" },
             -- Light Theme
             -- { "yorickpeterse/nvim-grey" },
             { "yorickpeterse/vim-paper" },
