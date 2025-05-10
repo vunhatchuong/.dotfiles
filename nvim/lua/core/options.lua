@@ -138,9 +138,9 @@ vim.g.markdown_recommended_style = 0
 local M = {}
 
 M.two_space_indents = {
+    "xml",
     "html",
     "xhtml",
-    "xml",
     "css",
     "scss",
     "javascript",

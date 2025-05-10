@@ -7,7 +7,6 @@ return {
             "bash",
             "vimdoc",
             "diff",
-            "html",
             "http",
             "gitignore",
             "query",

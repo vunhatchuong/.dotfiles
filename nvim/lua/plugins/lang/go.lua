@@ -92,7 +92,7 @@ return {
         },
     },
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         opts = function()
             vim.filetype.add({ extension = { templ = "templ" } })
         end,
@@ -101,7 +101,7 @@ return {
         "nvimtools/none-ls.nvim",
         optional = true,
         ft = { "go", "gomod", "gowork", "gosum", "templ" },
-        dependencies = { "williamboman/mason.nvim" },
+        dependencies = { "mason-org/mason.nvim" },
         opts = function(_, opts)
             local nls = require("null-ls")
             local gotests = require("plugins.lang.gotests")
@@ -189,7 +189,7 @@ return {
         optional = true,
         dependencies = {
             {
-                "williamboman/mason.nvim",
+                "mason-org/mason.nvim",
                 opts = { ensure_installed = { "delve" } },
             },
             {

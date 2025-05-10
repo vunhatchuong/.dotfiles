@@ -5,7 +5,7 @@ return {
         event = { "BufReadPost", "BufNewFile", "BufWritePre" },
         dependencies = {
             "mason.nvim",
-            { "williamboman/mason-lspconfig.nvim", config = function() end },
+            { "mason-org/mason-lspconfig.nvim", config = function() end },
             require("plugins.lsp.mason"),
         },
         opts = function()
