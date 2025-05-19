@@ -152,7 +152,7 @@ return {
                     ["RFC"] = "https://www.rfc-editor.org/search/rfc_search_detail.php",
                     ["gleam:tour"] = "https://tour.gleam.run/everything/",
                     ["gleam:std"] = "https://hexdocs.pm/gleam_stdlib/",
-                    ["rust:std"] = "https://doc.rust-lang.org/std/index.html"
+                    ["rust:std"] = "https://doc.rust-lang.org/std/index.html",
                 },
                 ["entertainment"] = {
                     ["awesome-nvim"] = "https://github.com/rockerBOO/awesome-neovim",
@@ -204,5 +204,9 @@ return {
     },
     { -- blink.nvim source
         "dnnr1/lorem-ipsum.nvim",
+    },
+    {
+        "dundalek/bloat.nvim",
+        cmd = "Bloat",
     },
 }

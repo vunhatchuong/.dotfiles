@@ -43,7 +43,7 @@ return {
                                 enumMemberValues = { enabled = true },
                                 functionLikeReturnTypes = { enabled = true },
                                 parameterTypes = { enabled = true },
-                                parameterNames = { enabled = "all" },
+                                -- parameterNames = { enabled = "all" },
                                 propertyDeclarationTypes = { enabled = true },
                                 variableTypes = { enabled = false },
                             },
