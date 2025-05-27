@@ -17,6 +17,11 @@ plug "esc/conda-zsh-completion"
 plug "Bhupesh-V/ugit"
 # plug "zap-zsh/sudo"
 
+# Enable shell's vi-mode only when not in nvim
+if [ -z "$NVIM" ]; then
+    # set -o vi
+fi
+
 # This seems to bug out `Ctrl+` keymaps
 # plug "jeffreytse/zsh-vi-mode"
 # ZVM_CURSOR_STYLE_ENABLED=false
