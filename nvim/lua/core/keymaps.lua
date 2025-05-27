@@ -21,7 +21,6 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 keymap("n", "<leader>e", vim.cmd.Ex)
-keymap({ "i", "n" }, "<Esc>", "<CMD>noh<CR><Esc>")
 keymap(
     "n",
     "<leader>w",
@@ -87,6 +86,7 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 keymap("t", "<C-\\>", "<CMD>close<CR>", { desc = "Hide Terminal" })
+keymap("t", "<Esc>", [[<C-\><C-n>]], { noremap = true })
 -- keymap("t", "<Esc><Esc>", "<CMD>close<CR>", { desc = "Hide Terminal", noremap = true })
 
 keymap("n", "dd", function()

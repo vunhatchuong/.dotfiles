@@ -234,4 +234,79 @@ return {
         cmd = "Patterns",
         opts = {},
     },
+    {
+        "jake-stewart/normal-cmdline.nvim",
+        event = "CmdlineEnter",
+        config = function()
+            local cmd = require("normal-cmdline")
+            cmd.setup({
+                key = "<esc>",
+                mappings = {
+                    ["k"] = cmd.history.prev,
+                    ["j"] = cmd.history.next,
+                    ["<cr>"] = cmd.accept,
+                    ["<esc>"] = cmd.cancel,
+                    ["<c-c>"] = cmd.cancel,
+                    [":"] = cmd.reset,
+                },
+            })
+        end,
+    },
+    {
+        "echasnovski/mini.keymap",
+        lazy = false,
+        config = function()
+            local keymap = require("mini.keymap")
+            local map_multistep = keymap.map_multistep
+            local map_combo = keymap.map_combo
+            local search_pattern = keymap.gen_step.search_pattern
+
+            local tab_step_insert = search_pattern(
+                -- Need to use 'c' flag and 'after' side for robust "chaining"
+                [=[[)\]}"'`]]=],
+                "ceW",
+                { side = "after" }
+            )
+            local i_tab_steps = {
+                "increase_indent",
+                search_pattern([=[[)\]}"'`]]=], "cW", {
+                    side = "after",
+                    stopline = function()
+                        return vim.fn.line(".")
+                    end,
+                }),
+                "jump_after_tsnode",
+                -- "jump_after_close",
+            }
+            map_multistep("i", "<TAB>", i_tab_steps)
+
+            map_multistep(
+                { "n", "x" },
+                "<TAB>",
+                { "jump_after_tsnode", search_pattern([=[[)\]}"'`]]=], "eW") }
+            )
+
+            local i_shifttab_steps = {
+                "decrease_indent",
+                "jump_before_tsnode",
+                "jump_before_open",
+            }
+
+            map_multistep("i", "<S-TAB>", i_shifttab_steps)
+            map_multistep(
+                { "n", "x" },
+                "<S-TAB>",
+                { search_pattern([=[[(\[{"'`]]=], "bW") }
+            )
+
+            map_combo({ "n", "i", "x", "c" }, "<Esc>", function()
+                vim.cmd("nohlsearch")
+            end)
+        end,
+    },
+    -- {
+    --     "xb-bx/editable-term.nvim",
+    --     lazy = false,
+    --     opts = {},
+    -- },
 }

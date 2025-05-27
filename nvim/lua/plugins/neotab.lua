@@ -15,6 +15,7 @@ return {
         --- @module "neotab"
         --- @diagnostic disable: missing-fields
         opts = {
+            tabkey = "", -- Use mini.keymap instead
             smart_punctuators = {
                 enabled = true,
                 semicolon = { -- Put semicolon(;) at the right place
