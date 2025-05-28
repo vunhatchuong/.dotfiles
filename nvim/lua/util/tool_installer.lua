@@ -13,7 +13,7 @@ function M.ensure_installed(spec)
     -- Plugins with an ensure installed tag can concatenated into a single array
     -- which will be the resolved in the final opts
     local index = {
-        treesitter = "nvim-treesitter",
+        treesitter = "ts-install.nvim",
     }
     for key, plugin in pairs(index) do
         if spec[key] ~= nil then

@@ -2,72 +2,51 @@
 return {
     {
         "nvim-treesitter/nvim-treesitter",
-        version = false, -- last release is way too old and doesn't work on Windows
-        build = ":TSUpdate",
-        lazy = vim.fn.argc(-1) == 0, -- load treesitter early when opening a file from the cmdline
-        event = { "BufReadPost", "BufNewFile", "BufReadPre", "VeryLazy" },
-        cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-        init = function(plugin)
-            -- PERF: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/plugins/treesitter.lua
-            require("lazy.core.loader").add_to_rtp(plugin)
-            require("nvim-treesitter.query_predicates")
+        branch = "main", -- new versions follow `main`
+        lazy = false,
+        init = function()
+            vim.g.loaded_nvim_treesitter = 1
         end,
-        dependencies = {
-            {
-                "nvim-treesitter/nvim-treesitter-textobjects",
-                init = function(plugin)
-                    require("lazy.core.loader").disable_rtp_plugin(plugin)
-                    LOAD_TEXTOBJECTS = true
-                end,
-            },
-        },
-        opts_extend = { "ensure_installed" },
+        dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
         opts = {
-            auto_install = true,
-            highlight = { enable = true },
-            indent = { enable = true },
+            install_dir = vim.fn.stdpath("data") .. "/treesitter-parsers",
             matchup = { enable = true }, -- vim-matchup
         },
         config = function(_, opts)
-            require("nvim-treesitter.configs").setup(opts)
+            require("nvim-treesitter").setup(opts)
+
+            vim.api.nvim_create_autocmd("FileType", {
+                desc = "Enable Treesitter",
+                callback = function()
+                    -- Enable Treesitter syntax highlighting.
+                    if pcall(vim.treesitter.start) then
+                        vim.bo.indentexpr =
+                            "v:lua.require'nvim-treesitter'.indentexpr()"
+                        -- vim.wo.foldmethod = "expr"
+                        -- vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+                    end
+                end,
+            })
         end,
     },
     {
+        "lewis6991/ts-install.nvim",
+        lazy = false,
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = { auto_install = true },
+    },
+    {
         "nvim-treesitter/nvim-treesitter-textobjects",
+        branch = "main",
         event = "VeryLazy",
-        enabled = true,
-        config = function()
-            -- If treesitter is already loaded, we need to run config again for textobjects
-            if Util.lazy.is_loaded("nvim-treesitter") then
-                local opts = Util.lazy.opts("nvim-treesitter")
-                ---@diagnostic disable-next-line: missing-fields
-                require("nvim-treesitter.configs").setup({
-                    textobjects = opts.textobjects,
-                })
-            end
-
-            -- When in diff mode, we want to use the default
-            -- vim text objects c & C instead of the treesitter ones.
-            local move = require("nvim-treesitter.textobjects.move") ---@type table<string,fun(...)>
-            local configs = require("nvim-treesitter.configs")
-            for name, fn in pairs(move) do
-                if name:find("goto") == 1 then
-                    move[name] = function(q, ...)
-                        if vim.wo.diff then
-                            local config =
-                                configs.get_module("textobjects.move")[name] ---@type table<string,string>
-                            for key, query in pairs(config or {}) do
-                                if q == query and key:find("[%]%[][cC]") then
-                                    vim.cmd("normal! " .. key)
-                                    return
-                                end
-                            end
-                        end
-                        return fn(q, ...)
-                    end
-                end
-            end
-        end,
+        opts = {
+            select = {
+                lookahead = true,
+                -- `true` would even remove line breaks from charwise objects,
+                -- thus staying with `false`
+                include_surrounding_whitespace = false,
+            },
+        },
     },
     {
         -- "windwp/nvim-ts-autotag",
