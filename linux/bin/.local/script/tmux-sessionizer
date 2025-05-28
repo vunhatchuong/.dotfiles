@@ -1,72 +1,203 @@
 #!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
-_find() {
-    find ~/.config/tmuxp -name "*.yaml" -printf 'Tmuxp: %f\n'
+# -- Configuration -------------------------------------------------------------
+
+MRU_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/tmux_sessions/mru.list"
+MAX_MRU=50
+TMUXP_PREFIX="[TMUXP] "
+
+# -- Utilities -----------------------------------------------------------------
+
+is_tmuxp_entry() {
+    [[ "$1" == "$TMUXP_PREFIX"* ]]
+}
+
+expand_path() {
+    [[ $1 == ~* ]] && echo "${1/#\~/$HOME}" || echo "$1"
+}
+
+sanity_check() {
+    for cmd in tmux fzf find git eza; do
+        if ! command -v "$cmd" &>/dev/null; then
+            echo "[ERROR] '$cmd' is not installed." >&2
+            exit 1
+        fi
+    done
+}
+
+# -- MRU Management ------------------------------------------------------------
+
+init_mru() {
+    mkdir -p "$(dirname "$MRU_FILE")"
+    touch "$MRU_FILE"
+}
+
+load_mru() {
+    mapfile -t MRU_ENTRIES <"$MRU_FILE"
+}
+
+update_mru() {
+    local entry="$1"
+    grep -Fxv "$entry" "$MRU_FILE" >"${MRU_FILE}.tmp" || true
+    {
+        echo "$entry"
+        head -n $((MAX_MRU - 1)) "${MRU_FILE}.tmp"
+    } >"$MRU_FILE"
+    rm -f "${MRU_FILE}.tmp"
+}
+
+# -- Discovery -----------------------------------------------------------------
+
+_find_all() {
+    find ~/.config/tmuxp -name '*.yaml' -printf "${TMUXP_PREFIX}%f\n"
     find \
         {{ workspaces }} \
         -mindepth 1 -maxdepth 1 -type d
 }
 
-# if provides a single arg, use it as the selected workspace.
-if [[ $# -eq 1 ]]; then
-    selected="$1"
-else
-    selected=$(_find | fzf --preview '[[ -d {} ]] && eza -1 --color=always {} || echo "Not a directory"' --print-query | tail -n1)
-fi
+ordered_list() {
+    local all=()
+    mapfile -t all < <(_find_all)
 
-# Exit if no selection was made.
-[[ -z $selected ]] && exit 0
-[[ $selected == $(pwd) ]] && exit 0
+    for m in "${MRU_ENTRIES[@]}"; do
+        for a in "${all[@]}"; do
+            [[ "$a" == "$m" ]] && {
+                echo "$a"
+                break
+            }
+        done
+    done
 
-# If it's a Tmuxp session, load it.
-if [[ $selected == *.yaml ]]; then
-    tmuxp load "$(find ~/.config/tmuxp -type l -name "${selected#Tmuxp: }")" -y
-    exit 0
-fi
+    comm -23 \
+        <(printf '%s\n' "${all[@]}" | sort) \
+        <(printf '%s\n' "${MRU_ENTRIES[@]}" | sort)
+}
 
-# Create the directory if it doesn't exist.
-if [[ ! -d $selected ]]; then
-    chosen_workspace=$(echo "{{ workspaces }}" | tr ' ' '\n' | fzf --prompt="Select a workspace to create '$selected' in: ")
-    chosen_workspace="${chosen_workspace/#\~/$HOME}" # Expand '~'
+# -- Display -------------------------------------------------------------------
 
-    if [[ -z $chosen_workspace ]]; then
+format_entry() {
+    local entry="$1"
+
+    if is_tmuxp_entry "$entry"; then
+        echo "$entry"
+        return
+    fi
+
+    local parent base
+    parent=$(basename "${entry%/*}")
+    base=$(basename "$entry")
+    echo "[$parent] $base"
+}
+
+choose_selection() {
+    local -a all
+    mapfile -t all < <(ordered_list)
+
+    if ((${#all[@]} == 1)); then
+        echo "${all[0]}"
+        return
+    fi
+
+    local input path disp parent base
+    input=$(
+        printf '%s\n' "${all[@]}" | while IFS= read -r path; do
+            if is_tmuxp_entry "$path"; then
+                disp="$path"
+            else
+                parent=$(basename "${path%/*}")
+                base=$(basename "$path")
+                disp="[$parent] $base"
+            fi
+            printf '%s\t%s\n' "$disp" "$path"
+        done
+    )
+
+    local selected
+    selected=$(printf '%s\n' "$input" | fzf \
+        --delimiter=$'\t' \
+        --with-nth=1 \
+        --preview '[[ -d {2} ]] && eza -1 --color=always {2} || echo "Not a directory"' \
+        --prompt="Select session/dir: ") || return
+
+    [[ -z $selected ]] && return
+    echo "${selected#*$'\t'}"
+}
+
+# -- Session Handling ----------------------------------------------------------
+
+load_tmuxp_session() {
+    local file
+    file=$(find ~/.config/tmuxp -name "${1#"${TMUXP_PREFIX}"}" -print -quit)
+    tmuxp load "$file" -y
+}
+
+clone_or_create_dir() {
+    local target="$1"
+    local workspace
+
+    workspace=$(echo "{{ workspaces }}" | tr ' ' '\n' | fzf --prompt="Select workspace for '$target': ")
+    [[ -z $workspace ]] && {
         echo "No workspace selected. Aborting."
         exit 1
-    fi
+    }
+    workspace=$(expand_path "$workspace")
 
-    # Clone if it's a Git URL
-    if [[ "$selected" =~ ^(https?|git):// ]]; then
-        git_url="$selected"
-        if ! git ls-remote "$git_url" &>/dev/null; then
-            echo "[ERROR] Unable to access '$selected'"
+    if [[ "$target" =~ ^(https?|git):// ]]; then
+        git ls-remote "$target" &>/dev/null || {
+            echo "[ERROR] Cannot access '$target'"
             exit 1
-        fi
-
-        selected="$chosen_workspace/$(basename "$git_url" .git)"
-        git clone "$git_url" "$selected"
+        }
+        local repo_dir="$workspace/$(basename "$target" .git)"
+        git clone "$target" "$repo_dir"
+        echo "$repo_dir"
     else
-        selected="$chosen_workspace/$selected"
+        local full_path="$workspace/$target"
+        mkdir -p "$full_path"
+        echo "$full_path"
+    fi
+}
+
+start_or_attach_tmux() {
+    local name="$1" dir="$2"
+
+    if [[ -z ${TMUX:-} ]] && ! pgrep tmux &>/dev/null; then
+        tmux new-session -s "$name" -c "$dir"
+        exit 0
     fi
 
-    mkdir -p "$selected"
-fi
+    if ! tmux has-session -t="$name" 2>/dev/null; then
+        tmux new-session -ds "$name" -c "$dir"
+    fi
 
-selected_name=$(basename "$selected" | tr '.' '-')
+    if [[ -z ${TMUX:-} ]]; then
+        tmux attach-session -t "$name"
+    else
+        tmux switch-client -t "$name"
+    fi
+}
 
-# Start a new tmux session if none is running.
-if [[ -z $TMUX ]] && [[ -z $(pgrep tmux) ]]; then
-    tmux new-session -s "$selected_name" -c "$selected"
+# -- Main ----------------------------------------------------------------------
+
+sanity_check
+init_mru
+load_mru
+
+selected=$(choose_selection "$@")
+[[ -z $selected || $selected == "$(pwd)" ]] && exit 0
+
+update_mru "$selected"
+
+if is_tmuxp_entry "$selected"; then
+    load_tmuxp_session "$selected"
     exit 0
 fi
 
-# Create a new detached session if the session does not already exist.
-if ! tmux has-session -t="$selected_name" 2>/dev/null; then
-    tmux new-session -ds "$selected_name" -c "$selected"
+if [[ ! -d $selected ]]; then
+    selected=$(clone_or_create_dir "$selected")
+    update_mru "$selected"
 fi
 
-# If not in a tmux session, attach to the existing session else switch to it.
-if [[ -z $TMUX ]]; then
-    tmux attach-session -t "$selected_name"
-else
-    tmux switch-client -t "$selected_name"
-fi
+session_name=$(basename "$selected" | tr '.' '-')
+start_or_attach_tmux "$session_name" "$selected"
