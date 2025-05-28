@@ -1,5 +1,5 @@
 HISTFILE=~/.zsh_history
-HISTSIZE=50000
+HISTSIZE=10000
 SAVEHIST=10000
 
 ## History command configuration
@@ -15,3 +15,12 @@ setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in the history f
 setopt HIST_IGNORE_DUPS         # Don't record an entry that was just recorded again.
 setopt HIST_FIND_NO_DUPS        # Do not display a line previously found.
 setopt HIST_REDUCE_BLANKS       # Remove unnecessary blank lines.
+
+setopt EXTENDED_GLOB
+HISTORY_IGNORE='(reboot|shutdown|exit|cd ..|cd ~|cd -|tmux-sessionizer)'
+
+zshaddhistory()
+{
+  emulate -L zsh
+  [[ $1 != ${~HISTORY_IGNORE} ]]
+}
